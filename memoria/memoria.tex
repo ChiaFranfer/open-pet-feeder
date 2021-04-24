@@ -19,6 +19,7 @@
 
 \begin{document}
 	\selectlanguage{spanish}
+
 	\title{Diseño y automatización de sistema de alimentación para animales a través de la tecnología LoRa}
 	\author{Lucía Francoso Fernández}
 	\date{Marzo 2021}
@@ -38,9 +39,56 @@
 	
 	\section[Introducción]{Introducción} %corchetes, marcapaginas, llaves, texto
 	
+	Tras finalizar los estudios de grado en ingeniería en sistemas de telecomunicaciones, se requiere como último paso para la obtención del título la elaboración del \textit{Trabajo Fin de Grado} (TFG). 
+	El TFG como tal tiene unos objetivos claros, los cuales son demostrar que se han adquirido los conceptos y conocimientos relacionados con el grado, y que se es capaz de aprender más en base a ellos, innovar, desenvolverse ante un problema determinado y, en resumen, saber llevar a cabo una investigación. \\
+	
+	\noindent En este documento, se recoge el proyecto realizado como TFG,  el cual va en línea con la filosofía y objetivos del \textit{Trabajo Fin de Grado} en sí mismo. Se detallará el proceso de creación de un sistema de alimentación para animales automatizado, donde se monitorizan de manera remota el estado de los tanques de reserva de agua y pienso. Así, se pretende exponer el conjunto de elementos hardware y software que serán necesarios para monitorizar, automatizar y acceder a ciertos datos de forma remota empleando, principalmente, Arduino y LoRa.\\
+	
+	
 	\subsection[Contexto y justificación del trabajo]{Contexto y justificación del trabajo}
+
+	\noindent Este proyecto ha sido concebido con el objetivo principal de ayudar a la preservación de la vida animal, ante el aumento de especies en extinción, sobretodo en lo que llevamos de siglo, y ante el hecho de que miles de animales domésticos siguen siendo abandonados al año en España.
+	
+	%fuentes
+	% National Geographic: https://www.nationalgeographic.com.es/naturaleza/grandes-reportajes/animales-peligro-extincion_12536
+	% WWF https://www.worldwildlife.org/descubre-wwf/historias/que-significa-especie-en-peligro-de-extincion
+	% BBC https://www.bbc.com/mundo/noticias-54036796
+	% Fundación AQUAE https://www.fundacionaquae.org/causas-perdida-biodiversidad/
+	% Fundación Affinity https://www.fundacion-affinity.org/observatorio/infografia-el-nunca-lo-haria-estudio-de-abandono-y-adopcion-2020
+	% Periódicos 
+	%20 minutos https://www.20minutos.es/noticia/4318383/0/el-abandono-animal-en-espana-aumenta-un-25-en-las-ultimas-semanas/
+	% La Razón https://www.larazon.es/medio-ambiente/20201118/qxv6yuokargfbnjvknn6bhm4ze.html
+	% RTVE https://www.rtve.es/noticias/20200608/abandonos-animales-domesticos-se-han-disparado-espana-durante-meses-confinamiento/2015761.shtml
+	
+	\noindent Es por ello que se requiere de ayuda activa para paliar estos problemas. Las tareas de carácter solidario, en bastantes casos, no siempre cuentan con suficientes voluntarios; además, siendo un problema tan extendido y avanzado, el número de acciones que hay que llevar a cabo para aliviarlo es alto para un número limitado de voluntarios, los cuales deben incrementar considerablemente el tiempo que pasan realizando este tipo de tareas. 
+	Tanto si se trata de un refugio de animales domésticos abandonados, como de reservas naturales donde se intenta repoblar una especie, los animales dependen enteramente del trabajo de los voluntarios. Así pues, es de vital importancia la optimización de las tareas de voluntariado, su automatización e, incluso, control remoto, mediante la creación de herramientas que ayuden a reducir el tiempo que se destina a tareas rutinarias para poder utilizar ese tiempo a otras tareas (de rescate, o de financiación para el mantenimiento de las instalaciones y de los propios animales, por ejemplo). 
+	
+	\noindent Como se ha comentado previamente, ayudar a la preservación de la fauna y la vida de los ecosistemas terrestres es fundamental para evitar la extinción de especies y, por tanto, la reducción de la biodiversidad. Es por ello que, tanto en el proceso de concepción como de desarrollo de este proyecto, se han tenido en cuenta los diferentes casos de uso que pueden darse. Algunos puntos que se han tenido en cuenta: 
+	
+	\begin{itemize}
+		\item El diseño del sistema de alimentación será tal que el producto final pueda ser instalado no sólo en hogares, sino en sitios remotos, donde el acceso a recursos tales como la electricidad o Internet son escasos o inexistentes. Así pues, el dispositivo utilizará energía solar y baterías recargables, comunicación de bajo consumo y largo alcance y modo de ahorro de energía. 
+		\item El dispositivo final no será pesado ni voluminoso, facilitando así su transporte. No dejará al alcance del animal electrónica, de manera que evitaremos que los animales estén en contacto con ella y posibles problemas de humedad presente en el entorno; se usarán protecciones adecuadas a la calidad de los componentes del dispositivo.
+		\item El dispositivo contará con una pantalla OLED que permitirá ver a la persona que esté físicamente delante de él si funciona correctamente. También se permitirá el acceso a datos a personas interesadas que quieran consultarlos de manera remota.
+
+	\end{itemize}
+
+	
 	\subsubsection[Ejemplo de caso de aplicación]{Ejemplo de caso de aplicación}
+	
+	Un ejemplo de caso de aplicación sería el entorno donde se desea situar uno de estos dispositivos para validar su funcionamiento, que en este caso se trata del refugio perteneciente a la protectora Patitas Unidas Los Alcázares, situado en el término municipal de Torre Pacheco (Murcia).
+	
 	\subsection[Objetivos del trabajo]{Objetivos del trabajo}
+	
+	El objetivo fundamental del presente trabajo es el diseño de un sistema de alimentación para animales que permita la monitorización de los niveles de agua y pienso que se encuentran en depósitos de reserva, los cuales rellenan un bebedero y un comedero, respectivamente.  Con ello, se pretende automatizar el proceso de alimentación de animales, además del uso de la tecnología LoRa para tener acceso al estado del sistema de forma remota. Así pues, los objetivos concretos son:
+	
+	\begin{itemize}
+		\item Realizar una aproximación a la tecnología LoRa.
+		\item Diseñar el sistema de alimentación para animales.
+		\item Realizar tanto simulaciones para el enlace LoRa que se creará entre transmisor y receptor, como cálculos teóricos que determinen si el enlace es posible.
+		\item Construir el prototipo y probarlo en entorno controlado y, posteriormente, en entorno real.
+		\item Crear una plataforma de representación de datos.
+	\end{itemize}
+	
 	\subsection[Enfoque y método seguido]{Enfoque y método seguido}
 	\subsection[Planificación del trabajo]{Planificación del trabajo}
 	\subsubsection[Alcance]{Alcance}
@@ -81,29 +129,35 @@
 	\pagebreak
 	
 	\section[Diseño del sistema]{Diseño del sistema}
+	
+	% Definición funcionalidades: qué debo hacer y qué necesitaría
+	% Investigación componentes (*) e integración (programación)
+		%(*) Qué se ha usado, desglosado por funcionalidades: bebedero, comedero, alimentación, microcontrolador y radio.
+		% Descripción, foto, foto en prototipo protoboard
+	% Definición prototipo provisional: opciones que he descartado, QR de que funciona?
+	% Diseño PCB
+	% Desarrollo BBDD en servidor y app web para ver el estado del sistema de alimentación
+	
 	\subsection[Tecnologías necesarias]{Tecnologías necesarias}
 	\subsubsection[Entorno Arduino]{Entorno Arduino}
 	\subsubsection[LoRa]{LoRa}
 	\subsection[Monitorización y automatización]{Monitorización y automatización}
 	\subsection[Comunicaciones LoRa]{Comunicaciones LoRa}
-	\subsection[LoRaWAN y TTN]{LoRaWAN y TTN}
+	%Simulaciones Xirio? O mejor abajo?
+	
 	\subsection[Resumen del capítulo]{Resumen de capítulo}
 	
 	\pagebreak
 	
 	\section[Prototipo y pruebas]{Prototipo y pruebas}
+	
+	% Ensamblado PCB y pruebas
 	\subsection[Ubicación]{Ubicación}
 	\subsection[Prototipo inicial]{Prototipo inicial}
 	\subsection[Prototipo definitivo]{Prototipo definitivo}
 	\subsection[Pruebas]{Pruebas}
 	\subsection[Comentarios sobre los resultados de las pruebas]{Comentarios sobre los resultados de las pruebas}
 	\subsection[Presupuesto]{Presupuesto}
-	\subsection[Resumen del capítulo]{Resumen del capítulo}
-	
-	\section[Mejora del sistema: alarmas]{Mejora del sistema: alarmas}
-	\subsection[Contexto y requisitos]{Contexto y requisitos}
-	\subsection[Implementación en el sistema y pruebas]{Implementación en el sistema y pruebas}
-	\subsection[Pruebas con el prototipo en ubicación final]{Pruebas con el prototipo en ubicación final}
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
 	
 	\section[Conclusiones y líneas futuras]{Conclusiones y líneas futuras}
