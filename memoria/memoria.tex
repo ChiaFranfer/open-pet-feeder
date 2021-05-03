@@ -6,9 +6,18 @@
 
 \usepackage{array}
 
+\usepackage[dvipsnames]{xcolor}
+
 \usepackage{hyperref}
 \usepackage{subcaption}
 \usepackage[left = 2cm, right = 2cm, bottom = 2cm, top = 3cm]{geometry}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	%filecolor=magenta,      
+	urlcolor=cyan,
+}
 
 \hypersetup{
 	pdftitle= {Diseño y automatización de sistema de alimentación para animales a través de la tecnología LoRa},
@@ -40,34 +49,26 @@
 	\section[Introducción]{Introducción} %corchetes, marcapaginas, llaves, texto
 	
 	Tras finalizar los estudios de grado en ingeniería en sistemas de telecomunicaciones, se requiere como último paso para la obtención del título la elaboración del \textit{Trabajo Fin de Grado} (TFG). 
-	El TFG como tal tiene unos objetivos claros, los cuales son demostrar que se han adquirido los conceptos y conocimientos relacionados con el grado, y que se es capaz de aprender más en base a ellos, innovar, desenvolverse ante un problema determinado y, en resumen, saber llevar a cabo una investigación. \\
+	El TFG como tal tiene unos objetivos claros, los cuales son demostrar que se han adquirido las competencias básicas intrínsecas al grado, y que el alumno es capaz de seguir aprendiendo a partir de los conocimientos ya obtenidos, innovar, desenvolverse ante un problema determinado y, en resumen, saber llevar a cabo una investigación o proyecto que tenga como objetivo la resolución de dicho problema. \\
 	
 	\noindent En este documento, se recoge el proyecto realizado como TFG,  el cual va en línea con la filosofía y objetivos del \textit{Trabajo Fin de Grado} en sí mismo. Se detallará el proceso de creación de un sistema de alimentación para animales automatizado, donde se monitorizan de manera remota el estado de los tanques de reserva de agua y pienso. Así, se pretende exponer el conjunto de elementos hardware y software que serán necesarios para monitorizar, automatizar y acceder a ciertos datos de forma remota empleando, principalmente, Arduino y LoRa.\\
 	
 	
 	\subsection[Contexto y justificación del trabajo]{Contexto y justificación del trabajo}
 
-	\noindent Este proyecto ha sido concebido con el objetivo principal de ayudar a la preservación de la vida animal, ante el aumento de especies en extinción, sobretodo en lo que llevamos de siglo, y ante el hecho de que miles de animales domésticos siguen siendo abandonados al año en España.
+	\noindent Este proyecto ha sido concebido con el objetivo principal de ayudar a la preservación de la vida animal, ante el aumento de especies en extinción, sobretodo en lo que llevamos de siglo \footnote{\href{https://www.nationalgeographic.com.es/naturaleza/grandes-reportajes/animales-peligro-extincion_12536}{National Geographic} , \href{https://www.bbc.com/mundo/noticias-54036796}{BBC}, \href{https://www.worldwildlife.org/descubre-wwf/historias/que-significa-especie-en-peligro-de-extincion}{WWF}, \href{https://www.fundacionaquae.org/causas-perdida-biodiversidad/}{Fundación AQUAE}}, y ante el hecho de que miles de animales domésticos siguen siendo abandonados al año en España \footnotemark. \\
 	
-	%fuentes
-	% National Geographic: https://www.nationalgeographic.com.es/naturaleza/grandes-reportajes/animales-peligro-extincion_12536
-	% WWF https://www.worldwildlife.org/descubre-wwf/historias/que-significa-especie-en-peligro-de-extincion
-	% BBC https://www.bbc.com/mundo/noticias-54036796
-	% Fundación AQUAE https://www.fundacionaquae.org/causas-perdida-biodiversidad/
-	% Fundación Affinity https://www.fundacion-affinity.org/observatorio/infografia-el-nunca-lo-haria-estudio-de-abandono-y-adopcion-2020
-	% Periódicos 
-	%20 minutos https://www.20minutos.es/noticia/4318383/0/el-abandono-animal-en-espana-aumenta-un-25-en-las-ultimas-semanas/
-	% La Razón https://www.larazon.es/medio-ambiente/20201118/qxv6yuokargfbnjvknn6bhm4ze.html
-	% RTVE https://www.rtve.es/noticias/20200608/abandonos-animales-domesticos-se-han-disparado-espana-durante-meses-confinamiento/2015761.shtml
-	
+	%Fundación Affinity, 20 minutos, La Razón, RTVE
+	\footnotetext{\href{https://www.fundacion-affinity.org/observatorio/infografia-el-nunca-lo-haria-estudio-de-abandono-y-adopcion-2020}{Fundación Affinity}, \href{https://www.20minutos.es/noticia/4318383/0/el-abandono-animal-en-espana-aumenta-un-25-en-las-ultimas-semanas/}{20 minutos}, \href{https://www.larazon.es/medio-ambiente/20201118/qxv6yuokargfbnjvknn6bhm4ze.html}{La Razón}, \href{https://www.rtve.es/noticias/20200608/abandonos-animales-domesticos-se-han-disparado-espana-durante-meses-confinamiento/2015761.shtml}{RTVE}}
+
 	\noindent Es por ello que se requiere de ayuda activa para paliar estos problemas. Las tareas de carácter solidario, en bastantes casos, no siempre cuentan con suficientes voluntarios; además, siendo un problema tan extendido y avanzado, el número de acciones que hay que llevar a cabo para aliviarlo es alto para un número limitado de voluntarios, los cuales deben incrementar considerablemente el tiempo que pasan realizando este tipo de tareas. 
-	Tanto si se trata de un refugio de animales domésticos abandonados, como de reservas naturales donde se intenta repoblar una especie, los animales dependen enteramente del trabajo de los voluntarios. Así pues, es de vital importancia la optimización de las tareas de voluntariado, su automatización e, incluso, control remoto, mediante la creación de herramientas que ayuden a reducir el tiempo que se destina a tareas rutinarias para poder utilizar ese tiempo a otras tareas (de rescate, o de financiación para el mantenimiento de las instalaciones y de los propios animales, por ejemplo). 
+	Tanto si se trata de un refugio de animales domésticos abandonados, como de reservas naturales donde se intenta repoblar una especie, los animales dependen enteramente del trabajo de los voluntarios. Así pues, es de vital importancia la optimización de las tareas de voluntariado, su automatización e, incluso, control remoto, mediante la creación de herramientas que ayuden a reducir el tiempo que se destina a tareas rutinarias para poder utilizar ese tiempo a otras tareas (de rescate, o de financiación para el mantenimiento de las instalaciones y de los propios animales, por ejemplo). \\
 	
-	\noindent Como se ha comentado previamente, ayudar a la preservación de la fauna y la vida de los ecosistemas terrestres es fundamental para evitar la extinción de especies y, por tanto, la reducción de la biodiversidad. Es por ello que, tanto en el proceso de concepción como de desarrollo de este proyecto, se han tenido en cuenta los diferentes casos de uso que pueden darse. Algunos puntos que se han tenido en cuenta: 
+	\noindent Con el objetivo en mente de ayudar a la preservación de la fauna (y con ello, de la vida de los ecosistemas terrestres), evitando la extinción de especies y el abandono animal, se ha concebido y desarrollado este proyecto teniendo en cuenta los diferentes casos de uso (emplazamientos donde se podrá instalar el sistema, características del entorno), mejor adaptación a ellos, relación entre buenas prestaciones y bajo consumo, precio total del producto, o facilidad de uso por parte de un usuario medio. Es por ello que desde el principio se propone una serie de actuaciones a realizar, acorde a lo anteriormente mencionado, tales como:
 	
 	\begin{itemize}
 		\item El diseño del sistema de alimentación será tal que el producto final pueda ser instalado no sólo en hogares, sino en sitios remotos, donde el acceso a recursos tales como la electricidad o Internet son escasos o inexistentes. Así pues, el dispositivo utilizará energía solar y baterías recargables, comunicación de bajo consumo y largo alcance y modo de ahorro de energía. 
-		\item El dispositivo final no será pesado ni voluminoso, facilitando así su transporte. No dejará al alcance del animal electrónica, de manera que evitaremos que los animales estén en contacto con ella y posibles problemas de humedad presente en el entorno; se usarán protecciones adecuadas a la calidad de los componentes del dispositivo.
+		\item El dispositivo final no será pesado ni voluminoso, facilitando así tanto su transporte como su manejo. No dejará al alcance del animal electrónica, de manera que evitaremos que los animales estén en contacto con ella y posibles problemas de humedad presente en el entorno; se usarán protecciones adecuadas a la calidad de los componentes del dispositivo.
 		\item El dispositivo contará con una pantalla OLED que permitirá ver a la persona que esté físicamente delante de él si funciona correctamente. También se permitirá el acceso a datos a personas interesadas que quieran consultarlos de manera remota.
 
 	\end{itemize}
@@ -76,6 +77,13 @@
 	\subsubsection[Ejemplo de caso de aplicación]{Ejemplo de caso de aplicación}
 	
 	Un ejemplo de caso de aplicación sería el entorno donde se desea situar uno de estos dispositivos para validar su funcionamiento, que en este caso se trata del refugio perteneciente a la protectora Patitas Unidas Los Alcázares, situado en el término municipal de Torre Pacheco (Murcia).
+	La elección de esta ubicación se fundamenta en una serie de razones:
+	
+	\begin{itemize}
+		\item Al ser voluntaria para esta protectora, conozco bien sus necesidades, es decir, qué puede ser de utilidad para la protectora en el refugio y qué soluciones se han probado para determinados problemas que han ido surgiendo; además, conozco bajo qué condiciones climáticas es vulnerable y qué necesidades esporádicas emergen bajo dichas condiciones. Teniendo en cuenta la zona geográfica donde se ubica (Murcia), y los años de experiencia en el refugio, se ha detectado una problemática que se manifiesta durante  periodos continuados de lluvias (lluvias torrenciales, DANA, gota fría), la cual consiste en la inundación de las zonas colindantes al refugio, inclusive carreteras de acceso, lo que impide llegar a él (cierre de carreteras, niveles altos de riesgo por precipitación, o el simple hecho de contar con grandes volúmenes de agua en la carretera que impiden la circulación segura por la vía). De
+		\item Se trata de un entorno sin electricidad y sin internet. Desarrollar un proyecto y probarlo en este tipo de entorno nos ayudará a la hora de extrapolarlo a otros emplazamientos donde la ausencia de este tipo de recursos supone también una limitación y un aspecto a tener en cuenta para definir y desarrollar el proyecto en sí mismo.
+		\item Se puede intentar establecer un enlace punto a punto, ya que se puede dejar fijo un equipo transmitiendo o recibiendo que, además, se conecte a internet (ya que es un recurso disponible) para subir los datos que reciba del otro extremo. Un equipo estará presente en el refugio y el otro en una casa con internet y electricidad; esto significa que al menos este extremo será más controlable, y será este extremo el que subirá datos a la nube. Nos tendremos que preocupar más del otro extremo, donde no tendremos electricidad ni internet y donde situaremos los sensores que recogerán datos y realizarán la automatización.
+	\end{itemize}
 	
 	\subsection[Objetivos del trabajo]{Objetivos del trabajo}
 	
@@ -102,34 +110,28 @@
 	
 	\pagebreak
 	
+
 	\section[Estado del arte]{Estado del arte}  
 	
-	En este capítulo se va a exponer un análisis del estado del arte relativo al proyecto (tecnologías y técnicas necesarias para el diseño del sistema planteado). Este análisis se centra en la situación actual en tanto a las diferentes redes móviles que existen, sus prestaciones y comparativas entre ellas, así como en la definición de la red LPWAN, la tecnología LoRa y otras similares que pueden constituir una red LPWAN; además, se introducirán conceptos relacionados con Arduino.
+	\noindent En este capítulo se va a exponer un análisis del estado del arte relativo al proyecto (tecnologías y técnicas necesarias para el diseño del sistema planteado). Este análisis se centra en la situación actual en tanto a  la automatización del proceso de alimentación de animales, técnicas, sistemas y proyectos similares y conceptos introductorios a Arduino y LoRa, fundamentales para poder materializar este proyecto.
 	
-
-
 	\subsection[Contexto actual]{Contexto actual}
 	
-	Los factores más importantes en una red LPWAN son:
+		\noindent Existen muchos proyectos Open Source relacionados con la alimentación automática o semiautomática de animales domésticos, principalmente gatos y perros. Sin embargo, no existen proyectos que usen LoRa como tecnología radio, sino que emplean la red local WiFi del hogar donde se sitúe el dispositivo de alimentación.
 	
-	\begin{itemize}
-		\item Arquitectura de red
-		\item Rango de la comunicación
-		\item Vida útil de la batería o bajo consumo de potencia 
-		\item Robustez ante interferencias
-		\item Capacidad de la red (número máximo de nodos en una red)
-		\item Seguridad de la red
-		\item Comunicación unidireccional o bidereccional
-		\item Variedad de aplicaciones ofrecidas
-	\end{itemize}
-
+	\noindent A pesar de ello, se ha visualizado este tipo de proyectos y tenido en cuenta para el desarrollo del prototipo en tanto a apariencia externa, comodidad de uso, eficiencia de los componentes, o, incluso, opciones para mover el pienso desde la reserva hasta el comedero del animal, o el agua desde la reserva hasta el bebedero.
+	
 	\subsection[Trabajos relacionados]{Trabajos relacionados}
+	
+
+	
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
 	
 	\pagebreak
 	
 	\section[Diseño del sistema]{Diseño del sistema}
 	
+	\noindent A lo largo de este capítulo se procede a desglosar el diseño del sistema, exponiendolas tecnologías y los dispositivos que se van a emplear tanto en monitorización comoen comunicaciones. Por tanto, tras realizar una pequeña introducción de lastecnologías necesarias en el diseño, se procede empleando una metodología encascada que vaya presentando a cada paso los subsistemas finalizados ycompletamente operativos.
 	% Definición funcionalidades: qué debo hacer y qué necesitaría
 	% Investigación componentes (*) e integración (programación)
 		%(*) Qué se ha usado, desglosado por funcionalidades: bebedero, comedero, alimentación, microcontrolador y radio.
@@ -140,14 +142,19 @@
 	
 	\subsection[Tecnologías necesarias]{Tecnologías necesarias}
 	\subsubsection[Entorno Arduino]{Entorno Arduino}
+	% Electrónica: arduino nano
+	
+	% Programación: arduinoIDE, void loop y setup, define, etc
+	
 	\subsubsection[LoRa]{LoRa}
 	\subsection[Monitorización y automatización]{Monitorización y automatización}
 	\subsection[Comunicaciones LoRa]{Comunicaciones LoRa}
-	%Simulaciones Xirio? O mejor abajo?
+	%Simulaciones Xirio? O mejor abajo? + calculo teorico de perdidas en el enlace/balance de enlace
 	
 	\subsection[Resumen del capítulo]{Resumen de capítulo}
 	
 	\pagebreak
+	
 	
 	\section[Prototipo y pruebas]{Prototipo y pruebas}
 	
