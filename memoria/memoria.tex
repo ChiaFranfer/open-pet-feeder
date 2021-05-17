@@ -131,12 +131,26 @@
 	
 	\section[Diseño del sistema]{Diseño del sistema}
 	
-	\noindent A lo largo de este capítulo se procede a desglosar el diseño del sistema, exponiendo
-las tecnologías y los dispositivos que se van a emplear tanto en monitorización como
-en comunicaciones. Por tanto, tras realizar una pequeña introducción de las
-tecnologías necesarias en el diseño, se procede empleando una metodología en
-cascada que vaya presentando a cada paso los subsistemas finalizados y
-completamente operativos.
+	\noindent A lo largo de este capítulo se procede a desglosar el diseño del sistema, exponiendo las tecnologías y los dispositivos que se van a emplear tanto en monitorización como en comunicaciones. Por tanto, tras realizar una pequeña introducción de las tecnologías necesarias en el diseño, se procede empleando una metodología en cascada que vaya presentando a cada paso los subsistemas finalizados y completamente operativos.
+	
+	\subsection[Funcionalidades a cubrir]{Funcionalidades a cubrir: identificación}
+	
+	\noindent Teniendo claros los objetivos que se persiguen con este proyecto, el siguiente paso es definir las funcionalidades que ofrecería el sistema global que se pretende crear, ya que a partir de esta definición podremos empezar a deducir y establecer qué componentes son necesarios para llevar a cabo dichas funcionalidades. \\
+	
+	\noindent Definimos 3 funcionalidades: \\
+	
+	\begin{enumerate}
+		\item Alimentación del dispositivo autónoma
+		\item Automatización y monitorización (I): bloque microcontrolador
+		\item Automatización y monitorización (II): bloque comunicación radio 
+		\item Automatización y monitorización (III): bloque comedero (sensores, actuadores)
+		\item Automatización y monitorización (IV): bloque bebedero (sensores, actuadores)
+		\item Integridad mediante prototipo exterior
+	\end{enumerate}
+	
+	\subsection[Funcionalidades a cubrir]{Funcionalidades a cubrir: desglose y detección de necesidades asociadas}
+	
+
 	% Definición funcionalidades: qué debo hacer y qué necesitaría
 	% Investigación componentes (*) e integración (programación)
 		%(*) Qué se ha usado, desglosado por funcionalidades: bebedero, comedero, alimentación, microcontrolador y radio.
@@ -181,10 +195,101 @@ completamente operativos.
 	% Programación: arduinoIDE, void loop y setup, define, etc
 	
 	\subsubsection[LoRa]{LoRa}
+	
+	\noindent \textbf{Qué es}\\
+	
+	\noindent El término LoRa proviene de la unión de las palabras \textit{Long} y \textit{Range}, es decir, largo alcance, evidenciando, así, a través de su nombre una de sus principales características. Se trata de la capa física del protocolo \textit{LoRaWAN}; es a través de esta capa que se permite el establecimiento del enlace de comunicación de largo alcance, mientras que LoRaWAN define el protocolo de comunicación y la arquitectura del sistema para la red. \\
+	
+	\noindent También se trata de una tecnología inalámbrica propiamente dicha que ofrece una transmisión de largo alcance, bajo consumo y segura para aplicaciones IoT y M2M. Se basa en la modulación de espectro ensanchado, la cual presenta características de bajo consumo como la modulación FSK pero puede ser usada para comunicaciones de largo alcance. Puede ser usada para conectar sensores, gateways, máquinas, dispositivos, animales, personas, etc. de manera inalámbrica a la nube.\\
+	
+	\noindent \textbf{Planes de frecuencia} \\
+	
+	\noindent La tecnología LoRa opera en diferentes frecuencias dependiendo de la región en la que nos encontremos, por ejemplo: \\
+	
+	\begin{itemize}
+		\item En Norteamérica, opera en la banda de 915 MHz.
+		\item En Europa, en la banda de 868 MHz.
+		\item En Asia, en la banda de 865 a 867 MHz y en la banda 920 a 923 MHz, aunque es común también la banda 433 MHz.
+	\end{itemize}
+	
+	\noindent Dado que los planes de frecuencia para LoRa varían según la región, inclusive país, es recomendable asegurarse de las regulaciones vigentes en cada país para el uso del espacio radioeléctrico. A modo resumen y como orientación inicial a este asunto, se puede consultar esta \href{https://www.thethingsnetwork.org/docs/lorawan/frequencies-by-country/index.html}{lista de planes de frecuencia para cada país}, elaborada por \textit{The Things Network}. \\
+	
+	\noindent \textbf{Origen} \\
+	
+	\noindent La tecnología LoRa fue creada por una compañía francesa llamada \textit{Cycleo}, la cual posteriormente fue adquirida por Semtech en 2012. Semtech fue el miembro fundador de \textit{LoRa Alliance}, que actualmente es el organismo rector de LoRa Technology. LoRa Alliance es una de las alianzas tecnológicas de más rápido crecimiento. Esta asociación sin ánimo de lucro está formada por más de 500 empresas miembro, comprometidas a permitir la implementación a gran escala de redes IoT de amplia cobertura y baja potencia (LPWAN) a través del desarrollo y la promoción del estándar abierto LoRaWAN.\\
+	
+	\noindent \textbf{Especificaciones en términos generales de la tecnología LoRa}
+	
+	\begin{itemize}
+		\item Órgano rector: LoRa Alliance
+		\item Estándar: 801.15.4g
+		\item Frecuencia: banda ISM, 868/916 MHz
+		\item Alcance: hasta 5 km (urbano) y hasta 15 km (rural)
+		\item Datarate: 27 kbps
+		\item Modulación: espectro ensanchado basado en la tecnología de modulación FM
+		\item Seguridad: CRC de 32 bits
+	\end{itemize}
+	 
+	 %LoRaWAN is a Low Power, Wide Area (LPWA) networking protocol developed by the LoRa Alliance, that wirelessly connects battery operated ‘things’ to the internet in regional, national or global networks, targeting key Internet of Things (IoT) requirements such as bi-directional communication, end-to-end security, mobility and localization services.
+	 
+	% LoRaWAN uses unlicensed spectrum in the ISM bands to define the communication protocol and system architecture for the network while the LoRa physical layer creates the long-range communication links between remote sensors and gateways connected to the network. This protocol helps in the quick setup of public or private IoT networks anywhere using hardware and software.
+	
+	\noindent  \textbf{Regulación LoRa en Europa: ERC 70-03} \\
+	
+	\noindent \href{https://docdb.cept.org/download/25c41779-cd6e/Rec7003e.pdf}{ERC 70-03} \\
+	
+	%% CAPA FISICA DE LORAWAN %%
+	
+	\pagebreak
+	
+	\subsubsection[LoRaWAN]{LoRaWAN}
+	
+	\noindent A pesar de que no se va a usar LoRaWAN en este proyecto, sí que se realizó su pertinente investigación, por lo que a continuación se muestra un resumen de nociones básicas sobre LoRaWAN. \\
+	
+	\noindent \textbf{Clases de nodos finales LoRaWAN}  \\
+	
+	\noindent Existe 3 clases diferentes de nodos finales en LoRaWAN, los cuales son:
+	
+	\begin{itemize}
+		\item Clase A (\textit{All})
+		\item Clase B (\textit{Beacon})
+		\item Clase C (\textit{Continuous})
+	\end{itemize}
+	
+		\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/endDevices.png}
+			\caption{Funcionamiento de nodos finales usando LoRaWAN.}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	\noindent \textbf{Estructura de un paquete LoRaWAN}
+	
+	\begin{figure}[h]
+	\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/lora_phyLayer_packetFormat.png}
+			\caption{Estructura general de un paquete LoRaWAN.}
+	\end{center}
+	\end{figure}
+	
+
+	
+	\begin{figure}[h]
+	\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/lora_phyLayer_packetFormat_enh.png}
+			\caption{Estructura detallada de un paquete LoRaWAN.}
+	\end{center}
+	\end{figure}
+
+	\pagebreak
+
 	\subsection[Monitorización y automatización]{Monitorización y automatización}
 	
 	El Arduino que vamos a usar es el Arduino nano, como ya se ha comentado anteriormente. Los sensores que vamos a usar son:
 	
+	\pagebreak
 	\subsection[Comunicaciones LoRa]{Comunicaciones LoRa}
 	%Simulaciones Xirio? O mejor abajo? + calculo teorico de perdidas en el enlace/balance de enlace
 	Los módulos LoRa que vamos a usar son los E32-868T30D (como ya se ha comentado anteriormente).
