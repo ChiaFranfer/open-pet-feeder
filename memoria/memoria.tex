@@ -6,6 +6,12 @@
 
 \usepackage{array}
 
+% text font 
+
+\usepackage{courier}
+
+%\usepackage{fontspec}
+
 \usepackage[dvipsnames]{xcolor}
 
 \usepackage{hyperref}
@@ -25,6 +31,11 @@
 	pdfsubject = {Electrónica y comunicaciones móviles},
 	pdfkeywords = {Arduino, LoRa, automatización, LoRaWAN, punto a punto, OpenSource}
 }
+
+% https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 
 \begin{document}
 	\selectlanguage{spanish}
@@ -131,9 +142,9 @@
 	
 	\section[Diseño del sistema]{Diseño del sistema}
 	
-	\noindent A lo largo de este capítulo se procede a desglosar el diseño del sistema, exponiendo las tecnologías y los dispositivos que se van a emplear tanto en monitorización como en comunicaciones. Por tanto, tras realizar una pequeña introducción de las tecnologías necesarias en el diseño, se procede empleando una metodología en cascada que vaya presentando a cada paso los subsistemas finalizados y completamente operativos.
+	\noindent A lo largo de este capítulo se procede a desglosar el \textcolor{RubineRed}{\texttt{diseño del sistema}}, exponiendo las tecnologías y los dispositivos que se van a emplear tanto en monitorización como en comunicaciones. Por tanto, tras realizar una pequeña introducción de las tecnologías necesarias en el diseño, se procede empleando una metodología en cascada que vaya presentando a cada paso los subsistemas finalizados y completamente operativos.
 	
-	\subsection[Funcionalidades a cubrir]{Funcionalidades a cubrir: identificación}
+	\subsection[Funcionalidades a cubrir]{Funcionalidades a cubrir}
 	
 	\noindent Teniendo claros los objetivos que se persiguen con este proyecto, el siguiente paso es definir las funcionalidades que ofrecería el sistema global que se pretende crear, ya que a partir de esta definición podremos empezar a deducir y establecer qué componentes son necesarios para llevar a cabo dichas funcionalidades. \\
 	
@@ -148,8 +159,153 @@
 		\item Integridad mediante prototipo exterior
 	\end{enumerate}
 	
-	\subsection[Funcionalidades a cubrir]{Funcionalidades a cubrir: desglose y detección de necesidades asociadas}
+	\subsection[Búsqueda soluciones]{Búsqueda de soluciones para cada funcionalidad}
+
+	\subsubsection{Alimentación autónoma del dispositivo}
+	\noindent Se entiende por alimentación autónoma la obtención de energía suficiente para el correcto funcionamiento de un dispositivo o un sistema, y que dicha obtención de energía se realice de manera cíclica e independiente o prácticamente independiente, es decir, no dependa de la acción y supervisión constante de una persona. \\
 	
+	\noindent Para determinar la forma en la que alimentaremos nuestro proyecto, es imprescindible conocer bien las necesidades energéticas que lo limitarán; hay que determinar, por tanto, el consumo estimado de los componentes que conforman el proyecto. También es importante saber el tamaño y/o el destino de nuestro proyecto, para determinar si estará limitado a la hora de su transporte por una fuente de alimentación pesada, o si esta no limita en absoluto; será fundamental, además, conocer la ubicación de nuestro proyecto, es decir, si estará en el exterior o interior, si el ambiente será excesivamente frío, cálido o húmedo.\\
+	
+	\noindent A continuación, se mencionarán algunas soluciones para alimentación autónoma. Primero, se realizará una introducción teórica a términos y definiciones que nos permitan entender su funcionamiento; después, se presentarán opciones dentro de la categoría, haciendo énfasis en sus ventajas y desventajas, y anotando para qué proyectos es recomendable su uso. Por último, se pueden mostrar datos comparativos entre las opciones dentro de la categoría para una mejor visualización de dichas diferencias.\\ 
+	
+	\noindent \textbf{Baterías recargables} \\
+	
+	\noindent \textit{Términos y definiciones} \\
+	
+	\noindent Las características eléctricas de una batería definen cómo actuará en el circuito, y las características físicas tendrán un enorme impacto en el tamaño y peso global del producto al que va a alimentar. \\
+	\noindent Es por ello que, a la hora de escoger una batería, hay que tener presente los requerimientos de alimentación del proyecto, ya que ésta debe ser capaz de suministrar suficiente energía para que funcione correctamente. Algunos parámetros que hay que comprobar son las tensiones mínima y máxima que otorga, la corriente, la capacidad y el material del que está hecha la batería. \\
+	
+	\noindent Se presenta, a continuación, una lista más extensa y explicada de los parámetros más importantes de las baterías: 
+	
+	\begin{itemize}
+		\item  Una \textit{\textbf{celda}} es un dispositivo electroquímico capaz de suministrar la energía que resulta de una reacción química interna a un circuito eléctrico externo. \\
+		Una batería se compone de una o más celdas, conectadas en paralelo o en serie para obtener la capacidad de corriente/voltaje requerida (las baterías compuestas por celdas conectadas en serie son las más comunes).
+		\item La \textit{\textbf{resistencia en serie equivalente (ESR)}} es la resistencia interna presente en cualquier celda que limita la cantidad de corriente máxima que puede entregar.
+		\item La \textit{\textbf{capacidad}}, medida en amperio-hora (Ah), de una batería (o celda) es su figura de mérito más importante: se define como la cantidad de corriente que una batería puede entregar durante 1 hora antes de que el voltaje de la batería llegue al final de su vida útil. 
+ 		\item La \textit{\textbf{tasa ``c''}}  es una corriente que es numéricamente igual a la clasificación Ah de la celda. Las corrientes de carga y descarga se expresan típicamente en fracciones o múltiplos de la tasa c. 
+ 		\item El \textit{\textbf{MPV (voltaje de punto medio)}} es el voltaje nominal de la celda y es el voltaje que se mide cuando la batería se ha descargado el 50\% de su energía total. \\
+ 		\noindent La oscilación de voltaje máxima y mínima del valor nominal es una consideración de diseño importante: una curva de descarga "más plana" significa menos variación de voltaje que el diseño debe tolerar.
+ 		\item El \textit{\textbf{voltaje de celda medido al final de su vida útil}} se llama \textit{\textbf{EODV}}, que significa \textit{Fin de voltaje de descarga} (algunos fabricantes se refieren a esto como \textit{EOL} o \textit{voltaje de fin de vida útil}). \\
+ 		\noindent Cuando se carga al máximo, el voltaje real de la celda será más alto que el MPV. Al acercarse al punto EODV (final del voltaje de descarga), el voltaje de la celda será menor que el MPV. 
+ 		\item La \textit{\textbf{densidad de energía gravimétrica}} de una batería es una medida de cuánta energía contiene una batería en comparación con su peso. Normalmente viene expresada en Watt-horas/kilogramo (Wh/kg).
+ 		\item La \textit{\textbf{densidad de energía volumétrica}} de una batería es una medida de cuánta energía contiene una batería en comparación con su volumen. Normalmente se expresa en Watt-horas/litro (Wh/l)
+ 		\item Un \textit{\textbf{cargador de voltaje constante}} es un circuito que recarga una batería obteniendo solo la corriente suficiente para forzar el voltaje de la batería a un valor fijo.
+ 		\item Un \textit{\textbf{cargador de corriente constante}} es un circuito que carga una batería al suministrar una corriente fija a la batería, independientemente del voltaje de la batería.
+	\end{itemize}
+
+	\pagebreak
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/chargeDischargeCurve_TxInst.png}
+			\caption{Curva de la carga/descarga de una batería.}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
+	
+	% \noindent Entrarían dentro de esta categoría  las conocidas baterías recargables, formato LiPo o Li-ion, por ejemplo, o formato powerbank, que si bien en su interior usan baterías LiPo/Li-ion, el encapsulado en el que se presentan y la forma en que se usan son totalmente diferentes. \\
+	
+	\noindent \textit{Tipos de baterías recargables}\\
+	
+	\noindent Las principales baterías recargables que existen son: \\
+	
+	\begin{enumerate}
+		
+		\item \textit{Lithium polymer} (LiPo).  Son baterías de gran densidad de energía disponible, es decir, almacenan la mayor parte de energía para un determinado tamaño. Es por esta razón por la que los teléfonos móviles, los portátiles y otros dispositivos ligeros en peso usan baterías LiPo. Sin embargo, esta alta densidad de energía lleva consigo un coste/inconveniente, y es que son caras, y no son sólo las baterías en sí; cuando se trabaja con baterías de litio, hay que realizar una inversión para conseguir una circuitería especial que mantenga segura la batería. Por ejemplo, cuando estas cargando una batería LiPo, hay que asegurarse de que nunca se excedan los 4.2V por celda; las baterías LiPo explotarían si las sobrecargaras. No solo la carga de la batería es delicada, sino que la descarga también lo es; si se descarga una batería LiPo por debajo de 3V por celda, se perderá permanentemente parte de su capacidad, e incluso pueden deformarse/hincharse. Finalmente, hay que estar pendiente constantemente de la temperatura, para evitar que la batería se sobrecaliente. A pesar de todo esto, es común usar baterías LiPo en proyectos ligeros y pequeños, siempre y cuando se tenga un buen circuito de carga, un buen circuito de descarga (que proteja a valores bajos de tensión, haciendo de corte en el mínimo de tensión de la batería) y un buen circuito de monitorización de temperatura. 
+		
+		\item \textit{Lithium-ion} (Li-ion). Son muy similares a las baterías LiPo, pero a diferencia de estas, el electrodo negativo es líquido y el encapsulado y formato de presentación es totalmente diferente (las Li-ion suelen venderse sin protección y en apariencia son similares a unas pilas alcalinas AA). Una batería Li-ion almacena más potencia que las LiPo (mayor capacidad), ofrece mayores corrientes de descarga, es menos costosa de fabricar (y por tanto tienen un precio de venta más asequible),  y tiene un tiempo de vida más largo (aunque con el tiempo pierde sus propiedades). Es, al igual que las LiPo, inflamable si se daña, se calienta en exceso o se sobrecarga. El empaquetado más común es el 18650, y en el mercado existen circuitos de protección varios para evitar la sobrecarga y la sobredescarga  para este encapsulado en concreto, por lo que es una opción barata y sencilla para conseguir un prototipado rápido y realizar pruebas del mismo, siempre y cuando el proyecto no exija mucha potencia; si el proyecto exigiera más tensión de la que proporciona la batería, se puede considerar obtener más unidades y realizar una configuración en serie para aumentar la tensión, o en paralelo si lo que se desea es aumentar la capacidad (usando siempre un \textit{Battery Management System} o BMS, para mantener las baterías balanceadas entre sí). Esta opción se puede considerar para baterías LiPo, pero para usuarios principiantes o poco experimentados resultará, probablemente, más complejo.
+		
+		\item \textit{Lithium Iron Phosphate} (LiFePO4). Son similares a las baterías LiPo, con la salvedad de que no son propensas a explosiones, como lo pueden ser las LiPo, si no se manipulan correctamente o las condiciones anteriormente mencionadas no se dan. También requieren una apropiada circuitería para cargarlas y descargarlas con cuidado, y si se comete un error se perderá permanentemente parte de la capacidad de la batería. Además, son un poco más pesadas que las baterías LiPo. Se usan normalmente en robots ligeros, herramientas eléctricas y juguetes por radio control, ya que son baterías bastante buenas entregando grandes cantidades de energía en un factor de forma pequeño y liviano.
+		
+		\item \textit{Sealed lead-acid} (SLA). Son una opción si se quiere comprar una batería no muy costosa, a la vez de evitar enfrentarnos a circuitos de protección de la batería. Estas baterías son bastante más duraderas que una batería de litio, y también son mejores para hacer frente a sobrecargas accidentales o sobredescargas. Tienen una excelente relación calidad-precio y también son el mejor tipo de batería frente a temperaturas extremas; es por esta razón que las baterías de plomo (o ácido-plomo) son la opción estándar para coches, motos, almacenamiento de energía solar y fuentes de alimentación de emergencia. El inconveniente de usar baterías de plomo es que son grandes y pesadas. No es recomendable, por tanto, usar baterías de plomo en aplicaciones portátiles.
+		
+		\item Níquel-cadmio (\textit{Nickel-cadmium}, NiCd). Los dispositivos portátiles, como los primeros teléfonos móviles, usaban baterías de níquel-cadmio. Son baterías baratas, que en teoría duran más tiempo que las baterías SLA; sin embargo, sufren el llamado efecto memoria, por lo que hay que regularmente descargarlas por completo, luego recargarlas por completo para mantener una alta capacidad, ya que, de lo contrario, estaríamos perdiendo vida útil de la batería. Así pues, en la actualidad no se suele usar este tipo de baterías, aunque se siguen vendiendo.
+		
+		\item \textit{Nickel Metal Hydride} (NiMH). Las baterías de níquel-metalhidruro o de níquel hidruro metálico tienen una mayor densidad de energía que las baterías de níquel-cadmio, en tanto a precio no son mucho más costosas y no sufren el efecto memoria. Son más grandes y pesadas que las baterías de litio, pero es bastante seguro trabajar con ellas, por lo que son las baterías más usadas por el consumidor medio en términos de pilas recargables (las encontramos en cualquier supermercado, y cargarlas es barato y simple). Hay que tener en cuenta que las baterías de NiMH, por norma general, tienen un ratio de autodescarga elevado, lo que quiere decir que a pesar de que no se esté haciendo uso de la batería, se autodescargan igualmente en un par de meses, lo que hace que no sean una buena opción para objetos de uso cotidiano (como mandos a distancia). Se recomienda que, si se necesita hacer uso de este tipo de baterías, se adquieran con bajo ratio de autodescarga (como Panasonic Eneloop), las cuales pueden resultar más baratas a largo plazo que comprar unas pilas alcalinas.
+		
+	\end{enumerate}
+	
+	\noindent \textit{Comparativa entre tipos de baterías recargables} \\
+	
+	\noindent \textit{\textbf{Densidad de energía}}
+	
+		\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/energyDensityComparison_TxInst.png}
+			\caption{Comparación densidad de energía para diferentes baterías.}
+			\label{fig: comparación densidad energía}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak 
+	
+	\noindent Al revisar los datos de la Figura \ref{fig: comparación densidad energía}, la ventaja de Li-Ion en densidad gravimétrica es claramente la más sorprendente, casi duplicando las cifras de Ni-Cd y Ni-MH. Esto significa que los productos que funcionan con celdas de iones de litio se pueden hacer mucho más livianos sin sacrificar el tiempo de ejecución. Alternativamente, si el peso de la batería se mantiene igual, el tiempo de funcionamiento se duplicará si se utilizan baterías de iones de litio. Este hecho explica la razón por la que Li-Ion está reemplazando rápidamente al Ni-MH en los teléfonos celulares y computadoras portátiles de primera línea. \\
+	
+	\noindent \textit{\textbf{Estabilidad de tensión o tensión de celda}}\\
+	
+	\noindent La tensión proporcionada para alimentar la carga es la más importante: las baterías Ni-Cd y Ni-MH tienen una tensión por celda de 1.25V (sus tensiones de descarga se asumen por norma general idénticas). \\
+	\noindent La tensión por celda de las baterías Ni-Cd y Ni-MH son sólo una tercera parte de la tensión nominal de 3.6V proporcionada por una celda de Li-ion (Figura \ref{fig: curva descarga celdas}), lo que significa que se requerirían tres celdas de Ni-Cd/Ni-MH conectadas en serie para igualar la tensión de una única celda de Li-ion.\\
+	\noindent Sin embargo, la Figura \ref{fig: curva descarga celdas} muestra también la gran ventaja de las baterías Ni-Cd y Ni-MH: su curva de descarga es extremadamente plana, próxima a la de una batería ideal. Esta importante diferencia entre tipos de baterias significa que las celdas de Ni-Cd y Ni-MH son adecuadas para su uso con reguladores lineales, pero las baterías de Li-ion requieren convertidores reductores (\textit{Buck converters}) para obtener una buena eficiencia de conversión de energía en la fuente de alimentación. \\
+		
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/cellDischargeCurve_TxInst.png}
+			\caption{Curva de descarga de una celda Li-ion y una celda Ni-Cd/Ni-MH.}
+			\label{fig: curva descarga celdas}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak 
+	
+	\noindent \textit{\textbf{Corriente pico}}\\	
+	
+	\noindent \textit{\textbf{Autodescarga}}\\	
+	
+	\noindent \textit{\textbf{Tiempo de carga}}\\	
+	
+	\noindent \textit{\textbf{Coste}}\\
+	
+	\noindent \textit{\textbf{Fiabilidad}}\\		
+	
+	\noindent \textit{\textbf{Modos de falla relacionados con la edad}}\\	
+	
+	\noindent \textit{\textbf{Temperatura de funcionamiento}}\\	
+	
+	\noindent \textbf{Placa solar}\\ 
+	
+	\noindent Requieren de una batería donde almacenar la energía que captan/generan, por lo que, necesariamente, habría que escoger entre algunas de las opciones planteadas en el apartado anterior. \\
+	
+	\noindent \textit{Funcionamiento de un panel solar}
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/layersSolarPanel.png}
+			\caption{Capas y componentes que componen un panel solar.}
+			\label{fig: capas panel solar}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
+	
+	\noindent Un panel solar es una agrupación de muchas células fotovoltaicas (PV) que están cubiertas con vidrio protector y unidas con un marco de metal. Es por eso que el nombre oficial de un panel solar es "módulo fotovoltaico" (\textit{PV module}). Estas células solares fotovoltaicas están hechas de material semiconductor, generalmente silicio, que se corta en tiras muy finas.\\
+	
+	\noindent Los paneles solares tienen muchas capas. La capa de células fotovoltaicas es donde se produce la electricidad. Otras capas, como las capas de vidrio y encapsulante, están ahí para proteger las células fotovoltaicas para que los módulos puedan producir electricidad de manera adecuada.\\
+	
+	\noindent \textit{Composición de un panel solar} \\
+	
+	\noindent \textit{Opciones}\\
+	
+	\noindent \textit{Parámetros}\\
+	
+	\subsubsection{Automatización y monitorización}
+	
+	\subsubsubsection{Microcontrolador}
+	\subsubsubsection{Comunicación radio}
+	\subsubsubsection{Comedero}
+	\subsubsubsection{Bebedero}
+		
+	\subsubsection{Prototipo exterior}
 
 	% Definición funcionalidades: qué debo hacer y qué necesitaría
 	% Investigación componentes (*) e integración (programación)
@@ -159,8 +315,11 @@
 	% Diseño PCB
 	% Desarrollo BBDD en servidor y app web para ver el estado del sistema de alimentación
 	
-	\subsection[Tecnologías necesarias]{Tecnologías necesarias: teoría}
-	\subsubsection[Entorno Arduino]{Entorno Arduino}
+	\subsection[Elección soluciones]{Elección de soluciones para cada funcionalidad}
+	
+	\subsubsection{Alimentación autónoma del dispositivo}
+	\subsubsection{Automatización y monitorización}
+	\subsubsubsection{Entorno Arduino}
 	
 	% Intro: qué es Arduino
 	
@@ -194,7 +353,7 @@
 	
 	% Programación: arduinoIDE, void loop y setup, define, etc
 	
-	\subsubsection[LoRa]{LoRa}
+	\subsubsubsection{LoRa}
 	
 	\noindent \textbf{Qué es}\\
 	
@@ -242,7 +401,7 @@
 	
 	\pagebreak
 	
-	\subsubsection[LoRaWAN]{LoRaWAN}
+	\subsubsubsection{LoRaWAN: NO VA AQUÍ, VA EN APARTADO 3.2}
 	
 	\noindent A pesar de que no se va a usar LoRaWAN en este proyecto, sí que se realizó su pertinente investigación, por lo que a continuación se muestra un resumen de nociones básicas sobre LoRaWAN. \\
 	
@@ -285,17 +444,25 @@
 
 	\pagebreak
 
-	\subsection[Monitorización y automatización]{Monitorización y automatización}
+%	\subsection[Monitorización y automatización]{Monitorización y automatización}
 	
-	El Arduino que vamos a usar es el Arduino nano, como ya se ha comentado anteriormente. Los sensores que vamos a usar son:
+%	El Arduino que vamos a usar es el Arduino nano, como ya se ha comentado anteriormente. Los sensores que vamos a usar son:
 	
-	\pagebreak
-	\subsection[Comunicaciones LoRa]{Comunicaciones LoRa}
-	%Simulaciones Xirio? O mejor abajo? + calculo teorico de perdidas en el enlace/balance de enlace
-	Los módulos LoRa que vamos a usar son los E32-868T30D (como ya se ha comentado anteriormente).
-	\subsubsection{Cálculo teórico de pérdidas de enlace}
-	\subsubsection{Simulación en \textit{Radio Mobile}}
+%	\pagebreak
+%	\subsection[Comunicaciones LoRa]{Comunicaciones LoRa}
+
+%	Los módulos LoRa que vamos a usar son los E32-868T30D (como ya se ha comentado anteriormente).
+%	\subsubsection{Cálculo teórico de pérdidas de enlace}
+%	\subsubsection{Simulación en \textit{Radio Mobile}}
 	
+%	\subsection{Alimentación del dispositivo}
+
+	\subsubsubsection{Comedero}
+	
+	\subsubsubsection{Bebedero}
+	
+	\subsubsection{Prototipo exterior}
+		
 	\subsection[Resumen del capítulo]{Resumen de capítulo}
 	
 	En este capítulo se ha hablado de las dos principales tecnologías usadas en este proyecto. Se han explicado de forma teórica, después se ha explicado cómo se integran en el proyecto en la parte de monitorización y automatización en el caso de Arduino, y en la parte radio en el caso de LoRa. Se hace un acercamiento a software de simulación radio. Se sacan conclusiones para la creación de un prototipo que pueda ser ejecutado y probado en el entorno objetivo.
@@ -311,6 +478,7 @@
 	\subsection[Pruebas]{Pruebas}
 	\subsection[Comentarios sobre los resultados de las pruebas]{Comentarios sobre los resultados de las pruebas}
 	\subsection[Presupuesto]{Presupuesto}
+	\noindent Se adjunta una tabla para el desglose del presupuesto para este proyecto en el Anexo III (\ref{subsection: presupuesto}).
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
 	
 	\section[Conclusiones y líneas futuras]{Conclusiones y líneas futuras}
@@ -329,5 +497,10 @@
 	
 	\subsection*{Anexo II}
 	\addcontentsline{toc}{subsection}{Anexo II}
+	
+	\subsection*{Anexo III}
+	\label{subsection: presupuesto}
+	\addcontentsline{toc}{subsection}{Anexo III}
+	
 	
 \end{document}
