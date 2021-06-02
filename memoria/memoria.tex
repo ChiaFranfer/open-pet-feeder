@@ -353,15 +353,23 @@
 	\noindent El subíndice \textit{mpp} hace referencia al \textit{punto de potencia máxima} (\textit{maximum power point, MPP}) de la célula solar, es decir, el punto de la curva característica J-V de la célula solar al cual la célula solar ofrece su máxima potencia de salida.  Para optimizar la operación de los sistemas fotovoltaicos, es muy importante que las células solares (o módulos fotovoltaicos) operen sobre el MPP. Esto se puede asegurar con un seguidor de punto de máxima potencia (\textit{maximum power point tracking, MPPT}). Se trata de un algoritmo, el cual se usa en controladores de carga solar para extraer la máxima potencia disponible del módulo fotovoltaico bajo ciertas condiciones; dichas condiciones, como son la radiación solar a lo largo del día y año, la temperatura ambiente y la temperatura de la célula, afectan a la potencia máxima de la misma, y es entonces cuando un MPPT actúa, haciendo operar a la célula solar al valor de tensión más eficiente, el MPP. El controlador de carga mantiene la tensión y la corriente a un nivel optimizado, donde el módulo fotovoltaico brinda la mayor cantidad de energía a la carga; es ``consciente'' del estado de carga de la batería y actúa en consecuencia. \\
 	\noindent El uso de un seguidor de punto de máxima potencia, sin embargo, encarece el costo total de un proyecto; si bien para aplicaciones que requieran la extracción de la máxima potencia de un panel solar (por limitaciones de espacio, por ejemplo, donde deberíamos explotar las características de los paneles que pudiéramos colocar), en el proyecto que estamos diseñando no es el caso, por lo que no usaremos herramientas de este estilo. Además, aunque pueden encontrarse o construirse de manera aislada (se trata de un conversor DC a DC), también suelen encontrarse incorporados a inversores, los cuales tampoco son necesarios, ya que no es energía solar para uso en hogar. Como anotación, existen otros controladores de carga que no son MPPT, como el PWM o \textit{shunt controller} (regulador de carga tipo paralelo o de desviación). \\
 	 
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/mppt_curve.png}
+			\caption{Curva P-V de una célula solar, indicando el punto MPP.}
+			\label{fig: MPPT curve}
+		\end{center}
+	\end{figure}
 	 \noindent Por último, anotar que el factor de forma no varía tanto con $V_{oc}$, sino más con el material del que están hechas las células solares. \\
 	 
 	\noindent \textit{\textbf{Eficiencia de conversión}} \\
 	
-	\noindent La eficiencia de conversión se calcula como la relación entre la potencia potencia generada y la potencia incidente.  Como vemos en la siguiente fórmula, depende de todos los parámetros anteriormente descritos: \\
+	\noindent La eficiencia de conversión se calcula como la relación entre la potencia potencia generada y la potencia incidente.  Como vemos en la siguiente fórmula, y tal como establece su propia definición, depende de todos los parámetros anteriormente descritos: \\
 	
 	\begin{equation}
-		 \eta = \frac{P_{max}}{ I_{in}} 
+		 \eta = \frac{P_{max}}{I_{in}} = \frac{J_{mpp} V_{mpp}}{I_{in}} = \frac{J_{sc} V_{oc} FF}{I_{in}} 
 	\end{equation}
+
 	\noindent \textit{\textbf{Circuito equivalente}} \\
 	
 	
