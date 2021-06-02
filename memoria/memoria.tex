@@ -292,11 +292,72 @@
 	
 	\noindent Los paneles solares tienen muchas capas. La capa de células fotovoltaicas es donde se produce la electricidad. Otras capas, como las capas de vidrio y encapsulante, están ahí para proteger las células fotovoltaicas para que los módulos puedan producir electricidad de manera adecuada.\\
 	
+	\noindent Cada célula fotovoltaica tiene una capa negativa y una capa positiva. La capa negativa tiene electrones adicionales y la capa positiva tiene espacio para esos electrones. La electricidad mueve electrones, por lo que para que un panel solar genere electricidad solo necesitamos algo de energía para hacer que esos electrones se suelten y fluyan de la capa negativa a la capa positiva. \\
+	
+	\noindent La energía de los fotones del sol suelta los electrones en el lado negativo de la celda fotovoltaica y los hace moverse, lo que significa que ahora tenemos electricidad fluyendo. Esto se llama efecto fotovoltaico.\\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/photovoltaic_effect.png}
+			\caption{Dibujo representativo del efecto fotovoltaico.}
+			\label{fig: efecto fotovoltaico}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	\noindent Los electrones necesitan un camino a seguir y la electricidad debe estar en una forma útil. Es por ello que la ruta que creemos para los electrones (el circuito) es importante, ya que, cuando salen de la capa negativa de la celda fotovoltaica, queremos que fluyan a través de nuestras cargas (como nuestras luces y electrodomésticos, en el ejemplo del uso doméstico) para que los electrones puedan dar energía a esas cargas a medida que avanzan hacia la capa positiva de la celda fotovoltaica. \\
+	
+	\noindent \textit{\textbf{Uso en hogares de energía solar}} \\
+	
+	\noindent Los paneles solares producen electricidad de corriente continua (CC, DC), pero la generación de electricidad que usamos en nuestros hogares es de corriente alterna (CA, AC). Para solucionar este problema, agregamos un inversor a nuestro circuito. Luego, el inversor convierte la energía de CC en energía de CA. \\
+	
+	\noindent El inversor es un factor clave para determinar cómo funcionan los paneles solares porque sin un inversor en nuestro sistema fotovoltaico, no podemos hacer mucho con la energía generada por los paneles solares. Esto último no aplica a nuestro caso, donde nos interesa crear un proyecto que se alimente de manera autónoma, sin uso de la electricidad disponible en el hogar; el panel solar, en este caso, recargaría una pila, y por ello necesitamos la energía DC, y no necesitamos usar un inversor a AC. \\ 
+	
 	\noindent \textit{Composición de un panel solar} \\
 	
 	\noindent \textit{Opciones}\\
 	
 	\noindent \textit{Parámetros}\\
+	
+	\noindent Los principales paramétros que se usan para caracterizar el rendimiento de las células solares son la potencia máxima $P_{max}$ (\textit{peak power}), la densidad de corriente en cortocircuito $J_{sc}$, la tensión en circuito abierto $V_{oc}$, y el factor de forma \textit{FF}. Estos parámetros se determinan a partir de la curva J-V característica cuando la célula está iluminada, tal como se muestra en la Figura \ref{fig: curva J-V célula solar}. La eficiencia de conversión $\eta$ se puede determinar a partir de estos parámetros. \\
+	
+	\noindent Nótese que se menciona específicamente \textit{parámetros de una célula solar}; un panel solar, como se ha mencionado anteriormente, consta de varias células fotovoltaicas, por lo que los parámetros especificados, en términos globales y tal como se construyen los paneles solares, influyen en las especificaciones finales del panel según el número de células del que conste. \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/JV_curve_solarCell.png}
+			\caption{Determinación de los parámetros de una célula solar a partir de su curva J-V.}
+			\label{fig: curva J-V célula solar}
+		\end{center}
+	\end{figure}
+	
+	\noindent Para realizar medidas fiables y definir la curva característica J-V, se deben realizar las medidas bajo condiciones estándar de pruebas (\textit{standard test conditions, STC}); estas son, una temperatura constante a $25^{\circ}C$, una irradiancia total de 1000 $W/ m^2$ y un espectro solar de AM1.5 (sol directo y con ángulo cenital de $48,2 ^{\circ}$). Esto lo tendremos en cuenta si queremos comprobar que las especificaciones del producto son correctas, o por el contrario el producto viene defectuoso. En este proyecto no es prioritario el estudio profundo y comprobación exhaustiva del panel solar, por lo que no se realizarán dichas pruebas; sin embargo, sí realizaremos un estudio teórico de los parámetros que definen a una célula solar, como también lo hemos hecho de los materiales que lo componen y su funcionamiento general.\\
+	
+	\noindent \textit{\textbf{Densidad de corriente en cortocircuito}} \\
+	
+	\noindent La corriente en cortocircuito $I_{sc}$ es la corriente que fluye a través de un circuito externo cuando los electrodos de una célula solar se cortocircuitan. La corriente en cortocircuito de una célula solar depende de la incidencia del flujo de fotones sobre ella, la cual está determinada por el espectro de la luz incidente. También depende del área de la célula solar. Para eliminar la dependencia del área de la célula solar sobre $I_{sc}$, normalmente se usa la densidad de corriente en cortocircuito para describir la máxima corriente entregada por una célula solar. La máxima corriente que una célula solar puede entregar depende mucho de las propiedades ópticas de la célula solar, tales como la absorción en la capa absorbente y la reflexión. \\
+	
+	\noindent Las células solares de silicio cristalino pueden entregar, bajo un espectro AM1.5, una posible densidad de corriente máxima de 46 $mA/cm^2$. En las células solares de c-Si de laboratorio, las medidas de $J_{sc}$ están por encima de 42 $mA/cm^2$, mientras que las células solares comerciales tienen un $J_{sc}$ que excede los 35 $mA/cm^2$. \\
+	
+	\noindent \textit{\textbf{Tensión en circuito abierto}} \\
+	
+	\noindent La tensión en circuito abierto es la tensión en la cual ninguna corriente fluye a través de un circuito externo. Es la tensión máxima que una célula solar puede entregar. $V_{oc}$ corresponde a la tensión de polarización directa, a la cual la densidad de corriente de oscuridad compensa la densidad de corriente fotovoltaica (\textit{fotocorriente}). Depende de la densidad de corriente de saturación de la célula solar y de la corriente fotogenerada. Mientras ésta última varía poco, la corriente de saturación puede variar en órdenes de magnitud. La corriente de saturacón depende de la recombinación en la célula solar, por lo que $V_{oc}$ es una medida de la cantidad de recombinación de la célula solar.\\
+	
+	\noindent Las células solares de laboratorio hechas de silicio cristalino dan valores de $V_{oc}$ de hasta 720 mV bajo condiciones AM1.5 estándar, mientras que las células solares comerciales normalmente dan valores de $V_{oc}$ por encima de los 600 mV. \\
+	
+	\noindent \textit{\textbf{Factor de forma}} \\
+	
+	\noindent El factor de forma es \\
+	
+	\noindent \textit{\textbf{Eficiencia de conversión}} \\
+	
+	\noindent \textit{\textbf{Circuito equivalente}} \\
+	
+	
+%	\noindent Uno de los parámetros más importantes en un panel solar es la \texttt{eficiencia}. Mide el porcentaje de luz solar que llega a la celda solar y que se convierte en electricidad utilizable. Cuanto mayor sea la eficiencia, menor será la superficie que necesitarán los paneles solares para satisfacer sus necesidades energéticas, pero mayor será el precio. \\
+	
+%	\noindent Algunas personas asocian mayores niveles de eficiencia con paneles de mayor calidad, pero esto no es necesariamente cierto. Alta eficiencia significa que su sistema fotovoltaico solar utilizará menos espacio en su azotea. Por lo tanto, quienes viven en áreas de alta densidad y tienen un espacio muy limitado para la energía solar generalmente están más preocupados por los niveles de eficiencia. \\
 	
 	\subsubsection{Automatización y monitorización}
 	
