@@ -162,6 +162,7 @@
 	\subsection[Búsqueda soluciones]{Búsqueda de soluciones para cada funcionalidad}
 
 	\subsubsection{Alimentación autónoma del dispositivo}
+	\label{subseccion 3.2.1: búsqueda soluciones alimentación}
 	\noindent Se entiende por alimentación autónoma la obtención de energía suficiente para el correcto funcionamiento de un dispositivo o un sistema, y que dicha obtención de energía se realice de manera cíclica e independiente o prácticamente independiente, es decir, no dependa de la acción y supervisión constante de una persona. \\
 	
 	\noindent Para determinar la forma en la que alimentaremos nuestro proyecto, es imprescindible conocer bien las necesidades energéticas que lo limitarán; hay que determinar, por tanto, el consumo estimado de los componentes que conforman el proyecto. También es importante saber el tamaño y/o el destino de nuestro proyecto, para determinar si estará limitado a la hora de su transporte por una fuente de alimentación pesada, o si esta no limita en absoluto; será fundamental, además, conocer la ubicación de nuestro proyecto, es decir, si estará en el exterior o interior, si el ambiente será excesivamente frío, cálido o húmedo.\\
@@ -197,13 +198,12 @@
 	
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/chargeDischargeCurve_TxInst.png}
+			\includegraphics[width=0.6\textwidth]{img/chargeDischargeCurve_TxInst.png}
 			\caption{Curva de la carga/descarga de una batería.}
 		\end{center}
 	\end{figure}
 
-	\pagebreak
-	
+
 	% \noindent Entrarían dentro de esta categoría  las conocidas baterías recargables, formato LiPo o Li-ion, por ejemplo, o formato powerbank, que si bien en su interior usan baterías LiPo/Li-ion, el encapsulado en el que se presentan y la forma en que se usan son totalmente diferentes. \\
 	
 	\noindent \textit{Tipos de baterías recargables}\\
@@ -238,7 +238,7 @@
 		\end{center}
 	\end{figure}
 	
-	\pagebreak 
+	 
 	
 	\noindent Al revisar los datos de la Figura \ref{fig: comparación densidad energía}, la ventaja de Li-Ion en densidad gravimétrica es claramente la más sorprendente, casi duplicando las cifras de Ni-Cd y Ni-MH. Esto significa que los productos que funcionan con celdas de iones de litio se pueden hacer mucho más livianos sin sacrificar el tiempo de ejecución. Alternativamente, si el peso de la batería se mantiene igual, el tiempo de funcionamiento se duplicará si se utilizan baterías de iones de litio. Este hecho explica la razón por la que Li-Ion está reemplazando rápidamente al Ni-MH en los teléfonos celulares y computadoras portátiles de primera línea. \\
 	
@@ -276,7 +276,7 @@
 	
 	\noindent Requieren de una batería donde almacenar la energía que captan/generan, por lo que, necesariamente, habría que escoger entre algunas de las opciones planteadas en el apartado anterior. \\
 	
-	\noindent \textit{Funcionamiento de un panel solar}
+	\noindent \textit{Funcionamiento y composición de un panel solar}
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -314,10 +314,6 @@
 	
 	\noindent El inversor es un factor clave para determinar cómo funcionan los paneles solares porque sin un inversor en nuestro sistema fotovoltaico, no podemos hacer mucho con la energía generada por los paneles solares. Esto último no aplica a nuestro caso, donde nos interesa crear un proyecto que se alimente de manera autónoma, sin uso de la electricidad disponible en el hogar; el panel solar, en este caso, recargaría una pila, y por ello necesitamos la energía DC, y no necesitamos usar un inversor a AC. \\ 
 	
-	\noindent \textit{Composición de un panel solar} \\
-	
-	\noindent \textit{Opciones}\\
-	
 	\noindent \textit{Parámetros}\\
 	
 	\noindent Los principales paramétros que se usan para caracterizar el rendimiento de las células solares son la potencia máxima $P_{max}$ (\textit{peak power}), la densidad de corriente en cortocircuito $J_{sc}$, la tensión en circuito abierto $V_{oc}$, y el factor de forma \textit{FF}. Estos parámetros se determinan a partir de la curva J-V característica cuando la célula está iluminada, tal como se muestra en la Figura \ref{fig: curva J-V célula solar}. La eficiencia de conversión $\eta$ se puede determinar a partir de estos parámetros. \\
@@ -332,7 +328,16 @@
 		\end{center}
 	\end{figure}
 	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/IV_curve_solarCell.png}
+			\caption{Curva I-V de una célula solar.}
+			\label{fig: I-V curve of a solar cell}
+		\end{center}
+	\end{figure}
+
 	\noindent Para realizar medidas fiables y definir la curva característica J-V, se deben realizar las medidas bajo condiciones estándar de pruebas (\textit{standard test conditions, STC}); estas son, una temperatura constante a $25^{\circ}C$, una irradiancia total de 1000 $W/ m^2$ y un espectro solar de AM1.5 (sol directo y con ángulo cenital de $48,2 ^{\circ}$). Esto lo tendremos en cuenta si queremos comprobar que las especificaciones del producto son correctas, o por el contrario el producto viene defectuoso. En este proyecto no es prioritario el estudio profundo y comprobación exhaustiva del panel solar, por lo que no se realizarán dichas pruebas; sin embargo, sí realizaremos un estudio teórico de los parámetros que definen a una célula solar, como también lo hemos hecho de los materiales que lo componen y su funcionamiento general.\\
+	
 	
 	\noindent \textit{\textbf{Densidad de corriente en cortocircuito}} \\
 	
@@ -350,18 +355,21 @@
 	
 	\noindent El factor de forma es la relación entre la potencia máxima ($P_{max} = J_{mpp} V_{mpp}$) generada por una célula solar y el producto de $V_{oc}$ con $J_{sc}$. \\
 	
-	\noindent El subíndice \textit{mpp} hace referencia al \textit{punto de potencia máxima} (\textit{maximum power point, MPP}) de la célula solar, es decir, el punto de la curva característica J-V de la célula solar al cual la célula solar ofrece su máxima potencia de salida.  Para optimizar la operación de los sistemas fotovoltaicos, es muy importante que las células solares (o módulos fotovoltaicos) operen sobre el MPP. Esto se puede asegurar con un seguidor de punto de máxima potencia (\textit{maximum power point tracking, MPPT}). Se trata de un algoritmo, el cual se usa en controladores de carga solar para extraer la máxima potencia disponible del módulo fotovoltaico bajo ciertas condiciones; dichas condiciones, como son la radiación solar a lo largo del día y año, la temperatura ambiente y la temperatura de la célula, afectan a la potencia máxima de la misma, y es entonces cuando un MPPT actúa, haciendo operar a la célula solar al valor de tensión más eficiente, el MPP. El controlador de carga mantiene la tensión y la corriente a un nivel optimizado, donde el módulo fotovoltaico brinda la mayor cantidad de energía a la carga; es ``consciente'' del estado de carga de la batería y actúa en consecuencia. \\
+	\noindent El subíndice \textit{mpp} hace referencia al \textit{punto de potencia máxima} (\textit{maximum power point, MPP}) de la célula solar, es decir, el punto de la curva característica J-V de la célula solar al cual la célula solar ofrece su máxima potencia de salida.  Para optimizar la operación de los sistemas fotovoltaicos, es muy importante que las células solares (o módulos fotovoltaicos) operen sobre el MPP. Esto se puede asegurar con un seguidor de punto de máxima potencia (\textit{maximum power point tracking, MPPT}). Se trata de un algoritmo, el cual se usa en controladores de carga solar para extraer la máxima potencia disponible del módulo fotovoltaico bajo ciertas condiciones; dichas condiciones (se entrará más en detalle más adelante), como son la radiación solar a lo largo del día y año, la temperatura ambiente y la temperatura de la célula, afectan a la potencia máxima de salida de la misma, y es entonces cuando un MPPT actúa, haciendo operar a la célula solar al valor de tensión más eficiente, el MPP. El controlador de carga mantiene la tensión y la corriente a un nivel optimizado, donde el módulo fotovoltaico brinda la mayor cantidad de energía a la carga; es ``consciente'' del estado de carga de la batería y actúa en consecuencia. \\
+	
 	\noindent El uso de un seguidor de punto de máxima potencia, sin embargo, encarece el costo total de un proyecto; si bien para aplicaciones que requieran la extracción de la máxima potencia de un panel solar (por limitaciones de espacio, por ejemplo, donde deberíamos explotar las características de los paneles que pudiéramos colocar), en el proyecto que estamos diseñando no es el caso, por lo que no usaremos herramientas de este estilo. Además, aunque pueden encontrarse o construirse de manera aislada (se trata de un conversor DC a DC), también suelen encontrarse incorporados a inversores, los cuales tampoco son necesarios, ya que no es energía solar para uso en hogar. Como anotación, existen otros controladores de carga que no son MPPT, como el PWM o \textit{shunt controller} (regulador de carga tipo paralelo o de desviación). \\
-	 
+	
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.6\textwidth]{img/mppt_curve.png}
+			\includegraphics[width=0.7\textwidth]{img/mppt_curve.png}
 			\caption{Curva P-V de una célula solar, indicando el punto MPP.}
-			\label{fig: MPPT curve}
+			\label{fig: MPPT in P-V curve of a solar cell}
 		\end{center}
 	\end{figure}
-	 \noindent Por último, anotar que el factor de forma no varía tanto con $V_{oc}$, sino más con el material del que están hechas las células solares. \\
-	 
+	
+	\noindent Por último, anotar que el factor de forma no varía tanto con $V_{oc}$, sino más con el material del que están hechas las células solares. \\
+	
+
 	\noindent \textit{\textbf{Eficiencia de conversión}} \\
 	
 	\noindent La eficiencia de conversión se calcula como la relación entre la potencia potencia generada y la potencia incidente.  Como vemos en la siguiente fórmula, y tal como establece su propia definición, depende de todos los parámetros anteriormente descritos: \\
@@ -369,13 +377,134 @@
 	\begin{equation}
 		 \eta = \frac{P_{max}}{I_{in}} = \frac{J_{mpp} V_{mpp}}{I_{in}} = \frac{J_{sc} V_{oc} FF}{I_{in}} 
 	\end{equation}
-
+	
+	\noindent Los parámetros externos típicos de una célula fotovoltaica de silicio cristalino son $J_{sc} \approx 35 mA/cm^2$, $V_{oc}$ hasta 0.65V y FF en el rango entre 0.75 y 0.80; esto implica que la eficiencia de conversión caiga en el rango entre 17 y 18 \%. \\
+	
 	\noindent \textit{\textbf{Circuito equivalente}} \\
 	
+	\noindent Una célula fotovoltaica iluminada puede comportarse como un diodo ideal, y este comportamiento puede describirse a través de un circuito equivalente simple, como el que se muestra en la Figura \ref{fig: equivalent circuit solar cell} (a). donde un diodo y una fuente de corriente están conectados en paralelo. El diodo está formado por una unión p-n. \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/circuitEquivalent_solarCell.png}
+			\caption{Circuito equivalente de una célula fotovoltaica, en el caso ideal (a) y considerando pérdidas (b).}
+			\label{fig: equivalent circuit solar cell}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/JV_curve_withRsRp.png}
+			\caption{Curva J-V de una célula fotovoltaica, mostrando el efecto de aumentar o disminuir el valor de las resistencias $R_{s}$ y $R_{p}$ o $R_{sh}$ (\textit{shunt}).}
+			\label{fig: JV curve with non-ideal model (one diode)}
+		\end{center}
+	\end{figure}
+
+	\noindent Sin embargo, en la práctica, el factor de forma está influenciado por una resistencia en serie $R_{s}$, y una resistencia de derivación $R_{p}$. La influencia de estos parámetros en la curva característica J-V de una célula solar puede estudiarse usando el circuito equivalente mostrado en la Figura \ref{fig: equivalent circuit solar cell} (b). Además, en células solares reales, el factor de forma también está influenciado por una recombinación adicional que ocurre en la unión p-n. Este diodo no ideal se representa normalmente con un circuito equivalente formado por dos diodos, uno ideal con un factor de idealidad\footnotemark \enspace igual a la unidad, y otro diodo no ideal con un factor de idealidad mayor que uno. \\
+	
+	\footnotetext{El factor de idealidad del diodo es una medida de cómo de cerca el diodo sigue la ecuación del diodo ideal.}
+
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/nonIdeal_equivCircuit_solarCell.png}
+			\caption{Circuito equivalente de una célula fotovoltaica con un modelo de dos diodos, donde $n_{1}$ y $n_{2}$ son los factores de idealidad e $I_{d1}$ y $I_{d2}$ las corrientes que atraviesan cada diodo.}
+			\label{fig: non-Ideal equivalent circuit solar cell}
+		\end{center}
+	\end{figure}	
 	
 %	\noindent Uno de los parámetros más importantes en un panel solar es la \texttt{eficiencia}. Mide el porcentaje de luz solar que llega a la celda solar y que se convierte en electricidad utilizable. Cuanto mayor sea la eficiencia, menor será la superficie que necesitarán los paneles solares para satisfacer sus necesidades energéticas, pero mayor será el precio. \\
 	
 %	\noindent Algunas personas asocian mayores niveles de eficiencia con paneles de mayor calidad, pero esto no es necesariamente cierto. Alta eficiencia significa que su sistema fotovoltaico solar utilizará menos espacio en su azotea. Por lo tanto, quienes viven en áreas de alta densidad y tienen un espacio muy limitado para la energía solar generalmente están más preocupados por los niveles de eficiencia. \\
+	
+	\noindent \textit{Factores principales que influyen en la potencia de salida de una célula PV}\\
+	
+	\noindent \textit{\textbf{Radiación solar}}
+	\begin{figure}[h]
+		\begin{subfigure}{0.45\textwidth}
+			\includegraphics[width=0.8\textwidth]{img/generalEffect_irradianceIVcurve_solarCell.png} 
+			\caption{Efecto general.}
+			\label{fig: variación general en la curva I-V de una célula PV con la intensidad de la radiación solar.}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
+			\includegraphics[width=1.05\linewidth]{img/concreteEffect_irradianceIVcurve_solarCell.png}
+			\caption{Efecto según valores concretos de radiación.}
+			\label{fig:variación con valores en la curva I-V de una célula PV con la intensidad de la radiación solar.}
+		\end{subfigure}
+		\caption{Variación en la curva I-V ante la radiación solar.}
+		\label{fig:variación I-V radiación solar}
+	\end{figure}
+	
+	\pagebreak
+	
+	\noindent \textit{\textbf{Temperatura ambiente y temperatura de la célula}} \\
+	
+	\begin{figure}[h]
+		\begin{subfigure}{0.45\textwidth}
+			\includegraphics[width=0.8\textwidth]{img/generalEffect_celTempIVcurve_solarCell.png} 
+			\caption{Efecto general.}
+			\label{fig: variación general en la curva I-V de una célula PV con la temperatura.}
+		\end{subfigure}
+		\begin{subfigure}{0.55\textwidth}
+			\includegraphics[width=1\linewidth]{img/concreteEffect_TempIVcurve_solarCell.png}
+			\caption{Efecto según valores concretos de temperatura ambiente.}
+			\label{fig:variación con valores en la curva I-V de una célula PV con la temperatura.}
+		\end{subfigure}
+		\caption{Variación en la curva I-V ante la temperatura ambiente}
+		\label{fig:variación I-V temperatura}
+	\end{figure}
+	
+	\noindent Nótese que en la Figura \ref{fig: variación general en la curva I-V de una célula PV con la temperatura.} se hace referencia a \textit{temperatura de la célula} y en la Figura \ref{fig:variación con valores en la curva I-V de una célula PV con la temperatura.} a \textit{temperatura ambiente}. Si bien son dos magnitudes diferentes, la temperatura ambiente tiene un efecto sobre la temperatura de la célula que puede considerarse lineal. A una temperatura ambiente de $25^{\circ}C$, la temperatura de una célula de silicio cristalino suele situarse en el valor de $48^{\circ}C$. \\
+	
+	\begin{figure}[h]
+		\begin{subfigure}{0.52\textwidth}
+			\includegraphics[width=1\textwidth]{img/PVcellTemp_AirTemp.png} 
+			\caption{}
+			\label{fig: solar cell temp vs air temp.}
+		\end{subfigure}
+		\begin{subfigure}{0.55\textwidth}
+			\includegraphics[width=1\linewidth]{img/powerPVCell_airTemp.png}
+			\caption{}
+			\label{fig:power output of a solar cell vs air temp.}
+		\end{subfigure}
+		\caption{Relación entre temperatura ambiente, radiación solar, con la potencia de salida de una célula PV (\ref{fig: solar cell temp vs air temp.}) y temperatura de ésta (\ref{fig:power output of a solar cell vs air temp.}).}
+		\label{fig:solar temp}
+	\end{figure}
+	
+	\pagebreak
+	
+	\noindent \href{https://www.qpvgroup.org/blog/2019/2/3/how-does-air-temperature-affect-photovoltaic-solar-panel-output}{LEER ESTO Y COMENTAR POR AQUÍ, inclusive fórmula porque es relación lineal entre temperaturas ambiente y célula} \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/cellTemp_ambTemp_Irrad_Pow.png}
+			\caption{Variación de la potencia de salida de una célula PV dependiendo de la hora del día, la temperatura y la radiación solar.}
+			\label{fig:cellTemp_ambTemp_Irrad_Pow}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	\noindent \textit{Opciones: tipos de paneles solares}\\
+	
+	\noindent Existen diferentes tipos de células fotovoltaicas disponibles en el mercado, aunque en su mayoría están fabricadas de silicio (Si), el segundo elemento más abundante en la corteza terrestre (después del oxígeno), el cual es el mismo material del cual está hecha la arena. El silicio por sí mismo no es muy puro y debe ser refinado para conseguir una pureza de hasta el 99.99 \% antes de que pueda usarse como material semiconductor en muchos tipos distintos de células fotovoltaicas, transistores o circuitos integrados digitales. El uso de silicio en la fabricación de células fotovoltaicas produce la típica célula fotovoltaica de color azul uniforme. \\
+	\noindent Los dos tipos principales de materiales usados para células fotovoltaicas son el silicio cristalino y los depósitos de película fina, los cuales varían entre unos y otros en términos de eficiencia en absorción de luz, eficiencia en la conversión de energía, tecnología de fabricación y coste de producción. Las células fotovoltaicas (a partir de ahora, células PV, \textit{PhotoVoltaic}) hechas de silicio cristalino son el tipo más común de células PV que se utilizan en la actualidad y también son uno de los primeros dispositivos PV que tuvieron éxito.\\
+	
+	\noindent Los tres tipos generales de células PV hechas de silicio son:\\ 
+	
+	\begin{itemize}
+		\item Silicio monocristalino, conocido tambien como silicio de un único cristal, cristal de silicio único o silicio monocristal (\textit{Mono-crystalline silicon, single-crystal silicon}).
+		\item Silicio policristalino, conocido tambien como silicio de varios cristales, silicio multicristalino o silicio multicristal (\textit{Poly-crystalline silicon, multi-crystal silicon}).
+		\item Silicio de película fina. \\
+	\end{itemize}
+
+	\noindent \textit{\textbf{Silicio cristalino (c-Si)}} \\
+	
+	\noindent \textit{\textbf{Célula PV de película fina}} \\
+	
+	\noindent \textit{\textbf{Otros tipos de células PV}} \\
 	
 	\subsubsection{Automatización y monitorización}
 	
@@ -397,6 +526,9 @@
 	\subsection[Elección soluciones]{Elección de soluciones para cada funcionalidad}
 	
 	\subsubsection{Alimentación autónoma del dispositivo}
+	
+	\noindent Para conseguir el objetivo de una alimentación autónoma para el dispositivo de alimentación final que queremos crear, se ha decidido usar la siguiente combinación de componentes, explicados de manera teórica y más ampliamente en el apartado 
+	
 	\subsubsection{Automatización y monitorización}
 	\subsubsubsection{Entorno Arduino}
 	
