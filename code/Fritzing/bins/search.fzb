@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module fritzingVersion="0.9.4.." icon="Search.png" search="LORA">
+    <title>Search</title>
+    <instances>
+        <instance moduleIdRef="LilyPad Coincell-Battery-v17" modelIndex="85413307" path="/usr/share/fritzing/fritzing-parts/core/LilyPad Coincell-Battery-v17.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="Arduino_Esplora" modelIndex="85413308" path="/usr/share/fritzing/fritzing-parts/core/Arduino_Esplora.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="LilyPad Battery-Connect-v11" modelIndex="85413309" path="/usr/share/fritzing/fritzing-parts/core/LilyPad Battery-Connect-v11.fzp">
+            <views/>
+        </instance>
+    </instances>
+</module>
