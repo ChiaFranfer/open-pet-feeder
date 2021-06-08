@@ -26,7 +26,7 @@
 }
 
 \hypersetup{
-	pdftitle= {Diseño y automatización de sistema de alimentación para animales a través de la tecnología LoRa},
+	pdftitle= {Diseño y automatización de un sistema de alimentación OpenSource para animales a través de la tecnología LoRa},
 	pdfauthor = {Lucía Francoso Fernández},
 	pdfsubject = {Electrónica y comunicaciones móviles},
 	pdfkeywords = {Arduino, LoRa, automatización, LoRaWAN, punto a punto, OpenSource}
@@ -40,7 +40,7 @@
 \begin{document}
 	\selectlanguage{spanish}
 
-	\title{Diseño y automatización de sistema de alimentación para animales a través de la tecnología LoRa}
+	\title{Diseño y automatización de un sistema de alimentación \textit{OpenSource} para animales a través de la tecnología LoRa}
 	\author{Lucía Francoso Fernández}
 	\date{Marzo 2021}
 	
@@ -519,9 +519,38 @@
 	\noindent \textit{\textbf{Otros tipos de células PV}} \\
 	
 	\subsubsection{Automatización y monitorización}
+	\label{subsección 3.2.2: automatización y monitorización}
 	
 	\subsubsubsection{Microcontrolador}
+	
+	\noindent (Como la opción más conocida es la de Arduino, se presentarán a continuación algunas alternativas a sus placas. Estoy buscando en google:  \textit{alternatives to arduino boards}). \\
+	
+	\noindent Arduino es la plataforma de microcontroladores elegida por aficionados y educadores. Esto se debe en gran parte al gran apoyo de la comunidad y los recursos disponibles. Sin embargo, esto no significa que no existan más opciones en tanto a microcontroladores. Es importante recordar que un Arduino no es un ordenador, es un microcontrolador diseñado para llevar a cabo una tarea única de manera cíclica, estro es, una vez que lo programas para una tarea, ejecutará esa tarea y sólo esa tarea una y otra vez, dependiendo de cómo haya sido programado.\\
+	
+	\noindent A continuación, se presentan alternativas a Arduino. Estań dirigidas tanto a aficionados como a desarrolladores y facilitan la programación de microcontroladores. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar. \\
+	
+	\begin{itemize}
+		\item NodeMCU
+		\item Espressif Systems' ESP8266
+		\item STM32
+		\item The Pinguino 45K50
+		\item Nanode
+		\item Teensy 3.6. o Teensy 2.0
+		\item Launchpad MSP430
+		\item Netduino N3 Wi-Fi
+		\item Particle Photon
+		\item SparkFun Thing Plus
+		\item Adafruit Feather Huzzah
+		\item BeagleBoard PocketBeagle
+		\item SparkFun RedBoard Artemis
+		\item STM32F3 Discovery
+		\item Silicon Labs Wonder Gecko
+		\item Opción DIY (hacer tú mismo tu propio arduino)
+		\item Raspberry Pi Pico
+		\item Libelium Waspmote
+	\end{itemize}
 	\subsubsubsection{Comunicación radio}
+	
 	\subsubsubsection{Comedero}
 	\subsubsubsection{Bebedero}
 		
@@ -539,23 +568,32 @@
 	
 	\subsubsection{Alimentación autónoma del dispositivo}
 	
-	\noindent Para conseguir el objetivo de una alimentación autónoma para el dispositivo de alimentación final que queremos crear, se ha decidido usar la siguiente combinación de componentes, explicados de manera teórica y más ampliamente en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}.
+	\noindent Para conseguir el objetivo de una alimentación autónoma para el dispositivo de alimentación final que queremos crear, se ha decidido usar la siguiente combinación de componentes, explicados de manera teórica y más ampliamente en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}. \\
+	
+	\begin{itemize}
+		\item Batería recargable Li-ion 18650 sin protección
+		\item Kit protección 18650
+		\item TP4056
+		\item Panel solar 6V
+	\end{itemize}
+	
+	\noindent Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame.  Además, como se indicó en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}, dentro de \textit{opciones para baterías recargables}, se necesita de un circuito que ayude a la pila, hecha de Li-ion, a una correcta carga y descarga, precisamente porque conlleva las mismas consecuencias de una mala manipulación, expuestas anteriormente. Es por ello que se realizó una investigación en tanto a circuitos de protección para evitar sobredecarga, sobrecarga y cortocircuitos, en este tipo de pila (Li-ion). \\
+	
+	\noindent A continuación, se describirán brevemente los componentes enumerados y el por qué de su elección. Para más detalle, se pueden consultar los \textit{datasheet} en el Anexo I.
 	
 	\subsubsection{Automatización y monitorización}
+	
+	\noindent Para la automatización y monitorización del sistema de alimentación, se ha elegido, en tanto a los bloques de microcontrolador y  comunicación radio, las tecnologías Arduino y LoRa, respectivamente. Si bien estas elecciones se habrían realizado a priori por ser opciones \textit{Open Source} muy extendidas y conocidas por la comunidad, no ha supuesto que no se investiguen otras, las cuales se han mencionado en el apartado \ref{subsección 3.2.2: automatización y monitorización}.
+	
 	\subsubsubsection{Entorno Arduino}
 	
 	% Intro: qué es Arduino
 	
-	\noindent Arduino es una plataforma de electrónica \textit{open-source} basada en hardware y software fáciles de usar. Las placas Arduino son capaces de leer entradas (como la luz en un sensor, un dedo pulsando un botón) y convertirlas en salidas (activar un motor, apagar o encender un LED); es decir, como usuarios podemos decirle qué hacer a la placa enviándole una serie de instrucciones al microcontrolador de la placa. Para poder hacer esto último, se hace uso del lenguaje de programación de Arduino (basado en \href{http://wiring.org.co/}{\textit{Wiring}}) y el software de Arduino (IDE, basado en \href{https://processing.org/}{\textit{Processing}}). \\
+	\noindent Arduino es una plataforma de electrónica \textit{open-source} basada en hardware y software fáciles de usar. Nació en el \textit{Ivrea Interaction Design Institute} (Italia) como una herramienta fácil para la creación rápida de prototipos, dirigida a estudiantes sin experiencia en electrónica y programación. Tan pronto como llegó a una comunidad más amplia, la placa Arduino comenzó a cambiar para adaptarse a las nuevas necesidades y desafíos, tanto de usuarios principiantes como expertos. \\
 	
-	\noindent A lo largo de los años, Arduino ha sido el corazón de miles de proyectos, desde objetos cotidianos hasta complejos instrumentos científicos. Una comunidad mundial de creadores (estudiantes, aficionados, artistas, programadores y profesionales) se ha reunido en torno a esta plataforma de código abierto, sus contribuciones se han sumado a una increíble cantidad de conocimiento accesible que puede ser de gran ayuda tanto para principiantes como para expertos. \\
+	\noindent Las placas Arduino son capaces, por una parte, de ejecutar una serie de instrucciones (determinadas por el usuario) a través de su microcontrolador, de manera que a partir de la lectura de sus entradas analógicas/digitales se puedan generar salidas (analógicas/digitales); por otra parte, son programables a través del software Arduino, lo que se conoce como Arduino IDE. \\
 	
-	\noindent  \textbf{\large Origen} \\ 
-	
-	\noindent Arduino nació en el Ivrea Interaction Design Institute como una herramienta fácil para la creación rápida de prototipos, dirigida a estudiantes sin experiencia en electrónica y programación. Tan pronto como llegó a una comunidad más amplia, la placa Arduino comenzó a cambiar para adaptarse a las nuevas necesidades y desafíos, diferenciando su oferta desde placas simples de 8 bits hasta productos para aplicaciones de IoT, wearable, impresión 3D y entornos integrados. Todas las placas Arduino son completamente de código abierto, lo que permite a los usuarios construirlas de forma independiente y eventualmente adaptarlas a sus necesidades particulares. El software también es de código abierto y está creciendo gracias a las contribuciones de los usuarios de todo el mundo. \\
-
-	
-	\noindent \textbf{\large Características} \\
+	\noindent \textbf{Características} \\
 	
 	\noindent La principal característica de Arduino es la simplicidad para trabajar con microcontroladores. A raíz de esto, ofrece una serie de ventajas para sus usuarios, como son:
 	\begin{itemize}
@@ -567,14 +605,26 @@
 	
 	\end{itemize}
 
-	\noindent \textbf{\large Hardware: placas Arduino} \\
+	\noindent \textbf{Hardware: placas Arduino} \\
 	
 	\noindent Existen diferentes placas Arduino, cuya elección dependerá del objetivo que persiga nuestro proyecto y de los requerimientos y limitaciones sobre dicho proyecto. \\
+	
+	\noindent Las placas Arduino más usadas son: \\
+	
+	\noindent \textit{Arduino nano} \\
+	
+	\noindent \textit{Arduino uno} \\
+	
+	\noindent \textit{Arduino mega} \\
+	
+	
 	% Electrónica: arduino nano
 	
-	\noindent \textbf{\large Software: Arduino IDE}
+	\noindent \textbf{Software: Arduino IDE} \\
 	
 	% Programación: arduinoIDE, void loop y setup, define, etc
+	
+	\noindent Como hemos mencionado anteriormente, las placas Arduino se pueden programar a través del software Arduino IDE. A continuación, se explicarán los fundamentos básicos que se requieren para empezar a usar este software. \\
 	
 	\subsubsubsection{LoRa}
 	
