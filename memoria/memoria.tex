@@ -521,36 +521,129 @@
 	\subsubsection{Automatización y monitorización}
 	\label{subsección 3.2.2: automatización y monitorización}
 	
+	\noindent En este apartado, se mostrará una visión de conjunto acerca de aquellos elementos mediante los cuales consigamos el objetivo de automatizar y monitorizar el sistema de alimentación. Se presentará el resultado de investigar sobre opciones que puedan ayudar a la consecución de los objetivos, tanto en la parte de microcontrolador como en la parte de comunicación radio, y demás actuadores y sensores en las partes de bebedero y comedero.\\
+	
 	\subsubsubsection{Microcontrolador}
 	
-	\noindent (Como la opción más conocida es la de Arduino, se presentarán a continuación algunas alternativas a sus placas. Estoy buscando en google:  \textit{alternatives to arduino boards}). \\
+	\noindent En tanto a microcontroladores, la opción \textit{Open Source} más conocida seguramente sea Arduino. Sin embargo, no significa que no existan más opciones en tanto a microcontroladores. Es importante recordar que ni Arduino ni las alternativas que se van a presentar son ordenadores, son microcontroladores, esto es, circuitos integrados diseñados para llevar a cabo una tarea única de manera cíclica (una vez que programado para una tarea, ejecutará esa tarea y sólo esa tarea una y otra vez, dependiendo de cómo haya sido programado).\\
 	
-	\noindent Arduino es la plataforma de microcontroladores elegida por aficionados y educadores. Esto se debe en gran parte al gran apoyo de la comunidad y los recursos disponibles. Sin embargo, esto no significa que no existan más opciones en tanto a microcontroladores. Es importante recordar que un Arduino no es un ordenador, es un microcontrolador diseñado para llevar a cabo una tarea única de manera cíclica, estro es, una vez que lo programas para una tarea, ejecutará esa tarea y sólo esa tarea una y otra vez, dependiendo de cómo haya sido programado.\\
-	
-	\noindent A continuación, se presentan alternativas a Arduino. Estań dirigidas tanto a aficionados como a desarrolladores y facilitan la programación de microcontroladores. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar. \\
+	\noindent A continuación, se va a presentar una lista con algunas opciones de microcontroladores. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar; la elección de un microcontrolador u otro dependerá de lo que necesite nuestro proyecto (si necesita muchas entradas porque tendremos muchos periféricos, si necesitamos ahorro de energía al máximo, o una buena potencia de procesamiento, etc).  \\
 	
 	\begin{itemize}
+		\item Arduino
 		\item NodeMCU
 		\item Espressif Systems' ESP8266
 		\item STM32
 		\item The Pinguino 45K50
 		\item Nanode
-		\item Teensy 3.6. o Teensy 2.0
-		\item Launchpad MSP430
-		\item Netduino N3 Wi-Fi
-		\item Particle Photon
-		\item SparkFun Thing Plus
-		\item Adafruit Feather Huzzah
-		\item BeagleBoard PocketBeagle
-		\item SparkFun RedBoard Artemis
-		\item STM32F3 Discovery
-		\item Silicon Labs Wonder Gecko
-		\item Opción DIY (hacer tú mismo tu propio arduino)
-		\item Raspberry Pi Pico
-		\item Libelium Waspmote
+		\item \textbf{Teensy 3.6. o Teensy 2.0}. La familia de placas Teensy fue desarrollada por PJRC durante los últimos años. Inicialmente, Teensy se creó prometiendo un poco más de factor de forma más pequeño. Uno de los Teensy más apreciados es el 3.6.; tiene un procesador ARM de 32 bits, 52 entradas/salidas en total, ADC, lector de tarjetas SD y muchas más funciones. Además, PJRC proporciona un complemento software \textit{Teensyduino} para una compatibilidad casi completa con los programas Arduino. \\ 
+		
+		\textit{Especificaciones}: 180-MHz Cortex M4F, 256 kB RAM, memoria flash 1MB, 4K EEPROM. \\
+		
+		\textit{Características}: Teensyduino para Arduino IDE, lector SD. \\
+		
+		\textit{Precio}: aprox. 30 \$ en PJRC. \\
+		
+		\item \textbf{Launchpad MSP430}. Launchpad es una placa de desarrollo fabricada por Texas Instruments (TI). Junto con el hecho de que viene con un MSP430 de TI, también brinda compatibilidad con el software y hardware de TI. Esto viene en forma de paquetes de refuerzo y herramientas de desarrollo en línea. Además, permite la depuración onboard. Existe un IDE similar a Arduino llamado Energia para un enfoque más sencillo. \\
+		
+		\textit{Especificaciones}: 24-MHz MSP430, 32 kB Program FRAM, 4 kB RAM. \\
+		
+		\textit{Características}: tecnología \textit{EnergyTrace} para bajo consumo, Energia (similar a Arduino IDE), dos botones onboard y LEDs, compatible con el \textit{Booster Pack}. \\
+		
+		\textit{Precio}: aprox. 13 \$ en Texas Instruments. \\
+		
+		\item \textbf{Netduino N3 Wi-Fi} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{Particle Photon} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{SparkFun Thing Plus} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{Adafruit Feather Huzzah} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{BeagleBoard PocketBeagle} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{SparkFun RedBoard Artemis} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{STM32F3 Discovery} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{Silicon Labs Wonder Gecko} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{Raspberry Pi Pico} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{Libelium Waspmote} \\
+		
+		\textit{Especificaciones}: \\
+		
+		\textit{Características}: \\
+		
+		\textit{Precio}: \\
+		
+		\item \textbf{Opción DIY} (hacer tú mismo tu propio arduino o microcontrolador) \\
+
 	\end{itemize}
 	\subsubsubsection{Comunicación radio}
 	
+	\noindent En tanto a posibles opciones para llevar a cabo una comunicación radio efectiva, existen muchas, pero la investigación se centrará en aquellas que nos puedan servir para aplicaciones IoT, las cuales se caracterizan por buscar ser autónomas (es decir, priorizar bajo consumo y ahorro de energía), de largo alcance, con transferencia de datos baja/media, seguridad y chequeo de errores, y conectividad entre redes y la nube, entre otros. Se suele hablar de redes LPWAN, para conseguir conectividad IoT, y dentro de esta categoría tenemos varias opciones, entre las que se encuentra LoRa, la cual ya fue preseleccionada para este proyecto por su soporte \textit{Open Source} y equipos asequibles para la creación de redes sencillas, aunque también complejas (Ademas de que conociamos las caracteristicas del terreno, y demas).\\
+	
+	\noindent \textbf{Qué es una red LPWAN} \\
+	
+	\noindent Si uno investiga acerca de \textit{Internet of Things}, llega a la conclusión de que existe una cantidad abrumadora de opciones para conectividad IoT: desde Wi-Fi hasta Bluetooth, NB-IoT hasta CAT-M1, y LoRa hasta RPMA. Cada aplicación IoT tiene sus propios requerimientos, lo que quiere decir que una opción de conectividad IoT que es perfecta para una aplicación puede ser una mala opción para otra. Por ejemplo, si la aplicación tiene muchos sensores remotos, la vida útil de la batería es una consideración importante, pero si la aplicación necesita enviar muchos datos lo es el ancho de banda, o si lleva involucrados datos que son vitales, lo es el tiempo. \\
+	
+	\noindent 
 	\subsubsubsection{Comedero}
 	\subsubsubsection{Bebedero}
 		
