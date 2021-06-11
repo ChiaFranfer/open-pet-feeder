@@ -538,7 +538,7 @@
 		\item Nanode
 		\item \textbf{Teensy 3.6. o Teensy 2.0}. La familia de placas Teensy fue desarrollada por PJRC durante los últimos años. Inicialmente, Teensy se creó prometiendo un poco más de factor de forma más pequeño. Uno de los Teensy más apreciados es el 3.6.; tiene un procesador ARM de 32 bits, 52 entradas/salidas en total, ADC, lector de tarjetas SD y muchas más funciones. Además, PJRC proporciona un complemento software \textit{Teensyduino} para una compatibilidad casi completa con los programas Arduino. \\ 
 		
-		\textit{Especificaciones}: 180-MHz Cortex M4F, 256 kB RAM, memoria flash 1MB, 4K EEPROM. \\
+		\textit{Especificaciones}: 180-MHz Cortex M4F, 256 kB RAM, almacenamiento flash 1MB, 4K EEPROM. \\
 		
 		\textit{Características}: Teensyduino para Arduino IDE, lector SD. \\
 		
@@ -552,71 +552,90 @@
 		
 		\textit{Precio}: aprox. 13 \$ en Texas Instruments. \\
 		
-		\item \textbf{Netduino N3 Wi-Fi} \\
+		\item \textbf{Netduino N3 Wi-Fi}. Un tipo diferente de alternativa a Arduino de Wilderness Labs, el Netduino N3 utiliza .NET MicroFramework y Netduino.Foundation Framework, lo que significa que está programado en un lenguaje de programación de nivel superior (C\#). Esto puede resultar atractivo para aquellos que no quieren lidiar con los niveles más bajos de programación de MCU.
 		
-		\textit{Especificaciones}: \\
+		Esta placa está hecha con dispositivos inalámbricos en mente, con Wi-Fi incorporado. Otra característica notable de Netduino es la disposición de los pines hecha para la compatibilidad del shield Arduino. Dicho todo esto, Netduino puede atraer a aquellos que ya están familiarizados con el marco .NET y les gustaría programar su placa MCU a través de Microsoft Visual Studio y similares. \\
 		
-		\textit{Características}: \\
+		\textit{Especificaciones}: 168 MHz, 164+ kB RAM, 1408kB de almacenamiento flash.  \\
 		
-		\textit{Precio}: \\
+		\textit{Características}: .NET  MicroFramework, librerías Netduino.Foundation, Wi-Fi, lector SD,  22 pines de entrada-salida de propósito general (GPIO). \\
 		
-		\item \textbf{Particle Photon} \\
+		\textit{Precio}: aprox. 50\$. \\
 		
-		\textit{Especificaciones}: \\
+		\item \textbf{Particle Photon}. Particle Photon es la placa ideal para el proyecto de IoT conectado. El Photon tiene un chip Wi-Fi Cypress integrado y viene con conectividad gratuita con Device Cloud y todas sus funciones. Particle incluso proporciona JavaScript y SDK móviles junto con su IDE web y local.
 		
-		\textit{Características}: \\
+		Gracias a todo el soporte, guías y herramientas proporcionadas por Particle, Photon es una buena alternativa a Arduino. Es ideal para aficionados principiantes o intermedios que buscan la plataforma adecuada para un proyecto de IoT simple. \\
 		
-		\textit{Precio}: \\
+		\textit{Especificaciones}:  ARM Cortex M3 de 120 MHz, RAM de 128 kB, almacenamiento flash de 1 MB.\\
 		
-		\item \textbf{SparkFun Thing Plus} \\
+		\textit{Características}: Device Cloud, SDK para dispositivos móviles y ParticleJS, 18 GPIO, muchas referencias y guías. \\
 		
-		\textit{Especificaciones}: \\
+		\textit{Precio}: aprox. 19\$.\\
 		
-		\textit{Características}: \\
+		\item \textbf{SparkFun Thing Plus}. SparkFun tomó el ESP32 e hizo esta placa. El ESP32 es sin duda una gran opción para una placa IoT. Viene con Wi-Fi, Bluetooth y Bluetooth Low Energy integrados. Incluso agregaron una conexión Li-Po para complementar aún más su naturaleza inalámbrica.
 		
-		\textit{Precio}: \\
+		Thing Plus también muestra algunas especificaciones impresionantes y un buen conjunto de sensores. Además, es compatible con Arduino IDE. \\
 		
-		\item \textbf{Adafruit Feather Huzzah} \\
+		\textit{Especificaciones}: 240 MHz, 520 kB SRAM, 16MB de almacenamiento flash. \\
 		
-		\textit{Especificaciones}: \\
+		\textit{Características}: Wi-Fi, Bluetooth, BLE, cargador de batería Li-Po, sensor de efecto Hall, sensor táctil capacitivo, sensor de temperatura. \\
 		
-		\textit{Características}: \\
+		\textit{Precio}: aprox. 21\$ en SparkFun.\\
 		
-		\textit{Precio}: \\
+		\item \textbf{Adafruit Feather Huzzah}. El Huzzah proviene de la línea Feather de Adafruit. Está destinado a ser una placa pequeña. Tiene Wi-Fi incorporado, un cargador Li-Po y compatibilidad con Arduino. Además, como ESP8266, se puede utilizar con NodeMCU Lua.
 		
-		\item \textbf{BeagleBoard PocketBeagle} \\
+		Puede parecer que esta placa parece una versión inferior de Thing Plus, ya que el ESP32 es esencialmente el sucesor del ESP8266. Esta placa, sin embargo, ha existido lo suficientemente presente como para que haya ganado una gran comunidad de usuarios. Esto hace que esta placa sea accesible para los aficionados que deseen la experiencia colectiva de dicha comunidad. \\
 		
-		\textit{Especificaciones}: \\
+		\textit{Especificaciones}: 80 MHz, 50 kB RAM, 4MB de almacenamiento flash. \\
 		
-		\textit{Características}: \\
+		\textit{Características}: Wi-Fi, cargador Li-Po, compatible con Arduino, NodeMCU Lua, 9 GPIO.\\
 		
-		\textit{Precio}: \\
+		\textit{Precio}: aprox. 17\$ en Adafruit.\\
 		
-		\item \textbf{SparkFun RedBoard Artemis} \\
+		\item \textbf{BeagleBoard PocketBeagle}. El PocketBeagle es el más pequeño de los BeagleBoards. Ejecuta Linux desde el primer momento y se puede programar a través de su navegador web. Esta opción, por tanto, se trataría de un ordenador, como lo es una Raspberry Pi, no un microcontrolador. Ideal para proyectos pequeños que necesitan los recursos de una computadora. 
 		
-		\textit{Especificaciones}: \\
+		El Sitara AM3358 ARM Cortex-A8 en el PocketBeagle tiene dos PRU (unidades programables en tiempo real) que son esencialmente microcontroladores conectados al procesador principal. Estos son, en palabras de sus preguntas frecuentes, "ideales para una latencia baja predecible, mientras que el procesador ARM es bueno para el rendimiento". \\
 		
-		\textit{Características}: \\
+		\textit{Especificaciones}: 1GHz Cortex-A8, 512 MB RAM\\
 		
-		\textit{Precio}: \\
+		\textit{Características}: sistema operativo Linux, conector SD, 2 PRUs, 72 pines de expansión, fácilmente programable a través de un navegador web.\\
 		
-		\item \textbf{STM32F3 Discovery} \\
+		\textit{Precio}: aprox. 35\$. \\
 		
-		\textit{Especificaciones}: \\
+		\item \textbf{SparkFun RedBoard Artemis}. El RedBoard Artemis es la versión mejorada de SparkFun del Arduino Uno. Viene en el mismo factor de forma y agrega Bluetooth, 24 GPIO, 21 PWM y aumenta significativamente las especificaciones.
 		
-		\textit{Características}: \\
+		SparkFun continúa reconociendo el valor de la plataforma Arduino y, por lo tanto, ha hecho que esta placa sea compatible con el IDE de Arduino. Además, han expuesto el conector JTAG para aquellos usuarios más avanzados que desean depurar correctamente su MCU.
 		
-		\textit{Precio}: \\
+		Esta placa relativamente nueva también es capaz de ejecutar modelos TensorFlow, llevándola al IDE de Arduino.  \\
 		
-		\item \textbf{Silicon Labs Wonder Gecko} \\
+		\textit{Especificaciones}: 48 MHz (96 MHz turbo), 384 kB RAM, 1MB de almacenamiento flash. \\
 		
-		\textit{Especificaciones}: \\
+		\textit{Características}: compatibilidad con Arduino IDE, Bluetooth, 24 GPIO.\\
 		
-		\textit{Características}: \\
+		\textit{Precio}: aprox. 20\$.\\
 		
-		\textit{Precio}: \\
+		\item \textbf{STM32F3 Discovery}. El STM32F3 es solo una de las diversas placas Discovery fabricadas por ST que vale la pena revisar. Este, sin embargo, viene con un giroscopio y acelerómetro de 3 ejes, un sensor magnético 3D, 10 LED y algunas características más.
 		
-		\item \textbf{Raspberry Pi Pico} \\
+		Si bien esta alternativa no tiene compatibilidad con Arduino IDE, ST proporciona herramientas de software. Actualmente, su ecosistema STM32Cube incluye un generador de código de inicialización e IDE. \\
+		
+		\textit{Especificaciones}: 48 kB RAM, 256kB de almacenamiento flash.\\
+		
+		\textit{Características}: Giroscopio/acelerómetro de 3 ejes, sensor magnético 3D, 10 LED, 2 botones, sensor de movimiento.\\
+		
+		\textit{Precio}: aprox. 16\$ en ST.
+		\\
+		
+		\item \textbf{Silicon Labs Wonder Gecko}. Esta placa de Silicon Labs se basa en el EFM32. Si bien es una placa más cara, viene con una serie de características muy destacables. Incluyen un micro LCD, un control deslizante táctil, un sensor de luz ambiental y un condensador de 0.03F para el dominio de energía de respaldo, por nombrar algunos.
+		
+		El Wonder Gecko está más orientado al desarrollo, pero aún tiene una cantidad decente de referencias y guías para ser accesible. Silicon Labs también ofrece su Simplicity Studio. Si el precio no es un problema, esta placa y sus variaciones son buenas alternativas. \\
+		
+		\textit{Especificaciones}: 48MHz Cortex M4, 32 kB RAM, 256kB almacenamiento flash.\\
+		
+		\textit{Características}: debugger integrado, sistema de monitoreo de energía, varios sensores, LCD, Simplicity Studio.\\
+		
+		\textit{Precio}: aprox.  100\$ en Silicon Labs.\\
+		
+		\item \textbf{Raspberry Pi Pico}. Este microcontrolador lleva en el mercado desde el 25 de enero de 2021, apenas unos meses; este hecho, sin embargo, no impide que miles de personas ya lo hayan probado, y es que actualmente existe en internet muchos proyectos y documentación acerca de esta nueva Raspberry Pi, la cual se aleja de su antecesora mini ordenador para acercarse más al mundo de los microcontroladores similares a Arduino. \\
 		
 		\textit{Especificaciones}: \\
 		
