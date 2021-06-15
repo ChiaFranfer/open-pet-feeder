@@ -4,6 +4,8 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 
+\usepackage{eurosym}
+
 \usepackage{array}
 
 % text font 
@@ -531,11 +533,47 @@
 	
 	\begin{itemize}
 		\item Arduino
-		\item NodeMCU
-		\item Espressif Systems' ESP8266
-		\item STM32
-		\item The Pinguino 45K50
-		\item Nanode
+		\item \textbf{NodeMCU}. NodeMCU (\textit{Node MicroController Unit}) es un entorno de desarrollo de software y hardware de código abierto que se basa en un sistema en chip (SoC) muy económico llamado ESP8266. El ESP8266, diseñado y fabricado por Espressif Systems, contiene todos los elementos cruciales de un ordenador: CPU, RAM, redes (wifi) e incluso un sistema operativo y SDK modernos. Cuando se compra por separado, el chip ESP8266 cuesta solo 2\$ por unidad. Esto lo convierte en una buena opción para proyectos de IoT de todo tipo. \\
+		
+		\textit{Especificaciones:} SoC basado en ESP8266 a 80 MHz, 64 kB de SRAM, 4 MB de memoria flash.\\ 
+		
+		\textit{Características:} compatibilidad con Arduino IDE, 16 GPIO, USB-TTL en CP2102 incluido onboard, tamaño reducido, puerto micro-USB, WiFi.\\
+		
+		\textit{Precio:} aprox. 8 \euro \enspace en Amazon.\\
+	
+		\item \textbf{STM32}. La familia STM32 de microcontroladores de 32 bits basada en el procesador Arm Cortex-M ofrece productos que combinan un rendimiento muy alto, capacidades en tiempo real, procesamiento de señales digitales, operación de bajo consumo / bajo voltaje y conectividad, mientras se mantiene una integración completa y facilidad de desarrollo.
+		
+		La gama de microcontroladores STM32, basada en un núcleo estándar de la industria, viene con una amplia variedad de herramientas y software para respaldar el desarrollo de proyectos, lo que hace que esta familia de productos sea ideal tanto para proyectos pequeños como para plataformas de extremo a extremo. \\
+		
+		\textit{Especificaciones:} depende del microcontrolador. Ejemplo de STM32F103C876, 72MHz Cortex-M3, SRAM de 20kB, 64/128 kB de memoria flash. \\
+		
+		\textit{Características:} software propio pero compatible con Arduino IDE, tamaño similar al arduino nano, dependiendo del microcontrolador tendremos diferentes tipos dentro de la gama STM32 (bajo consumo, altas prestaciones, conectividad, mainstream). \\
+		
+		\textit{Precio:} depende del microcontrolador. En este ejemplo, aprox. 10\$ en eBay. \\
+		
+		\item \textbf{The Pinguino 45K50}. Pinguino Project existe para acercar la simplicidad del lenguaje Arduino a los microcontroladores PIC de Microchip pero con un hardware USB incorporado y una placa que se puede construir en casa. El 45K50 es una de las opciones que nace de este proyecto Open Source.  Viene como un kit que se debe ensamblar antes de usarlo. \\
+		
+		\textit{Especificaciones:} procesador de 12 MIPS de 8 bits que se ejecuta a 48 MHz.\\
+		
+		\textit{Características:} 17 entradas / salidas digitales con 5 entradas analógicas compartidas, 2 salidas PWM, UART para comunicación en serie, etc.  IDE propio, también Open Source, compatible con el lenguaje Arduino y sus librerías.\\
+		
+		\textit{Precio:} aprox. 25\$.\\
+		
+		\item \textbf{Nanode}. Nanode como Arduino ofrece una amplia gama de microcontroladores que puede aprovechar al desarrollar proyectos eléctricos, robots y dispositivos IoT. Viene como un kit de desarrollo, lo que significa que debe estar listo para ensamblar y soldar antes de comenzar con la placa. Las características del Nanode incluyen:
+		
+		Microcontrolador ATMega328P funcionando a 16MHz
+		LED rojos y verdes para un mejor diagnóstico del programa
+		Un conector de alimentación mini USB
+		Controlador Ethernet ENC28J60 con cristal de 25 MHz y conector Ethernet
+		
+		El microcontrolador Nanode puede servir como alternativa a Arduino Uno, Mega y Yun. Aunque es una gran alternativa en términos de sus características y capacidades, es bastante caro y su precio de aproximadamente \$ 50 puede establecer algún límite para su uso generalizado entre estudiantes y aficionados. \\
+		
+		\textit{Especificaciones:} \\
+		
+		\textit{Características:} \\
+		
+		\textit{Precio:} \\
+		
 		\item \textbf{Teensy 3.6. o Teensy 2.0}. La familia de placas Teensy fue desarrollada por PJRC durante los últimos años. Inicialmente, Teensy se creó prometiendo un poco más de factor de forma más pequeño. Uno de los Teensy más apreciados es el 3.6.; tiene un procesador ARM de 32 bits, 52 entradas/salidas en total, ADC, lector de tarjetas SD y muchas más funciones. Además, PJRC proporciona un complemento software \textit{Teensyduino} para una compatibilidad casi completa con los programas Arduino. \\ 
 		
 		\textit{Especificaciones}: 180-MHz Cortex M4F, 256 kB RAM, almacenamiento flash 1MB, 4K EEPROM. \\
@@ -635,23 +673,17 @@
 		
 		\textit{Precio}: aprox.  100\$ en Silicon Labs.\\
 		
-		\item \textbf{Raspberry Pi Pico}. Este microcontrolador lleva en el mercado desde el 25 de enero de 2021, apenas unos meses; este hecho, sin embargo, no impide que miles de personas ya lo hayan probado, y es que actualmente existe en internet muchos proyectos y documentación acerca de esta nueva Raspberry Pi, la cual se aleja de su antecesora mini ordenador para acercarse más al mundo de los microcontroladores similares a Arduino. \\
+		\item \textbf{Raspberry Pi Pico}. Este microcontrolador lleva en el mercado desde el 25 de enero de 2021, apenas unos meses; este hecho, sin embargo, no impide que miles de personas ya lo hayan probado, y es que actualmente existe en internet muchos proyectos y documentación acerca de esta nueva Raspberry Pi, la cual se aleja de su antecesora mini ordenador para acercarse más al mundo de los microcontroladores similares a Arduino. Está construido sobre el propio silicio interno de Raspberry Pi, el RP2040. El RP2040 también forma parte de un ecosistema más amplio. Adafruit, Pimoroni, SparkFun e incluso el equipo de Arduino han desarrollado placas adaptadas a necesidades más específicas. Uno de los dispositivos de Pimoroni, el PicoSystem, es una "experiencia de creación de juegos portátil" de 58.50 £ (alrededor de 80 \$ ) que te permite programar una consola incluso más pequeña que la Game Boy Micro.\\
 		
-		\textit{Especificaciones}: \\
+		Para los usuarios avanzados, la organización Raspberry Pi proporciona un C SDK completo, una cadena de herramientas basada en GCC e integración con Visual Studio Code. \\
 		
-		\textit{Características}: \\
+		\textit{Especificaciones}: ARM Cortex-M0+ de doble núcleo, 264 KB de RAM y 16 MB de memoria flash (2 MB integrados). \\
 		
-		\textit{Precio}: \\
+		\textit{Características}: 30 pines GPIO, controlador USB 1.1 (más el modo de almacenamiento USB), compatibilidad con Arduino IDE.\\
 		
-		\item \textbf{Libelium Waspmote} \\
+		\textit{Precio}: 4 \$.\\
 		
-		\textit{Especificaciones}: \\
-		
-		\textit{Características}: \\
-		
-		\textit{Precio}: \\
-		
-		\item \textbf{Opción DIY} (hacer tú mismo tu propio arduino o microcontrolador) \\
+		\item \textbf{Opción DIY} (hacer tú mismo tu propio arduino o microcontrolador). Existen tutoriales varios en internet que nos enseñan a crear nuestro propio microcontrolador haciendo uso de componentes como ICs, diodos, resistencias, condensadores, etc. Es una buena opción para aprender cómo funciona un microcontrolador a nivel electrónico, o si queremos personalizar a nuestro gusto para reducir el consumo del sistema global que constituye el microcontrolador, por ejemplo.\\
 
 	\end{itemize}
 	\subsubsubsection{Comunicación radio}
