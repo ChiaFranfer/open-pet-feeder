@@ -523,16 +523,25 @@
 	\subsubsection{Automatización y monitorización}
 	\label{subsección 3.2.2: automatización y monitorización}
 	
-	\noindent En este apartado, se mostrará una visión de conjunto acerca de aquellos elementos mediante los cuales consigamos el objetivo de automatizar y monitorizar el sistema de alimentación. Se presentará el resultado de investigar sobre opciones que puedan ayudar a la consecución de los objetivos, tanto en la parte de microcontrolador como en la parte de comunicación radio, y demás actuadores y sensores en las partes de bebedero y comedero.\\
+	\noindent En este apartado, se mostrará una visión de conjunto acerca de aquellos elementos mediante los cuales consigamos el objetivo de automatizar y monitorizar el sistema de alimentación. Se presentará el resultado de investigar sobre opciones que puedan ayudar a la consecución de los objetivos, tanto en la parte de microcontrolador como en la parte de comunicación radio, y demás actuadores y sensores en las partes de bebedero y comedero. Hay que tener presente que en todo momento se estarán buscando soluciones \textit{Open Source}, ya que se planteó como objetivo y filosofía a seguir en este proyecto.\\
 	
 	\subsubsubsection{Microcontrolador}
 	
+	\noindent \textit{Disclaimer:} a lo largo de este apartado y consecutivos se hablará de la palabra microprocesador y microcontrolador. Si bien no tienen el mismo significado, se usará la palabra microcontrolador para determinar el conjunto global de una placa; por ejemplo, decimos que Arduino es un microcontrolador ya que es una placa que consiste en un microprocesador ATMega junto con más componentes como un ADC, un regulador de tensión o una interfaz serie. Un microprocesador es la CPU, mientras que un microcontrolador compone un sistema embebido en un único \textit{chip} formado por memoria, procesador y entradas/salidas programables. \\
+	
 	\noindent En tanto a microcontroladores, la opción \textit{Open Source} más conocida seguramente sea Arduino. Sin embargo, no significa que no existan más opciones en tanto a microcontroladores. Es importante recordar que ni Arduino ni las alternativas que se van a presentar son ordenadores, son microcontroladores, esto es, circuitos integrados diseñados para llevar a cabo una tarea única de manera cíclica (una vez que programado para una tarea, ejecutará esa tarea y sólo esa tarea una y otra vez, dependiendo de cómo haya sido programado).\\
 	
-	\noindent A continuación, se va a presentar una lista con algunas opciones de microcontroladores. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar; la elección de un microcontrolador u otro dependerá de lo que necesite nuestro proyecto (si necesita muchas entradas porque tendremos muchos periféricos, si necesitamos ahorro de energía al máximo, o una buena potencia de procesamiento, etc).  \\
+	\noindent A continuación, se va a presentar una lista con algunas opciones de microcontroladores. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar; la elección de un microcontrolador u otro dependerá de lo que necesite nuestro proyecto (si necesita muchas entradas porque tendremos muchos periféricos, si necesitamos ahorro de energía al máximo, o una buena potencia de procesamiento, etc). \\
 	
 	\begin{itemize}
-		\item Arduino
+		\item \textbf{Arduino}. Se trata de una plataforma de desarrollo Open Source hardware y software, característica por su facilidad de uso e integración entre la solución hardware (placas Arduino) y la solución software (Arduino IDE). Existe una gama variada de placas Arduino, entre las que podemos destacar la nano o la uno. A modo de ejemplo, se mostrará la información de la uno, placa recomendada por la propia organización Arduino para principiantes.\\
+		
+		\textit{Especificaciones:} ATMega328P a 16 MHz, 32 kB de memoria flash, 2kB de SRAM y 1kB de EEPROM.\\
+		
+		\textit{Características:} 14 pines I/O digitales, 6 entradas analógicas, conexión USB, conector jack. \\
+		
+		\textit{Precio:} 20 \euro \enspace en Arduino.\\
+		
 		\item \textbf{NodeMCU}. NodeMCU (\textit{Node MicroController Unit}) es un entorno de desarrollo de software y hardware de código abierto que se basa en un sistema en chip (SoC) muy económico llamado ESP8266. El ESP8266, diseñado y fabricado por Espressif Systems, contiene todos los elementos cruciales de un ordenador: CPU, RAM, redes (wifi) e incluso un sistema operativo y SDK modernos. Cuando se compra por separado, el chip ESP8266 cuesta solo 2\$ por unidad. Esto lo convierte en una buena opción para proyectos de IoT de todo tipo. \\
 		
 		\textit{Especificaciones:} SoC basado en ESP8266 a 80 MHz, 64 kB de SRAM, 4 MB de memoria flash.\\ 
@@ -559,20 +568,13 @@
 		
 		\textit{Precio:} aprox. 25\$.\\
 		
-		\item \textbf{Nanode}. Nanode como Arduino ofrece una amplia gama de microcontroladores que puede aprovechar al desarrollar proyectos eléctricos, robots y dispositivos IoT. Viene como un kit de desarrollo, lo que significa que debe estar listo para ensamblar y soldar antes de comenzar con la placa. Las características del Nanode incluyen:
+		\item \textbf{Nanode}. Nanode ofrece una amplia gama de microcontroladores. Viene como un kit de desarrollo, lo que significa se debe ensamblar y soldar previamente antes de comenzar con la placa. 	El microcontrolador Nanode puede servir como alternativa a Arduino Uno, Mega y Yun, y también es Open Source.
 		
-		Microcontrolador ATMega328P funcionando a 16MHz
-		LED rojos y verdes para un mejor diagnóstico del programa
-		Un conector de alimentación mini USB
-		Controlador Ethernet ENC28J60 con cristal de 25 MHz y conector Ethernet
+		\textit{Especificaciones:} ATMega328P a 16MHz, 2kB de SRAM, 1kB de EEPROM, 32kB de memoria flash ISP.\\
 		
-		El microcontrolador Nanode puede servir como alternativa a Arduino Uno, Mega y Yun. Aunque es una gran alternativa en términos de sus características y capacidades, es bastante caro y su precio de aproximadamente \$ 50 puede establecer algún límite para su uso generalizado entre estudiantes y aficionados. \\
+		\textit{Características:} mini USB, controlador ethernet ENC8J60, conector ethernet, LEDs de diagnóstico.\\
 		
-		\textit{Especificaciones:} \\
-		
-		\textit{Características:} \\
-		
-		\textit{Precio:} \\
+		\textit{Precio:} aprox. 50\$.\\
 		
 		\item \textbf{Teensy 3.6. o Teensy 2.0}. La familia de placas Teensy fue desarrollada por PJRC durante los últimos años. Inicialmente, Teensy se creó prometiendo un poco más de factor de forma más pequeño. Uno de los Teensy más apreciados es el 3.6.; tiene un procesador ARM de 32 bits, 52 entradas/salidas en total, ADC, lector de tarjetas SD y muchas más funciones. Además, PJRC proporciona un complemento software \textit{Teensyduino} para una compatibilidad casi completa con los programas Arduino. \\ 
 		
@@ -688,7 +690,7 @@
 	\end{itemize}
 	\subsubsubsection{Comunicación radio}
 	
-	\noindent En tanto a posibles opciones para llevar a cabo una comunicación radio efectiva, existen muchas, pero la investigación se centrará en aquellas que nos puedan servir para aplicaciones IoT, las cuales se caracterizan por buscar ser autónomas (es decir, priorizar bajo consumo y ahorro de energía), de largo alcance, con transferencia de datos baja/media, seguridad y chequeo de errores, y conectividad entre redes y la nube, entre otros. Se suele hablar de redes LPWAN, para conseguir conectividad IoT, y dentro de esta categoría tenemos varias opciones, entre las que se encuentra LoRa, la cual ya fue preseleccionada para este proyecto por su soporte \textit{Open Source} y equipos asequibles para la creación de redes sencillas, aunque también complejas (Ademas de que conociamos las caracteristicas del terreno, y demas).\\
+	\noindent En tanto a posibles opciones para llevar a cabo una comunicación radio efectiva, existen muchas, pero la investigación se centrará en aquellas que nos puedan servir para aplicaciones IoT, las cuales se caracterizan por buscar ser autónomas (es decir, priorizar bajo consumo y ahorro de energía), de largo alcance, con transferencia de datos baja/media, seguridad y chequeo de errores, y conectividad entre redes y la nube, entre otros. Se suele hablar de redes LPWAN, para conseguir conectividad IoT, y dentro de esta categoría tenemos varias opciones, entre las que se encuentra LoRa, la cual ya fue preseleccionada para este proyecto por su soporte \textit{Open Source} y equipos asequibles para la creación de redes sencillas, aunque también complejas (Ademas de que conociamos las caracteristicas del terreno, y demas), y se deseaba hacer un estudio sobre prestaciones de equipos que usaran esta tecnología.\\
 	
 	\noindent \textbf{Qué es una red LPWAN} \\
 	
@@ -757,10 +759,15 @@
 	
 	\noindent \textit{Arduino nano} \\
 	
+	\noindent
+	
 	\noindent \textit{Arduino uno} \\
+	
+	\noindent Las especificaciones, características y precio de esta placa se detallaron en el apartado \ref{subsección 3.2.2: automatización y monitorización}, sección \textit{Microcontroladores}, como ejemplo de placa Arduino de cara a comparar con otras opciones de microcontrolador, por lo que no se volverá a explicar en esta sección. \\
 	
 	\noindent \textit{Arduino mega} \\
 	
+	\noindent Existen placas Arduino que incorporan conectividad IoT (no sólo LoRa, también WiFi, BLE, Bluetooth o Sigfox), como Arduino MKR FOX 1200, Arduino MKR WAN 1300, Arduino MKR WAN 1310, Arduino MKR NB 1500, Arduino Nano 33 BLE Sense, Arduino Uno WiFi REV2, Arduino MKR1000 WiFi, Arduino Nano 33 BLE, Arduino Nano 33 IoT, Arduino Nano 33 BLE, o Arduino MKR WiFi 1010.  Al ser soluciones ya integradas y muy concretas, orientadas más a redes LPWAN con conectividad a internet, no se han considerado como solución para este proyecto, pero se mencionan ya que se han estudiado y pueden resultar útiles para futuras investigaciones.\\
 	
 	% Electrónica: arduino nano
 	
