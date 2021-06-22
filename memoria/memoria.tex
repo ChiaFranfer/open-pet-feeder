@@ -527,7 +527,7 @@
 	
 	\subsubsubsection{Microcontrolador}
 	
-	\noindent \textit{Disclaimer:} a lo largo de este apartado y consecutivos se hablará de la palabra microprocesador y microcontrolador. Si bien no tienen el mismo significado, se usará la palabra microcontrolador para determinar el conjunto global de una placa; por ejemplo, decimos que Arduino es un microcontrolador ya que es una placa que consiste en un microprocesador ATMega junto con más componentes como un ADC, un regulador de tensión o una interfaz serie. Un microprocesador es la CPU, mientras que un microcontrolador compone un sistema embebido en un único \textit{chip} formado por memoria, procesador y entradas/salidas programables. \\
+	\noindent \textit{Disclaimer:} a lo largo de este apartado y consecutivos se hablará de la palabra microprocesador y microcontrolador. Si bien no tienen el mismo significado, se usará la palabra microcontrolador para determinar el conjunto global de una placa cuyo corazón sea un microcontrolador, de manera que podamos aligerar un poco la literatura y lectura de este documento. Un microprocesador es la CPU, mientras que un microcontrolador compone un sistema embebido en un único \textit{chip} formado por memoria, procesador y entradas/salidas programables. Por ejemplo, llamaremos microcontrolador al arduino nano o uno porque se basa en el microcontrolador ATmega328.\\
 	
 	\noindent En tanto a microcontroladores, la opción \textit{Open Source} más conocida seguramente sea Arduino. Sin embargo, no significa que no existan más opciones en tanto a microcontroladores. Es importante recordar que ni Arduino ni las alternativas que se van a presentar son ordenadores, son microcontroladores, esto es, circuitos integrados diseñados para llevar a cabo una tarea única de manera cíclica (una vez que programado para una tarea, ejecutará esa tarea y sólo esa tarea una y otra vez, dependiendo de cómo haya sido programado).\\
 	
@@ -755,19 +755,82 @@
 	
 	\noindent Existen diferentes placas Arduino, cuya elección dependerá del objetivo que persiga nuestro proyecto y de los requerimientos y limitaciones sobre dicho proyecto. \\
 	
-	\noindent Las placas Arduino más usadas son: \\
+	\noindent Algunas de las placas básicas de Arduino más usadas son Arduino nano, Arduino uno o Arduino mega. Nos centraremos en el Arduino nano, ya que es el que vamos a usar; aún así, ya se comentaron las especificaciones y características del Arduino uno en el apartado \ref{subsección 3.2.2: automatización y monitorización}, sección \textit{Microcontroladores}, como ejemplo de placa Arduino de cara a comparar con otras opciones de microcontrolador, por lo que no se volverá a explicar en esta sección.  \\
 	
-	\noindent \textit{Arduino nano} \\
+	\noindent \textit{Especificaciones del Arduino nano} \\
 	
-	\noindent
+	\begin{itemize}
+		\item Microcontrolador: ATmega328
+		\item Arquitectura: AVR
+		\item Tensión de funcionamiento: 5V
+		\item Memoria flash: 32kB de los cuales 2kB son para el gestor de arranque (\textit{bootloader}).
+		\item SRAM: 2kB
+		\item Velocidad del reloj: 16 MHz
+		\item Pines de entrada analógicos: 8
+		\item EEPROM: 1 kB
+		\item Corriente CC por pin de entrada/salida: 40mA (pines I/O)
+		\item Tensión de entrada: 7-12V
+		\item Pines digitales de entrada/salida: 22 (de los cuales 6 son PWM)
+		\item Salida PWM: 6
+		\item Consumo de energía: 19 mA
+		\item Tamaño de la PCB: 18 x 45 mm
+		\item Peso: 7g
+	\end{itemize}
 	
-	\noindent \textit{Arduino uno} \\
+	\noindent \textit{Pinout del Arduino nano} \\
 	
-	\noindent Las especificaciones, características y precio de esta placa se detallaron en el apartado \ref{subsección 3.2.2: automatización y monitorización}, sección \textit{Microcontroladores}, como ejemplo de placa Arduino de cara a comparar con otras opciones de microcontrolador, por lo que no se volverá a explicar en esta sección. \\
+	\noindent La funcionalidad de cada uno de los pines analógicos y digitales se pueden ver en la Figura \ref{Pinout Arduino nano}. \\
 	
-	\noindent \textit{Arduino mega} \\
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/Pinout-NANO_official.png}
+			\caption{Pinout de un Arduino nano.}
+			\label{Pinout Arduino nano}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
 	
-	\noindent Existen placas Arduino que incorporan conectividad IoT (no sólo LoRa, también WiFi, BLE, Bluetooth o Sigfox), como Arduino MKR FOX 1200, Arduino MKR WAN 1300, Arduino MKR WAN 1310, Arduino MKR NB 1500, Arduino Nano 33 BLE Sense, Arduino Uno WiFi REV2, Arduino MKR1000 WiFi, Arduino Nano 33 BLE, Arduino Nano 33 IoT, Arduino Nano 33 BLE, o Arduino MKR WiFi 1010.  Al ser soluciones ya integradas y muy concretas, orientadas más a redes LPWAN con conectividad a internet, no se han considerado como solución para este proyecto, pero se mencionan ya que se han estudiado y pueden resultar útiles para futuras investigaciones.\\
+	\noindent Tendremos la misma cantidad de pines digitales configurables como entrada o salida (D2 a D13), donde 6 de ellos tendrán capacidad PWM, igual que arduino uno. Respecto a los pines analógicos tenemos los pines A0 a A5 igual que el modelo uno, pero aparecen dos pines adicionales, A6 y A7, consiguiendo así un total de 8 entradas analógicas. \\
+	
+	\noindent [Foto pines digitales y analógicos, señalando los que son PWM.] \\
+	
+	\noindent Los dos primeros pines de la esquina inferior derecha corresponden a D1 para TX y D0 para RX de la comunicación serie por UART; en Arduino uno estos mismos pines también aparecían pero en orden invertido. Son un reflejo de las líneas de comunicación provistas por el conversor USB-TTL, aunque por lo general usamos la librería Software serial para definir otros dos pines cualquiera para dicha función. Ya que estamos hablando de comunicación serie, tenemos los pines asociados a la interfaz SPI, iguales que en el modelo uno; el pin digital 10 ejecutando la función de slave select, el 11 como MOSI, el 12 como MISO y el 13 como serial clock. Al igual que en el modelo uno, la interfaz de dos cables, I2C, estará presente en A4 para SDA y en A5 para SCL. \\
+	
+	\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART.] \\
+		
+	\noindent El resto de pines: Salida de 3,3V. Referencia de las entradas analógicas AREF. Salida regulada de 5V, usada normalmente para alimentar sensores y dispositivos, y dos pines de GND o masa en ambos lados de la placa. Un pin de RESET para realizar dicha función de forma remota si no tenemos acceso al pulsador físico de la placa. Finalmente, Vin se usará para alimentar la placa con una fuente no regulada de entre 7 y 12V; en arduino uno teníamos un conector para alimentación externa de tipo Jack, en arduino uno, como la placa tiene un tamaño reducido, no resultaría práctico colocar un conector tan voluminoso, por eso tenemos un pin destinado para alimentación externa. \\
+	
+	\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART, y pines de alimentación.] \\
+	
+	\noindent Pin de salida de 5V refleja los mismos 5V del puerto  del ordenador; si ahora deseamos trabajar de manera autónoma, sin conexión al ordenador, podremos alimentar la placa con una fuente externa con valores de tensión de entre 7 y 12 V. Dicha tensión se aplica de forma directa al regulador lineal de tensión, el cual convertirá la tensión de entrada no regulada a 5V regulados con un suministro máximo de corriente de hasta 500mA (la misma forma en la que trabaja el arduino uno cuando aplicamos una fuente externa mediante el jack de alimentación: entra una tensión entre 7-12V, pasa por el regulador, y en el pin de salida 5V tenemos los 5V regulados). Para la salida de 3.3V, es diferente en nano respecto de uno; en nano, los 3.3V son generados por el propio conversor USB-TTL (el circuito integrado lleva incorporado el regulador); el modelo uno dispone de un regulador por separado y destinado exclusivamente para el riel de 3.3V. En uno, dicho regulador puede suministrar hasta 150 mA de corriente máxima, mientras que en nano, como no tenemos un regulador especializado, y forma parte de la funcionalidad del conversor, el suministro de corriente será menor, de 50 mA como máximo. \\
+	
+	\noindent [Foto parte rear del nano señalando partes implicadas en la alimentación del nano.] \\
+	
+	\noindent \textit{Componentes que forman el Arduino nano} \\
+	
+	\noindent \textbf{Vista superior:} conector mini USB, más pequeño que el que usa arduino uno. El arduino nano tiene el mismo microcontrolador que el arduino uno (ATmega328P con encapsulado de montaje superficial), por lo que los programas/instrucciones que se desarrollen para uno son válidos/equivalentes para el otro. \\
+	
+	\noindent [Foto vista superior e inferior del Arduino nano.] \\
+	
+	\noindent \textbf{Vista inferior:} tenemos una tirada de pines macho para conectar a protoboard o a cables directamente. Difiere del arduino uno en este sentido, ya que el arduino uno tenía pines hembra en la parte superior. La idea principal para estos pines macho es conectarla a protoboard en un circuito impreso con un zócalo o soldado de forma directa.
+	Cerca del conector USB tenemos un CI, un conversor USB-TTL, que nos permite conectar la placa al ordenador, obtener de él alimentación y comunicación para cargar programas y monitoreo serie. Finalmente, un regulador de tensión de 5V, permite obtener dicha tensión en un pin de salida para alimentar dispositivos externos cuando es alimentada la placa de forma externa mediante un pin especial llamado Vin.  \\
+
+	\noindent \textit{Justificación de elección para el proyecto} \\
+	
+	\noindent Se ha elegido esta opción por una serie de razones, que a continuación se expondrán: \\
+	
+	\begin{itemize}
+		\item Bajo consumo
+		\item Precio reducido
+		\item Facilidad para la incorporación a una PCB
+		\item Tamaño reducido
+		\item Amplia cobertura por la comunidad
+		\item Open Source
+	\end{itemize}
+	
+
+	\noindent Existen placas Arduino que incorporan conectividad IoT (no sólo LoRa, también WiFi, BLE, Bluetooth o Sigfox), como Arduino MKR FOX 1200, Arduino MKR WAN 1300, Arduino MKR WAN 1310, Arduino MKR NB 1500, Arduino Nano 33 BLE Sense, Arduino Uno WiFi REV2, Arduino MKR1000 WiFi, Arduino Nano 33 BLE, Arduino Nano 33 IoT, Arduino Nano 33 BLE, o Arduino MKR WiFi 1010.  Al ser soluciones ya integradas y muy concretas, orientadas más a redes LPWAN con conectividad a internet, no se han considerado como solución para este proyecto, pero se mencionan ya que se han estudiado y pueden resultar útiles para futuras investigaciones o proyectos similares.\\
 	
 	% Electrónica: arduino nano
 	
@@ -775,7 +838,12 @@
 	
 	% Programación: arduinoIDE, void loop y setup, define, etc
 	
-	\noindent Como hemos mencionado anteriormente, las placas Arduino se pueden programar a través del software Arduino IDE. A continuación, se explicarán los fundamentos básicos que se requieren para empezar a usar este software. \\
+	\noindent Como hemos mencionado anteriormente, las placas Arduino se pueden programar a través del software Arduino IDE. Además, A continuación, se explicarán los fundamentos básicos que se requieren para empezar a usar este software. \\
+	
+	\begin{itemize}
+		\item Bloque de definición de variables globales.
+		\item Bloque de definición de las tareas a realizar por el microcontrolador.
+	\end{itemize}
 	
 	\subsubsubsection{LoRa}
 	
@@ -898,6 +966,13 @@
 	% Ensamblado PCB y pruebas
 	\subsection[Ubicación]{Ubicación}
 	\subsection[Prototipo inicial]{Prototipo inicial}
+	
+	\noindent Usaremos un arduino nano que usa un ATmega328P y un chip CH340. En la sección X se han explicado las especificaciones técnicas, pinout y componentes que forman parte del arduino nano fabricado por la organización Arduino, pero el que va a ser usado lo está por otro fabricante. A efectos prácticos, las diferencias son pocas, pero hay que considerarlas de igual manera:
+	
+	\begin{itemize}
+		\item El microcontrolador no es ATmega328 (usado en el nano de la organización Arduino), sino que es ATmega328P. La diferencia reside en que es una versión posterior diseñada para consumir menos potencia que el 328, esencialmente tienen la misma arquitectura y características en tanto a memoria flash, EEPROM y SRAM (la P viene de \textit{picoPower}).
+		\item Este arduino usa un regulador diferente, el CH340G, frente al FT232 que usa el arduino original. Además, el fusible/diodo Schottky que usan para proteger la comunicación serial frente a sobrecorrientes es diferente, siendo el MBR0520 para el caso de los arduinos originales, frente al B5819W que usa el arduino que vamos a usar.
+	\end{itemize}
 	\subsection[Prototipo definitivo]{Prototipo definitivo}
 	\subsection[Pruebas]{Pruebas}
 	\subsection[Comentarios sobre los resultados de las pruebas]{Comentarios sobre los resultados de las pruebas}
