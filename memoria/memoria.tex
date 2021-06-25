@@ -59,6 +59,8 @@
 	\listoftables
 	\addcontentsline{toc}{section}{Índice de tablas}
 	
+	
+	
 	\section[Introducción]{Introducción} %corchetes, marcapaginas, llaves, texto
 	
 	Tras finalizar los estudios de grado en ingeniería en sistemas de telecomunicaciones, se requiere como último paso para la obtención del título la elaboración del \textit{Trabajo Fin de Grado} (TFG). 
@@ -112,6 +114,9 @@
 	
 	\subsection[Enfoque y método seguido]{Enfoque y método seguido}
 	\subsection[Planificación del trabajo]{Planificación del trabajo}
+	
+	\noindent [Yo creo que con introducir el excel que hicimos a principios de noviembre es suficiente, ¿no? Ya que fue la planificación que hemos ido siguiendo, más o menos. Quitaría en todo caso los subapartados de Alcance, Hitos... hasta Recursos.] \\
+	
 	\subsubsection[Alcance]{Alcance}
 	\subsubsection[Hitos]{Hitos}	
 	\subsubsection[Calendario de trabajo]{Calendario de trabajo}
@@ -132,10 +137,13 @@
 	
 		\noindent Existen muchos proyectos Open Source relacionados con la alimentación automática o semiautomática de animales domésticos, principalmente gatos y perros. Sin embargo, no existen proyectos que usen LoRa como tecnología radio, sino que emplean la red local WiFi del hogar donde se sitúe el dispositivo de alimentación.
 	
-	\noindent A pesar de ello, se ha visualizado este tipo de proyectos y tenido en cuenta para el desarrollo del prototipo en tanto a apariencia externa, comodidad de uso, eficiencia de los componentes, o, incluso, opciones para mover el pienso desde la reserva hasta el comedero del animal, o el agua desde la reserva hasta el bebedero.
+	\noindent A pesar de ello, se ha visualizado este tipo de proyectos y tenido en cuenta para el desarrollo del prototipo en tanto a apariencia externa, comodidad de uso, eficiencia de los componentes, o, incluso, opciones para mover el pienso desde la reserva hasta el comedero del animal, o el agua desde la reserva hasta el bebedero. \\
+	
+	\noindent [Añadir lo que comentas sobre TFE Específico de Aprendizaje.] \\
 	
 	\subsection[Trabajos relacionados]{Trabajos relacionados}
 	
+	\noindent [No sé muy bien si eliminar esta subsección, ya que lo que son trabajos relacionados no tengo constancia de que existan. En caso de no eliminarla, ¿me podrías orientar de cara a completar este apartado?]\\
 
 	
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
@@ -143,7 +151,7 @@
 	\pagebreak
 	
 	\section[Diseño del sistema]{Diseño del sistema}
-	
+	\label{Sección 3: Diseño del sistema}
 	\noindent A lo largo de este capítulo se pretende mostrar los procesos de concepción, análisis e investigación llevados a cabo para la creación del primer prototipo del sistema de alimentación. Para ello, primeramente, se exponen las funcionalidades que éste debe incorporar; una vez identificadas esas funcionalidades, se presta la realización de una investigación cuyo objetivo sea la búsqueda de opciones que permitan que cada funcionalidad anteriormente expuesta pueda materializarse. Para terminar el presente capítulo, se procederá a exponer las opciones que han sido escogidas, debidamente justificadas, para el diseño del prototipo provisional del sistema de alimentación. 
 	
 	\subsection[Funcionalidades a cubrir]{Funcionalidades a cubrir}
@@ -698,8 +706,24 @@
 	
 	\noindent 
 	\subsubsubsection{Comedero}
+	
+	\noindent \textit{Servomotor} \\
+	
+	\noindent Un servomotor es... \\
+	
+	\noindent Algunos parámetros a tener en cuenta son... \\
+	\noindent Stall current. Máxima corriente que se genera cuando el motor está aplicando su máximo torque. Free current. Corriente que se genera cuando el motor está girando libremente a su máxima velocidad, sin otra carga que la propia fricción y fuerzas contralectromotrices (\textit{back-EMF}). \\
+	
 	\subsubsubsection{Bebedero}
-		
+	
+	\noindent \textit{Sensor ultrasónico}\\
+	
+	\noindent \textit{Bomba de agua} \\
+	
+	\noindent \textit{Sensores de nivel de agua} \\
+	
+	\noindent \textit{Relé} \\
+	
 	\subsubsection{Prototipo exterior}
 
 	% Definición funcionalidades: qué debo hacer y qué necesitaría
@@ -711,6 +735,7 @@
 	% Desarrollo BBDD en servidor y app web para ver el estado del sistema de alimentación
 	
 	\subsection[Elección soluciones]{Elección de soluciones para cada funcionalidad}
+	\label{Subsección 3.3: elección de soluciones para cada funcionalidad}
 	
 	\subsubsection{Alimentación autónoma del dispositivo}
 	
@@ -893,48 +918,48 @@
 	
 	\pagebreak
 	
-	\subsubsubsection{LoRaWAN: NO VA AQUÍ, VA EN APARTADO 3.2}
+	%\subsubsubsection{LoRaWAN: NO VA AQUÍ, VA EN APARTADO 3.2}
 	
-	\noindent A pesar de que no se va a usar LoRaWAN en este proyecto, sí que se realizó su pertinente investigación, por lo que a continuación se muestra un resumen de nociones básicas sobre LoRaWAN. \\
+	%\noindent A pesar de que no se va a usar LoRaWAN en este proyecto, sí que se realizó su pertinente investigación, por lo que a continuación se muestra un resumen de nociones básicas sobre LoRaWAN. \\
 	
-	\noindent \textbf{Clases de nodos finales LoRaWAN}  \\
+	%\noindent \textbf{Clases de nodos finales LoRaWAN}  \\
 	
-	\noindent Existe 3 clases diferentes de nodos finales en LoRaWAN, los cuales son:
+	%\noindent Existe 3 clases diferentes de nodos finales en LoRaWAN, los cuales son:
 	
-	\begin{itemize}
-		\item Clase A (\textit{All})
-		\item Clase B (\textit{Beacon})
-		\item Clase C (\textit{Continuous})
-	\end{itemize}
+	%\begin{itemize}
+		%\item Clase A (\textit{All})
+		%\item Clase B (\textit{Beacon})
+		%\item Clase C (\textit{Continuous})
+	%\end{itemize}
 	
-		\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/endDevices.png}
-			\caption{Funcionamiento de nodos finales usando LoRaWAN.}
-		\end{center}
-	\end{figure}
+	%\begin{figure}[h]
+		%\begin{center}
+			%\includegraphics[width=0.7\textwidth]{img/endDevices.png}
+			%\caption{Funcionamiento de nodos finales usando LoRaWAN.}
+		%\end{center}
+	%\end{figure}
 	
-	\pagebreak
+	%\pagebreak
 	
-	\noindent \textbf{Estructura de un paquete LoRaWAN}
+	%\noindent \textbf{Estructura de un paquete LoRaWAN}
 	
-	\begin{figure}[h]
-	\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/lora_phyLayer_packetFormat.png}
-			\caption{Estructura general de un paquete LoRaWAN.}
-	\end{center}
-	\end{figure}
+	%\begin{figure}[h]
+	%\begin{center}
+			%\includegraphics[width=0.7\textwidth]{img/lora_phyLayer_packetFormat.png}
+			%\caption{Estructura general de un paquete LoRaWAN.}
+	%\end{center}
+	%\end{figure}
 	
 
 	
-	\begin{figure}[h]
-	\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/lora_phyLayer_packetFormat_enh.png}
-			\caption{Estructura detallada de un paquete LoRaWAN.}
-	\end{center}
-	\end{figure}
+	%\begin{figure}[h]
+	%\begin{center}
+			%\includegraphics[width=0.7\textwidth]{img/lora_phyLayer_packetFormat_enh.png}
+			%\caption{Estructura detallada de un paquete LoRaWAN.}
+	%\end{center}
+	%\end{figure}
 
-	\pagebreak
+	%\pagebreak
 
 %	\subsection[Monitorización y automatización]{Monitorización y automatización}
 	
@@ -951,7 +976,86 @@
 
 	\subsubsubsection{Comedero}
 	
+	\noindent Tanto en este apartado, como en el siguiente sobre elección de soluciones para el bebedero, se mostrarán los sensores y actuadores, así como creaciones con impresora 3D para llevar a cabo sus funcionalidades asociadas.\\
+	
+	\noindent Para llevar a cabo la función de comedero, el sistema de alimentación creado debe ser capaz, en resumen, de mover el pienso de la reserva al comedero. Para ello, debemos tener en cuenta: 
+	
+	\begin{itemize}
+		\item La capacidad de la reserva de pienso, y del comedero.
+		\item Si la reserva quedará fija o móvil, y su soporte en todo caso.
+		\item Conexionado entre reserva y comedero.
+		\item Cómo se gestionará el movimiento entre el pienso y el comedero; principalmente, las opciones más directas son movimiento basado en la gravedad, o movimiento gestionado por un motor. También será necesario estudiar el camino que realizará el pienso, para establecer conductos por donde pueda fluir hasta el comedero sin gran dificultad.
+		\item Soporte de los conductos que reflejan el conexionado entre reserva y comedero.
+		\item Conexionado eléctrico con el microcontrolador para recibir las señales de movimiento, en el caso de usar servo, o sensorización de niveles de pienso en reserva y/o en comedero.
+	\end{itemize}
+	
+	\noindent Teniendo presente los puntos recién expuestos, se ha elegido como gestor del movimiento del pienso el uso de un motor, en concreto, de un servomotor de 5V, capaz de girar 360º y capaz de mover cargas de hasta 10 kg (para leer información más detallada, ir a Anexo I FALTA REFERENCIA) \\
+	
+	\noindent [Foto del servo] \\
+	
+	\noindent Este servo, con la ayuda de unas hélices imprimidas en 3D, moverá el pienso en dirección longitudinal a una pieza T de PVC donde irán insertados. \\
+	
+	\noindent [Foto] \\
+	
+	\noindent Además, se hará uso de una serie de piezas para crear la conexión comedero-reserva, desde la salida de pienso en el fondo de la reserva hasta la salida del pienso hacia el comedero. \\
+	
+	\noindent [Foto, quizás esquemático simplificado, la versión completa está en el apartado de prototipo final] \\
+	
+	\noindent Por último, las conexiones con el microcontrolador se realizarán a través de los cables que accionan el servo: uno para señal, otro para alimentación, y otro para tierra. \\
+	
+	\pagebreak
+	% servo_connections_v2_fritzing.png
+	\noindent [Foto cables servo y fritzing de conexionado con arduino.]\\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/servo_connections_v2_fritzing.png}
+			\caption{Esquema de las conexiones servo-Arduino realizado en \textit{Fritzing}.}
+			\label{Esquema conexiones servo Fritzing}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
 	\subsubsubsection{Bebedero}
+	
+	\noindent Opciones: ultrasónico en la tapa de la reserva + bomba + relé, sensores de nivel de agua (flotación) + relé + bomba. [Introducción en el apartado de Búsqueda de soluciones, pero todavía no está ordenado]\\
+	
+	\noindent Elección: sensores de nivel de flotación de agua, relé y bomba. \\
+	
+	\noindent Sensores de nivel de flotación de agua: se comportan como switches, y su respuesta son valores lógicos (0 o 1). \\
+	
+	 \noindent [Foto sensores de flotación.] \\
+	 
+	 \noindent Su funcionamiento es sencillo: si el nivel del agua queda por encima del sensor, el valor lógico asociado que enviará al microcontrolador será de 1. Si por el contrario queda por debajo, mandará un 0. Dos cables de alimentación, simétricos, se requiere de resistencias de 10k en configuración \textit{pull-down}, ya que al tratarse de switches, al conmutar si no existe esa resistencia da un valor lógico o desconocido o falso 1, consecuencia del ruido del pin que se introduce al estar flotante.\\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.2\textwidth]{img/pull-down-resistor.png}
+			\caption{Esquema de un switch conectado a un microcontrolador con una resistencia \textit{pull-down}.}
+			\label{Esquema resistencia pull-down}
+		\end{center}
+	\end{figure}
+	
+	% bebedero_test_fritzing.jpg
+	
+	\pagebreak
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/bebedero_test_fritzing.jpg}
+			\caption{Esquema de las conexiones de sensores y actuadores usados para el bebedero con Arduino realizado en \textit{Fritzing}.}
+			\label{Esquema conexiones bebedero Fritzing}
+		\end{center}
+	\end{figure}
+
+	\noindent La bomba se comporta como un motor DC, y tiene dos cables únicamente (+5V, GND), por lo que, para poder controlar su funcionamiento, necesitaremos usar un actuador. Elegimos un relé, el cual está conectado al pin D7 del arduino, según podemos ver en la Figura \ref{Esquema conexiones bebedero Fritzing}. Entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$). Se usan debido a que el relé necesita ver a su entrada una corriente superior, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, se oye). \\
+	
+	\noindent [Foto bomba de agua usada.] \\
+	
+	\noindent El relé actúa como un conmutador. [Seguir explicando]. \\
+	
+	\noindent [Foto relé usado.] \\
 	
 	\subsubsection{Prototipo exterior}
 		
@@ -967,39 +1071,117 @@
 	\subsection[Ubicación]{Ubicación}
 	\subsection[Prototipo inicial]{Prototipo inicial}
 	
+	\noindent [Realmente no sé si unificar la subsección 4.2 y la 4.3, ya que el prototipo está bastante explicado en diseño del sistema, y aquí mi idea era explicar lo que no se haya explicado antes y la PCB, las pruebas realizadas y resultados. Siento que el prototipo inicial ya se expuso en la subsección 3.3., más conceptual y en protoboard, y el definitivo es con PCB y sumándole la alimentación autónoma. ¿Cómo lo ves tú?] \\
+	
+	\noindent [Anotaciones: usamos una versión diferente a la de Arduino nano vendida por la organización Arduino. Seguramente lo mueva de aquí.] \\
+	
 	\noindent Usaremos un arduino nano que usa un ATmega328P y un chip CH340. En la sección X se han explicado las especificaciones técnicas, pinout y componentes que forman parte del arduino nano fabricado por la organización Arduino, pero el que va a ser usado lo está por otro fabricante. A efectos prácticos, las diferencias son pocas, pero hay que considerarlas de igual manera:
 	
 	\begin{itemize}
 		\item El microcontrolador no es ATmega328 (usado en el nano de la organización Arduino), sino que es ATmega328P. La diferencia reside en que es una versión posterior diseñada para consumir menos potencia que el 328, esencialmente tienen la misma arquitectura y características en tanto a memoria flash, EEPROM y SRAM (la P viene de \textit{picoPower}).
 		\item Este arduino usa un regulador diferente, el CH340G, frente al FT232 que usa el arduino original. Además, el fusible/diodo Schottky que usan para proteger la comunicación serial frente a sobrecorrientes es diferente, siendo el MBR0520 para el caso de los arduinos originales, frente al B5819W que usa el arduino que vamos a usar.
 	\end{itemize}
+
+	\noindent Como hemos visto en la sección \ref{Sección 3: Diseño del sistema}, subsección \ref{Subsección 3.3: elección de soluciones para cada funcionalidad}, son muchos componentes los que forman el cómputo total del sistema de alimentación. Para facilitar el prototipado y simplificar las conexiones de todos los elementos, se creó una PCB, como la que se muestra a continuación: \\
+	
+	\noindent [Foto PCB v1.1a] \\
+	
+	\noindent Se adjunta en el Anexo I (FALTA REFERENCIAR) una imagen del esquemático y de la PCB que se mandó realizar. El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA. \\
+	
 	\subsection[Prototipo definitivo]{Prototipo definitivo}
+	
+	\pagebreak
+	
+		\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/conexiones tfg-comedero.png}
+			\caption{}
+			\label{Conexiones TFG comedero.}
+		\end{center}
+	\end{figure}
+	
+	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el script de Arduino que se adjunta en el Anexo I (REFERENCIAR)  se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.\\ 
+	
+	\noindent Ajustar el tiempo de un ciclo de rellenado para desactivar el movimiento del servomotor y que se rellene el comedero la cantidad deseada. \\
+	
+	\pagebreak
+	
+		\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/conexiones tfg-bebedero.png}
+			\caption{Esquema general del bebedero. }
+			\label{Conexiones TFG bebedero.}
+		\end{center}
+	\end{figure}
+	
+	\noindent Nótese en la Figura \ref{Conexiones TFG bebedero.} que se omite la presencia de la segunda PCB que recibe los niveles de sensorización de agua: se miden niveles de agua con los sensores, y controlamos la acción de la bomba con el relé, conectados al arduino, el cual envía datos mediante transceptor LoRa al transceptor LoRa que tenemos en el otro extremo, el cual no necesitará alimentación autónoma al estar en una casa, y es este el que irá conectado a la Raspberry (que tiene función de servidor y gestor de los datos en recepción). \\
+	
+	\pagebreak
+	
 	\subsection[Pruebas]{Pruebas}
+	
+	\pagebreak
+	
 	\subsection[Comentarios sobre los resultados de las pruebas]{Comentarios sobre los resultados de las pruebas}
+	
+	\pagebreak
+	
 	\subsection[Presupuesto]{Presupuesto}
 	\noindent Se adjunta una tabla para el desglose del presupuesto para este proyecto en el Anexo III (\ref{subsection: presupuesto}).
+	
+	\pagebreak
+	
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
 	
+	\pagebreak
+	
 	\section[Conclusiones y líneas futuras]{Conclusiones y líneas futuras}
+	
+	\pagebreak
 	
 	\section*{Glosario}
 	\addcontentsline{toc}{section}{Glosario}
 	
+	%%% MICROCONTROLADOR %%%
+	\noindent \textbf{\large SRAM}. \\
+	\noindent \textbf{\large EEPROM}. \\
+	\noindent \textbf{\large Flash memory}. \\
+	\noindent \textbf{\large Bootloader.} \\
+	
+	%%% SERVOMOTOR %%%
+	\noindent \textbf{\large Torque} (en un motor), o par. En mecánica newtoniana, se denomina momento de una fuerza o torque a una magnitud vectorial, obtenida como producto vectorial del vector de posición del punto de aplicación de la fuerza por el vector fuerza, en ese orden. Para un motor, esto es, la fuerza que puede aplicar a través del movimiento rotacional de su eje para levantar o mover una carga; es importante el contexto mecánico previo que hemos establecido para entender la importancia de la dirección en la que apliquemos el movimiento del servo y la fuerza en sí.\\
+	
+	\noindent \textbf{\large Fuerza contraelectromotriz} (\textit{back EMF}). Fuerza electromagnética que aparece en un circuito inductivo en una dirección tal que se opone a cualquier cambio de corriente en el circuito. De hecho, la conversión de energía en un motor DC es causada por esta fuerza: la dirección de la corriente en la armadura conductiva que tienen los motores es contraria a la dirección del efecto contraelectromotriz, por lo que debemos realizar un trabajo eléctrico para contrarrestar ese efecto (usar la corriente en contra del \textit{back EMF}), el cual se traduce en realizar un trabajo mecánico, el cual es la función principal de un motor DC. Además, el \textit{back EMF} hace que los motores se autorregulen; por ejemplo, si no existe carga, se hace menos torque, se induce menor corriente y por tanto la fuerza contraelectromotriz aumenta (sería equivalente a la tensión suministrada, ya que su efecto se mide en voltios), pero si aumentamos la carga, la velocidad disminuye, decrece el \textit{back EMF}, aumenta la corriente y la magnitud del torque. Existen fórmulas que relacionan estas variables.\\
+	
+	%%% SWITCHES DE NIVEL DE AGUA %%%
+	\noindent \textbf{\large Resistencia \textit{pull-down}}. Las resistencias \textit{pull-down}, y \textit{pull-up}, son resistencias que se usan en circuitos lógicos para asegurar un nivel lógico bien definido en un pin bajo cualquier circunstancia. Como recordatorio, los circuitos lógicos digitales tienen tres estados lógicos: alto, bajo y flotante (alta impedancia). El estado de alta impedancia ocurre cuando un pin no llega a estar en valor alto o bajo, y se queda "flotando". Una buena manera de ilustrar esta situación es un pin de entrada desconectado de un microcontrolador; no se encuentra en un estado lógico alto o bajo, y el MCU podría interpretar de manera impredecible el valor de entrada como alto o bajo. También ocurre si en un pin del MCU tenemos un switch; si no hay una resistencia \textit{pull-down} o \textit{pull-up}, el pin estará flotando cuando el switch se abra, y dando valores lógicos conocidos sólo cuanto éste se cierre. Son resistencias de valor fijo, que dependiendo de la aplicación del circuito digital que estemos diseñando tendrán un valor u otro (y de la impedancia de entrada del pin del MCU al que queramos conectarnos, por ejemplo). La diferencia entre una resistencia \textit{pull-down} y una \textit{pull-up} es que la primera se coloca entre tierra y el pin en cuestión, haciendo que, cuando el switch se abra, el pin tenga valor lógico bajo, mientras que la segunda se coloca entre VCC y el pin, haciendo que, cuando el switch se abra, el pin tenga valor lógico de alto.\\ 
+	
+	\pagebreak
+	
 	\section*{Bibliografía}
 	\addcontentsline{toc}{section}{Bibliografía}
+	
+	\pagebreak
 	
 	\section*{Anexos}
 	\addcontentsline{toc}{section}{Anexos}
 	
+	\pagebreak
+	
 	\subsection*{Anexo I}
 	\addcontentsline{toc}{subsection}{Anexo I}	
 	
+	\pagebreak
+	
 	\subsection*{Anexo II}
 	\addcontentsline{toc}{subsection}{Anexo II}
+	
+	\pagebreak
 	
 	\subsection*{Anexo III}
 	\label{subsection: presupuesto}
 	\addcontentsline{toc}{subsection}{Anexo III}
 	
+	\pagebreak
 	
 \end{document}
