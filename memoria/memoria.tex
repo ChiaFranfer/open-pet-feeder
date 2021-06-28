@@ -55,11 +55,34 @@
 
 	\listoffigures
 	\addcontentsline{toc}{section}{Índice de figuras}
-
+	
+	\pagebreak
+	
 	\listoftables
 	\addcontentsline{toc}{section}{Índice de tablas}
 	
+	\pagebreak
 	
+	\section*{Agradecimientos}
+	\addcontentsline{toc}{section}{Agradecimientos}
+	
+	\noindent [Tutor] Primero, me gustaría agradecer a mi tutor, Juan Pascual García, por aceptar este reto junto a mi, y apoyarlo en todo momento. Fue un proyecto diferente, algo arriesgado, y siempre confió en que lo sacaríamos hacia delante. Muchas gracias por tu apoyo a distancia, debido a la Covid-19, que a pesar de todo siempre he obtenido tu ayuda y tu feedback a tiempo, y confianza en todo proceso requerido en este proyecto.\\
+	
+	\noindent [Mi familia]  Me gustaría, además, agradecer a mi familia, en especial a mis padres, Francisco Francoso y María Dolores Fernández, ya que es difícil entender que quiera estar un año sin apenas créditos matriculados, la importancia de aprender de manera complementaria a la universidad, de buscar (y encontrar) aquello que me gusta dentro de esta carrera que, a pesar de las dificultades, siento que no podría haber elegido otra mejor. Sin ese apoyo, todo habría sido mucho más difícil, y siendo mi situación poco común, agradezco que lo hayan comprendido. A esto se suma su aportación económica, sin ella no habría podido realizar este proyecto, el cual he sentido en todo momento muy personal y muy bueno para mi, en tanto a nivel profesional, como personal como para la protectora que será beneficiaria de este dispositivo. Agradecer a mis hermanas Isabel y Claudia, que a pesar de las diferencias, y a pesar de ser la mayor, tienden a reforzarme en los momentos difíciles, recalcando mis virtudes; confiaron en este proyecto, y saben lo bueno que podría conllevar, ya que han venido innumerables veces conmigo al refugio, al igual que mi padre.\\
+	
+	\noindent También agradecer al resto de mi familia, que en la distancia también me apoyan. En especial a mi tía Bárbara, que siempre me llama para darme ánimos con todo lo que hago y que confía en mi desde siempre. A mis primas Sonia y María, y a mi abuela Guadalupe, las cuales son ejemplos de mujeres admirables en mi familia y a las que quiero muchísimo. Especial mención a mi abuela, Lucía Figueredo, la cual falleció el año pasado y sé que estaría muy orgullosa de ver a su nieta convertirse en ingeniera, y creando este proyecto. \\
+	
+	\noindent [Mis suegros] Debo agradecer también a mis suegros, Encarnación y Miguel Ángel, por dedicarme parte de su tiempo siempre que pueden, y en especial, en el desarrollo del prototipo exterior; agradezco enormemente que me hayan prestado sus herramientas, ya que sin ellas el resultado no habría sido el mismo. Muchas gracias por permitirme instalar en su casa el otro extremo de la comunicación, que ha permitido poder concebir este proyecto. \\
+	
+	\noindent [Magda, Clara, Pablo]. Me gustaría también agradecer a mi amiga Magdalena, mi amiga de toda la vida, la cual me apoya incondicionalmente, y me inspira en su lucha constante por mejorarse así misma y por ganarse la vida en lo que más le gusta, la música. A mi amiga Clara, la cual es una estupenda teleco, que siempre ha confiado en mi más que yo misma, y la cual me inspira por ser una persona fuerte, independiente y que tiene claro lo que quiere. A mi amigo Pablo, porque ni la distancia ni las exigentes carreras que cursamos nos han hecho perder el contacto, ni perder un vínculo que hace años se formó. Es un placer poder contar con estar tres personas.\\  
+	
+	\noindent [Enrique] Especial mención a mi compañero Enrique Fernández Sánchez, el cual ha sido también como mi tutor, ayudándome muchísimo a comprender la importancia del Open Source, guiándome en el conocimiento sobre microcontroladores y LoRa, y en general, aconsejándome en todo lo que ha podido y más. Gracias a él, la introducción al mundo maker se me ha hecho más sencilla, mucho más consciente y sin excesivos agobios. A esto, añadir que su aportación económica me ha ayudado muchísimo a sacar este proyecto hacia delante. Sin duda, ajeno a este proyecto, aprenderé muchas cosas de él y gracias a él, y no me cabe la menor duda de que es un gran teleco y una gran persona.\\
+	
+	\noindent [Patitas]  Agradecer a Patitas Unidas Los Alcázares por permitirme instalar un dispositivo en sus instalaciones, y por comprender mi ausencia en algunos meses donde el desarrollo de este proyecto era muy exigente. Especial mención a mi compañera Jen, con la que voy al refugio prácticamente siempre; su actitud y sus ganas al tratar con los perros desde luego es una cualidad a admirar, y es una inspiración que recarga fuerzas para seguir luchando por los animales.\\
+	
+	\noindent [Comunidad OpenSource] Por último, agradecer a todas esas personas que han subido a la nube su proyecto, su documentación y dejan todo ese desarrollo bajo licencia Open Source, permitiendo que gente como yo desarrolle su proyecto basándome en sus librerías, o me den ideas que sin duda impulsen el mío. Estarán debidamente mencionadas, ya que merecen ese crédito.\\
+	
+	\pagebreak
 	
 	\section[Introducción]{Introducción} %corchetes, marcapaginas, llaves, texto
 	
@@ -780,7 +803,7 @@
 	
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.4\textwidth]{img/tp4056_withBoost.png}
+			\includegraphics[width=0.3\textwidth]{img/tp4056_withBoost.png}
 			\caption{Ejemplo de un TP4056 con boost.}
 			\label{TP4056 con boost}
 		\end{center}
@@ -792,7 +815,7 @@
 	
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.5\textwidth]{img/tp4056_withProtection.png}
+			\includegraphics[width=0.4\textwidth]{img/tp4056_withProtection.png}
 			\caption{Ejemplo de un TP4056 con protección.}
 			\label{TP4056 con protección}
 		\end{center}
@@ -1183,6 +1206,10 @@
 	\pagebreak
 	
 	\section[Conclusiones y líneas futuras]{Conclusiones y líneas futuras}
+	
+	\noindent \textbf{Alimentación:} estudiaría las baterías LiPo, incluso LiFePO4, que aunque son más caras, no limitan tanto en el tema de la protección. Las baterías Li ion tienen bastante cobertura y tienen sus ventajas, pero también sus desventajas. Investigaría más profundamente en general el tema de la alimentación autónoma, ya que es un mundo muy extenso que debe tratarse de manera externa a la parte radio o a la parte de microcontrolador; podemos realizar proyectos donde abarquemos todo, pero para llegar a conclusiones donde se lleguen a prototipos iniciales, que en posteriores investigaciones se expandan y mejoren sus funcionalidades de manera individual, sin perder de vista el proyecto global. Diseñaría una PCB sólo para alimentación, ya que los requerimientos de alimentación para cada proyecto son diferentes y para un proyecto de dimensión media-grande es mucho más práctico diseñar un sistema personalizado de alimentación de dispositivo, algo que conseguimos mediante una PCB, compactando los sistemas que, sin PCB, se traducen en numerosas PCBs ya fabricadas que quizá no se adapten del todo a lo que necesitamos. \\
+	
+	\noindent \textbf{Microcontrolador}: el arduino nano para principiantes, con previas nociones de electrónica y con previsiones de realizar una PCB, siempre y cuando el proyecto no sea muy extenso, puede ser empleado. Sin embargo, yo he experimentado que en espacio de memoria se me quedaba corto, sobretodo al usar librerías como OLED, las cuales debía excluir si quería cargar en el arduino mi código restante; teniendo en cuenta que debía importar librerías obligatoriamente para usar por ejemplo la OLED, el servomotor o el transceptor LoRa, este es un punto muy negativo, ya que es un código que no puede ser reducido. Tuve que buscar trucos para compactar el uso de dicha memoria debido a estas limitaciones. Probaría con otras opciones mencionadas en la sección \ref{subsección 3.2.2: automatización y monitorización}, donde hablamos de opciones de microcontroladores, como la Adafruit, NodeMCU o Teensy. \\
 	
 	\pagebreak
 	
