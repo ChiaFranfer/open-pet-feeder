@@ -750,8 +750,55 @@
 	
 	\noindent Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame.  Además, como se indicó en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}, dentro de \textit{opciones para baterías recargables}, se necesita de un circuito que ayude a la pila, hecha de Li-ion, a una correcta carga y descarga, precisamente porque conlleva las mismas consecuencias de una mala manipulación, expuestas anteriormente. Es por ello que se realizó una investigación en tanto a circuitos de protección para evitar sobredecarga, sobrecarga y cortocircuitos, en este tipo de pila (Li-ion). \\
 	
-	\noindent A continuación, se describirán brevemente los componentes enumerados y el por qué de su elección. Para más detalle, se pueden consultar los \textit{datasheet} en el Anexo I.
+	\noindent A continuación, se describirán brevemente los componentes enumerados y el por qué de su elección. Para más detalle, se pueden consultar los \textit{datasheet} en el Anexo I. \\
 	
+	\noindent \textbf{TP4056} \\
+	
+	%\noindent El TP4056 es un chip encapsulado en formato SOP-8 que es capaz de gestionar la carga de una batería. Es decir, adecua la entrada de energía para el estándar de 1A de la mayoría de baterías de litio que se usan en la industria electrónica, y también es capaz de controlar la temperatura. \\
+	\noindent Se requiere para gestionar la carga de la batería Li-ion que vamos a utilizar.  Su funcionamiento, a grandes rasgos, consiste en transformar la fuente de energía eléctrica que tiene a su entrada para cargar la batería que tiene conectada a su salida; debido a que las baterías requieren que la energía sea cualitativa y cuantitativamente de una manera concreta, este paso es necesario. Las fuentes de energía eléctrica pueden ser diversas, desde un adaptador conectado a la red eléctrica, una fuente de alimentación, un panel solar, un generador, etc. No en todos los casos se necesitan los mismos componentes, depende de cada caso.\\
+	
+	\noindent Un ejemplo de TP4056 sencillo y fácil de encontrar sería el siguiente:  \\
+		
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/tp4056_withoutBoost.png}
+			\caption{Ejemplo de un TP4056 simple.}
+			\label{TP4056 sin boost}
+		\end{center}
+	\end{figure}
+	
+	\noindent Del esquema anterior del módulo TP4056, podemos destacar: \\
+	
+	\begin{itemize}
+		\item \textbf{Puerto mini-USB}: para alimentar tu batería a través de este tipo de cables. 
+		\item \textbf{Bornas IN-, IN+}: están a los lados del puerto. Sirven también para alimentar la batería. A estas bornas podemos conectar una placa solar, u otra fuente que se necesite.
+		\item \textbf{LEDs de carga y completado}: avisarán cuando la batería esté cargándose o cuando haya terminado el proceso.
+		\item \textbf{BAT+ y BAT-}: son los otros bornes de salida que irán conectados a los bornes de la batería que se necesita cargar.
+	\end{itemize}
+
+	\noindent Sin embargo, se requieren más elementos para alimentar al dispositivo, como por ejemplo un conversor de tensión tras la batería (entre batería y dispositivo). En nuestro caso, lo requerimos, ya que la batería usada otorga 3.7V nominales (no existen baterías de 5V) y nosotros necesitamos 5V para alimentar el sistema de alimentación. Necesitamos un elemento que nos aumente la tensión a su salida, para alimentar de manera correcta el sistema creado; usaremos, por tanto, un \textit{boost converter}. Es un dispositivo que puede encontrarse aislado, aunque también podemos encontrarlo en una misma PCB con el TP4056, y será esta última opción la que usemos. \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/tp4056_withBoost.png}
+			\caption{Ejemplo de un TP4056 con boost.}
+			\label{TP4056 con boost}
+		\end{center}
+	\end{figure}
+	
+	\noindent Problema: no tiene protección contra sobredescargas. \\
+	
+	\noindent Existen TP4056 con protección, gracias al MOSFET DW01 (o DW01A). \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/tp4056_withProtection.png}
+			\caption{Ejemplo de un TP4056 con protección.}
+			\label{TP4056 con protección}
+		\end{center}
+	\end{figure}
+	
+
 	\subsubsection{Automatización y monitorización}
 	
 	\noindent Para la automatización y monitorización del sistema de alimentación, se ha elegido, en tanto a los bloques de microcontrolador y  comunicación radio, las tecnologías Arduino y LoRa, respectivamente. Si bien estas elecciones se habrían realizado a priori por ser opciones \textit{Open Source} muy extendidas y conocidas por la comunidad, no ha supuesto que no se investiguen otras, las cuales se han mencionado en el apartado \ref{subsección 3.2.2: automatización y monitorización}.
