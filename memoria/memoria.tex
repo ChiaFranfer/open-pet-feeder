@@ -725,9 +725,26 @@
 	
 	\noindent \textbf{Qué es una red LPWAN} \\
 	
-	\noindent Si uno investiga acerca de \textit{Internet of Things}, llega a la conclusión de que existe una cantidad abrumadora de opciones para conectividad IoT: desde Wi-Fi hasta Bluetooth, NB-IoT hasta CAT-M1, y LoRa hasta RPMA. Cada aplicación IoT tiene sus propios requerimientos, lo que quiere decir que una opción de conectividad IoT que es perfecta para una aplicación puede ser una mala opción para otra. Por ejemplo, si la aplicación tiene muchos sensores remotos, la vida útil de la batería es una consideración importante, pero si la aplicación necesita enviar muchos datos lo es el ancho de banda, o si lleva involucrados datos que son vitales, lo es el tiempo. \\
+	\noindent Si uno investiga acerca de \textit{Internet of Things}, llega a la conclusión de que existe una cantidad abrumadora de opciones para conectividad IoT: desde Wi-Fi hasta Bluetooth, NB-IoT hasta CAT-M1, y LoRa hasta RPMA. Cada aplicación IoT tiene sus propios requerimientos, lo que quiere decir que una opción de conectividad IoT que es perfecta para una aplicación puede ser una opción menos adecuada para otra. Por ejemplo, si la aplicación tiene muchos sensores remotos, la vida útil de la batería es una consideración importante, pero si la aplicación necesita enviar muchos datos lo es el ancho de banda, o si lleva involucrados datos que son vitales, lo es el tiempo. En resumen, es crucial elegir la mejor opción de conectividad IoT que mejor se adapte a las necesidades. \\
 	
-	\noindent 
+	\noindent Lo primero que debemos tener claro es que LPWAN (\textit{Low Powered Wide Area Network}) no es un estándar. Es un término amplio que abarca varias implementaciones y protocolos, tanto propietarios como de código abierto, que comparten características comunes, como sugiere el nombre: \\
+	
+	\noindent \textit{Low power}: operan bajo baterías pequeñas y económicas durante años. \\
+	
+	\noindent \textit{Wide area}: tienen un alcance de operación típico de más de 2 km en configuraciones urbanas.\\
+	
+	\noindent Una limitación física para alcanzar bajo consumo y largo alcance es el tamaño pequeño de datos. La mayoría de tecnologías LPWAN pueden enviar solo menos de 1000 bytes de datos por día o menos de 5000 bits por segundo. \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/LPWAN_comp.png}
+			\caption{Comparativa entre LPWAN, en términos de alcance y ancho de banda, con respecto a otras comunicaciones inalámbricas.}
+			\label{LPWANs vs otros}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
+	
 	\subsubsubsection{Comedero}
 	
 	\noindent \textit{Servomotor} \\
@@ -736,6 +753,8 @@
 	
 	\noindent Algunos parámetros a tener en cuenta son... \\
 	\noindent Stall current. Máxima corriente que se genera cuando el motor está aplicando su máximo torque. Free current. Corriente que se genera cuando el motor está girando libremente a su máxima velocidad, sin otra carga que la propia fricción y fuerzas contralectromotrices (\textit{back-EMF}). \\
+	
+	\pagebreak
 	
 	\subsubsubsection{Bebedero}
 	
@@ -747,6 +766,8 @@
 	
 	\noindent \textit{Relé} \\
 	
+	\pagebreak
+	
 	\subsubsection{Prototipo exterior}
 
 	% Definición funcionalidades: qué debo hacer y qué necesitaría
@@ -756,6 +777,7 @@
 	% Definición prototipo provisional: opciones que he descartado, QR de que funciona?
 	% Diseño PCB
 	% Desarrollo BBDD en servidor y app web para ver el estado del sistema de alimentación
+	\pagebreak
 	
 	\subsection[Elección soluciones]{Elección de soluciones para cada funcionalidad}
 	\label{Subsección 3.3: elección de soluciones para cada funcionalidad}
