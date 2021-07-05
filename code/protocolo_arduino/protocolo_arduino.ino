@@ -109,16 +109,21 @@ void loop() {
 
     Serial.println("Received data: " + dat_rec);
 
-    readSensor(dat_rec);
+    executeCommand(dat_rec);
   }
 
 }
 
-void readSensor(String data) {
+void executeCommand(String data) {
   String static msg;
 
   if (data.equals("status")) {
-    Serial.println("to do");
+    //Serial.println("to do");
+    
+    // int waterLevel = checkWaterLevel();
+
+    //msg = "ack;water;" + String(waterLevel);
+
     msg = "ack;status;" + String(num_refill);
 
     sendMessage(msg);

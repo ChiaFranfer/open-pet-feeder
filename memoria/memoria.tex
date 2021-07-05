@@ -4,7 +4,12 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 
+
+
 \usepackage{eurosym}
+
+% add code
+\usepackage{listings}
 
 \usepackage{array}
 
@@ -33,6 +38,34 @@
 	pdfsubject = {Electrónica y comunicaciones móviles},
 	pdfkeywords = {Arduino, LoRa, automatización, LoRaWAN, punto a punto, OpenSource}
 }
+
+% define color for C code (Anexos)
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
 
 % https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
 \newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
@@ -1210,6 +1243,102 @@
 	
 	\pagebreak
 	
+	\noindent \textbf{Imágenes del prototipo real (comedero)} \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/Fotos comedero/caja1.png}
+			\caption{Imagen del interior de la caja, con PCB y componentes. }
+			\label{Prototipo: caja1}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/Fotos comedero/caja_servo.jpg}
+			\caption{Imagen del interior de la caja con servomotor conectado.}
+			\label{Prototipo: caja con servo}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
+
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/caja_servo_zoomConexion.jpg}
+			\caption{Imagen del interior de la caja con servomotor conectado (zoom).}
+			\label{Prototipo: caja con servo (zoom)}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/caja_servo_exterior.jpg}
+			\caption{Imagen del exterior de la caja con servomotor conectado. Se muestra, además, parte de los conductos para mover el pienso, y ubicación del servomotor.}
+			\label{Prototipo: caja con servo (exterior)}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
+
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/servo_sujecion_zoom.jpg}
+			\caption{Imagen del exterior de la caja con servomotor conectado. Zoom de sujeción a pieza PVC.}
+			\label{Prototipo: sujecion exterior servo (zoom)}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
+
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/comedero_overview.png}
+			\caption{Imagen global del comedero.}
+			\label{Prototipo: comedero overview}
+		\end{center}
+	\end{figure}
+
+	
+	\begin{figure}
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=50mm]{img/Fotos comedero/pieza1_comedero.jpg} &   \includegraphics[width=50mm]{img/Fotos comedero/pieza2_comedero.jpg} \\
+				(a) Pieza 1 PVC & (b) Pieza 2 PVC \\[6pt]
+				\includegraphics[width=50mm]{img/Fotos comedero/pieza3_comedero.jpg} &   \includegraphics[width=50mm]{img/Fotos comedero/pieza4_comedero.jpg} \\
+				(c) Pieza 3 PVC & (d) Pieza 4 PVC \\[6pt]
+				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/Fotos comedero/pieza5_comedero.jpg} }\\
+				\multicolumn{2}{c}{(e) Pieza 5 PVC}
+			\end{tabular}
+			\caption{Zoom de las piezas que conforman el sistema de conexionado entre reserva y comedero.}
+			\label{Prototipo: piezas PVC reserva-comedero}
+		\end{center}
+	\end{figure}
+	
+
+	\begin{figure}
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=60mm]{img/Fotos comedero/helice_v1_rotated.png} &   \includegraphics[width=60mm]{img/Fotos comedero/helice_v2VSv1_rotated.png} \\
+				(a) Versión 1 de las hélices & (b) Versión 2 de las hélices (comparada con v1) \\[6pt]
+				\multicolumn{2}{c}{\includegraphics[width=60mm]{img/Fotos comedero/helice_v3VSv2VSv1_rotated.png} }\\
+				\multicolumn{2}{c}{(c) Versión 3 de las hélices (comparado con v1 y v2)}
+			\end{tabular}
+		\caption{Detalle de las hélices impresas en 3D para, a través del movimiento del servomotor, hacer llegar el pienso al comedero.}
+		\label{Prototipo: helices comedero}
+		\end{center}
+	\end{figure}	
+	
+	\pagebreak
+	
+	\noindent \textbf{Imágenes del prototipo real (bebedero)} \\
+	
+	\pagebreak
+	
 	\subsection[Pruebas]{Pruebas}
 	
 	\pagebreak
@@ -1275,6 +1404,106 @@
 	\subsection*{Anexo II}
 	\addcontentsline{toc}{subsection}{Anexo II}
 	
+	\noindent Código Arduino \\
+	
+	\begin{lstlisting}[language=C]
+#include <SoftwareSerial.h>
+#include "EBYTE.h"
+#include <avr/io.h>
+
+#define PIN_RX 2
+#define PIN_TX 3
+#define PIN_M0 4
+#define PIN_M1 5
+#define PIN_AX 6
+
+#define LORA_CHANNEL 5
+
+struct ebyte_struct {
+	unsigned long count;
+	String msg;                                           
+};
+ebyte_struct ebyte_msg;
+
+int Chan;
+unsigned long Last;
+
+SoftwareSerial ESerial(PIN_RX, PIN_TX);
+EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
+
+
+void setup() {
+	Serial.begin(115200);
+	
+	ESerial.begin(9600);
+	Serial.println("Starting Reader");
+	
+	// this init will set the pinModes for you
+	Transceiver.init();
+	
+	// all these calls are optional but shown to give examples of what you can do
+	
+	// Serial.println(Transceiver.GetAirDataRate());
+	// Serial.println(Transceiver.GetChannel());
+	
+	Transceiver.SetMode(MODE_NORMAL);
+	
+	Transceiver.SetUARTBaudRate(UDR_9600);
+	Transceiver.SetAirDataRate(ADR_2400);
+	Transceiver.SetAddressH(1);
+	Transceiver.SetAddressL(0);
+	
+	Transceiver.SetChannel(LORA_CHANNEL);
+	Transceiver.SetTransmitPower(OPT_TP21);
+	Transceiver.SetPullupMode(0);
+	Transceiver.SetFECMode(1);
+	
+	// save the parameters to the unit,
+	Transceiver.SaveParameters(TEMPORARY);
+	
+	// you can print all parameters and is good for debugging
+	// if your units will not communicate, print the parameters
+	// for both sender and receiver and make sure air rates, channel
+	// and address is the same
+	Transceiver.PrintParameters();
+}
+
+void loop() {
+	
+	// if the transceiver serial is available, proces incoming data
+	// you can also use Transceiver.available()
+	
+	if (ESerial.available()) {
+		
+		// i highly suggest you send data using structures and not
+		// a parsed data--i've always had a hard time getting reliable data using
+		// a parsing method
+		
+		Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
+		//read = Transceiver.GetByte();
+		
+		//Serial.println(read);
+		
+		// dump out what was just received
+		Serial.print("Count: "); Serial.println(ebyte_msg.count);
+		Serial.print("msg: "); Serial.println(ebyte_msg.msg);
+		Serial.println("***");
+		// if you got data, update the checker
+		Last = millis();
+		
+	}
+	else {
+		// if the time checker is over some prescribed amount
+		// let the user know there is no incoming data
+		if ((millis() - Last) > 1000) {
+			Serial.println("Searching: ");
+			Last = millis();
+		}
+		
+	}
+}
+	\end{lstlisting}
+
 	\pagebreak
 	
 	\subsection*{Anexo III}
