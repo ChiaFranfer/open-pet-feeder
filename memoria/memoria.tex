@@ -1451,18 +1451,43 @@
 	
 	\subsection[Pruebas]{Pruebas}
 	
+	\noindent Para este proyecto, se han realizado numerosas pruebas, pero podríamos diferenciarlas en dos grandes grupos; las pruebas de campo, para comprobar la cobertura del enlace punto a punto, y las pruebas de interior, en las que se comprueba que todo lo que se ha programado y preparado funciona como se espera. \\
+	
+	\subsubsection{Pruebas de campo}
+	
+	\noindent Por el momento, se han realizado dos, una en un entorno conocido, llegando hasta los 3 kms de alcance del enlace radio, y otra en el entorno real, también conocido. \\
+	
+	\noindent \textbf{Prueba 1: entorno conocido, no definitivo} \\
+	
+	\noindent \textbf{Prueba 2: entorno conocido, definitivo} \\
+
+	\subsubsection{Pruebas de interior}
+	
+	\noindent Estas pruebas han sido las más numerosas, y pueden desglosarse en: \\
+	
+	\begin{itemize}
+		\item Testeo de los componentes de manera individual. Tras la recepción de los productos, y antes de usarlos en ningún prototipo, hay que probarlos de manera individual. Incluye tanto la programación sencilla de programas para el testeo del hardware, como la creación de circuitos sencillos en protoboard para ejecutar esos programas y verificar el estado del componente que se está testeando.
+		\item Testeo de los componentes en protoboard formando el prototipo provisional.
+		\item Testeo de los componentes en la PCB, formando el prototipo final. Tenemos en cuenta, además, el formato elegido para el exterior del diseño (eservas, cableados y conexionado físico), probamos su estabilidad y comodidad, y descartamos opciones.
+	\end{itemize}
+	
 	\pagebreak
 	
 	\subsection[Comentarios sobre los resultados de las pruebas]{Comentarios sobre los resultados de las pruebas}
 	
+	\noindent 
+	
 	\pagebreak
 	
 	\subsection[Presupuesto]{Presupuesto}
-	\noindent Se adjunta una tabla para el desglose del presupuesto para este proyecto en el Anexo III (\ref{subsection: presupuesto}).
+
+	\noindent En el Anexo III (\ref{subsection: presupuesto}) se presenta el presupuesto del prototipo construido, sin incluir tiempo de diseño del sistema, prototipado, construcción, instalación del prototipo y pruebas. Como puede verse, el presupuesto material, excluyendo el relacionado con lo requerido por herramientas tales como impresora 3D (filamento) o soldador (estaño, flux), asciende a 248.9\euro, que, para ser un pequeño proyecto académico, presenta un coste considerable, incluso habiendo recurrido a productos \textit{low cost}. \\
 	
 	\pagebreak
 	
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
+	
+	\noindent En este capítulo, partiendo de la especificación de la ubicación donde se realizan las pruebas, se ha mostrado el prototipo del sistema diseñado junto con las pruebas realizadas y algunos comentarios sobre los resultados obtenidos. Por un lado, se ha construido un primer prototipo que emplea 868MHz en el enlace LoRa punto a punto y se ha comprobado mediante pruebas que cumple con lo esperado. Por otro lado, se ha realizado una pequeña descripción del prototipo definitivo que se ha construido, de forma que tanto el sistema de bebedero como el de comedero funcionen, así como nuestro gateway personalizado, manteniendo funcional el enlace punto a punto. Pese a los condicionantes, se ha podido comprobar que el sistema funciona y el prototipo construido, aunque es mejorable, logra los objetivos planteados inicialmente. Para acabar, además del presupuesto material,  se han expuesto algunas conclusiones que se han obtenido tras la realización de las pruebas, comentando aspectos relacionados con  [...]. \\
 	
 	\pagebreak
 	
@@ -1504,10 +1529,14 @@
 	\section*{Anexos}
 	\addcontentsline{toc}{section}{Anexos}
 	
+	\noindent Se presentan tres anexos. El Anexo I mostrará detalles técnicos de los componentes usados. El Anexo II, el código de programación creado para este proyecto. Por último, en el Anexo III se mostrará el presupuesto detallado del mismo. \\
+	
 	\pagebreak
 	
 	\subsection*{Anexo I}
 	\addcontentsline{toc}{subsection}{Anexo I}	
+	
+	\noindent [Fichas técnicas de los componentes usados] \\
 	
 	\pagebreak
 	
@@ -1619,6 +1648,8 @@ void loop() {
 	\subsection*{Anexo III}
 	\label{subsection: presupuesto}
 	\addcontentsline{toc}{subsection}{Anexo III}
+	
+	\noindent [Insertar tabla excel del presupuesto]. \\
 	
 	\pagebreak
 	
