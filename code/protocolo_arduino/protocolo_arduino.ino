@@ -38,6 +38,8 @@ struct ebyte_struct {
 };
 ebyte_struct ebyte_msg;
 
+unsigned long Last;
+
 void setup() {
   Serial.begin(BAUDRATE);
   Serial.println("Serial initialized");
@@ -90,28 +92,44 @@ void setup() {
 
   servo1.attach(SERVO);
 
-  // Ejemplo de F(): https://techexplorations.com/guides/arduino/programming/f-macro/
-  // Moar: https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram
-  Serial.println(F("Resumen de comandos aptos: status, ping, rellenar_bebedero,"));
-  Serial.println(F("rellenar_comedero, reset_comedero, check_levels y update_oled"));
-  Serial.println(F("Formato de los mensajes de respuesta: ack;field1;var1"));
-  
   Serial.println("Ready...");
   delay(500);
 }
 
 void loop() {
-  if (Serial.available() > 0) {
-    String static dat_rec;
+  
+  // if the transceiver serial is available, proces incoming data
+  // you can also use Transceiver.available()
 
-    dat_rec = Serial.readString();
-    dat_rec.trim(); //quita espacio en blanco
+  if (ESerial.available()) {
 
-    Serial.println("Received data: " + dat_rec);
+    // i highly suggest you send data using structures and not
+    // a parsed data--i've always had a hard time getting reliable data using
+    // a parsing method
 
-    executeCommand(dat_rec);
+    Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
+
+    // dump out what was just received
+    Serial.print("Count: "); Serial.println(ebyte_msg.count);
+    Serial.print("msg: "); Serial.println(ebyte_msg.msg);
+    Serial.println("***");
+    // if you got data, update the checker
+    Last = millis();
+
+    //ejecutar comandos segun llegue orden por radio
+
+    executeCommand(ebyte_msg.msg);
+   
   }
+  else {
+    // if the time checker is over some prescribed amount
+    // let the user know there is no incoming data
+    if ((millis() - Last) > 1000) {
+      //Serial.println("Searching: ");
+      Last = millis();
+    }
 
+  }
 }
 
 void executeCommand(String data) {
@@ -193,6 +211,7 @@ void sendMessage(String data) {
   
   Transceiver.SendStruct(&ebyte_msg, sizeof(ebyte_msg));
   Serial.println("Sent. Count " + String(ebyte_msg.count));
+  Serial.println("***");
   delay(1000);
 }
 

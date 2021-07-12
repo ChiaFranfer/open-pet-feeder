@@ -26,7 +26,7 @@ void setup() {
   Serial.begin(115200);
 
   ESerial.begin(9600);
-  Serial.println("Starting Reader");
+  Serial.println("Starting GW");
 
   // this init will set the pinModes for you
   Transceiver.init();
@@ -56,10 +56,34 @@ void setup() {
   // for both sender and receiver and make sure air rates, channel
   // and address is the same
   Transceiver.PrintParameters();
+
+  ebyte_msg.count = 0;
+
+  // Ejemplo de F(): https://techexplorations.com/guides/arduino/programming/f-macro/
+  // Moar: https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram
+  Serial.println(F("Resumen de comandos aptos: status, ping, rellenar_bebedero,"));
+  Serial.println(F("rellenar_comedero, reset_comedero, check_levels y update_oled"));
+  Serial.println(F("Formato de los mensajes de respuesta: ack;field1;var1"));
+
+  Serial.println("Ready...");
+  delay(500);
 }
 
 void loop() {
 
+  // arduino serial
+
+  if (Serial.available() > 0) {
+    String static dat_rec;
+
+    dat_rec = Serial.readString();
+    dat_rec.trim(); //quita espacio en blanco
+
+    Serial.println("Received data: " + dat_rec);
+
+    sendMessage(dat_rec); //dat_rec se envia por radio
+  }
+  
   // if the transceiver serial is available, proces incoming data
   // you can also use Transceiver.available()
 
@@ -83,9 +107,23 @@ void loop() {
     // if the time checker is over some prescribed amount
     // let the user know there is no incoming data
     if ((millis() - Last) > 1000) {
-      Serial.println("Searching: ");
+      //Serial.println("Searching: ");
       Last = millis();
     }
 
   }
+}
+
+//Datos recibidos por serial, por eso printeo desde Serial.
+void sendMessage(String data) {
+  Serial.println("Sending data: " + data);
+
+  // Send to radio
+  data.toCharArray(ebyte_msg.msg, data.length()+1);
+  ebyte_msg.count++; 
+  
+  Transceiver.SendStruct(&ebyte_msg, sizeof(ebyte_msg));
+  Serial.println("Sent. Count " + String(ebyte_msg.count));
+  Serial.println("***");
+  delay(1000);
 }
