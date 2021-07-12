@@ -96,9 +96,11 @@ void loop() {
     Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
 
     // dump out what was just received
-    Serial.print("Count: "); Serial.println(ebyte_msg.count);
-    Serial.print("msg: "); Serial.println(ebyte_msg.msg);
-    Serial.println("***");
+    //Serial.print("Count: "); 
+    //Serial.println(ebyte_msg.count);
+    //Serial.print("msg: "); 
+    Serial.println(ebyte_msg.msg);
+    //Serial.println("***");
     // if you got data, update the checker
     Last = millis();
    
