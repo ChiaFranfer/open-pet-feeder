@@ -13,16 +13,14 @@
 
 struct ebyte_struct {
   unsigned long count;
-  String msg;                                           
+  char msg[64];                                           
 };
 ebyte_struct ebyte_msg;
 
-int Chan;
 unsigned long Last;
 
 SoftwareSerial ESerial(PIN_RX, PIN_TX);
 EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
-
 
 void setup() {
   Serial.begin(115200);
@@ -72,9 +70,6 @@ void loop() {
     // a parsing method
 
     Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
-    //read = Transceiver.GetByte();
-
-   //Serial.println(read);
 
     // dump out what was just received
     Serial.print("Count: "); Serial.println(ebyte_msg.count);

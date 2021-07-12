@@ -34,7 +34,7 @@ EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
 
 struct ebyte_struct {
   unsigned long count;
-  String msg;
+  char msg[64];
 };
 ebyte_struct ebyte_msg;
 
@@ -62,13 +62,13 @@ void setup() {
 
   Transceiver.SetUARTBaudRate(UDR_9600);
   Transceiver.SetAirDataRate(ADR_2400);
-  Transceiver.SetAddressH(2);
+  Transceiver.SetAddressH(1);
   Transceiver.SetAddressL(0);
 
   Transceiver.SetChannel(LORA_CHANNEL);
   Transceiver.SetTransmitPower(OPT_TP21);
   Transceiver.SetPullupMode(0);
-  Transceiver.SetFECMode(1);
+  Transceiver.SetFECMode(1);  
 
   // save the parameters to the unit,
   //Transceiver.SaveParameters(PERMANENT);
@@ -118,13 +118,23 @@ void executeCommand(String data) {
   String static msg;
 
   if (data.equals("status")) {
-    //Serial.println("to do");
     
-    // int waterLevel = checkWaterLevel();
+    
+    int waterLevel = checkWaterLevel();
 
-    //msg = "ack;water;" + String(waterLevel);
+    int feederLevel = TOTAL_REFILL - num_refill;
 
-    msg = "ack;status;" + String(num_refill);
+    String status;
+
+    if (waterLevel > 25 && feederLevel > 5){
+      status = "ok";
+    } else if (waterLevel <= 25 || feederLevel <= 5){
+      status = "ko";   
+    } else {
+      status = "unknown";
+    }
+
+    msg = "ack;status;" + status;
 
     sendMessage(msg);
   }
@@ -176,8 +186,9 @@ void executeCommand(String data) {
 //Datos recibidos por serial, por eso printeo desde Serial.
 void sendMessage(String data) {
   Serial.println("Sending data: " + data);
-  
-  ebyte_msg.msg = data;
+
+  // Send to radio
+  data.toCharArray(ebyte_msg.msg, data.length()+1);
   ebyte_msg.count++; 
   
   Transceiver.SendStruct(&ebyte_msg, sizeof(ebyte_msg));
