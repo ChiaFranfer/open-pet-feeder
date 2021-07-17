@@ -105,13 +105,13 @@
 	
 	\noindent También agradecer al resto de mi familia, que en la distancia también me apoyan. En especial a mi tía Bárbara, que siempre me llama para darme ánimos con todo lo que hago y que confía en mi desde siempre. A mis primas Sonia y María, y a mi abuela Guadalupe, las cuales son ejemplos de mujeres admirables en mi familia y a las que quiero muchísimo. Especial mención a mi abuela, Lucía Figueredo, la cual falleció el año pasado y sé que estaría muy orgullosa de ver a su nieta convertirse en ingeniera, y creando este proyecto. \\
 	
-	\noindent Debo agradecer también a mis suegros, Encarnación y Miguel Ángel, por dedicarme parte de su tiempo siempre que pueden, y en especial, en el desarrollo del prototipo exterior; agradezco enormemente que me hayan prestado sus herramientas, ya que sin ellas el resultado no habría sido el mismo. Muchas gracias por permitirme instalar en su casa el otro extremo de la comunicación, que ha permitido poder concebir este proyecto. \\
+	\noindent Debo agradecer también a mis suegros, Encarnación y Miguel Ángel, por dedicarme parte de su tiempo siempre que pueden, y en especial, en el desarrollo del prototipo exterior; agradezco enormemente que me hayan prestado sus herramientas, ya que sin ellas el resultado no habría sido el mismo. Muchas gracias por permitirme instalar en vuestra casa el otro extremo de la comunicación, que ha permitido poder concebir este proyecto. \\
 	
 	\noindent Me gustaría también agradecer a mi amiga Magdalena, mi amiga de toda la vida, la cual me apoya incondicionalmente, y me inspira en su lucha constante por mejorarse así misma y por ganarse la vida en lo que más le gusta, la música. A mi amiga Clara, la cual es una estupenda teleco, que siempre ha confiado en mi más que yo misma, y la cual me inspira por ser una persona fuerte, independiente y que tiene claro lo que quiere. A mi amigo Pablo, porque ni la distancia ni las exigentes carreras que cursamos nos han hecho perder el contacto, ni perder un vínculo que hace años se formó. Es un placer poder contar con estar tres personas.\\  
 	
 	\noindent Especial mención a mi compañero Enrique Fernández Sánchez, el cual ha sido también como mi tutor, ayudándome muchísimo a comprender la importancia del Open Source, guiándome en el conocimiento sobre microcontroladores y LoRa, y en general, aconsejándome en todo lo que ha podido y más. Gracias a él, la introducción al mundo maker se me ha hecho más sencilla, mucho más consciente y sin excesivos agobios. A esto, añadir que su aportación económica me ha ayudado muchísimo a sacar este proyecto hacia delante. Sin duda, ajeno a este proyecto, aprenderé muchas cosas de él y gracias a él, y no me cabe la menor duda de que es un gran teleco y una gran persona.\\
 	
-	\noindent Agradecer a Patitas Unidas Los Alcázares por permitirme instalar un dispositivo en sus instalaciones, y por comprender mi ausencia durante algunos meses donde el desarrollo de este proyecto era muy exigente. Especial mención a mi compañera Jen, con la que voy al refugio prácticamente siempre; su actitud y sus ganas al tratar con los perros desde luego es una cualidad a admirar, y es una inspiración que recarga fuerzas para seguir luchando por los animales.\\
+	\noindent Agradecer a Patitas Unidas Los Alcázares por permitirme instalar un dispositivo en sus instalaciones, y por comprender mi ausencia durante algunos meses donde el desarrollo de este proyecto era muy exigente. Especial mención a mi compañera Jen, con la que voy al refugio prácticamente siempre; sus ganas y actitud al tratar con los perros desde luego es una cualidad a admirar, y es una inspiración que recarga fuerzas para seguir luchando por los animales.\\
 	
 	\noindent Por último, agradecer a todas esas personas que han subido a la nube su proyecto, su documentación y dejan todo ese desarrollo bajo licencia Open Source, permitiendo que gente como yo desarrolle su proyecto basándome en sus librerías, o me den ideas que sin duda impulsen el mío. Estarán debidamente mencionadas, ya que merecen ese crédito.\\
 	
@@ -127,15 +127,16 @@
 	
 	\subsection[Contexto y justificación del trabajo]{Contexto y justificación del trabajo}
 
-	\noindent Este proyecto ha sido concebido con el objetivo principal de ayudar a la preservación de la vida animal, ante el aumento de especies en extinción, sobre todo en lo que llevamos de siglo \footnote{\href{https://www.nationalgeographic.com.es/naturaleza/grandes-reportajes/animales-peligro-extincion_12536}{National Geographic} , \href{https://www.bbc.com/mundo/noticias-54036796}{BBC}, \href{https://www.worldwildlife.org/descubre-wwf/historias/que-significa-especie-en-peligro-de-extincion}{WWF}, \href{https://www.fundacionaquae.org/causas-perdida-biodiversidad/}{Fundación AQUAE}}, y ante el hecho de que miles de animales domésticos siguen siendo abandonados al año en España \footnotemark. \\
+	\noindent Este proyecto ha sido concebido con el objetivo principal de ayudar a la preservación de la vida animal, ante el aumento de especies en extinción, sobre todo en lo que llevamos de siglo [\ref{bib: enlace National Geographic}][\ref{bib: enlace BBC}][\ref{bib: enlace WWF}][\ref{bib: enlace Fundación AQUAE}], %\footnote{\href{https://www.nationalgeographic.com.es/naturaleza/grandes-reportajes/animales-peligro-extincion_12536}{National Geographic} , \href{https://www.bbc.com/mundo/noticias-54036796}{BBC}, \href{https://www.worldwildlife.org/descubre-wwf/historias/que-significa-especie-en-peligro-de-extincion}{WWF}, \href{https://www.fundacionaquae.org/causas-perdida-biodiversidad/}{Fundación AQUAE}}
+	y ante el hecho de que miles de animales domésticos siguen siendo abandonados al año en España [\ref{bib: enlace Fundación Affinity}] [\ref{bib: enlace 20 minutos}] [\ref{bib: enlace La Razón}] [\ref{bib: enlace RTVE}]. \\ %\footnotemark. \\
 	
 	%Fundación Affinity, 20 minutos, La Razón, RTVE
-	\footnotetext{\href{https://www.fundacion-affinity.org/observatorio/infografia-el-nunca-lo-haria-estudio-de-abandono-y-adopcion-2020}{Fundación Affinity}, \href{https://www.20minutos.es/noticia/4318383/0/el-abandono-animal-en-espana-aumenta-un-25-en-las-ultimas-semanas/}{20 minutos}, \href{https://www.larazon.es/medio-ambiente/20201118/qxv6yuokargfbnjvknn6bhm4ze.html}{La Razón}, \href{https://www.rtve.es/noticias/20200608/abandonos-animales-domesticos-se-han-disparado-espana-durante-meses-confinamiento/2015761.shtml}{RTVE}}
+	%\footnotetext{\href{https://www.fundacion-affinity.org/observatorio/infografia-el-nunca-lo-haria-estudio-de-abandono-y-adopcion-2020}{Fundación Affinity}, \href{https://www.20minutos.es/noticia/4318383/0/el-abandono-animal-en-espana-aumenta-un-25-en-las-ultimas-semanas/}{20 minutos}, \href{https://www.larazon.es/medio-ambiente/20201118/qxv6yuokargfbnjvknn6bhm4ze.html}{La Razón}, \href{https://www.rtve.es/noticias/20200608/abandonos-animales-domesticos-se-han-disparado-espana-durante-meses-confinamiento/2015761.shtml}{RTVE}}
 
 	\noindent Es por ello que se requiere de ayuda activa para paliar estos problemas. Las tareas de carácter solidario, en bastantes casos, no siempre cuentan con suficientes voluntarios; además, siendo un problema tan extendido y avanzado, el número de acciones que hay que llevar a cabo para aliviarlo es alto para un número limitado de voluntarios, los cuales deben incrementar considerablemente el tiempo que pasan realizando este tipo de tareas. 
 	Tanto si se trata de un refugio de animales domésticos abandonados, como de reservas naturales donde se intenta repoblar una especie, los animales dependen enteramente del trabajo de los voluntarios. Así pues, es de vital importancia la optimización de las tareas de voluntariado, su automatización e, incluso, control remoto, mediante la creación de herramientas que ayuden a reducir el tiempo que se destina a tareas rutinarias para poder utilizar ese tiempo a otras tareas (de rescate, o de financiación para el mantenimiento de las instalaciones y de los propios animales, por ejemplo). \\
 	
-	\noindent Con el objetivo en mente de ayudar a la preservación de la fauna (y con ello, de la vida de los ecosistemas terrestres), evitando la extinción de especies y el abandono animal, se ha concebido y desarrollado este proyecto teniendo en cuenta los diferentes casos de uso (emplazamientos donde se podrá instalar el sistema, características del entorno), mejor adaptación a ellos, relación entre buenas prestaciones y bajo consumo, precio total del producto, o facilidad de uso por parte de un usuario medio. Es por ello que desde el principio se propone una serie de actuaciones a realizar, acorde a lo anteriormente mencionado, tales como:
+	\noindent Con el objetivo en mente de ayudar a la preservación de la fauna (y con ello, de la vida de los ecosistemas terrestres), evitando la extinción de especies y el abandono animal, se ha concebido y desarrollado este proyecto teniendo en cuenta los diferentes casos de uso (emplazamientos donde se podrá instalar el sistema, características del entorno), mejor adaptación a ellos, relación entre buenas prestaciones y bajo consumo, precio total del producto, o facilidad de uso por parte de un usuario medio. Es por ello que desde el principio se propone una serie de actuaciones a realizar, acorde a lo anteriormente mencionado, tales como: \\
 	
 	\begin{itemize}
 		\item El diseño del sistema de alimentación será tal que el producto final pueda ser instalado no sólo en hogares, sino en sitios remotos, donde el acceso a recursos tales como la electricidad o Internet son escasos o inexistentes. Así pues, el dispositivo utilizará energía solar y baterías recargables, comunicación de bajo consumo y largo alcance y modo de ahorro de energía. 
@@ -229,7 +230,7 @@
 	\label{subseccion 3.2.1: búsqueda soluciones alimentación}
 	\noindent Se entiende por alimentación autónoma la obtención de energía suficiente para el correcto funcionamiento de un dispositivo o un sistema, y que dicha obtención de energía se realice de manera cíclica e independiente o prácticamente independiente, es decir, no dependa de la acción y supervisión constante de una persona. \\
 	
-	\noindent Para determinar la forma en la que alimentaremos nuestro proyecto es imprescindible conocer bien las necesidades energéticas que lo limitarán; hay que determinar, por tanto, el consumo estimado de los componentes que conforman el proyecto. También es importante saber el tamaño y/o el destino de nuestro proyecto, para determinar si estará limitado a la hora de su transporte por una fuente de alimentación pesada, o si esta no limita en absoluto; será fundamental, además, conocer la ubicación de nuestro proyecto, es decir, si estará en el exterior o interior, si el ambiente será excesivamente frío, cálido o húmedo.\\
+	\noindent Para determinar la forma en la que alimentaremos nuestro proyecto es imprescindible conocer bien las necesidades energéticas que lo limitarán [\ref{bib: adafruit pick the right battery}]; hay que determinar, por tanto, el consumo estimado de los componentes que conforman el proyecto. También es importante saber el tamaño y/o el destino de nuestro proyecto, para determinar si estará limitado a la hora de su transporte por una fuente de alimentación pesada, o si esta no limita en absoluto; será fundamental, además, conocer la ubicación de nuestro proyecto, es decir, si estará en el exterior o interior, si el ambiente será excesivamente frío, cálido o húmedo.\\
 	
 	\noindent A continuación, se mencionarán algunas soluciones para alimentación autónoma. Primero, se realizará una introducción teórica a términos y definiciones que nos permitan entender su funcionamiento; después, se presentarán opciones dentro de la categoría, haciendo énfasis en sus ventajas y desventajas, y anotando para qué proyectos es recomendable su uso. Por último, se pueden mostrar datos comparativos entre las opciones dentro de la categoría para una mejor visualización de dichas diferencias.\\ 
 	
@@ -237,7 +238,7 @@
 	
 	\noindent \textit{Términos y definiciones} \\
 	
-	\noindent Las características eléctricas de una batería definen cómo actuará en el circuito global, y las características físicas tendrán un enorme impacto en el tamaño y peso global del producto al que va a alimentar. Es por ello que, a la hora de escoger una batería, hay que tener presente los requerimientos de alimentación del proyecto, ya que ésta debe ser capaz de suministrar suficiente energía para que funcione correctamente, sin que sus características físicas supongan una limitación. Algunos parámetros que hay que comprobar son la tensión nominal, la corriente, la capacidad y el material del que está hecha la batería, pero no son los únicos a tener en cuenta. Se presenta, a continuación, una lista más extensa de los parámetros más importantes de las baterías, la cual nos la proporciona \textit{Texas Instruments} en su artículo \href{https://www.ti.com/lit/an/snva533/snva533.pdf}{\textit{Characteristics of rechargeable batteries}}: 
+	\noindent Las características eléctricas de una batería definen cómo actuará en el circuito global, y las características físicas tendrán un enorme impacto en el tamaño y peso global del producto al que va a alimentar. Es por ello que, a la hora de escoger una batería, hay que tener presente los requerimientos de alimentación del proyecto, ya que ésta debe ser capaz de suministrar suficiente energía para que funcione correctamente, sin que sus características físicas supongan una limitación. Algunos parámetros que hay que comprobar son la tensión nominal, la corriente, la capacidad y el material del que está hecha la batería, pero no son los únicos a tener en cuenta. Se presenta, a continuación, una lista más extensa de los parámetros más importantes de las baterías [\ref{bib: TI rechargeable batteries}]: 
 	
 	\begin{itemize}
 		\item  Una \textit{\textbf{celda}} es un dispositivo electroquímico capaz de suministrar la energía que resulta de una reacción química interna a un circuito eléctrico externo. \\
@@ -260,7 +261,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/chargeDischargeCurve_TxInst.png}
-			\caption{Curva de la carga/descarga de una batería.}
+			\caption{Curva de la carga/descarga de una batería [\ref{bib: TI rechargeable batteries}].}
 		\end{center}
 	\end{figure}
 
@@ -269,7 +270,7 @@
 	
 	\noindent \textit{Tipos de baterías recargables}\\
 	
-	\noindent Las principales baterías recargables que existen son: \\
+	\noindent Las principales baterías recargables [\ref{bib: Hackaday battery basics}][\ref{bib: YouTube How to choose  a battery}][\ref{bib: blog diferencias li-ion y li-po}] que existen son: \\
 	
 	\begin{enumerate}
 		
@@ -294,7 +295,7 @@
 		\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{img/energyDensityComparison_TxInst.png}
-			\caption{Comparación densidad de energía para diferentes baterías.}
+			\caption{Comparación densidad de energía para diferentes baterías [\ref{bib: TI rechargeable batteries}].}
 			\label{fig: comparación densidad energía}
 		\end{center}
 	\end{figure}
@@ -312,7 +313,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{img/cellDischargeCurve_TxInst.png}
-			\caption{Curva de descarga de una celda Li-ion y una celda Ni-Cd/Ni-MH (caída de tensión conforme aumentan las horas de uso de la batería).}
+			\caption{Curva de descarga de una celda Li-ion y una celda Ni-Cd/Ni-MH (caída de tensión conforme aumentan las horas de uso de la batería) [\ref{bib: TI rechargeable batteries}].}
 			\label{fig: curva descarga celdas}
 		\end{center}
 	\end{figure}
@@ -344,7 +345,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/layersSolarPanel.png}
-			\caption{Capas y componentes que componen un panel solar.}
+			\caption{Capas y componentes que componen un panel solar [\ref{bib: solar reviews how solar panels work}].}
 			\label{fig: capas panel solar}
 		\end{center}
 	\end{figure}
@@ -362,7 +363,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/photovoltaic_effect.png}
-			\caption{Dibujo representativo del efecto fotovoltaico.}
+			\caption{Dibujo representativo del efecto fotovoltaico [\ref{bib: solar reviews how solar panels work}].}
 			\label{fig: efecto fotovoltaico}
 		\end{center}
 	\end{figure}
@@ -383,12 +384,12 @@
 		\begin{figure}[h]
 		\begin{subfigure}{0.5\textwidth}
 			\includegraphics[width=1\textwidth]{img/JV_curve_solarCell.png} 
-			\caption{Determinación de los parámetros de una célula solar a partir de su curva J-V.}
+			\caption{Determinación de los parámetros de una célula solar a partir de su curva J-V [\ref{bib: research gate JV curve solar panel}].}
 			\label{fig: curva J-V célula solar}
 		\end{subfigure}
 		\begin{subfigure}{0.5\textwidth}
 			\includegraphics[width=1\linewidth]{img/IV_curve_solarCell.png}
-			\caption{Curva I-V de una célula solar.}
+			\caption{Curva I-V de una célula solar [\ref{bib: research gate pv cell param}].}
 			\label{fig: I-V curve of a solar cell}
 		\end{subfigure}
 		\caption{Curvas J-V e I-V de una célula fotovoltaica}
@@ -398,7 +399,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{img/effectTwoIdenticalCells.png}
-			\caption{Comportamiento de un panel solar formado por dos células solares idénticas.}
+			\caption{Comportamiento de un panel solar formado por dos células solares idénticas [\ref{bib: SlidePlayer Photovoltaic systems}].}
 			\label{fig: solar panel of identical solar cells}
 		\end{center}
 	\end{figure}
@@ -430,7 +431,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{img/mppt_curve.png}
-			\caption{Curva P-V de una célula solar, indicando el punto MPP.}
+			\caption{Curva P-V de una célula solar, indicando el punto MPP [\ref{bib: research gate mppt curve}].}
 			\label{fig: MPPT in P-V curve of a solar cell}
 		\end{center}
 	\end{figure}
@@ -455,7 +456,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/circuitEquivalent_solarCell.png}
-			\caption{Circuito equivalente de una célula fotovoltaica, en el caso ideal (a) y considerando pérdidas (b).}
+			\caption{Circuito equivalente de una célula fotovoltaica, en el caso ideal (a) y considerando pérdidas (b) [\ref{bib: TU delft OCW solar cell param}].}
 			\label{fig: equivalent circuit solar cell}
 		\end{center}
 	\end{figure}
@@ -465,7 +466,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/JV_curve_withRsRp.png}
-			\caption{Curva J-V de una célula fotovoltaica, mostrando el efecto de aumentar o disminuir el valor de las resistencias $R_{s}$ y $R_{p}$ o $R_{sh}$ (\textit{shunt}).}
+			\caption{Curva J-V de una célula fotovoltaica, mostrando el efecto de aumentar o disminuir el valor de las resistencias $R_{s}$ y $R_{p}$ o $R_{sh}$ (\textit{shunt}) [\ref{bib: SciELO}].}
 			\label{fig: JV curve with non-ideal model (one diode)}
 		\end{center}
 	\end{figure}
@@ -478,7 +479,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/nonIdeal_equivCircuit_solarCell.png}
-			\caption{Circuito equivalente de una célula fotovoltaica con un modelo de dos diodos, donde $n_{1}$ y $n_{2}$ son los factores de idealidad e $I_{d1}$ y $I_{d2}$ las corrientes que atraviesan cada diodo.}
+			\caption{Circuito equivalente de una célula fotovoltaica con un modelo de dos diodos, donde $n_{1}$ y $n_{2}$ son los factores de idealidad e $I_{d1}$ y $I_{d2}$ las corrientes que atraviesan cada diodo [\ref{bib: TU delft OCW solar cell param}].}
 			\label{fig: non-Ideal equivalent circuit solar cell}
 		\end{center}
 	\end{figure}	
@@ -493,12 +494,12 @@
 	\begin{figure}[h]
 		\begin{subfigure}{0.45\textwidth}
 			\includegraphics[width=0.8\textwidth]{img/generalEffect_irradianceIVcurve_solarCell.png} 
-			\caption{Efecto general.}
+			\caption{Efecto general [\ref{bib: SlidePlayer Photovoltaic systems}].}
 			\label{fig: variación general en la curva I-V de una célula PV con la intensidad de la radiación solar.}
 		\end{subfigure}
 		\begin{subfigure}{0.5\textwidth}
 			\includegraphics[width=1.05\linewidth]{img/concreteEffect_irradianceIVcurve_solarCell.png}
-			\caption{Efecto según valores concretos de radiación.}
+			\caption{Efecto según valores concretos de radiación [\ref{bib: research gate pv power}].}
 			\label{fig:variación con valores en la curva I-V de una célula PV con la intensidad de la radiación solar.}
 		\end{subfigure}
 		\caption{Variación en la curva I-V ante la radiación solar.}
@@ -512,12 +513,12 @@
 	\begin{figure}[h]
 		\begin{subfigure}{0.45\textwidth}
 			\includegraphics[width=0.8\textwidth]{img/generalEffect_celTempIVcurve_solarCell.png} 
-			\caption{Efecto general.}
+			\caption{Efecto general [\ref{bib: SlidePlayer Photovoltaic systems}].}
 			\label{fig: variación general en la curva I-V de una célula PV con la temperatura.}
 		\end{subfigure}
 		\begin{subfigure}{0.55\textwidth}
 			\includegraphics[width=1\linewidth]{img/concreteEffect_TempIVcurve_solarCell.png}
-			\caption{Efecto según valores concretos de temperatura ambiente.}
+			\caption{Efecto según valores concretos de temperatura ambiente [\ref{bib: research gate pv power}].}
 			\label{fig:variación con valores en la curva I-V de una célula PV con la temperatura.}
 		\end{subfigure}
 		\caption{Variación en la curva I-V ante la temperatura ambiente}
@@ -537,7 +538,7 @@
 			\caption{}
 			\label{fig:power output of a solar cell vs air temp.}
 		\end{subfigure}
-		\caption{Relación entre temperatura ambiente, radiación solar, con la potencia de salida de una célula PV (\ref{fig: solar cell temp vs air temp.}) y temperatura de ésta (\ref{fig:power output of a solar cell vs air temp.}).}
+		\caption{Relación entre temperatura ambiente, radiación solar, con la potencia de salida de una célula PV (\ref{fig: solar cell temp vs air temp.}) y temperatura de ésta (\ref{fig:power output of a solar cell vs air temp.}) [\ref{bib: QVP air temp affect solar panel output}].}
 		\label{fig:solar temp}
 	\end{figure}
 	
@@ -548,7 +549,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{img/cellTemp_ambTemp_Irrad_Pow.png}
-			\caption{Variación de la potencia de salida de una célula PV dependiendo de la hora del día, la temperatura y la radiación solar.}
+			\caption{Variación de la potencia de salida de una célula PV dependiendo de la hora del día, la temperatura y la radiación solar [\ref{bib: research gate pv cell temp vs others}].}
 			\label{fig:cellTemp_ambTemp_Irrad_Pow}
 		\end{center}
 	\end{figure}
@@ -581,11 +582,11 @@
 	
 	\subsubsubsection{Microcontrolador}
 	
-	\noindent \textit{Disclaimer:} a lo largo de este apartado y consecutivos se hablará de la palabra microprocesador y microcontrolador. Si bien no tienen el mismo significado, se usará la palabra microcontrolador para determinar el conjunto global de una placa cuyo corazón sea un microcontrolador, de manera que podamos aligerar un poco la literatura y lectura de este documento. Un microprocesador es la CPU, mientras que un microcontrolador compone un sistema embebido en un único \textit{chip} formado por memoria, procesador y entradas/salidas programables. Por ejemplo, llamaremos microcontrolador al arduino nano o uno porque se basa en el microcontrolador ATmega328.\\
+	\noindent \textit{Aclaración:} a lo largo de este apartado y consecutivos se hablará de la palabra microprocesador y microcontrolador. Se usará la palabra microcontrolador para determinar el conjunto global de una placa cuyo corazón sea un microcontrolador, de manera que podamos aligerar un poco la literatura y lectura de este documento. Un microprocesador es la CPU, mientras que un microcontrolador conforma un sistema embebido en un único \textit{chip} formado por memoria, procesador y entradas/salidas programables. Por ejemplo, llamaremos microcontrolador al arduino nano o uno porque se basa en el microcontrolador ATmega328.\\
 	
 	\noindent En tanto a microcontroladores, la opción \textit{Open Source} más conocida seguramente sea Arduino. Sin embargo, no significa que no existan más opciones en tanto a microcontroladores. Es importante recordar que ni Arduino ni las alternativas que se van a presentar son ordenadores, son microcontroladores, esto es, circuitos integrados diseñados para llevar a cabo una tarea única de manera cíclica (una vez que programado para una tarea, ejecutará esa tarea y sólo esa tarea una y otra vez, dependiendo de cómo haya sido programado).\\
 	
-	\noindent A continuación, se va a presentar una lista con algunas opciones de microcontroladores. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar; la elección de un microcontrolador u otro dependerá de lo que necesite nuestro proyecto (si necesita muchas entradas porque tendremos muchos periféricos, si necesitamos ahorro de energía al máximo, o una buena potencia de procesamiento, etc). \\
+	\noindent A continuación, se va a presentar una lista con algunas opciones de microcontroladores [\ref{bib: arduino alternatives}][\ref{bib: microcontrollers alternative to arduino}][\ref{bib: alternative to arduino}]. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar; la elección de un microcontrolador u otro dependerá de lo que necesite nuestro proyecto (si necesita muchas entradas porque tendremos muchos periféricos, si necesitamos ahorro de energía al máximo, o una buena potencia de procesamiento, etc). \\
 	
 	\begin{itemize}
 		\item \textbf{Arduino}. Se trata de una plataforma de desarrollo Open Source hardware y software, característica por su facilidad de uso e integración entre la solución hardware (placas Arduino) y la solución software (Arduino IDE). Existe una gama variada de placas Arduino, entre las que podemos destacar la nano o la uno. A modo de ejemplo, se mostrará la información de la uno, placa recomendada por la propia organización Arduino para principiantes.\\
@@ -646,9 +647,9 @@
 		
 		\textit{Precio}: aprox. 13 \$ en Texas Instruments. \\
 		
-		\item \textbf{Netduino N3 Wi-Fi}. Un tipo diferente de alternativa a Arduino de Wilderness Labs, el Netduino N3 utiliza .NET MicroFramework y Netduino.Foundation Framework, lo que significa que está programado en un lenguaje de programación de nivel superior (C\#). Esto puede resultar atractivo para aquellos que no quieren lidiar con los niveles más bajos de programación de MCU.
+		\item \textbf{Netduino N3 Wi-Fi}. Una alternativa diferente a Arduino de Wilderness Labs, el Netduino N3 utiliza .NET MicroFramework y Netduino.Foundation Framework, lo que significa que está programado en un lenguaje de programación de nivel superior (C\#). Esto puede resultar atractivo para aquellos que no quieren lidiar con los niveles más bajos de programación de MCU.
 		
-		Esta placa está hecha con dispositivos inalámbricos en mente, con Wi-Fi incorporado. Otra característica notable de Netduino es la disposición de los pines hecha para la compatibilidad del shield Arduino. Dicho todo esto, Netduino puede atraer a aquellos que ya están familiarizados con el marco .NET y les gustaría programar su placa MCU a través de Microsoft Visual Studio y similares. \\
+		Esta placa, con Wi-Fi incorporado, está diseñada para conexión inalámbrica entre dispositivos. Otra característica notable de Netduino es la disposición de los pines hecha para la compatibilidad del shield Arduino. Dicho todo esto, Netduino puede atraer a aquellos que ya están familiarizados con el marco .NET y les gustaría programar su placa MCU a través de Microsoft Visual Studio y similares. \\
 		
 		\textit{Especificaciones}: 168 MHz, 164+ kB RAM, 1408kB de almacenamiento flash.  \\
 		
@@ -678,7 +679,7 @@
 		
 		\item \textbf{Adafruit Feather Huzzah}. El Huzzah proviene de la línea Feather de Adafruit. Está destinado a ser una placa pequeña. Tiene Wi-Fi incorporado, un cargador Li-Po y compatibilidad con Arduino. Además, como ESP8266, se puede utilizar con NodeMCU Lua.
 		
-		Puede parecer que esta placa parece una versión inferior de Thing Plus, ya que el ESP32 es esencialmente el sucesor del ESP8266. Esta placa, sin embargo, ha existido lo suficientemente presente como para que haya ganado una gran comunidad de usuarios. Esto hace que esta placa sea accesible para los aficionados que deseen la experiencia colectiva de dicha comunidad. \\
+		Puede parecer que esta placa parece una versión inferior de Thing Plus, ya que el ESP32 es esencialmente el sucesor del ESP8266. Esta placa, sin embargo, ha existido lo suficiente como para que haya ganado una gran comunidad de usuarios. Esto hace que esta placa sea accesible para los aficionados que deseen la experiencia colectiva de dicha comunidad. \\
 		
 		\textit{Especificaciones}: 80 MHz, 50 kB RAM, 4MB de almacenamiento flash. \\
 		
@@ -688,7 +689,7 @@
 		
 		\item \textbf{BeagleBoard PocketBeagle}. El PocketBeagle es el más pequeño de los BeagleBoards. Ejecuta Linux desde el primer momento y se puede programar a través de su navegador web. Esta opción, por tanto, se trataría de un ordenador, como lo es una Raspberry Pi, no un microcontrolador. Ideal para proyectos pequeños que necesitan los recursos de una computadora. 
 		
-		El Sitara AM3358 ARM Cortex-A8 en el PocketBeagle tiene dos PRU (unidades programables en tiempo real) que son esencialmente microcontroladores conectados al procesador principal. Estos son, en palabras de sus preguntas frecuentes, "ideales para una latencia baja predecible, mientras que el procesador ARM es bueno para el rendimiento". \\
+		El Sitara AM3358 ARM Cortex-A8 en el PocketBeagle tiene dos PRU (unidades programables en tiempo real) que son esencialmente microcontroladores conectados al procesador principal. Estos son, en palabras de sus preguntas frecuentes, ``ideales para una latencia baja predecible, mientras que el procesador ARM es bueno para el rendimiento". \\
 		
 		\textit{Especificaciones}: 1GHz Cortex-A8, 512 MB RAM\\
 		
@@ -719,7 +720,7 @@
 		\textit{Precio}: aprox. 16\$ en ST.
 		\\
 		
-		\item \textbf{Silicon Labs Wonder Gecko}. Esta placa de Silicon Labs se basa en el EFM32. Si bien es una placa más cara, viene con una serie de características muy destacables. Incluyen un micro LCD, un control deslizante táctil, un sensor de luz ambiental y un condensador de 0.03F para el dominio de energía de respaldo, por nombrar algunos.
+		\item \textbf{Silicon Labs Wonder Gecko}. Esta placa de Silicon Labs se basa en el EFM32. Si bien es una placa más cara, viene con una serie de características muy destacables. Incluyen un micro LCD, un control deslizante táctil, un sensor de luz ambiental y un condensador de 0.03F para proporcionar energía de respaldo, por nombrar algunos.
 		
 		El Wonder Gecko está más orientado al desarrollo, pero aún tiene una cantidad decente de referencias y guías para ser accesible. Silicon Labs también ofrece su Simplicity Studio. Si el precio no es un problema, esta placa y sus variaciones son buenas alternativas. \\
 		
@@ -729,7 +730,7 @@
 		
 		\textit{Precio}: aprox.  100\$ en Silicon Labs.\\
 		
-		\item \textbf{Raspberry Pi Pico}. Este microcontrolador lleva en el mercado desde el 25 de enero de 2021, apenas unos meses; este hecho, sin embargo, no impide que miles de personas ya lo hayan probado, y es que actualmente existe en internet muchos proyectos y documentación acerca de esta nueva Raspberry Pi, la cual se aleja de su antecesora mini ordenador para acercarse más al mundo de los microcontroladores similares a Arduino. Está construido sobre el propio silicio interno de Raspberry Pi, el RP2040. El RP2040 también forma parte de un ecosistema más amplio. Adafruit, Pimoroni, SparkFun e incluso el equipo de Arduino han desarrollado placas adaptadas a necesidades más específicas. Uno de los dispositivos de Pimoroni, el PicoSystem, es una "experiencia de creación de juegos portátil" de 58.50 £ (alrededor de 80 \$ ) que te permite programar una consola incluso más pequeña que la Game Boy Micro.\\
+		\item \textbf{Raspberry Pi Pico}. Este microcontrolador lleva en el mercado desde el 25 de enero de 2021, apenas unos meses; este hecho, sin embargo, no impide que miles de personas ya lo hayan probado, y es que actualmente existe en internet muchos proyectos y documentación acerca de esta nueva Raspberry Pi, la cual se aleja de su antecesora mini ordenador para acercarse más al mundo de los microcontroladores similares a Arduino. Está construido sobre el propio silicio interno de Raspberry Pi, el RP2040. El RP2040 también forma parte de un ecosistema más amplio. Adafruit, Pimoroni, SparkFun e incluso el equipo de Arduino han desarrollado placas adaptadas a necesidades más específicas. Uno de los dispositivos de Pimoroni, el PicoSystem, es una ``experiencia de creación de juegos portátil" de 58.50 £ (alrededor de 80 \$) que te permite programar una consola incluso más pequeña que la Game Boy Micro.\\
 		
 		Para los usuarios avanzados, la organización Raspberry Pi proporciona un C SDK completo, una cadena de herramientas basada en GCC e integración con Visual Studio Code. \\
 		
@@ -739,16 +740,16 @@
 		
 		\textit{Precio}: 4 \$.\\
 		
-		\item \textbf{Opción DIY} (hacer tú mismo tu propio arduino o microcontrolador). Existen tutoriales varios en internet que nos enseñan a crear nuestro propio microcontrolador haciendo uso de componentes como ICs, diodos, resistencias, condensadores, etc. Es una buena opción para aprender cómo funciona un microcontrolador a nivel electrónico, o si queremos personalizar a nuestro gusto para reducir el consumo del sistema global que constituye el microcontrolador, por ejemplo.\\
+		\item \textbf{Opción DIY} (\textit{Do It Yourself}hacer tú mismo tu propio arduino o microcontrolador). Existen tutoriales varios en internet que nos enseñan a crear nuestro propio microcontrolador haciendo uso de componentes como ICs (\textit{Integrated Circuits}), diodos, resistencias, condensadores, etc. Es una buena opción para aprender cómo funciona un microcontrolador a nivel electrónico, o si queremos personalizar a nuestro gusto para reducir el consumo del sistema global que constituye el microcontrolador, por ejemplo.\\
 
 	\end{itemize}
 	\subsubsubsection{Comunicación radio}
 	
-	\noindent En tanto a posibles opciones para llevar a cabo una comunicación radio efectiva, existen muchas, pero la investigación se centrará en aquellas que nos puedan servir para aplicaciones IoT, las cuales se caracterizan por buscar ser autónomas (es decir, priorizar bajo consumo y ahorro de energía), de largo alcance, con transferencia de datos baja/media, seguridad y chequeo de errores, y conectividad entre redes y la nube, entre otros. Se suele hablar de redes LPWAN, para conseguir conectividad IoT, y dentro de esta categoría tenemos varias opciones, entre las que se encuentra LoRa, la cual ya fue preseleccionada para este proyecto por su soporte \textit{Open Source} y equipos asequibles para la creación de redes sencillas, aunque también complejas (Ademas de que conociamos las caracteristicas del terreno, y demas), y se deseaba hacer un estudio sobre prestaciones de equipos que usaran esta tecnología.\\
+	\noindent En tanto a posibles opciones para llevar a cabo una comunicación radio efectiva, existen muchas, pero la investigación se centrará en aquellas que nos puedan servir para aplicaciones IoT, las cuales se caracterizan por buscar ser autónomas (es decir, priorizar bajo consumo y ahorro de energía), de largo alcance, con transferencia de datos baja/media, seguridad y chequeo de errores, y conectividad entre redes y la nube, entre otros. Se suele hablar de redes LPWAN, para conseguir conectividad IoT, y dentro de esta categoría tenemos varias opciones, entre las que se encuentra LoRa, la cual ya fue preseleccionada para este proyecto por su soporte \textit{Open Source} y equipos asequibles para la creación de redes sencillas, aunque también complejas (Ademas de que conociamos las caracteristicas del terreno, y demás), y se deseaba hacer un estudio sobre prestaciones de equipos que usaran esta tecnología.\\
 	
 	\noindent \textbf{Qué es una red LPWAN} \\
 	
-	\noindent Si uno investiga acerca de \textit{Internet of Things}, llega a la conclusión de que existe una cantidad abrumadora de opciones para conectividad IoT: desde Wi-Fi hasta Bluetooth, NB-IoT hasta CAT-M1, y LoRa hasta RPMA. Cada aplicación IoT tiene sus propios requerimientos, lo que quiere decir que una opción de conectividad IoT que es perfecta para una aplicación puede ser una opción menos adecuada para otra. Por ejemplo, si la aplicación tiene muchos sensores remotos, la vida útil de la batería es una consideración importante, pero si la aplicación necesita enviar muchos datos lo es el ancho de banda, o si lleva involucrados datos que son vitales, lo es el tiempo. En resumen, es crucial elegir la mejor opción de conectividad IoT que mejor se adapte a las necesidades. \\
+	\noindent Si uno investiga acerca de \textit{Internet of Things}, llega a la conclusión de que existe una cantidad abrumadora de opciones para conectividad IoT: desde Wi-Fi hasta Bluetooth, NB-IoT hasta CAT-M1, y LoRa hasta RPMA. Cada aplicación IoT tiene sus propios requerimientos, lo que quiere decir que una opción de conectividad IoT que es perfecta para una aplicación puede ser una opción menos adecuada para otra. Por ejemplo, si la aplicación tiene muchos sensores remotos, la vida útil de la batería es una consideración importante, pero si la aplicación necesita enviar muchos datos lo es el ancho de banda, o si involucra datos que son vitales, lo es la latencia. En resumen, es crucial elegir la mejor opción de conectividad IoT que mejor se adapte a las necesidades. \\
 	
 	\noindent Lo primero que debemos tener claro es que LPWAN (\textit{Low Powered Wide Area Network}) no es un estándar. Es un término amplio que abarca varias implementaciones y protocolos, tanto propietarios como de código abierto, que comparten características comunes, como sugiere el nombre: \\
 	
@@ -927,7 +928,7 @@
 		\item Corriente CC por pin de entrada/salida: 40mA (pines I/O)
 		\item Tensión de entrada: 7-12V
 		\item Pines digitales de entrada/salida: 22 (de los cuales 6 son PWM)
-		\item Salida PWM: 6
+		\item Salida PWM (\textit{Pulse Width Modulation}): 6
 		\item Consumo de energía: 19 mA
 		\item Tamaño de la PCB: 18 x 45 mm
 		\item Peso: 7g
@@ -951,7 +952,7 @@
 	
 	\noindent [Foto pines digitales y analógicos, señalando los que son PWM.] \\
 	
-	\noindent Los dos primeros pines de la esquina inferior derecha corresponden a D1 para TX y D0 para RX de la comunicación serie por UART; en Arduino uno estos mismos pines también aparecían pero en orden invertido. Son un reflejo de las líneas de comunicación provistas por el conversor USB-TTL, aunque por lo general usamos la librería Software serial para definir otros dos pines cualquiera para dicha función. Ya que estamos hablando de comunicación serie, tenemos los pines asociados a la interfaz SPI, iguales que en el modelo uno; el pin digital 10 ejecutando la función de slave select, el 11 como MOSI, el 12 como MISO y el 13 como serial clock. Al igual que en el modelo uno, la interfaz de dos cables, I2C, estará presente en A4 para SDA y en A5 para SCL. \\
+	\noindent Los dos primeros pines de la esquina inferior derecha corresponden a D1 para TX y D0 para RX de la comunicación serie por UART(\textit{Universal Asynchronous Receiver-Transmitter}); en Arduino uno estos mismos pines también aparecían pero en orden invertido. Son un reflejo de las líneas de comunicación provistas por el conversor USB-TTL, aunque por lo general usamos la librería Software serial para definir otros dos pines cualquiera para dicha función. Ya que estamos hablando de comunicación serie, tenemos los pines asociados a la interfaz SPI (\textit{Serial Peripheral Interface}), iguales que en el modelo uno; el pin digital 10 ejecutando la función de slave select, el 11 como MOSI (\textit{Master Output Slave Input}), el 12 como MISO (\textit{Master Input Slave Output}) y el 13 como serial clock. Al igual que en el modelo uno, la interfaz de dos cables, I2C (\textit{Inter-Integrated Circuit}), estará presente en A4 para SDA (\textit{System Data}) y en A5 para SCL (\textit{System Clock}). \\
 	
 	\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART.] \\
 		
@@ -959,7 +960,7 @@
 	
 	\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART, y pines de alimentación.] \\
 	
-	\noindent Pin de salida de 5V refleja los mismos 5V del puerto  del ordenador; si ahora deseamos trabajar de manera autónoma, sin conexión al ordenador, podremos alimentar la placa con una fuente externa con valores de tensión de entre 7 y 12 V. Dicha tensión se aplica de forma directa al regulador lineal de tensión, el cual convertirá la tensión de entrada no regulada a 5V regulados con un suministro máximo de corriente de hasta 500mA (la misma forma en la que trabaja el arduino uno cuando aplicamos una fuente externa mediante el jack de alimentación: entra una tensión entre 7-12V, pasa por el regulador, y en el pin de salida 5V tenemos los 5V regulados). Para la salida de 3.3V, es diferente en nano respecto de uno; en nano, los 3.3V son generados por el propio conversor USB-TTL (el circuito integrado lleva incorporado el regulador); el modelo uno dispone de un regulador por separado y destinado exclusivamente para el riel de 3.3V. En uno, dicho regulador puede suministrar hasta 150 mA de corriente máxima, mientras que en nano, como no tenemos un regulador especializado, y forma parte de la funcionalidad del conversor, el suministro de corriente será menor, de 50 mA como máximo. \\
+	\noindent Pin de salida de 5V refleja los mismos 5V del puerto  del ordenador; si ahora deseamos trabajar de manera autónoma, sin conexión al ordenador, podremos alimentar la placa con una fuente externa con valores de tensión de entre 7 y 12 V. Dicha tensión se aplica de forma directa al regulador lineal de tensión, el cual convertirá la tensión de entrada no regulada a 5V regulados con un suministro máximo de corriente de hasta 500mA. Para la salida de 3.3V, es diferente en nano respecto de uno; en nano, los 3.3V son generados por el propio conversor USB-TTL (el circuito integrado lleva incorporado el regulador); el modelo uno dispone de un regulador por separado y destinado exclusivamente para el riel de 3.3V. En uno, dicho regulador puede suministrar hasta 150 mA de corriente máxima, mientras que en nano, como no tenemos un regulador especializado, y forma parte de la funcionalidad del conversor, el suministro de corriente será menor, de 50 mA como máximo. \\
 	
 	\noindent [Foto parte rear del nano señalando partes implicadas en la alimentación del nano.] \\
 	
@@ -1044,62 +1045,32 @@
 	\noindent  \textbf{Regulación LoRa en Europa: ERC 70-03} \\
 	
 	\noindent \href{https://docdb.cept.org/download/25c41779-cd6e/Rec7003e.pdf}{ERC 70-03} \\
+
+	\noindent \textbf{Transceptores LoRa elegidos: E32-868T30D} \\
 	
-	%% CAPA FISICA DE LORAWAN %%
+	\noindent Los módulos LoRa que vamos a usar son los E32-868T30D. En la Figura \ref{fig: capturas E32.} se adjunta una imagen del dispositivo en cuestión. \\
 	
-	\pagebreak
+	\begin{figure}[h]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=60mm]{img/e32_front.png} &   \includegraphics[width=60mm]{img/e32_rear.png} \\
+				(a) Parte frontal & (b) Parte trasera\\[6pt]
+			%	\multicolumn{2}{c}{\includegraphics[width=60mm]{img/Fotos comedero/helice_v3VSv2VSv1_rotated.png} }\\
+			%	\multicolumn{2}{c}{(c) Versión 3 de las hélices (comparado con v1 y v2)}
+			\end{tabular}
+			\caption{Capturas del transceptor LoRa E32-868T30D [\ref{bib: imagen E32}].}
+			\label{fig: capturas E32.}
+		\end{center}
+	\end{figure}	
 	
-	%\subsubsubsection{LoRaWAN: NO VA AQUÍ, VA EN APARTADO 3.2}
+	\noindent La ficha técnica de este dispositivo se puede consultar en el Anexo I. Destacaremos algunos parámetros en los que se ha basado su elección: \\
 	
-	%\noindent A pesar de que no se va a usar LoRaWAN en este proyecto, sí que se realizó su pertinente investigación, por lo que a continuación se muestra un resumen de nociones básicas sobre LoRaWAN. \\
+	\begin{itemize}
+		\item 
+	\end{itemize}
 	
-	%\noindent \textbf{Clases de nodos finales LoRaWAN}  \\
-	
-	%\noindent Existe 3 clases diferentes de nodos finales en LoRaWAN, los cuales son:
-	
-	%\begin{itemize}
-		%\item Clase A (\textit{All})
-		%\item Clase B (\textit{Beacon})
-		%\item Clase C (\textit{Continuous})
-	%\end{itemize}
-	
-	%\begin{figure}[h]
-		%\begin{center}
-			%\includegraphics[width=0.7\textwidth]{img/endDevices.png}
-			%\caption{Funcionamiento de nodos finales usando LoRaWAN.}
-		%\end{center}
-	%\end{figure}
-	
-	%\pagebreak
-	
-	%\noindent \textbf{Estructura de un paquete LoRaWAN}
-	
-	%\begin{figure}[h]
-	%\begin{center}
-			%\includegraphics[width=0.7\textwidth]{img/lora_phyLayer_packetFormat.png}
-			%\caption{Estructura general de un paquete LoRaWAN.}
-	%\end{center}
-	%\end{figure}
 	
 
-	
-	%\begin{figure}[h]
-	%\begin{center}
-			%\includegraphics[width=0.7\textwidth]{img/lora_phyLayer_packetFormat_enh.png}
-			%\caption{Estructura detallada de un paquete LoRaWAN.}
-	%\end{center}
-	%\end{figure}
-
-	%\pagebreak
-
-%	\subsection[Monitorización y automatización]{Monitorización y automatización}
-	
-%	El Arduino que vamos a usar es el Arduino nano, como ya se ha comentado anteriormente. Los sensores que vamos a usar son:
-	
-%	\pagebreak
-%	\subsection[Comunicaciones LoRa]{Comunicaciones LoRa}
-
-%	Los módulos LoRa que vamos a usar son los E32-868T30D (como ya se ha comentado anteriormente).
 %	\subsubsection{Cálculo teórico de pérdidas de enlace}
 %	\subsubsection{Simulación en \textit{Radio Mobile}}
 	
@@ -1218,6 +1189,10 @@
 	\noindent [Foto PCB v1.1a] \\
 	
 	\noindent Se adjunta en el Anexo I (FALTA REFERENCIAR) una imagen del esquemático y de la PCB que se mandó realizar. El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA. \\
+	
+	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \textit{protocolo\_arduino}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3.  En el Anexo II (FALTA REFERENCIAR) se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
+	
+	\noindent [Explicar protocolo]. \\
 	
 	\subsection[Prototipo definitivo]{Prototipo definitivo}
 	
@@ -1517,6 +1492,20 @@
 	
 	\noindent \textbf{\large Bootloader.} \\
 	
+	\noindent \textbf{\large PWM.} \\
+	
+	\noindent \textbf{\large UART.} \\
+	
+	\noindent \textbf{\large MOSI.} \\
+	
+	\noindent \textbf{\large SDA.} \\
+	
+	\noindent \textbf{\large SCL.} \\
+	
+	\noindent \textbf{\large SPI.} \\
+	
+	\noindent \textbf{\large I2C.} \\
+	
 	%%% SERVOMOTOR %%%
 	\noindent \textbf{\large Torque} (en un motor), o par. En mecánica newtoniana, se denomina momento de una fuerza o torque a una magnitud vectorial, obtenida como producto vectorial del vector de posición del punto de aplicación de la fuerza por el vector fuerza, en ese orden. Para un motor, esto es, la fuerza que puede aplicar a través del movimiento rotacional de su eje para levantar o mover una carga; es importante el contexto mecánico previo que hemos establecido para entender la importancia de la dirección en la que apliquemos el movimiento del servo y la fuerza en sí.\\
 	
@@ -1530,6 +1519,244 @@
 	\section*{Bibliografía}
 	\addcontentsline{toc}{section}{Bibliografía}
 	
+	   \subsection*{Enlaces y referencias}
+	   	\addcontentsline{toc}{subsection}{Enlaces y referencias}
+		%%\hyperref[bib:link1]{\emph{Reference of bibliography}}
+		\begin{enumerate}
+			%1
+			\item 
+			\label{bib: enlace National Geographic} \href{https://www.nationalgeographic.com.es/naturaleza/grandes-reportajes/animales-peligro-extincion_12536}{National Geographic: animales en peligro de extinción}. Fecha última consulta: 15/07/21.
+			
+			%2
+			\item 
+			\label{bib: enlace BBC}
+			\href{https://www.bbc.com/mundo/noticias-54036796}{BBC: animales en peligro de extinción}. Fecha última consulta: 15/07/21.
+			
+			%3
+			\item 
+			\label{bib: enlace WWF}
+			\href{https://www.worldwildlife.org/descubre-wwf/historias/que-significa-especie-en-peligro-de-extincion}{WWF: qué significa \textit{animales en peligro de extinción}}. Fecha última consulta: 15/07/21.
+			
+			%4
+			\item
+			\label{bib: enlace Fundación AQUAE}
+			\href{https://www.fundacionaquae.org/causas-perdida-biodiversidad/}{Fundación AQUAE: causas de la pérdida de biodiversidad}. Fecha última consulta: 15/07/21.
+			
+			%5
+			\item
+			\label{bib: enlace Fundación Affinity} \href{https://www.fundacion-affinity.org/observatorio/infografia-el-nunca-lo-haria-estudio-de-abandono-y-adopcion-2020}{Fundación Affinity: estudio \textit{Él nunca lo haría (2020)}, sobre el abandono y adopción}. Fecha última consulta: 15/07/21.
+			
+			%6
+			\item
+			\label{bib: enlace 20 minutos} \href{https://www.20minutos.es/noticia/4318383/0/el-abandono-animal-en-espana-aumenta-un-25-en-las-ultimas-semanas/}{20minutos: abandono animal tras el confinamiento de 2020}. Fecha última consulta: 15/07/21.
+			
+			%7
+			\item
+			\label{bib: enlace La Razón} \href{https://www.larazon.es/medio-ambiente/20201118/qxv6yuokargfbnjvknn6bhm4ze.html}{La Razón: comentarios sobre el estudio de la Fundación Affinity acerca de tasa de abandono animal durante el año 2019}. Fecha última consulta: 15/07/21.
+			
+			%8
+			\item
+			\label{bib: enlace RTVE} \href{https://www.rtve.es/noticias/20200608/abandonos-animales-domesticos-se-han-disparado-espana-durante-meses-confinamiento/2015761.shtml}{RTVE: abandono animal tras el confinamiento}. Fecha última consulta: 15/07/21.
+			
+			%9
+			\item
+			\label{bib: TI rechargeable batteries}
+			\href{https://www.ti.com/lit/an/snva533/snva533.pdf}{TI: \textit{characteristics of rechargeable batteries}}. Consultado el 15/07/21.
+			
+			%10
+			\item 
+			\label{bib: Hackaday battery basics}
+			\href{https://hackaday.com/2014/12/16/battery-basics-choosing-a-battery-for-your-project/}{Hackaday: battery basics. Choosing a battery for your project.}
+
+			%11
+			\item 
+			\label{bib: YouTube How to choose  a battery}
+			\href{https://www.youtube.com/watch?v=saxYilLJ7yw}{YouTube: How to choose a battery. A battery chemistry tutorial.}
+			
+			%12
+			\item 
+			\label{bib: blog diferencias li-ion y li-po}
+			\href{https://blog.330ohms.com/2020/06/22/que-diferencias-hay-entre-una-li-po-y-una-li-ion/}{Blog: qué diferencias hay entre una Li-ion y una Li-Po}
+			
+			%13
+			\item 
+			\label{bib: adafruit pick the right battery}
+			\href{https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project}{Adafruit Learning System: How to pick the right battery for your project}
+			
+			%14
+			\item 
+			\label{bib: prometec baterías para proyectos con arduino}
+			\href{https://www.prometec.net/arduino-baterias/}{Prometec: las baterías}
+			
+			%15
+			\item 
+			\label{bib: prometec consumo Arduino}
+			\href{https://www.prometec.net/consumos-arduino/}{Prometec: cuánto consume Arduino}
+			
+			%16
+			\item 
+			\label{bib: prometec modo sleep arduino}
+			\href{https://www.prometec.net/el-modo-sleep-en-arduino/}{Prometec: Arduino y el modo \textit{sleep}}
+			
+			%17
+			\item 
+			\label{bib: prometec relés}
+			\href{https://www.prometec.net/reles-s4a/}{Prometec: relés}
+			
+			%18
+			\item 
+			\label{bib: prometec relés (más info)}
+			\href{https://www.prometec.net/mas-sobre-reles/}{Prometec: relés (más info)}
+			
+			%19
+			\item 
+			\label{bib: prometec relés y arduino}
+			\href{https://www.prometec.net/reles/}{Prometec: arduino y los relés}
+			
+			%20
+			\item 
+			\label{bib: fly power rechargeable battery param}
+			\href{https://fly-power.com/en/battery-knowledge/item/2-rechargeable-batteries-s-main-parameters}{Fly power: the rechargeable batteries's main parameters}
+			
+			%21
+			\item 
+			\label{bib: solar reviews how solar panels work}
+			\href{https://www.solarreviews.com/blog/how-do-solar-panels-work}{Solar Reviews: How do solar panels work?}
+			
+			%22
+			\item 
+			\label{bib: energia solar regulador de carga}
+			\href{https://solar-energia.net/energia-solar-fotovoltaica/elementos/instalaciones-autonomas/reguladores-carga}{Energía solar: regulador de carga}
+			
+			%23
+			\item 
+			\label{bib: CED greentech how mppt works}
+			\href{https://www.cedgreentech.com/article/how-do-mppt-charge-controllers-work}{CED greentech: how do MPPT charge controllers work?}
+			
+			%24
+			\item 
+			\label{bib: TU delft OCW solar cell param}
+			\href{https://ocw.tudelft.nl/wp-content/uploads/solar_energy_section_9_1_9_3.pdf}{TU Delft OCW: solar cell parameters and equivalent circuit}
+			
+			%25
+			\item 
+			\label{bib: alternative energy photovoltaic types}
+			\href{https://www.alternative-energy-tutorials.com/photovoltaics/photovoltaic-types.html}{Alternative Energy Tutorials: photovoltaic types}
+			
+			%26
+			\item 
+			\label{bib: renewable energy hub main types photo cells}
+			\href{https://www.renewableenergyhub.co.uk/main/solar-panels/types-of-solar-cell/}{Renewable energy hub UK: what Types of Solar Cells Are There}
+			
+			%27
+			\item 
+			\label{bib: SlidePlayer Photovoltaic systems}
+			\href{https://slideplayer.com/slide/9144319/}{SlidePlayer: Photovoltaic systems (Julian Melvyn Chambers)}
+			
+			%28		
+			\item 
+			\label{bib: QVP air temp affect solar panel output}
+			\href{https://www.qpvgroup.org/blog/2019/2/3/how-does-air-temperature-affect-photovoltaic-solar-panel-output}{QVP Research Group: How does air temperature affect photovoltaic solar panel output?}
+			
+			%29
+			\item 
+			\label{bib: arduino alternatives}
+			\href{https://all3dp.com/2/best-arduino-alternatives/}{All3DP: 10 Best Arduino Alternatives}
+			
+			%30
+			\item 
+			\label{bib: microcontrollers alternative to arduino}
+			\href{https://www.makeuseof.com/tag/best-arduino-alternative-microcontrollers/}{Make of use: 6 Best Arduino Alternative Microcontrollers}
+			
+			%31
+			\item 
+			\label{bib: alternative to arduino}
+			\href{https://itigic.com/best-alternatives-for-arduino-microcontrollers/}{ITIGIC: The Best Alternatives for Arduino Microcontrollers}
+			
+			%32
+			\item 
+			\label{bib: raspberry pi pico}
+			\href{https://www.engadget.com/raspberry-pi-pico-microcontroller-154235348.html?guccounter=1}{Engadget: Raspberry Pi Pico is a \$4 Arduino alternative}
+			
+						
+			%33
+			\item 
+			\label{bib: raspberry pi pico 2}
+			\href{https://www.raspberrypi.org/blog/raspberry-pi-silicon-pico-now-on-sale/}{Raspberry Pi: Meet Raspberry Silicon: Raspberry Pi Pico now on sale at \$4}
+			
+						
+			%34
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}
+			
+						
+			%35
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}
+			
+						
+			%36
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}
+			
+						
+			%37
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}
+			
+						
+			%38
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}
+			
+			
+		\end{enumerate}
+		
+		\subsection*{Imágenes}
+		\addcontentsline{toc}{subsection}{Imágenes}
+		
+			\begin{enumerate}
+				%1
+				\item 
+				\label{bib: imagen E32}
+				\href{https://www.ebyte.com/en/product-view-news.aspx?id=189}{EBYTE: E32-868T30D}. Consultado el 15/07/21.
+				
+				%2
+				\item
+				\label{bib: research gate mppt curve} \href{https://www.researchgate.net/figure/Characteristic-curves-of-MPPT-a-power-voltage-curve-and-b-current-voltage-curve_fig7_278728718}{ResearchGate: Use, Operation and Maintenance of Renewable Energy Systems. Control Methods Applied in Renewable Energy Systems}
+				
+				%3
+				\item 
+				\label{bib: research gate pv power}
+				\href{https://www.researchgate.net/figure/The-I-V-characteristic-curve-of-solar-cells-under-different-temperature_fig1_258388008}{ResearchGate: Two-Stage Fault Diagnosis Method Based on the Extension Theory for PV Power Systems}
+				
+				%4
+				\item 
+				\label{bib: research gate pv cell temp vs others}
+				\href{https://www.researchgate.net/figure/The-PV-module-temperature-and-electrical-power-distribution-together-with-model-inputs_fig1_316548825}{ResearchGate: The PV cell temperature effect on the energy production and module efficiency}
+				
+				%5
+				\item 
+				\label{bib: research gate pv cell param}
+				\href{https://www.researchgate.net/figure/I-V-characteristics-curve-of-a-PV-cell_fig2_313450163}{ResearchGate: Mathematical modeling of Photovoltaic module and evalute the effect of varoius paramenters on its performance}					
+			
+				%6
+				\item 
+				\label{bib: research gate JV curve solar panel}
+				\href{https://www.researchgate.net/figure/J-V-characteristic-of-a-typical-solar-cell-in-the-dark-dashed-line-and-under_fig37_283662836}{ResearchGate: Functional graphene: synthesis, characterization and application in optoelectronics}
+				
+				%7
+				\item 
+				\label{bib: SciELO}
+				\href{https://www.scielo.cl/scielo.php?script=sci_arttext\&pid=S0717-97072008000300001}{SciELO: Organic Photovoltaic Cells: History, principle and techniques}
+				
+			\end{enumerate}
+
 	\pagebreak
 	
 	\section*{Anexos}
