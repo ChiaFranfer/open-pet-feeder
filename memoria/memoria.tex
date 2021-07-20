@@ -1069,13 +1069,113 @@
 		\item 
 	\end{itemize}
 	
+	\noindent Se usarán antenas de 5 dBi omnidireccionales. En la práctica, se comportarán como antenas con diagrama de radiación tipo dipolo.\\
 	
+	\noindent [Imagen antenas] \\
+	
+	\noindent Una vez elegidos los componentes (transceptores y antenas) y antes de realizar las pruebas de campo, es procedente simular el enlace radio con los parámetros de los componentes escogidos. Para ello, se empleó el programa de simulación \textit{Radio Mobile}.\\
+	
+	\noindent Radio Mobile es gratuito y fácil de usar e instalar, por lo que para realizar simulaciones de enlaces no muy complejos es altamente recomendable. En este proyecto, sólo contaremos, en un principio, con dos dispositivos equivalentes en tanto a características radio, separados una distancia de 3.5 kms, aproximadamente, en un entorno con pocas fluctuaciones del terreno, rural y pocos obstáculos entre ambos (rayo directo). El proceso de configuración seguido para realizar la simulación del escenario planteado es el que sigue: \\
+	
+	\begin{itemize}
+		\item En Google Earth, se cogieron las coordenadas de la casa de campo donde se va a encontrar el gateway, y las coordenadas del refugio.
+		\item Ya en Radio Mobile, dentro de Propiedades del mapa, introducimos las coordenadas (latitud/longitud) del campo. Clicamos en \textit{extraer}.
+		\item En Editar, seleccionamos Combinar imágenes con OpenStreetMaps, y dentro, clicamos en Multiplicar y mantener imagen, para poder visualizar el mapa con la capa del terreno sobre él. 
+		\item Volver a propiedades del mapa y usar el cursor sobre el mapa para encontrar el punto medio (aproximadamente) para centrar el mapa (para usar coordenadas del cursor, clicamos sobre Usar posición del cursor, y vamos centrando y ajustando el alto a valores inferiores para que no nos muestre mucho más mapa del que necesitamos).
+		\item Guardamos el mapa clicando en Grabar mapa como… (Dentro de directorio Radio\_Mobile\textbackslash Mapas, previamente creado) Archivo map (topografía).
+		\item Guardamos la imagen clicando en Grabar imagen como…  (Dentro de directorio Radio\_Mobile\textbackslash Imágenes, previamente creado) Archivo imagen, conjunto de mapa e imagen de OpenStreetMap (pero no tiene información topográfica).
+		\item Una vez generados los archivos topográficos e imagen, el siguiente paso es crear la red, clicando en Nuevas redes (creación de redes). Primeramente, dejamos los valores por defecto, clicamos en Usar mapa y en ok.
+		\item Abrimos el mapa ya creado y la imagen ya creada.
+		\item Ahora debemos clicar en Propiedades de redes: Parámetros, e introducir los parámetros de nuestra red.
+		
+		\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{img/prop_redes_radiomobile.png}
+				\caption{Configuración de los parámetros de la red a simular en Radio Mobile, dentro de Propiedades de las redes.}
+				\label{Prop redes param radiomobile}
+			\end{center}
+		\end{figure}
+		
+		\item Se configura la topología de la red según corresponda.
+		
+		\pagebreak
+		
+		\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{img/propRedes_topo_RadioMobile.png}
+				\caption{Configuración de la topología de la red a simular en Radio Mobile, dentro de Propiedades de las redes.}
+				\label{Prop redes topo radiomobile}
+			\end{center}
+		\end{figure}
+		
+		\item El siguiente paso es la creación de los sistemas que conforman esa red, que serán dos, uno el localizado en la casa de campo y otro en el refugio. Habrá más de un sistema campo o refugio, ya que variarán en función de la potencia de transmisión, altura de las antenas o diagrama de radiación, principalmente, parámetros que cambiamos dependiendo de la simulación. Podemos cambiar, también la ganancia de las antenas o las pérdidas, pero como son parámetros que, en nuestro caso, no van a cambiar, no serán variables a considerar. Cuando creemos un sistema, debemos clicar en Agregar a Radiosys.dat. \\
+		
+		Para el caso de la potencia de transmisión 14dBm (se consigue con E22): \\
+		
+		\pagebreak
+		
+		\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{img/propRedes_sistemasE2214_radioMobile.png}
+				\caption{Configuración de los sistemas de la red a simular en Radio Mobile, dentro de Propiedades de las redes. Ejemplo para transceptor LoRa E22, transmitiendo a 14 dBm.}
+				\label{Prop redes sistemas radiomobile}
+			\end{center}
+		\end{figure}
+		
+		\item Añadimos los sistemas como unidades clicando en Propiedades de las unidades (para añadir marcadores de posición de los sistemas creados). Como sabemos las coordenadas, clicamos en Ingresar LAT LON o QRA, y las añadimos ahí.
+		
+		\item Una vez creados los sistemas y asociados a una unidad, hay que asociarles un rol dentro de la red, en Miembros, dentro de Propiedades de las redes. Miembros y Sistemas depende de la simulación. He creado una sola red, pero varios sistemas dependiendo de la potencia de transmisión. Como hay que asociar los sistemas a los miembros, miembro se convierte en un valor dinámico según el sistema que toque simular. Al principio estaba creando un miembro por cada sistema, pero después vi que no es necesario; creando dos miembros y asignando el sistema que toque simular, es suficiente. Además, siendo ambos extremos de la comunicación equivalentes, con crear un sistema y después asignándoselo a los dos miembros debería valer. Dentro de Miembros, cambiando Sistema (E32\_22 o Campo\_omni\textbackslash Refugio\_omni, que sería el caso del E32 a 30 dBm) se pueden configurar los equipos para las potencias de transmisión probadas. \\
+		
+		\pagebreak
+		
+		Siguiendo con el mismo ejemplo que el presentado en Sistemas (E22 a 14 dBm): \\
+		
+		\begin{figure}[h]
+			\begin{subfigure}{0.5\textwidth}
+				\includegraphics[width=1\textwidth]{img/propRedes_miembrosE2214_radioMobile.png} 
+				\caption{}
+				\label{fig: prop redes miembro nodo radio mobile}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textwidth}
+				\includegraphics[width=1\linewidth]{img/propRedes_miembroTerminalE2214_radioMobile.png}
+				\caption{}
+				\label{fig: prop redes miembro terminal radio mobile}
+			\end{subfigure}
+			\caption{Configuración de los miembros de la red a simular en Radio Mobile, dentro de Propiedades de las redes. Ejemplo para transceptor LoRa E22, transmitiendo a 14 dBm.}
+			\label{fig: prop redes miembros radio mobile}
+		\end{figure}
+		
+		\item Si todo ha sido configurado correctamente, clicando en Ver - Mostrar redes - Todo, nos enseñará en el mapa el enlace radio, con las unidades asociadas a sistemas.
+		
+		\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width=0.2\textwidth]{img/mostrarRed_radioMobile.png}
+				\caption{Enlace radio creado en Radio Mobile para simular la red creada entre la casa de campo y el refugio.}
+				\label{fig: mostrar red radio mobile}
+			\end{center}
+		\end{figure}
+		
+		\pagebreak
+		
+		\item Por último, clicamos en Herramientas, Enlace radio, para realizar el estudio del enlace, y ver si se crea de manera satisfactoria. 
+		
+		%ejemplo_resultadoEnlace_radioMobile.png
+		
+		\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width=0.6\textwidth]{img/ejemplo_resultadoEnlace_radioMobile.png}
+				\caption{Resultado de la simulación del enlace radio creado en Radio Mobile.}
+				\label{fig: resultado enlace radio mobile}
+			\end{center}
+		\end{figure}
+	\end{itemize}
+
 
 %	\subsubsection{Cálculo teórico de pérdidas de enlace}
 %	\subsubsection{Simulación en \textit{Radio Mobile}}
 	
-%	\subsection{Alimentación del dispositivo}
-
+	\pagebreak
+	
 	\subsubsubsection{Comedero}
 	
 	\noindent Tanto en este apartado, como en el siguiente sobre elección de soluciones para el bebedero, se mostrarán los sensores y actuadores, así como creaciones con impresora 3D para llevar a cabo sus funcionalidades asociadas.\\
@@ -1171,9 +1271,26 @@
 	
 	% Ensamblado PCB y pruebas
 	\subsection[Ubicación]{Ubicación}
-	\subsection[Prototipo inicial]{Prototipo inicial}
+
+	\noindent La idea fundamental de este proyecto era el diseño del sistema y su posteriorverificación mediante la construcción del prototipo y su instalación en una de las jaulas del refugio de Patitas Unidas Los Alcázares. Por tanto, es momento de especificar elemplazamiento del prototipo, de forma que quede más claro el lugar concreto dondese ha instalado. \\
 	
-	\noindent [Realmente no sé si unificar la subsección 4.2 y la 4.3, ya que el prototipo está bastante explicado en diseño del sistema, y aquí mi idea era explicar lo que no se haya explicado antes y la PCB, las pruebas realizadas y resultados. Siento que el prototipo inicial ya se expuso en la subsección 3.3., más conceptual y en protoboard, y el definitivo es con PCB y sumándole la alimentación autónoma. ¿Cómo lo ves tú?] \\
+	\noindent El refugio se encuentra en el término municipal de Torre Pacheco, entre las pedanías de Santa Rosalía y Los Meroños. Se trata de un entorno rural, rodeado de carreteras medianas y pequeñas, campos de cultivo, zonas ganaderas y algunas casas dispersas. Como se indicó en la introducción del presente documento, se trata de una finca sin electricidad y sin internet. El conocimiento del entorno donde vamos a probar el funcionamiento de nuestro proyecto es fundamental, ya que nos permite definir la totalidad del mismo, al tener que amoldarlo a las condiciones del entorno; además, se desea extrapolar a entornos similares. \\
+	
+	\noindent [Fotos del refugio] \\
+	
+	\subsection[Prototipo definitivo]{Prototipo definitivo}
+	
+	\noindent Como hemos visto en la sección \ref{Sección 3: Diseño del sistema}, subsección \ref{Subsección 3.3: elección de soluciones para cada funcionalidad}, son muchos componentes los que forman el cómputo total del sistema de alimentación para animales. Para facilitar el prototipado y simplificar las conexiones de todos los elementos, se creó una PCB, como la que se muestra a continuación: \\
+	
+	\noindent [Foto PCB v1.1a] \\
+	
+	\noindent Se adjunta en el Anexo I (FALTA REFERENCIAR) una imagen del esquemático y de la PCB que se mandó realizar. El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA. \\
+	
+	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \textit{protocolo\_arduino}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3.  En el Anexo II (FALTA REFERENCIAR) se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
+	
+	\noindent [Explicar protocolo]. \\
+	
+	\pagebreak
 	
 	\noindent [Anotaciones: usamos una versión diferente a la de Arduino nano vendida por la organización Arduino. Seguramente lo mueva de aquí.] \\
 	
@@ -1184,18 +1301,6 @@
 		\item Este arduino usa un regulador diferente, el CH340G, frente al FT232 que usa el arduino original. Además, el fusible/diodo Schottky que usan para proteger la comunicación serial frente a sobrecorrientes es diferente, siendo el MBR0520 para el caso de los arduinos originales, frente al B5819W que usa el arduino que vamos a usar.
 	\end{itemize}
 
-	\noindent Como hemos visto en la sección \ref{Sección 3: Diseño del sistema}, subsección \ref{Subsección 3.3: elección de soluciones para cada funcionalidad}, son muchos componentes los que forman el cómputo total del sistema de alimentación. Para facilitar el prototipado y simplificar las conexiones de todos los elementos, se creó una PCB, como la que se muestra a continuación: \\
-	
-	\noindent [Foto PCB v1.1a] \\
-	
-	\noindent Se adjunta en el Anexo I (FALTA REFERENCIAR) una imagen del esquemático y de la PCB que se mandó realizar. El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA. \\
-	
-	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \textit{protocolo\_arduino}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3.  En el Anexo II (FALTA REFERENCIAR) se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
-	
-	\noindent [Explicar protocolo]. \\
-	
-	\subsection[Prototipo definitivo]{Prototipo definitivo}
-	
 	\pagebreak
 	
 		\begin{figure}[h]
