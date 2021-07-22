@@ -1338,8 +1338,6 @@
 	
 	\subsubsubsection{Comedero}
 	
-	\pagebreak
-	
 	\noindent Tanto en este apartado, como en el siguiente sobre elección de soluciones para el bebedero, se mostrarán los sensores y actuadores, así como creaciones con impresora 3D para llevar a cabo sus funcionalidades asociadas.\\
 	
 	\noindent Para llevar a cabo la función de comedero, el sistema de alimentación creado debe ser capaz, en resumen, de mover el pienso de la reserva al comedero. Para ello, debemos tener en cuenta: 
@@ -1355,11 +1353,32 @@
 	
 	\noindent Teniendo presente los puntos recién expuestos, se ha elegido como gestor del movimiento del pienso el uso de un motor, en concreto, de un servomotor de 5V, capaz de girar 360º y capaz de mover cargas de hasta 10 kg (para leer información más detallada, ir a Anexo I FALTA REFERENCIA) \\
 	
-	\noindent [Foto del servo] \\
+	\pagebreak
 	
-	\noindent Este servo, con la ayuda de unas hélices imprimidas en 3D, moverá el pienso en dirección longitudinal a una pieza T de PVC donde irán insertados. \\
+		\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/servo_mg996r.jpg}
+			\caption{Imagen del servomotor elegido para conformar el prototipo inicial de nuestro sistema de alimentación para animales [\ref{bib: todomicro}]}
+			\label{Imagen servomotor MG996R}
+		\end{center}
+	\end{figure}
 	
-	\noindent [Foto] \\
+	\noindent Este servo, con la ayuda de unas hélices imprimidas en 3D, moverá el pienso en dirección longitudinal a una pieza T de PVC donde irán insertados. En la Figura \ref{Imagen servomotor MG996R} se muestra un kit bastante común de un servomotor MG996R, con varias hélices; sin embargo, para el planteamiento que se pretende llevar a cabo no son válidas. Se buscan unas hélices que ayuden al pienso en su recorrido longitudinal a través de la pieza T de PVC. Este planteamiento está inspirado en la creación de \href{https://www.thingiverse.com/kitlaan/designs}{kitlaan}, subido a la plataforma  \textit{Thingiverse}, bajo el nombre \href{https://www.thingiverse.com/thing:27854}{Auger-based Cat Feeder}.  \\
+	
+	\pagebreak
+	
+	\begin{figure}[h]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=60mm]{img/thingiverse_helice_1.png} &   \includegraphics[width=60mm]{img/thingiverse_helice_2.png} \\
+				(a) Partes impresas en 3D (desmontado) & (b) Partes impresas en 3D (montado)\\[6pt]
+				%	\multicolumn{2}{c}{\includegraphics[width=60mm]{img/Fotos comedero/helice_v3VSv2VSv1_rotated.png} }\\
+				%	\multicolumn{2}{c}{(c) Versión 3 de las hélices (comparado con v1 y v2)}
+			\end{tabular}
+			\caption{Capturas de la solución del movimiento de pienso del usuario kitlaan en \textit{Thingiverse} [\ref{bib: thingiverse helices comedero}].}
+			\label{fig: capturas thingiverse helices kitlaan.}
+		\end{center}
+	\end{figure}
 	
 	\noindent Además, se hará uso de una serie de piezas para crear la conexión comedero-reserva, desde la salida de pienso en el fondo de la reserva hasta la salida del pienso hacia el comedero. \\
 	
@@ -1367,11 +1386,15 @@
 	
 	\noindent Por último, las conexiones con el microcontrolador se realizarán a través de los cables que accionan el servo: uno para señal, otro para alimentación, y otro para tierra. \\
 	
-	\pagebreak
-	% servo_connections_v2_fritzing.png
-	\noindent [Foto cables servo y fritzing de conexionado con arduino.]\\
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/servo_dutyCycle.png}
+			\caption{Esquema simplificado de los cables que usa un servomotor MG996R y de su \textit{duty cycle} [\ref{bib: forum pycom}]}
+			\label{Esquema conexiones servo}
+		\end{center}
+	\end{figure}
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{img/servo_connections_v2_fritzing.png}
 			\caption{Esquema de las conexiones servo-Arduino realizado en \textit{Fritzing}.}
@@ -1957,8 +1980,8 @@ se ha instalado. \\
 						
 			%34
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}
+			\label{bib: thingiverse helices comedero}
+			\href{https://www.thingiverse.com/thing:27854}{Thingiverse: Auger-based Cat Feeder}
 			
 						
 			%35
@@ -2029,6 +2052,16 @@ se ha instalado. \\
 				\item 
 				\label{bib: SciELO}
 				\href{https://www.scielo.cl/scielo.php?script=sci_arttext\&pid=S0717-97072008000300001}{SciELO: Organic Photovoltaic Cells: History, principle and techniques}
+				
+				%8
+				\item 
+				\label{bib: todomicro}
+				\href{https://www.todomicro.com.ar/motores-y-drivers-motores/234-servomotor-mg996r-digital-10kg-torque.html}{TodoMicro: sevomotor MG996R}
+				
+				%8
+				\item 
+				\label{bib: forum pycom}
+				\href{https://forum.pycom.io/topic/982/mg996r-pwm-3v3-solved}{Forum Pycom: sevomotor MG996R}
 				
 			\end{enumerate}
 
