@@ -1170,13 +1170,107 @@
 		\end{figure}
 	\end{itemize}
 
-
-%	\subsubsection{Cálculo teórico de pérdidas de enlace}
-%	\subsubsection{Simulación en \textit{Radio Mobile}}
+	\noindent Explicado el procedimiento a seguir para simular un determinado radioenlace, se muestran las simulaciones realizadas para comprobar si se establece dicho radioenlace de manera satisfactoria. Para ello, se han realizado simulaciones variando la potencia de transmisión a los valores máximo y mínimo posibles (según el transceptor). La altura de las antenas no la variamos si a la altura de 2 m los resultados son satisfactorios, ya que es la altura mínima a la que se encontrarán las antenas. \\
 	
 	\pagebreak
 	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/resultado_e32_1W_desc.png}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 1W (enlace descendente: campo - refugio).}
+			\label{fig: resultado enlace e32 1W descendente radio mobile}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
+	
+	\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{img/resultado_e32_1W_asc.png}
+				\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 1W (enlace ascendente: refugio - campo).}
+				\label{fig: resultado enlace e32 1W ascendente radio mobile}
+			\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	%resultado_e32_125mW_desc.png
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/resultado_e32_125mW_desc.png}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 125 mW (enlace descendente: campo - refugio).}
+			\label{fig: resultado enlace e32 125mW descendente radio mobile}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	%resultado_e32_125mW_asc.png
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/resultado_e32_125mW_asc.png}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 125 mW (enlace ascendente: refugio - campo).}
+			\label{fig: resultado enlace e32 125mW ascendente radio mobile}
+		\end{center}
+	\end{figure}
+	
+	\noindent Simulaciones con transceptor LoRa E22 a 100mW. \\
+	
+	\pagebreak
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/resultado_e22_100mW_desc.png}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 100 mW (enlace descendente).}
+			\label{fig: resultado enlace e22 100mW descendente radio mobile}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	%resultado_e22_100mW_asc.png
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/resultado_e22_100mW_asc.png}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 100 mW (enlace ascendente).}
+			\label{fig: resultado enlace e22 100mW ascendente radio mobile}
+		\end{center}
+	\end{figure} 
+	
+	\pagebreak
+	
+	% resultado_e22_10mW_desc.png
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/resultado_e22_10mW_desc.png}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10 mW (enlace descendente).}
+			\label{fig: resultado enlace e22 10mW descendente radio mobile}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	% resultado_e22_10mW_asc.png
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{img/resultado_e22_10mW_asc.png}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10 mW (enlace ascendente).}
+			\label{fig: resultado enlace e22 10mW ascendente radio mobile}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	\noindent Simulaciones teniendo en cuenta las pérdidas adicionales por el alargador SMA de 1.8 m. Según un datasheet sobre RG316, el tipo de cable que he usado como alargador, dicho cable introduce unas pérdidas a 900 MHz de 26.3 dB/100ft. Si el cable que he usado es de 3FT (hay otro interno en la caja pero al ser de 15 cms lo he despreciado), se introducen unas pérdidas de 0,7dB, por lo que redondeando al caso peor, introduce 1dB de pérdidas. He introducido este dB de pérdidas en “Pérdidas adicionales de la línea”. He buscado también pérdidas de los conectores SMA para introducirlos pero no he encontrado datos en varios datasheets que he encontrado, por lo que no los he tenido en cuenta.\\
+	
+%	\subsubsection{Cálculo teórico de pérdidas de enlace}
+%	\subsubsection{Simulación en \textit{Radio Mobile}}
+	
 	\subsubsubsection{Comedero}
+	
+	\pagebreak
 	
 	\noindent Tanto en este apartado, como en el siguiente sobre elección de soluciones para el bebedero, se mostrarán los sensores y actuadores, así como creaciones con impresora 3D para llevar a cabo sus funcionalidades asociadas.\\
 	
@@ -1272,7 +1366,10 @@
 	% Ensamblado PCB y pruebas
 	\subsection[Ubicación]{Ubicación}
 
-	\noindent La idea fundamental de este proyecto era el diseño del sistema y su posteriorverificación mediante la construcción del prototipo y su instalación en una de las jaulas del refugio de Patitas Unidas Los Alcázares. Por tanto, es momento de especificar elemplazamiento del prototipo, de forma que quede más claro el lugar concreto dondese ha instalado. \\
+	\noindent La idea fundamental de este proyecto era el diseño del sistema y su posterior
+verificación mediante la construcción del prototipo y su instalación en una de las jaulas del refugio de Patitas Unidas Los Alcázares. Por tanto, es momento de especificar el
+emplazamiento del prototipo, de forma que quede más claro el lugar concreto donde
+se ha instalado. \\
 	
 	\noindent El refugio se encuentra en el término municipal de Torre Pacheco, entre las pedanías de Santa Rosalía y Los Meroños. Se trata de un entorno rural, rodeado de carreteras medianas y pequeñas, campos de cultivo, zonas ganaderas y algunas casas dispersas. Como se indicó en la introducción del presente documento, se trata de una finca sin electricidad y sin internet. El conocimiento del entorno donde vamos a probar el funcionamiento de nuestro proyecto es fundamental, ya que nos permite definir la totalidad del mismo, al tener que amoldarlo a las condiciones del entorno; además, se desea extrapolar a entornos similares. \\
 	
