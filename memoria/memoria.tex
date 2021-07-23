@@ -1392,7 +1392,7 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent Otras piezas PVC que podrán ser empleadas son codos de 45\degree, prolongaciones de tubo PVC o conectores de unión.\\
+	\noindent Otras piezas PVC que podrán ser empleadas son codos de 45\degree, prolongaciones de tubo PVC o conectores de unión, como los que se muestran en la Figura \ref{fig: piezas PVC posibles.}.\\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1409,7 +1409,7 @@
 	
 	\pagebreak
 	
-	\noindent Por último, las conexiones con el microcontrolador se realizarán a través de los cables que accionan el servo: uno para señal, otro para alimentación, y otro para tierra. \\
+	\noindent Por último, las conexiones con el microcontrolador se realizarán a través de los cables que accionan el servo: uno para señal, otro para alimentación, y otro para tierra, tal como se muestra en la Figura \ref{Esquema conexiones servo}. El esquema del conexionado entre servo, Arduino y alimentación en protoboard se muestra en la Figura \ref{Esquema conexiones servo Fritzing}.\\
 	
 	\begin{figure}[h!]
 		\begin{center}
@@ -1436,9 +1436,15 @@
 	\noindent Elección: sensores de nivel de flotación de agua, relé y bomba. \\
 	
 	\noindent Sensores de nivel de flotación de agua: se comportan como switches, y su respuesta son valores lógicos (0 o 1). \\
-	
-	 \noindent [Foto sensores de flotación.] \\
 	 
+	 \begin{figure}[h!]
+	 	\begin{center}
+	 		\includegraphics[width=0.3\textwidth]{img/sensor_flotacion.png}
+	 		\caption{Captura de los sensores de flotación escogidos [\ref{bib: dhgate}].}
+	 		\label{Sensor de flotación}
+	 	\end{center}
+	 \end{figure}
+ 
 	 \noindent Su funcionamiento es sencillo: si el nivel del agua queda por encima del sensor, el valor lógico asociado que enviará al microcontrolador será de 1. Si por el contrario queda por debajo, mandará un 0. Dos cables de alimentación, simétricos, se requiere de resistencias de 10k en configuración \textit{pull-down}, ya que al tratarse de switches, al conmutar si no existe esa resistencia da un valor lógico o desconocido o falso 1, consecuencia del ruido del pin que se introduce al estar flotante.\\
 	
 	\begin{figure}[h]
@@ -1461,13 +1467,25 @@
 		\end{center}
 	\end{figure}
 
-	\noindent La bomba se comporta como un motor DC, y tiene dos cables únicamente (+5V, GND), por lo que, para poder controlar su funcionamiento, necesitaremos usar un actuador. Elegimos un relé, el cual está conectado al pin D7 del arduino, según podemos ver en la Figura \ref{Esquema conexiones bebedero Fritzing}. Entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$). Se usan debido a que el relé necesita ver a su entrada una corriente superior, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, se oye). \\
+	\noindent La bomba se comporta como un motor DC, y tiene dos cables únicamente (+5V, GND), por lo que, para poder controlar su funcionamiento, necesitaremos usar un actuador. Elegimos un relé, el cual está conectado al pin D7 del arduino, según podemos ver en la Figura \ref{Esquema conexiones bebedero Fritzing}. Entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$). Se usan debido a que el relé necesita ver a su entrada una corriente superior, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, emite un sonido característico). \\
 	
-	\noindent [Foto bomba de agua usada.] \\
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/bomba_agua.jpg}
+			\caption{Captura de la bomba de agua usada en el prototipo [\ref{bib: electrostore}]}
+			\label{Captura bomba agua}
+		\end{center}
+	\end{figure}
 	
 	\noindent El relé actúa como un conmutador. [Seguir explicando]. \\
 	
-	\noindent [Foto relé usado.] \\
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.3\textwidth]{img/rele.png}
+			\caption{Captura del relé usado en el prototipo [\ref{bib: geek factory}]}
+			\label{Captura relé}
+		\end{center}
+	\end{figure}
 	
 	\subsubsection{Prototipo exterior}
 		
@@ -2111,6 +2129,25 @@ se ha instalado. \\
 				\item 
 				\label{bib: mano a mano}
 				\href{https://www.manomano.es/p/63-mm-21-2-pasamuros-de-pvc-para-tuberias-63-mm-27277644}{Mano a mano: pasamuros de PVC}
+				
+				%https://es.dhgate.com/product/longteng-dc-220v-liquid-water-level-sensor/441493541.html
+				
+				%13
+				\item 
+				\label{bib: dhgate}
+				\href{https://es.dhgate.com/product/longteng-dc-220v-liquid-water-level-sensor/441493541.html}{DHgate: sensor de nivel de agua}
+				
+				%14
+				\item 
+				\label{bib: electrostore}
+				\href{https://grupoelectrostore.com/shop/motores/bombas-para-agua/mini-bomba-de-agua-sumergible-5v/}{Electrostore: bomba de agua}
+				
+				%https://www.geekfactory.mx/tienda/componentes-electronicos/relevadores/relevador-5-volts-srd-05vdc-sl-c/
+				
+				%15
+				\item 
+				\label{bib: geek factory}
+				\href{https://www.geekfactory.mx/tienda/componentes-electronicos/relevadores/relevador-5-volts-srd-05vdc-sl-c/}{Geek factory: relé}
 			\end{enumerate}
 
 	\pagebreak
