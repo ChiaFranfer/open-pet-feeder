@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
-
+\usepackage{gensymb}
 
 
 \usepackage{eurosym}
@@ -1363,7 +1363,7 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent Este servo, con la ayuda de unas hélices imprimidas en 3D, moverá el pienso en dirección longitudinal a una pieza T de PVC donde irán insertados. En la Figura \ref{Imagen servomotor MG996R} se muestra un kit bastante común de un servomotor MG996R, con varias hélices; sin embargo, para el planteamiento que se pretende llevar a cabo no son válidas. Se buscan unas hélices que ayuden al pienso en su recorrido longitudinal a través de la pieza T de PVC. Este planteamiento está inspirado en la creación de \href{https://www.thingiverse.com/kitlaan/designs}{kitlaan}, subido a la plataforma  \textit{Thingiverse}, bajo el nombre \href{https://www.thingiverse.com/thing:27854}{Auger-based Cat Feeder}.  \\
+	\noindent Este servo, con la ayuda de unas hélices imprimidas en 3D, moverá el pienso en dirección longitudinal a una pieza T de PVC donde irán insertados. En la Figura \ref{Imagen servomotor MG996R} se muestra un kit bastante común de un servomotor MG996R, con varias hélices para transferir el movimiento rotatorio del servo; sin embargo, para el planteamiento que se pretende llevar a cabo se requieren unas hélices especiales . Se buscan unas hélices que ayuden al pienso en su recorrido longitudinal a través de la pieza T de PVC. Este planteamiento está inspirado en la creación de \href{https://www.thingiverse.com/kitlaan/designs}{kitlaan}, subido a la plataforma  \textit{Thingiverse}, bajo el nombre \href{https://www.thingiverse.com/thing:27854}{Auger-based Cat Feeder}.  \\
 	
 	\pagebreak
 	
@@ -1380,9 +1380,34 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent Además, se hará uso de una serie de piezas para crear la conexión comedero-reserva, desde la salida de pienso en el fondo de la reserva hasta la salida del pienso hacia el comedero. \\
+	\noindent Además, se hará uso de una serie de piezas de PVC para crear la conexión comedero-reserva, desde la salida de pienso en el fondo de la reserva hasta la salida del pienso hacia el comedero. Como mínimo, será necesaria una pieza de PVC tipo T.\\
 	
-	\noindent [Foto, quizás esquemático simplificado, la versión completa está en el apartado de prototipo final] \\
+	%pieza_pvc_T.png
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.2\textwidth]{img/pieza_pvc_T.png}
+			\caption{Pieza PVC tipo T 87\degree [\ref{bib: Nikoi ferreteria}]}
+			\label{Pieza PVC T}
+		\end{center}
+	\end{figure}
+	
+	\noindent Otras piezas PVC que podrán ser empleadas son codos de 45\degree, prolongaciones de tubo PVC o conectores de unión.\\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=30mm]{img/pieza_pvc_codo45.png} &   \includegraphics[width=30mm]{img/tubo_pvc.jpg} \\
+				(a) Pieza PVC tipo codo 45\degree [\ref{bib: Poolaria}] & (b) Tubo PVC para prolongaciones [\ref{bib: Amazon}]\\[6pt]
+				\multicolumn{2}{c}{\includegraphics[width=30mm]{img/pasamuro_pvc.png} }\\
+				\multicolumn{2}{c}{(c) Pasamuros de PVC [\ref{bib: mano a mano}]}
+			\end{tabular}
+			\caption{Ejemplos de piezas PVC que pueden ser empleadas en el prototipo final [\ref{bib: thingiverse helices comedero}].}
+			\label{fig: piezas PVC posibles.}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
 	
 	\noindent Por último, las conexiones con el microcontrolador se realizarán a través de los cables que accionan el servo: uno para señal, otro para alimentación, y otro para tierra. \\
 	
@@ -2063,6 +2088,29 @@ se ha instalado. \\
 				\label{bib: forum pycom}
 				\href{https://forum.pycom.io/topic/982/mg996r-pwm-3v3-solved}{Forum Pycom: sevomotor MG996R}
 				
+				%9
+				\item 
+				\label{bib: Nikoi ferreteria}
+				\href{https://www.nikoi.nl/es/pvc-t-stuk-87-125-mm-3-x-mof}{Nikoi: pieza PVC T 87\degree}
+				
+				%10
+				\item 
+				\label{bib: Poolaria}
+				\href{https://www.poolaria.com/accesorios-de-pvc/317-codo-45-pvc-encolar.html}{Poolaria: pieza PVC codo 45\degree}
+				
+				%https://www.amazon.es/Di%C3%A1metro-%C3%A1ngulo-Rodillera-muffen-Fittings/dp/B017SXJFAM
+				
+				%11
+				\item 
+				\label{bib: Amazon}
+				\href{https://www.amazon.es/Di\%C3\%A1metro-\%C3\%A1ngulo-Rodillera-muffen-Fittings/dp/B017SXJFAM}{Amazon: tubo PVC}
+				
+				%https://www.manomano.es/p/63-mm-21-2-pasamuros-de-pvc-para-tuberias-63-mm-27277644
+				
+				%12
+				\item 
+				\label{bib: mano a mano}
+				\href{https://www.manomano.es/p/63-mm-21-2-pasamuros-de-pvc-para-tuberias-63-mm-27277644}{Mano a mano: pasamuros de PVC}
 			\end{enumerate}
 
 	\pagebreak
