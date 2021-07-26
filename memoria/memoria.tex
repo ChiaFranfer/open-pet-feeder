@@ -206,6 +206,7 @@
 	\noindent A lo largo de este capítulo se pretende mostrar los procesos de concepción, análisis e investigación llevados a cabo para la creación del primer prototipo del sistema de alimentación. Para ello, primeramente, se exponen las funcionalidades que éste debe incorporar; una vez identificadas esas funcionalidades, se presta la realización de una investigación cuyo objetivo sea la búsqueda de opciones que permitan que cada funcionalidad anteriormente expuesta pueda materializarse. Para terminar el presente capítulo, se procederá a exponer las opciones que han sido escogidas, debidamente justificadas, para el diseño del prototipo provisional del sistema de alimentación. 
 	
 	\subsection[Funcionalidades a cubrir]{Funcionalidades a cubrir}
+	\label{subsection: funcionalidades a cubrir}
 	
 	\noindent Teniendo claros los objetivos que se persiguen con este proyecto, es posible definir las funcionalidades que ofrecería el sistema global que se pretende crear, ya que a partir de esta definición podremos empezar a deducir y establecer qué componentes son necesarios para llevar a cabo dichas funcionalidades. \\
 	
@@ -770,6 +771,21 @@
 	\pagebreak
 	
 	\subsubsubsection{Comedero}
+	\label{subsubsubsection: comedero busqueda}
+	
+	\noindent Tanto en este apartado, como en el siguiente sobre búsqueda de soluciones para el bebedero, se mostrarán opciones de sensores y actuadores para llevar a cabo sus funcionalidades asociadas.\\
+	
+	\noindent Para llevar a cabo la función de comedero, el sistema de alimentación creado debe ser capaz, en resumen, de mover el pienso de la reserva al comedero. Para ello, debemos tener en cuenta: 
+	
+	\begin{itemize}
+		\item La capacidad de la reserva de pienso, y del comedero.
+		\item Si la reserva quedará fija o móvil, y su soporte en todo caso.
+		\item Cómo se gestionará el movimiento entre el pienso y el comedero; principalmente, las opciones más directas son movimiento basado en la gravedad, o movimiento gestionado por un motor. También será necesario estudiar el camino que realizará el pienso, para establecer conductos por donde pueda fluir hasta el comedero sin gran dificultad (lo que entendemos por \textit{conexionado entre reserva y comedero}).
+		\item Soporte de los conductos que reflejan el conexionado entre reserva y comedero.
+		\item Conexionado eléctrico con el microcontrolador para recibir las señales de movimiento, en el caso de usar servo, o sensorización de niveles de pienso en reserva y/o en comedero.
+	\end{itemize}
+	
+	\noindent Teniendo presente los puntos recién expuestos, se explicará brevemente en qué consisten aquellos sensores/actuadores que con mayor probabilidad podrán ser empleados. \\
 	
 	\noindent \textit{Servomotor} \\
 	
@@ -782,6 +798,10 @@
 	
 	\subsubsubsection{Bebedero}
 	
+	\noindent De manera análoga a \ref{subsubsubsection: comedero busqueda}, para cubrir esta funcionalidad necesitaremos conseguir la manera de mover agua desde la reserva hasta el bebedero. Para ello: \\
+	
+	\noindent Opciones: ultrasónico en la tapa de la reserva + bomba + relé, sensores de nivel de agua (flotación) + relé + bomba. [Introducción en el apartado de Búsqueda de soluciones, pero todavía no está ordenado]\\
+	
 	\noindent \textit{Sensor ultrasónico}\\
 	
 	\noindent \textit{Bomba de agua} \\
@@ -793,7 +813,8 @@
 	\pagebreak
 	
 	\subsubsection{Prototipo exterior}
-
+	
+	\noindent Se trata de una funcionalidad que depende muy estrechamente de las funcionalidades presentadas anteriormente, por lo que para materializar una solución apta habrá que solventar las funcionalidades que le preceden. Se hablará más en detalle en el apartado \ref{subsubsection: prototipo exterior}, una vez se haya expuesto la elección de soluciones para las funcionalidades de alimentación autónoma y automatización y monitorización.
 	% Definición funcionalidades: qué debo hacer y qué necesitaría
 	% Investigación componentes (*) e integración (programación)
 		%(*) Qué se ha usado, desglosado por funcionalidades: bebedero, comedero, alimentación, microcontrolador y radio.
@@ -817,7 +838,7 @@
 		\item Panel solar 6V
 	\end{itemize}
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.8\textwidth]{img/conexiones tfg-alimentacion.png}
 			\caption{Esquema general de la alimentación elegida para este proyecto.}
@@ -825,15 +846,36 @@
 		\end{center}
 	\end{figure}
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.8\textwidth]{img/conexiones tfg-alimentacion (boost en tp).png}
 			\caption{Esquema general de la alimentación elegida para este proyecto (TP4056 con boost incluido).}
 			\label{Alimentación: esquema general (tp con boost)}
 		\end{center}
 	\end{figure}
+	
+	\pagebreak
+	
+	\noindent Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame. \\
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=40mm]{img/18650_sinProteccion.jpg} &   \includegraphics[width=40mm]{img/18650_conProteccion_1.jpg} \\
+				(a) & (b) \\[6pt]
+				\includegraphics[width=25mm]{img/18650_conProteccion_2.jpg} &   \includegraphics[width=20mm]{img/18650_conProteccion_3.jpg} \\
+				(c)  & (d)  \\[6pt]
+				%\multicolumn{2}{c}{\includegraphics[width=50mm]{img/} }\\
+				%\multicolumn{2}{c}{(e) Pieza 5 PVC}
+			\end{tabular}
+			\caption{Fotos de la batería 18650 usada (sin protección, y con protección añadida).}
+			\label{18650 con y sin proteccion}
+		\end{center}
+	\end{figure}
 
-	\noindent Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame.  Además, como se indicó en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}, dentro de \textit{opciones para baterías recargables}, se necesita de un circuito que ayude a la pila, hecha de Li-ion, a una correcta carga y descarga, precisamente porque conlleva las mismas consecuencias de una mala manipulación, expuestas anteriormente. Es por ello que se realizó una investigación en tanto a circuitos de protección para evitar sobredecarga, sobrecarga y cortocircuitos, en este tipo de pila (Li-ion). \\
+	\pagebreak
+	
+	\noindent Además, como se indicó en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}, dentro de \textit{opciones para baterías recargables}, se necesita de un circuito que ayude a la pila, hecha de Li-ion, a una correcta carga y descarga, precisamente porque conlleva las mismas consecuencias de una mala manipulación, expuestas anteriormente. Es por ello que se realizó una investigación en tanto a circuitos de protección para evitar sobredecarga, sobrecarga y cortocircuitos, en este tipo de pila (Li-ion). \\
 	
 	\noindent A continuación, se describirán brevemente los componentes enumerados y el por qué de su elección. Para más detalle, se pueden consultar los \textit{datasheet} en el Anexo I. \\
 	
@@ -1071,7 +1113,13 @@
 	
 	\noindent Se usarán antenas de 5 dBi omnidireccionales. En la práctica, se comportarán como antenas con diagrama de radiación tipo dipolo.\\
 	
-	\noindent [Imagen antenas] \\
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.3\textwidth]{img/antena_5dbi.png}
+			\caption{Captura de las antenas usadas [\ref{bib: AliExpress}].}
+			\label{Captura antenas 5dbi}
+		\end{center}
+	\end{figure}
 	
 	\noindent \textit{Simulación en Radio Mobile}\\
 	
@@ -1330,6 +1378,8 @@
 		\end{center}
 	\end{figure}
 	
+	\noindent Resumiendo, para una altura de las antenas de 2m, tanto en el caso del transceptor LoRa E32-868T30D como en el caso del transceptor E22-900T22D, conseguimos establecer un enlace LoRa satisfactorio.
+	
 	\pagebreak
 	
 %	\subsubsection{Cálculo teórico de pérdidas de enlace}
@@ -1337,23 +1387,9 @@
 	
 	
 	\subsubsubsection{Comedero}
+	\label{subsubsubsection: comedero eleccion}
 	
-	\noindent Tanto en este apartado, como en el siguiente sobre elección de soluciones para el bebedero, se mostrarán los sensores y actuadores, así como creaciones con impresora 3D para llevar a cabo sus funcionalidades asociadas.\\
-	
-	\noindent Para llevar a cabo la función de comedero, el sistema de alimentación creado debe ser capaz, en resumen, de mover el pienso de la reserva al comedero. Para ello, debemos tener en cuenta: 
-	
-	\begin{itemize}
-		\item La capacidad de la reserva de pienso, y del comedero.
-		\item Si la reserva quedará fija o móvil, y su soporte en todo caso.
-		\item Conexionado entre reserva y comedero.
-		\item Cómo se gestionará el movimiento entre el pienso y el comedero; principalmente, las opciones más directas son movimiento basado en la gravedad, o movimiento gestionado por un motor. También será necesario estudiar el camino que realizará el pienso, para establecer conductos por donde pueda fluir hasta el comedero sin gran dificultad.
-		\item Soporte de los conductos que reflejan el conexionado entre reserva y comedero.
-		\item Conexionado eléctrico con el microcontrolador para recibir las señales de movimiento, en el caso de usar servo, o sensorización de niveles de pienso en reserva y/o en comedero.
-	\end{itemize}
-	
-	\noindent Teniendo presente los puntos recién expuestos, se ha elegido como gestor del movimiento del pienso el uso de un motor, en concreto, de un servomotor de 5V, capaz de girar 360º y capaz de mover cargas de hasta 10 kg (para leer información más detallada, ir a Anexo I FALTA REFERENCIA) \\
-	
-	\pagebreak
+	 \noindent Se ha elegido como gestor del movimiento del pienso el uso de un motor, en concreto, de un servomotor de 5V, capaz de girar 360º y capaz de mover cargas de hasta 10 kg (para leer información más detallada, ir a Anexo I FALTA REFERENCIA) \\
 	
 		\begin{figure}[h]
 		\begin{center}
@@ -1402,7 +1438,7 @@
 				\multicolumn{2}{c}{\includegraphics[width=30mm]{img/pasamuro_pvc.png} }\\
 				\multicolumn{2}{c}{(c) Pasamuros de PVC [\ref{bib: mano a mano}]}
 			\end{tabular}
-			\caption{Ejemplos de piezas PVC que pueden ser empleadas en el prototipo final [\ref{bib: thingiverse helices comedero}].}
+			\caption{Ejemplos de piezas PVC que pueden ser empleadas en el prototipo final.}
 			\label{fig: piezas PVC posibles.}
 		\end{center}
 	\end{figure}
@@ -1430,9 +1466,8 @@
 	\pagebreak
 	
 	\subsubsubsection{Bebedero}
-	
-	\noindent Opciones: ultrasónico en la tapa de la reserva + bomba + relé, sensores de nivel de agua (flotación) + relé + bomba. [Introducción en el apartado de Búsqueda de soluciones, pero todavía no está ordenado]\\
-	
+	\label{subsubsubsection: bebedero eleccion}
+		
 	\noindent Elección: sensores de nivel de flotación de agua, relé y bomba. \\
 	
 	\noindent Sensores de nivel de flotación de agua: se comportan como switches, y su respuesta son valores lógicos (0 o 1). \\
@@ -1481,14 +1516,116 @@
 	
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.3\textwidth]{img/rele.png}
+			\includegraphics[width=0.2\textwidth]{img/rele.png}
 			\caption{Captura del relé usado en el prototipo [\ref{bib: geek factory}]}
 			\label{Captura relé}
 		\end{center}
 	\end{figure}
 	
 	\subsubsection{Prototipo exterior}
-		
+	\label{subsubsection: prototipo exterior}
+	\noindent En este apartado se esbozarán las opciones que se han planteado para el prototipo exterior. Recordemos lo que ya se comentó sobre esta funcionalidad en la subsección \ref{subsection: funcionalidades a cubrir}; en este punto, se pretende unificar las demás funcionalidades, teniendo presente que se desea algo ligero, intuitivo y de bajo coste. \\
+	
+	\noindent \textit{A qué intentaremos encontrar solución en este punto} \\
+	
+	\begin{itemize}
+		\item Conexionado entre reserva de pienso y comedero
+		\item Conexionado entre reserva de agua y bebedero
+		\item Elección de reservas
+		\item Elección de comederos
+		\item Protección de la electrónica
+		\item Localización de las antenas
+	\end{itemize}
+
+	\noindent En el apartado \ref{subsubsubsection: comedero eleccion}  ya se explica lo que pueda ser necesario para el conexionado reserva-comedero (piezas de PVC principalmente). Para la funcionalidad de bebedero, en concreto para conectar la reserva de agua con el bebedero, se hará uso de un tubo de silicona transparente (10mm de diámetro, grosor de 1mm y longitud 1m) y de una pieza impresa en 3D para sujetar el tubo de silicona al bebedero. \\
+	
+	\pagebreak
+	
+	%tubo_silicona.png
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.30\textwidth]{img/tubo_silicona.png}
+			\caption{Captura de un fragmento de tubo de silicona (ejemplo) [\ref{bib: yellow pimento}]}
+			\label{Captura tubo silicona}
+		\end{center}
+	\end{figure}
+
+	\begin{figure}[h]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=40mm]{img/pieza_sujecion_1.jpg} &   \includegraphics[width=40mm]{img/pieza_sujecion_2.jpg} \\
+				(a) Pieza impresa en 3D (desde arriba) & (b) Pieza impresa en 3D (lateral) \\[6pt]
+				\multicolumn{2}{c}{\includegraphics[width=40mm]{img/pieza_sujecion_3.jpg} }\\
+				\multicolumn{2}{c}{(c) Pieza impresa en 3D (frontal) }
+			\end{tabular}
+			\caption{Capturas del diseño e impresión en 3D de la pieza creada para la sujeción del tubo de silicona al bebedero. }
+			\label{fig: pieza 3D sujecion bebedero.}
+		\end{center}
+	\end{figure}
+	
+	\noindent En tanto a las reservas que serán empleadas, se trata de dos bidones de plástico (uno para pienso y otro para agua), de capacidad 5L, suficiente para una prueba de concepto. \\
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.15\textwidth]{img/bidon.png}
+			\caption{Foto del bidón usado en el prototipo.}
+			\label{Captura bidon}
+		\end{center}
+	\end{figure}
+	
+	\noindent Los recipientes usados como comedero y bebedero son unos cuencos de acero inoxidable, pensado para mascotas pequeñas, con capacidad aproximada de 200mL. Igual que con el bidón, para una prueba de concepto será suficiente. Trae consigo unos ganchos, también de acero inoxidable, de uso opcional, para colgar los cuencos en una jaula (o similar).\\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=50mm]{img/cuenco_1.png} &   \includegraphics[width=30mm]{img/cuenco_2.png} \\
+				(a) & (b)  \\[6pt]
+				%\multicolumn{2}{c}{\includegraphics[width=40mm]{img/pieza_sujecion_3.jpg} }\\
+				%\multicolumn{2}{c}{(c) Pieza impresa en 3D (frontal) }
+			\end{tabular}
+			\caption{Capturas del cuenco y ganchos de sujeción usados para comedero y bebedero [\ref{bib: AliExpress cuenco}]. }
+			\label{fig: capturas bebdero.}
+		\end{center}
+	\end{figure}
+	
+	\noindent Para proteger la electrónica, se emplearán cajas estancas, ya que están preparadas para proteger conexiones eléctricas (cables u otros), incluso en el exterior. Además, se abren desatornillando unos tornillos en su parte frontal, y es posible hacer agujeros a medida  para pasar cables desde su interior hasta el exterior en diferentes zonas de silicona plástica que tienen en todos sus laterales. \\
+	
+	\pagebreak
+	
+	\begin{figure}[h]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=50mm]{img/caja_estanca_1.png} &   \includegraphics[width=60mm]{img/caja_estanca_2.png} \\
+				(a) Exterior de una caja estanca & (b) Detalle de interior de una caja estanca  \\[6pt]
+				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/caja_estanca_3.png} }\\
+				\multicolumn{2}{c}{(c) Detalle de ubicación de los tornillos y de zonas perforables para cables. }
+			\end{tabular}
+			\caption{Capturas de una caja estanca (ejemplo) [\ref{bib: cablematic}]. }
+			\label{fig: capturas caja estanca.}
+		\end{center}
+	\end{figure}
+	
+	\noindent Por último, faltaría determinar la ubicación de las antenas. Para mejorar la emisión/recepción de los mensajes, debemos dar una altura mínima a las antenas. Para ello, se propone conectar un alargador SMA desde el transceptor LoRa (el cual está en el interior de la caja estanca) hasta una de las paredes de la caja estanca, la cual habrá que perforar con un taladro para sacar la salida de ese alargador al exterior. De esta manera, podremos conectar otro alargador (de la longitud que se desee) desde el exterior de la caja estanca hasta la altura que dé dicho alargador, y conectar en tal punto la antena (permitiendo, así, mejorar la conexión entre ambos nodos).\\
+	
+	\pagebreak
+	
+	\begin{figure}[h]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=65mm]{img/alargadorSMA_interior.png} &   \includegraphics[width=80mm]{img/alargadorSMA_exterior.png} \\
+				(a) Detalle de alargador SMA interior & (b) Detalle de alargador SMA exterior \\[6pt]
+				%\multicolumn{2}{c}{\includegraphics[width=50mm]{img/caja_estanca_3.png} }\\
+				%\multicolumn{2}{c}{(c) Detalle de ubicación de los tornillos y de zonas perforables para cables. }
+			\end{tabular}
+			\caption{Fotos de alargadores SMA usados. }
+			\label{fig: capturas alargadores sma caja estanca.}
+		\end{center}
+	\end{figure}
+	
+	
 	\subsection[Resumen del capítulo]{Resumen de capítulo}
 	
 	En este capítulo se ha hablado de [...]. Se sacan conclusiones para la creación de un prototipo que pueda ser ejecutado y probado en el entorno objetivo.
@@ -1500,14 +1637,79 @@
 	% Ensamblado PCB y pruebas
 	\subsection[Ubicación]{Ubicación}
 
-	\noindent La idea fundamental de este proyecto era el diseño del sistema y su posterior
-verificación mediante la construcción del prototipo y su instalación en una de las jaulas del refugio de Patitas Unidas Los Alcázares. Por tanto, es momento de especificar el
-emplazamiento del prototipo, de forma que quede más claro el lugar concreto donde
-se ha instalado. \\
+	\noindent La idea fundamental de este proyecto era el diseño del sistema y su posterior verificación mediante la construcción del prototipo y su instalación en una de las jaulas del refugio de Patitas Unidas Los Alcázares. Por tanto, es momento de especificar el emplazamiento del prototipo, de forma que quede más claro el lugar concreto donde se ha instalado. \\
 	
 	\noindent El refugio se encuentra en el término municipal de Torre Pacheco, entre las pedanías de Santa Rosalía y Los Meroños. Se trata de un entorno rural, rodeado de carreteras medianas y pequeñas, campos de cultivo, zonas ganaderas y algunas casas dispersas. Como se indicó en la introducción del presente documento, se trata de una finca sin electricidad y sin internet. El conocimiento del entorno donde vamos a probar el funcionamiento de nuestro proyecto es fundamental, ya que nos permite definir la totalidad del mismo, al tener que amoldarlo a las condiciones del entorno; además, se desea extrapolar a entornos similares. \\
 	
-	\noindent [Fotos del refugio] \\
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/refugio_global.jpg}
+			\caption{Foto del refugio de Patitas Unidas Los Alcázares.}
+			\label{Foto global refugio}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/refugio_jaulas.jpg}
+			\caption{Foto de las jaulas existentes en refugio de Patitas Unidas.}
+			\label{Foto jaulas refugio}
+		\end{center}
+	\end{figure}
+	
+	%refugio_jaulas_detalleExterior.jpg
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/refugio_jaulas_detalleExterior.jpg}
+			\caption{Detalle del exterior de una de las jaulas existentes en refugio de Patitas Unidas.}
+			\label{Foto jaulas refugio detalle exterior}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/refugio_jaulas_detalleInterior.jpg}
+			\caption{Detalle del interior de una de las jaulas existentes en refugio de Patitas Unidas.}
+			\label{Foto jaulas refugio detalle interior}
+		\end{center}
+	\end{figure}
+
+	\noindent Se adjuntan imágenes donde se contextualiza la manera actual de alimentar y abrevar a los animales alojados en el refugio. \\
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=55mm]{img/bebedero_refugio.jpg} &   \includegraphics[width=60mm]{img/bidon_refugio.jpg} \\
+				(a) Foto del bebedero estándar & (b) Bidón estándar para rellenar los bebederos\\[6pt]
+				%\multicolumn{2}{c}{\includegraphics[width=50mm]{img/caja_estanca_3.png} }\\
+				%\multicolumn{2}{c}{(c) Detalle de ubicación de los tornillos y de zonas perforables para cables. }
+			\end{tabular}
+			\caption{Sistema existente en el refugio de Patitas Unidas para abrevar a los animales. }
+			\label{fig: sistema bebedero refugio.}
+		\end{center}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=50mm]{img/comedero_refugio_1.jpg} &   \includegraphics[width=50mm]{img/comedero_refugio_2.jpg} \\
+				(a) Foto del comedero estándar & (b) Foto medida estándar para rellenar el comedero\\[6pt]
+				%\multicolumn{2}{c}{\includegraphics[width=50mm]{img/caja_estanca_3.png} }\\
+				%\multicolumn{2}{c}{(c) Detalle de ubicación de los tornillos y de zonas perforables para cables. }
+			\end{tabular}
+			\caption{Sistema existente en el refugio de Patitas Unidas para alimentar a los animales. }
+			\label{fig: sistema comedero refugio.}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
 	
 	\subsection[Prototipo definitivo]{Prototipo definitivo}
 	
@@ -2029,8 +2231,8 @@ se ha instalado. \\
 						
 			%35
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}
+			\label{bib: AliExpress cuenco}
+			\href{https://es.aliexpress.com/item/1005001632098703.html?spm=a2g0s.9042311.0.0.274263c05XMd1Y}{AliExpress: cuenco acero inoxidable (bebedero, comedero)}
 			
 						
 			%36
@@ -2148,6 +2350,24 @@ se ha instalado. \\
 				\item 
 				\label{bib: geek factory}
 				\href{https://www.geekfactory.mx/tienda/componentes-electronicos/relevadores/relevador-5-volts-srd-05vdc-sl-c/}{Geek factory: relé}
+				
+				%16
+				\item 
+				\label{bib: yellow pimento}
+				\href{https://yellowpimento.com/Para-compresores-de-aire/vdvgx-504009/12mm-OD-ft-m-Tubo-flexible-de-caucho-de-silicona-Tubo-de-manguera-de.htm}{Yellow pimento: tubo de silicona}
+				
+				%https://cablematic.com/es/productos/caja-estanca-de-superficie-rectangular-ip55-200-x-155-x-80-mm-AE006/
+				
+				%17
+				\item 
+				\label{bib: cablematic}
+				\href{https://cablematic.com/es/productos/caja-estanca-de-superficie-rectangular-ip55-200-x-155-x-80-mm-AE006/}{Cablematic: caja estanca}
+				
+				%18
+				\item 
+				\label{bib: AliExpress}
+				\href{https://es.aliexpress.com/item/32972870968.html?spm=a2g0s.9042311.0.0.274263c0xMPROA}{AliExpress: antenas 868MHz 5dBi}				
+				
 			\end{enumerate}
 
 	\pagebreak
