@@ -1715,7 +1715,13 @@
 	
 	\noindent Como hemos visto en la sección \ref{Sección 3: Diseño del sistema}, subsección \ref{Subsección 3.3: elección de soluciones para cada funcionalidad}, son muchos componentes los que forman el cómputo total del sistema de alimentación para animales. Para facilitar el prototipado y simplificar las conexiones de todos los elementos, se creó una PCB, como la que se muestra a continuación: \\
 	
-	\noindent [Foto PCB v1.1a] \\
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/pcb_v1.1a.png}
+			\caption{Foto de la PCB usada en el prototipo final.}
+			\label{Foto PCB v1.1a}
+		\end{center}
+	\end{figure}
 	
 	\noindent Se adjunta en el Anexo I (FALTA REFERENCIAR) una imagen del esquemático y de la PCB que se mandó realizar. El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA. \\
 	
@@ -2015,6 +2021,8 @@
 	\noindent \textbf{Alimentación:} estudiaría las baterías LiPo, incluso LiFePO4, que aunque son más caras, no limitan tanto en el tema de la protección. Las baterías Li ion tienen bastante cobertura y tienen sus ventajas, pero también sus desventajas. Investigaría más profundamente en general el tema de la alimentación autónoma, ya que es un mundo muy extenso que debe tratarse de manera externa a la parte radio o a la parte de microcontrolador; podemos realizar proyectos donde abarquemos todo, pero para llegar a conclusiones donde se lleguen a prototipos iniciales, que en posteriores investigaciones se expandan y mejoren sus funcionalidades de manera individual, sin perder de vista el proyecto global. Diseñaría una PCB sólo para alimentación, ya que los requerimientos de alimentación para cada proyecto son diferentes y para un proyecto de dimensión media-grande es mucho más práctico diseñar un sistema personalizado de alimentación de dispositivo, algo que conseguimos mediante una PCB, compactando los sistemas que, sin PCB, se traducen en numerosas PCBs ya fabricadas que quizá no se adapten del todo a lo que necesitamos. \\
 	
 	\noindent \textbf{Microcontrolador}: el arduino nano para principiantes, con previas nociones de electrónica y con previsiones de realizar una PCB, siempre y cuando el proyecto no sea muy extenso, puede ser empleado. Sin embargo, yo he experimentado que en espacio de memoria se me quedaba corto, sobretodo al usar librerías como OLED, las cuales debía excluir si quería cargar en el arduino mi código restante; teniendo en cuenta que debía importar librerías obligatoriamente para usar por ejemplo la OLED, el servomotor o el transceptor LoRa, este es un punto muy negativo, ya que es un código que no puede ser reducido. Tuve que buscar trucos para compactar el uso de dicha memoria debido a estas limitaciones. Probaría con otras opciones mencionadas en la sección \ref{subsección 3.2.2: automatización y monitorización}, donde hablamos de opciones de microcontroladores, como la Adafruit, NodeMCU o Teensy. \\
+	
+	\noindent \textbf{LoRa}: el transceptor LoRa usado en este prototipo (E32-868T30D) no nos proporciona el valor de RSSI. Sin embargo, ya se ha presentado a lo largo del documento otra opción, entre otras que existen, que sí nos proporcionan este valor, como el E22-900T22D, más compacto, con una tecnología igualmente funcional y al mismo precio. Su potencia máxima de transmisión es menor, pero se pueden adquirir otros transceptores E22 que pueden transmitir a 30dBm (E22-900T30D). No obstante, es un valor de potencia que no está permitido en la regulación LoRa europea (ya la hemos presentado en este documento). Otro módulo que resulta interesante es el E220-900T22D, por ser ligero, consumir considerablemente menos que los transceptores anteriormente mencionados y tener las mismas prestaciones en tanto a alcance y potencia de transmisión.\\
 	
 	\pagebreak
 	
