@@ -23,15 +23,16 @@ SoftwareSerial ESerial(PIN_RX, PIN_TX);
 EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(115200); 
 
+  //different baudrate for nano-E32 serial comm (recommend value of 9600)
   ESerial.begin(9600);
   Serial.println("Starting GW");
 
   // this init will set the pinModes for you
   Transceiver.init();
 
-  // all these calls are optional but shown to give examples of what you can do
+  // all these calls are optional
 
   // Serial.println(Transceiver.GetAirDataRate());
   // Serial.println(Transceiver.GetChannel());
@@ -44,7 +45,7 @@ void setup() {
   Transceiver.SetAddressL(0);
   
   Transceiver.SetChannel(LORA_CHANNEL);
-  Transceiver.SetTransmitPower(OPT_TP21);
+  Transceiver.SetTransmitPower(OPT_TP21); //21dBm
   Transceiver.SetPullupMode(0);
   Transceiver.SetFECMode(1);
   
@@ -59,8 +60,10 @@ void setup() {
 
   ebyte_msg.count = 0;
 
-  // Ejemplo de F(): https://techexplorations.com/guides/arduino/programming/f-macro/
-  // Moar: https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram
+  //Reduced SRAM cause arduino nano -- optimize sram on string shown on Serial.println using "F" function 
+  //Example of F(): https://techexplorations.com/guides/arduino/programming/f-macro/
+  //https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram
+  
   Serial.println(F("Resumen de comandos aptos: status, ping, rellenar_bebedero,"));
   Serial.println(F("rellenar_comedero, reset_comedero, check_levels y update_oled"));
   Serial.println(F("Formato de los mensajes de respuesta: ack;field1;var1"));
@@ -71,7 +74,7 @@ void setup() {
 
 void loop() {
 
-  // arduino serial
+  // arduino serial: write on serial interface and send msg via LoRa to refugio station
 
   if (Serial.available() > 0) {
     String static dat_rec;
@@ -81,7 +84,7 @@ void loop() {
 
     Serial.println("Received data: " + dat_rec);
 
-    sendMessage(dat_rec); //dat_rec se envia por radio
+    sendMessage(dat_rec); //dat_rec will be sent via radio/LoRa
   }
   
   // if the transceiver serial is available, proces incoming data
@@ -116,7 +119,7 @@ void loop() {
   }
 }
 
-//Datos recibidos por serial, por eso printeo desde Serial.
+//Data received by pc-nano serial comm -- will be transmitted by our gw LoRa transceiver
 void sendMessage(String data) {
   Serial.println("Sending data: " + data);
 

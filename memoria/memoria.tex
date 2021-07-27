@@ -4,6 +4,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{gensymb}
+\usepackage{outlines}
 
 
 \usepackage{eurosym}
@@ -127,8 +128,8 @@
 	
 	\subsection[Contexto y justificación del trabajo]{Contexto y justificación del trabajo}
 
-	\noindent Este proyecto ha sido concebido con el objetivo principal de ayudar a la preservación de la vida animal, ante el aumento de especies en extinción, sobre todo en lo que llevamos de siglo [\ref{bib: enlace National Geographic}][\ref{bib: enlace BBC}][\ref{bib: enlace WWF}][\ref{bib: enlace Fundación AQUAE}], %\footnote{\href{https://www.nationalgeographic.com.es/naturaleza/grandes-reportajes/animales-peligro-extincion_12536}{National Geographic} , \href{https://www.bbc.com/mundo/noticias-54036796}{BBC}, \href{https://www.worldwildlife.org/descubre-wwf/historias/que-significa-especie-en-peligro-de-extincion}{WWF}, \href{https://www.fundacionaquae.org/causas-perdida-biodiversidad/}{Fundación AQUAE}}
-	y ante el hecho de que miles de animales domésticos siguen siendo abandonados al año en España [\ref{bib: enlace Fundación Affinity}] [\ref{bib: enlace 20 minutos}] [\ref{bib: enlace La Razón}] [\ref{bib: enlace RTVE}]. \\ %\footnotemark. \\
+	\noindent Este proyecto ha sido concebido con el objetivo principal de ayudar a la preservación de la vida animal, ante el aumento de especies en extinción, sobre todo en lo que llevamos de siglo [\ref{bib: enlace National Geographic}]-[\ref{bib: enlace Fundación AQUAE}], 
+	y ante el hecho de que miles de animales domésticos siguen siendo abandonados al año en España [\ref{bib: enlace Fundación Affinity}]-[\ref{bib: enlace RTVE}]. \\ %\footnotemark. \\
 	
 	%Fundación Affinity, 20 minutos, La Razón, RTVE
 	%\footnotetext{\href{https://www.fundacion-affinity.org/observatorio/infografia-el-nunca-lo-haria-estudio-de-abandono-y-adopcion-2020}{Fundación Affinity}, \href{https://www.20minutos.es/noticia/4318383/0/el-abandono-animal-en-espana-aumenta-un-25-en-las-ultimas-semanas/}{20 minutos}, \href{https://www.larazon.es/medio-ambiente/20201118/qxv6yuokargfbnjvknn6bhm4ze.html}{La Razón}, \href{https://www.rtve.es/noticias/20200608/abandonos-animales-domesticos-se-han-disparado-espana-durante-meses-confinamiento/2015761.shtml}{RTVE}}
@@ -934,6 +935,15 @@
 	
 	% Intro: qué es Arduino
 	
+	\noindent [Anotaciones: usamos una versión diferente a la de Arduino nano vendida por la organización Arduino. Seguramente lo mueva de aquí.] \\
+	
+	\noindent Usaremos un arduino nano que usa un ATmega328P y un chip CH340. En la sección X se han explicado las especificaciones técnicas, pinout y componentes que forman parte del arduino nano fabricado por la organización Arduino, pero el que va a ser usado lo está por otro fabricante. A efectos prácticos, las diferencias son pocas, pero hay que considerarlas de igual manera:
+	
+	\begin{itemize}
+		\item El microcontrolador no es ATmega328 (usado en el nano de la organización Arduino), sino que es ATmega328P. La diferencia reside en que es una versión posterior diseñada para consumir menos potencia que el 328, esencialmente tienen la misma arquitectura y características en tanto a memoria flash, EEPROM y SRAM (la P viene de \textit{picoPower}).
+		\item Este arduino usa un regulador diferente, el CH340G, frente al FT232 que usa el arduino original. Además, el fusible/diodo Schottky que usan para proteger la comunicación serial frente a sobrecorrientes es diferente, siendo el MBR0520 para el caso de los arduinos originales, frente al B5819W que usa el arduino que vamos a usar.
+	\end{itemize}
+	
 	\noindent Arduino es una plataforma de electrónica \textit{open-source} basada en hardware y software fáciles de usar. Nació en el \textit{Ivrea Interaction Design Institute} (Italia) como una herramienta fácil para la creación rápida de prototipos, dirigida a estudiantes sin experiencia en electrónica y programación. Tan pronto como llegó a una comunidad más amplia, la placa Arduino comenzó a cambiar para adaptarse a las nuevas necesidades y desafíos, tanto de usuarios principiantes como expertos. \\
 	
 	\noindent Las placas Arduino son capaces, por una parte, de ejecutar una serie de instrucciones (determinadas por el usuario) a través de su microcontrolador, de manera que a partir de la lectura de sus entradas analógicas/digitales se puedan generar salidas (analógicas/digitales); por otra parte, son programables a través del software Arduino, lo que se conoce como Arduino IDE. \\
@@ -1713,6 +1723,8 @@
 	
 	\subsection[Prototipo definitivo]{Prototipo definitivo}
 	
+	\subsubsection{PCB}
+	
 	\noindent Como hemos visto en la sección \ref{Sección 3: Diseño del sistema}, subsección \ref{Subsección 3.3: elección de soluciones para cada funcionalidad}, son muchos componentes los que forman el cómputo total del sistema de alimentación para animales. Para facilitar el prototipado y simplificar las conexiones de todos los elementos, se creó una PCB, como la que se muestra a continuación: \\
 	
 	\begin{figure}[h]
@@ -1723,43 +1735,68 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent Se adjunta en el Anexo I (FALTA REFERENCIAR) una imagen del esquemático y de la PCB que se mandó realizar. El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA. \\
+	\noindent El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA.  Para mayor detalle del esquemático o de la PCB, consultar el repositorio de GitHub creado (poner  con href), donde se incluye un archivo .json que, importándolo a EasyEDA, permitirá su visualización. \\
 	
-	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \textit{protocolo\_arduino}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3.  En el Anexo II (FALTA REFERENCIAR) se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
+	\subsubsection{Protocolo}
+	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \textit{protocolo\_arduino}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3; este sketch es el \textit{gw\_protocolo}.  En el Anexo II (\ref{anexo II: codigo}) se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
 	
-	\noindent [Explicar protocolo]. \\
-	
-	\pagebreak
-	
-	\noindent [Anotaciones: usamos una versión diferente a la de Arduino nano vendida por la organización Arduino. Seguramente lo mueva de aquí.] \\
-	
-	\noindent Usaremos un arduino nano que usa un ATmega328P y un chip CH340. En la sección X se han explicado las especificaciones técnicas, pinout y componentes que forman parte del arduino nano fabricado por la organización Arduino, pero el que va a ser usado lo está por otro fabricante. A efectos prácticos, las diferencias son pocas, pero hay que considerarlas de igual manera:
+	\noindent Antes de explicar el código creado, cabe decir que no habría sido posible el desarrollo de este protocolo sin el sustento proporcionado por la librería \href{https://github.com/KrisKasprzak/EBYTE}{EBYTE}, a través de la cual:
 	
 	\begin{itemize}
-		\item El microcontrolador no es ATmega328 (usado en el nano de la organización Arduino), sino que es ATmega328P. La diferencia reside en que es una versión posterior diseñada para consumir menos potencia que el 328, esencialmente tienen la misma arquitectura y características en tanto a memoria flash, EEPROM y SRAM (la P viene de \textit{picoPower}).
-		\item Este arduino usa un regulador diferente, el CH340G, frente al FT232 que usa el arduino original. Además, el fusible/diodo Schottky que usan para proteger la comunicación serial frente a sobrecorrientes es diferente, siendo el MBR0520 para el caso de los arduinos originales, frente al B5819W que usa el arduino que vamos a usar.
+		\item Se crea una conexión serial por software entre arduino y transceptor LoRa.
+		\item Se configuran los parámetros radio del transceptor. Esta librería soporta varios transceptores.
+		\item Se crea una estructura de datos para formar un mensaje que pueda ser enviado por radio.
+		\item Se envían los datos vía radio.
+		\item Se reciben datos vía radio.
 	\end{itemize}
+	
+	\noindent El uso de esta librería nos permite realizar todo lo anterior, y modificar según necesitemos, además de incorporarlo de manera intuitiva a código de elaboración propia, como se ha hecho en los sketches \textit{gw\_protocolo} y \textit{refugio\_protocolo}. \\
+	
+	\noindent \textit{Anotación}: de aquí en adelante, se hablará de estación del refugio (conjunto formado por microcontrolador, transceptor LoRa y sensores y actuadores para las funcionalidades de comedero y bebedero) y estación del gateway (microcontrolador y tranceptor LoRa, con conexión serial a Raspberry Pi). \\
+	
+	\noindent \textbf{\textit{gw\_protocolo}} \\
+	
+	\noindent Corresponde al código que está subido al arduino nano de la estación del gateway, de manera que: \\
+	
+	\begin{itemize}
+		\item Pueda comunicarse a través de la comunicación serial ordenador - arduino
+		\item Puedan comunicarse arduino y transceptor LoRa mediante una comunicación serial (librería EBYTE). 
+		\item Se crea una estructura de datos para dar forma a los mensajes que se van a recibir y a enviar.
+		\item Bloque \textit{setup ()}: se inicializan las comunicaciones seriales entre pc - arduino y entre arduino - LoRa. Se configuran los parámetros del transceptor según nuestros requerimientos, haciendo uso de las funciones de la librería (funciones internas del transceptor). Para mejor entendimiento con el usuario, mostramos una lista de comandos aptos, es decir, comandos programados en el protocolo que al recibirse en el otro extremo generan una respuesta (ya que ésta está programada).
 
+		\item Bloque \textit{loop ()}:
+			\begin{outline}
+			\1 \textit{Si hay conexión serial entre pc y arduino}: este código sirve para enviar datos hacia el transceptor para que sean enviados vía radio. Así pues, el arduino leerá lo que le llegue por serial  y lo almacenará en una variable, la cual se muestra por consola para debugging. Posteriormente, envío ese dato vía radio mediante una función llamada \textit{sendMessage (String data)}, la cual toma como argumento el dato, y tras una serie de transformaciones, lo envía invocando funciones internas del transceptor LoRa.
+			\1 \textit{Si hay conexión serial entre arduino - LoRa}: esta fracción de código sirve para procesar los datos entrantes al transceptor. Se invocan funciones internas del transceptor LoRa, y se comprueba cada cierto tiempo (regulable en el propio código) si ha llegado un nuevo mensaje; si no, lo hace saber por consola.
+			\end{outline}
+	\end{itemize}
+	
+	\noindent Configuración GW: \ref{subsubsection: config GW y web}. De momento, está programado y funcionando el código recién comentado. El envío de mensajes desde gw hasta refugio están programados de manera que estos sean escritos por consola serial; queda que puedan enviarse mensajes desde una web piloto (la consola serial es más para el testeo en fase de desarrollo, y la web piloto es la primera interfaz que vendría siendo parte de la fase de producción). Además, de momento está programado que cuando recibe mensajes sólo los "decodifique", pero no hace nada con ellos, salvo mostrarlos por consola; la idea es que lo suba a la Raspberry Pi, como mínimo, y si todo va bien, que también pueda mostrarse en la web piloto.\\
+	
+	\noindent \textbf{\textit{refugio\_protocolo}} \\
+	
 	\pagebreak
 	
-		\begin{figure}[h]
+	\subsubsection{Esquemas resumen del prototipo definitivo}
+	
+		\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/conexiones tfg-comedero.png}
-			\caption{}
+			\includegraphics[width=0.65\textwidth]{img/conexiones tfg-comedero.png}
+			\caption{Esquema resumen de la funcionalidad de comedero en el prototipo definitivo.}
 			\label{Conexiones TFG comedero.}
 		\end{center}
 	\end{figure}
 	
-	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el script de Arduino que se adjunta en el Anexo I (REFERENCIAR)  se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.\\ 
+	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el Anexo I (REFERENCIAR)  se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.\\ 
 	
 	\noindent Ajustar el tiempo de un ciclo de rellenado para desactivar el movimiento del servomotor y que se rellene el comedero la cantidad deseada. \\
 	
 	\pagebreak
 	
-		\begin{figure}[h]
+		\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/conexiones tfg-bebedero.png}
-			\caption{Esquema general del bebedero. }
+			\includegraphics[width=0.65\textwidth]{img/conexiones tfg-bebedero.png}
+			\caption{Esquema resumen de la funcionalidad de bebedero en el prototipo definitivo.}
 			\label{Conexiones TFG bebedero.}
 		\end{center}
 	\end{figure}
@@ -1768,7 +1805,8 @@
 	
 	\pagebreak
 	
-	\noindent \textbf{Imágenes del prototipo real (comedero)} \\
+	\subsubsection{Imágenes del prototipo final}
+	\noindent \textbf{Comedero} \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1890,7 +1928,7 @@
 	
 	\pagebreak
 	
-	\noindent \textbf{Imágenes del prototipo real (bebedero)} \\
+	\noindent \textbf{Bebedero} \\
 
 	\begin{figure}[h]
 		\begin{center}
@@ -1962,7 +2000,7 @@
 	
 	\pagebreak
 	
-	\noindent \textbf{Imagen del sistema de alimentación conjunto (prototipo)} \\
+	\noindent \textbf{Sistema de alimentación conjunto (prototipo)} \\
 
 	\begin{figure}[h]
 		\begin{center}
@@ -1973,6 +2011,11 @@
 	\end{figure}
 
 	\pagebreak	
+	
+	\subsubsection{Configuración del gateway y página web}
+	\label{subsubsection: config GW y web}
+	
+	\pagebreak
 	
 	\subsection[Pruebas]{Pruebas}
 	
@@ -2389,17 +2432,121 @@
 	
 	\subsection*{Anexo I}
 	\addcontentsline{toc}{subsection}{Anexo I}	
-	
+	\label{anexo I: ficha tecnica}
 	\noindent [Fichas técnicas de los componentes usados] \\
 	
 	\pagebreak
 	
 	\subsection*{Anexo II}
 	\addcontentsline{toc}{subsection}{Anexo II}
+	\label{anexo II: codigo}
 	
-	\noindent Código Arduino \\
+	\noindent Código Arduino: \textit{refugio\_protocolo} \\
 	
 	\begin{lstlisting}[language=C]
+#include <SoftwareSerial.h>
+#include "EBYTE.h"
+#include <avr/io.h>
+		
+		#define PIN_RX 2
+		#define PIN_TX 3
+		#define PIN_M0 4
+		#define PIN_M1 5
+		#define PIN_AX 6
+		
+		#define LORA_CHANNEL 5
+		
+		struct ebyte_struct {
+			unsigned long count;
+			String msg;                                           
+		};
+		ebyte_struct ebyte_msg;
+		
+		int Chan;
+		unsigned long Last;
+		
+		SoftwareSerial ESerial(PIN_RX, PIN_TX);
+		EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
+		
+		
+		void setup() {
+			Serial.begin(115200);
+			
+			ESerial.begin(9600);
+			Serial.println("Starting Reader");
+			
+			// this init will set the pinModes for you
+			Transceiver.init();
+			
+			// all these calls are optional but shown to give examples of what you can do
+			
+			// Serial.println(Transceiver.GetAirDataRate());
+			// Serial.println(Transceiver.GetChannel());
+			
+			Transceiver.SetMode(MODE_NORMAL);
+			
+			Transceiver.SetUARTBaudRate(UDR_9600);
+			Transceiver.SetAirDataRate(ADR_2400);
+			Transceiver.SetAddressH(1);
+			Transceiver.SetAddressL(0);
+			
+			Transceiver.SetChannel(LORA_CHANNEL);
+			Transceiver.SetTransmitPower(OPT_TP21);
+			Transceiver.SetPullupMode(0);
+			Transceiver.SetFECMode(1);
+			
+			// save the parameters to the unit,
+			Transceiver.SaveParameters(TEMPORARY);
+			
+			// you can print all parameters and is good for debugging
+			// if your units will not communicate, print the parameters
+			// for both sender and receiver and make sure air rates, channel
+			// and address is the same
+			Transceiver.PrintParameters();
+		}
+		
+		void loop() {
+			
+			// if the transceiver serial is available, proces incoming data
+			// you can also use Transceiver.available()
+			
+			if (ESerial.available()) {
+				
+				// i highly suggest you send data using structures and not
+				// a parsed data--i've always had a hard time getting reliable data using
+				// a parsing method
+				
+				Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
+				//read = Transceiver.GetByte();
+				
+				//Serial.println(read);
+				
+				// dump out what was just received
+				Serial.print("Count: "); Serial.println(ebyte_msg.count);
+				Serial.print("msg: "); Serial.println(ebyte_msg.msg);
+				Serial.println("***");
+				// if you got data, update the checker
+				Last = millis();
+				
+			}
+			else {
+				// if the time checker is over some prescribed amount
+				// let the user know there is no incoming data
+				if ((millis() - Last) > 1000) {
+					Serial.println("Searching: ");
+					Last = millis();
+				}
+				
+			}
+		}
+	\end{lstlisting}
+	
+	\pagebreak
+	
+	\noindent Código Arduino: \textit{gw\_protocolo} \\
+	
+	\begin{lstlisting}[language=C]
+
 #include <SoftwareSerial.h>
 #include "EBYTE.h"
 #include <avr/io.h>
@@ -2414,27 +2561,26 @@
 
 struct ebyte_struct {
 	unsigned long count;
-	String msg;                                           
+	char msg[64];                                           
 };
 ebyte_struct ebyte_msg;
 
-int Chan;
 unsigned long Last;
 
 SoftwareSerial ESerial(PIN_RX, PIN_TX);
 EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
 
-
 void setup() {
-	Serial.begin(115200);
+	Serial.begin(115200); 
 	
+	//different baudrate for nano-E32 serial comm (recommend value of 9600)
 	ESerial.begin(9600);
-	Serial.println("Starting Reader");
+	Serial.println("Starting GW");
 	
 	// this init will set the pinModes for you
 	Transceiver.init();
 	
-	// all these calls are optional but shown to give examples of what you can do
+	// all these calls are optional
 	
 	// Serial.println(Transceiver.GetAirDataRate());
 	// Serial.println(Transceiver.GetChannel());
@@ -2447,7 +2593,7 @@ void setup() {
 	Transceiver.SetAddressL(0);
 	
 	Transceiver.SetChannel(LORA_CHANNEL);
-	Transceiver.SetTransmitPower(OPT_TP21);
+	Transceiver.SetTransmitPower(OPT_TP21); //21dBm
 	Transceiver.SetPullupMode(0);
 	Transceiver.SetFECMode(1);
 	
@@ -2459,9 +2605,35 @@ void setup() {
 	// for both sender and receiver and make sure air rates, channel
 	// and address is the same
 	Transceiver.PrintParameters();
+	
+	ebyte_msg.count = 0;
+	
+	//Reduced SRAM cause arduino nano -- optimize sram on string shown on Serial.println using "F" function 
+	//Example of F(): https://techexplorations.com/guides/arduino/programming/f-macro/
+	//https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram
+	
+	Serial.println(F("Resumen de comandos aptos: status, ping, rellenar_bebedero,"));
+	Serial.println(F("rellenar_comedero, reset_comedero, check_levels y update_oled"));
+	Serial.println(F("Formato de los mensajes de respuesta: ack;field1;var1"));
+	
+	Serial.println("Ready...");
+	delay(500);
 }
 
 void loop() {
+	
+	// arduino serial: write on serial interface and send msg via LoRa to refugio station
+	
+	if (Serial.available() > 0) {
+		String static dat_rec;
+		
+		dat_rec = Serial.readString();
+		dat_rec.trim(); //quita espacio en blanco
+		
+		Serial.println("Received data: " + dat_rec);
+		
+		sendMessage(dat_rec); //dat_rec will be sent via radio/LoRa
+	}
 	
 	// if the transceiver serial is available, proces incoming data
 	// you can also use Transceiver.available()
@@ -2473,14 +2645,13 @@ void loop() {
 		// a parsing method
 		
 		Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
-		//read = Transceiver.GetByte();
-		
-		//Serial.println(read);
 		
 		// dump out what was just received
-		Serial.print("Count: "); Serial.println(ebyte_msg.count);
-		Serial.print("msg: "); Serial.println(ebyte_msg.msg);
-		Serial.println("***");
+		//Serial.print("Count: "); 
+		//Serial.println(ebyte_msg.count);
+		//Serial.print("msg: "); 
+		Serial.println(ebyte_msg.msg);
+		//Serial.println("***");
 		// if you got data, update the checker
 		Last = millis();
 		
@@ -2489,11 +2660,25 @@ void loop() {
 		// if the time checker is over some prescribed amount
 		// let the user know there is no incoming data
 		if ((millis() - Last) > 1000) {
-			Serial.println("Searching: ");
+			//Serial.println("Searching: ");
 			Last = millis();
 		}
 		
 	}
+}
+
+//Data received by pc-nano serial comm -- will be transmitted by our gw LoRa transceiver
+void sendMessage(String data) {
+	Serial.println("Sending data: " + data);
+	
+	// Send to radio
+	data.toCharArray(ebyte_msg.msg, data.length()+1);
+	ebyte_msg.count++; 
+	
+	Transceiver.SendStruct(&ebyte_msg, sizeof(ebyte_msg));
+	Serial.println("Sent. Count " + String(ebyte_msg.count));
+	Serial.println("***");
+	delay(1000);
 }
 	\end{lstlisting}
 
