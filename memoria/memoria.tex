@@ -5,7 +5,11 @@
 \usepackage{graphicx}
 \usepackage{gensymb}
 \usepackage{outlines}
-
+\usepackage[export]{adjustbox}
+\usepackage{adjustbox}
+\usepackage{multicol}
+\usepackage{lipsum}
+\parskip 1ex
 
 \usepackage{eurosym}
 
@@ -75,12 +79,57 @@
 
 \begin{document}
 	\selectlanguage{spanish}
-
-	\title{Diseño y automatización de un sistema  de alimentación  para animales \textit{Open Source} y monitorización a través de la tecnología LoRa}
-	\author{Lucía Francoso Fernández}
-	\date{Marzo 2021}
 	
-	\maketitle
+	%\thispagestyle{empty}
+	
+
+	
+	%\pagebreak
+	
+	\thispagestyle{empty}
+	
+	\newgeometry{left=0.01cm,bottom=0.01cm, top=0.01cm}
+	
+	%width=0.3\textwidth,
+		
+	%\begin{figure}[h!]
+	%	\includegraphics[height=\textheight,left]{img/banda_etsit_90.png}
+
+%	\end{figure}
+
+	\begin{minipage}{0.2\textwidth}
+		\includegraphics[height=\textheight,left]{img/banda_etsit_90.png}
+	\end{minipage}
+	\centerline{\begin{minipage}[t][5cm][b]{0.5\textwidth}
+		%	\textbf{UNIVERSIDAD POLITÉCNICA DE} \\
+			
+		%	\textbf{CARTAGENA}\\
+			
+			\title{\textbf{Automatización y control de bebederos automáticos para especies animales usando LoRa}} 
+			\maketitle
+			
+			\vspace{0.5cm}
+			
+			\hspace{1.5cm} \textbf{TRABAJO FIN DE GRADO} \\
+			
+			\vspace{0.5cm}
+			
+			\hspace{1.3cm} Grado en Ingeniería en Sistemas  de\\
+			
+			\vspace{0.01cm}
+			
+			\hspace{2.7cm} Telecomunicaciones \\
+			
+			\vspace{1cm}
+			
+			\textbf{Autora:}\author{ Lucía Francoso Fernández}\\
+			
+			\textbf{Tutor:} Juan Pascual García
+		\end{minipage}}
+
+	
+	\restoregeometry
+	
 	\pagebreak
 	
 	\tableofcontents
