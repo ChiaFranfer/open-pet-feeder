@@ -1,0 +1,6 @@
+flask
+flask-serial
+flask-socketio
+eventlet
+gevent
+datetime
