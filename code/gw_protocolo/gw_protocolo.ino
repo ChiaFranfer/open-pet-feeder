@@ -82,7 +82,7 @@ void loop() {
     dat_rec = Serial.readString();
     dat_rec.trim(); //quita espacio en blanco
 
-    Serial.println("Received data: " + dat_rec);
+    Serial.println("[GW] Comando recibido: " + dat_rec);
 
     sendMessage(dat_rec); //dat_rec will be sent via radio/LoRa
   }
@@ -99,9 +99,10 @@ void loop() {
     Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
 
     // dump out what was just received
-    //Serial.print("Count: "); 
-    //Serial.println(ebyte_msg.count);
+    Serial.print("[Refugio] ID: "); 
+    Serial.println(ebyte_msg.count);
     //Serial.print("msg: "); 
+    Serial.print("[Refugio] Msg: ");
     Serial.println(ebyte_msg.msg);
     //Serial.println("***");
     // if you got data, update the checker
@@ -121,14 +122,14 @@ void loop() {
 
 //Data received by pc-nano serial comm -- will be transmitted by our gw LoRa transceiver
 void sendMessage(String data) {
-  Serial.println("Sending data: " + data);
+  Serial.println("[GW] Enviando por LoRa: " + data);
 
   // Send to radio
   data.toCharArray(ebyte_msg.msg, data.length()+1);
   ebyte_msg.count++; 
   
   Transceiver.SendStruct(&ebyte_msg, sizeof(ebyte_msg));
-  Serial.println("Sent. Count " + String(ebyte_msg.count));
-  Serial.println("***");
+  Serial.println("[GW] Msg enviado. ID: " + String(ebyte_msg.count));
+  //Serial.println("***");
   delay(1000);
 }

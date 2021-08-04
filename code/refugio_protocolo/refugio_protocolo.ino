@@ -110,9 +110,9 @@ void loop() {
     Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
 
     // dump out what was just received
-    Serial.print("Count: "); Serial.println(ebyte_msg.count);
-    Serial.print("msg: "); Serial.println(ebyte_msg.msg);
-    Serial.println("***");
+    Serial.print("ID: "); Serial.println(ebyte_msg.count);
+    Serial.print("Msg: "); Serial.println(ebyte_msg.msg);
+    //Serial.println("***");
     // if you got data, update the checker
     Last = millis();
 
@@ -174,7 +174,7 @@ void executeCommand(String data) {
   if (data.equals("rellenar_comedero")) {
     String feeder = rellenarComedero();
 
-    msg = "ack;feeder_refill;" + feeder;
+    msg = "ack;feeder_refill;" + feeder + ";num_refill;" + num_refill;
 
     sendMessage(msg);
     
@@ -210,8 +210,8 @@ void sendMessage(String data) {
   ebyte_msg.count++; 
   
   Transceiver.SendStruct(&ebyte_msg, sizeof(ebyte_msg));
-  Serial.println("Sent. Count " + String(ebyte_msg.count));
-  Serial.println("***");
+  Serial.println("[Refugio] Enviado. ID: " + String(ebyte_msg.count));
+  //Serial.println("***");
   delay(1000);
 }
 

@@ -19,7 +19,7 @@ app.config['SERIAL_BYTESIZE'] = 8
 app.config['SERIAL_PARITY'] = 'N'
 app.config['SERIAL_STOPBITS'] = 1
 
-socketio = SocketIO(app, async_mode="gevent", ping_timeout=15, logger=False, engineio_logger=False)
+socketio = SocketIO(app, async_mode="gevent", ping_timeout=5, logger=False, engineio_logger=False)
 ser = Serial(app)
 
 #
@@ -60,7 +60,7 @@ def handle_send(json_str):
 
     # Enviamos en el socket 'receive_message' [hacer en recepcion serial]
     now = datetime.now()
-    msg = "{} >> Enviado: {}".format(now.strftime("%H:%M:%S"), data)
+    msg = "{} >> Comando a gateway: {}".format(now.strftime("%H:%M:%S"), data)
     socketio.emit("receive_message", data={"message":str(msg)})
 
 #
@@ -73,7 +73,7 @@ def handle_message(msg):
     try:
         print("receive message: {}".format(msg))
         now = datetime.now()
-        msg = "{} >> Recibido: {}".format(now.strftime("%H:%M:%S"), msg.decode("utf-8").strip('\n'))
+        msg = "{} >> Respuesta: {}".format(now.strftime("%H:%M:%S"), msg.decode("utf-8").strip('\n'))
         print("Send socket msg: {}".format(msg))
         socketio.emit("receive_message", data={"message":str(msg)})
     except Exception as ex:
