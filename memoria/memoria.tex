@@ -244,7 +244,7 @@
 	
 	\noindent [Comentar a modo resumen los proyectos Open Source en los que más me haya basado]. \\
 	
-	\noindent [Añadir lo que comentas sobre TFE Específico de Aprendizaje.] \\
+	\noindent Por último, es importante comentar que este TFG está catalogado como \textit{TFE Específico de Aprendizaje}; según la normativa sobre TFG específico de aprendizaje: \textit{``aquellos TFE específicos ligados a la consecución de los Objetivos de Desarrollo Sostenible (ODS) a través de la vinculación de manera directa a una solicitud de servicio, a desarrollar por el estudiante en su TFE, realizada por una asociación o institución externa, sin ánimo de lucro''}. \\
 	
 
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
@@ -1786,7 +1786,7 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el Anexo I (REFERENCIAR)  se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.\\ 
+	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el \hyperref[anexo I: ficha tecnica]{Anexo I} se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.\\ 
 	
 	\noindent Ajustar el tiempo de un ciclo de rellenado para desactivar el movimiento del servomotor y que se rellene el comedero la cantidad deseada. \\
 	
@@ -2092,11 +2092,32 @@
 	
 	\noindent El dispositivo usado como gateway es una Raspberry Pi 3, una opción \textit{Open Source}, económica, sencilla y bien documentada. Al ser un dispositivo con recursos limitados (es una de las opciones más básicas para servidor), instalaremos \textit{Raspbian} (actualmente, \textit{Raspberry Pi OS}), una distribución de linux ligera y adaptada a Raspberry Pi [\ref{bib: raspbian}]. \\
 	
-	\noindent [Explicar su función]. \\
-	
 	\noindent Este dispositivo será nuestro servidor, y estará conectado por serial con el arduino nano en del extremo de la comunicación que entendemos como estación del campo (extremo de control). Así pues, será donde se aloje la página web creada para el control remoto del bebedero y comedero. \\
 	
-	\noindent [Explicar página web, que hemos usado flask]. Para crear la página web, se han empleado como lenguajes de programación HTML y CSS; además, se ha hecho uso del framework conocido como \textit{Flask}, el cual permite un importante grado de personalización, idóneo para emprender proyectos web sencillos (aunque el framework ofrece la posibilidad de que escale al gusto de cada uno). Refs: [\ref{bib: flask serial}], [\ref{bib: flask doc}].
+	\noindent Para crear la página web, se han empleado Python como lenguaje de programación, y los lenguajes de \textit{maquetado} (lenguajes de \textit{marcado}) HTML + CSS + JavaScript. Se ha hecho uso, además de dos frameworks, uno para la parte front-end de la aplicación web, y otro para la parte back-end:
+	
+	\begin{itemize}
+		\item \textbf{Back-end}. Está programado con el lenguaje de programación Python, haciendo uso del framework conocido como \textit{Flask}, el cual permite un importante grado de personalización, idóneo para emprender proyectos web sencillos (aunque el framework ofrece la posibilidad de que escale al gusto de cada uno)[\ref{bib: flask doc}]. A través de una librería especial de Flask, ofrecida por el usuario \href{https://github.com/RedFalsh}{RedFalsh}, con el nombre \href{https://github.com/RedFalsh/flask-serial/blob/master/README.md}{\textit{flask-serial}}, establecemos la comunicación serial entre la página web y el arduino nano del GW, para poder enviar órdenes desde la página web y que el arduino nano los reciba y pueda transmitir vía LoRa hacia la estación del refugio [\ref{bib: flask serial}]. 
+		\item \textbf{Front-end}. Haciendo uso de los lenguajes de marcado mencionados, se define el estilo de la web (su apariencia) y se emplea el framework \textit{Bootstrap}; se trata de un framework que combina CSS y JavaScript  para estilizar los elementos  de una página HTML, proporcionando interactividad  y dinamismo en la página web, donde se mostrarán los elementos de la misma sin necesidad de volver a cargar la página para ver cómo varían en apariencia o valor. Su característica más significativa es que permite la construcción de páginas web \textit{responsive}, es decir, páginas web cuya presentación se adaptará al dispositivo donde se visualicen [\ref{bib: bootstrap doc}][\ref{bib: bootstrap info}].
+	\end{itemize} 
+	
+	\noindent La apariencia de la página web creada es tal como muestra la Figura \ref{Web: captura pagina principal}: \\
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=1\textwidth]{img/captura_web_1.png}
+			\caption{Captura de la página web creada (primera versión), en concreto, de la página principal, donde se muestran los botones, los links y el mensaje de aviso.}
+			\label{Web: captura pagina principal}
+		\end{center}
+	\end{figure}
+	
+	\noindent Los enlaces que aparecen en el pie de la página, tal como muestra la Figura \ref{Web: captura pagina principal}, redirigen, respectivamente, a mi cuenta de GitHub (donde se podrá visualizar el repositorio creado para este proyecto y otros, con todo el código y documentación necesaria para recrear este proyecto), y la segunda página de esta web, donde hay un apartado con documentación relativa al uso de la misma (se trata de una guía de usuario a efectos prácticos). \\
+	
+	\noindent El aviso que aparece en rojo existe para avisar al usuario de que no se detecta el dispositivo en el puerto especificado para realizar la comunicación serial. Si todo está conectado correctamente, aparecerá un aviso en verde (\textit{``Conectado a GW''}), el cual nos informará sobre la disponibilidad de dicho puerto, comunicando que estamos conectados al gateway y que, por tanto, se puede realizar la comunicación serial. \\
+	
+	\noindent [Imagen captura web con aviso en verde y cosas escritas en la consola de la web que se vea que funciona.] \\
 	
 	\pagebreak
 	
@@ -2119,7 +2140,7 @@
 	\begin{itemize}
 		\item Testeo de los componentes de manera individual. Tras la recepción de los productos, y antes de usarlos en ningún prototipo, hay que probarlos de manera individual. Incluye tanto la programación sencilla de programas para el testeo del hardware, como la creación de circuitos sencillos en protoboard para ejecutar esos programas y verificar el estado del componente que se está testeando.
 		\item Testeo de los componentes en protoboard formando el prototipo provisional.
-		\item Testeo de los componentes en la PCB, formando el prototipo final. Tenemos en cuenta, además, el formato elegido para el exterior del diseño (eservas, cableados y conexionado físico), probamos su estabilidad y comodidad, y descartamos opciones.
+		\item Testeo de los componentes en la PCB, formando el prototipo final. Tenemos en cuenta, además, el formato elegido para el exterior del diseño (reservas, cableados y conexionado físico), probamos su estabilidad y comodidad, y descartamos opciones.
 	\end{itemize}
 	
 	\pagebreak
@@ -2185,6 +2206,15 @@
 	
 	%%% SWITCHES DE NIVEL DE AGUA %%%
 	\noindent \textbf{\large Resistencia \textit{pull-down}}. Las resistencias \textit{pull-down}, y \textit{pull-up}, son resistencias que se usan en circuitos lógicos para asegurar un nivel lógico bien definido en un pin bajo cualquier circunstancia. Como recordatorio, los circuitos lógicos digitales tienen tres estados lógicos: alto, bajo y flotante (alta impedancia). El estado de alta impedancia ocurre cuando un pin no llega a estar en valor alto o bajo, y se queda "flotando". Una buena manera de ilustrar esta situación es un pin de entrada desconectado de un microcontrolador; no se encuentra en un estado lógico alto o bajo, y el MCU podría interpretar de manera impredecible el valor de entrada como alto o bajo. También ocurre si en un pin del MCU tenemos un switch; si no hay una resistencia \textit{pull-down} o \textit{pull-up}, el pin estará flotando cuando el switch se abra, y dando valores lógicos conocidos sólo cuanto éste se cierre. Son resistencias de valor fijo, que dependiendo de la aplicación del circuito digital que estemos diseñando tendrán un valor u otro (y de la impedancia de entrada del pin del MCU al que queramos conectarnos, por ejemplo). La diferencia entre una resistencia \textit{pull-down} y una \textit{pull-up} es que la primera se coloca entre tierra y el pin en cuestión, haciendo que, cuando el switch se abra, el pin tenga valor lógico bajo, mientras que la segunda se coloca entre VCC y el pin, haciendo que, cuando el switch se abra, el pin tenga valor lógico de alto.\\ 
+	
+	%%PAGINA WEB%%
+	\noindent \textbf{\large Lenguaje de marcado}.
+	
+	\noindent \textbf{\large Framework}. 
+	
+	\noindent \textbf{\large Front-end}.
+	
+	\noindent \textbf{\large Back-end}.  
 	
 	\pagebreak
 	
@@ -2389,22 +2419,36 @@
 			
 			%39
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}
+			\label{bib: bootstrap doc}
+			\href{https://getbootstrap.com/docs/5.0/getting-started/introduction/}{Bootstrap: documentación}
 			
 			
 			%40
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}
+			\label{bib: bootstrap info}
+			\href{https://rockcontent.com/es/blog/bootstrap/}{Bootstrap: información}
 			
 			
 			%41
 			\item 
 			\label{bib: link12}
 			\href{URL}{text}
-			
-			
+
+			%42
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}
+
+			%43
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}
+
+			%44
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}		
+						
 		\end{enumerate}
 		
 		\subsection*{Imágenes}
@@ -2527,13 +2571,14 @@
 	\section*{Anexos}
 	\addcontentsline{toc}{section}{Anexos}
 	
-	\noindent Se presentan tres anexos. El Anexo I mostrará detalles técnicos de los componentes usados. El Anexo II, el código de programación creado para este proyecto. Por último, en el Anexo III se mostrará el presupuesto detallado del mismo. \\
+	\noindent Se presentan tres anexos. El \hyperref[anexo I: ficha tecnica]{Anexo I} mostrará detalles técnicos de los componentes usados. El \hyperref[anexo II: codigo]{Anexo II}, el código de programación creado para este proyecto. Por último, en el \hyperref[anexo III: presupuesto]{Anexo III} se mostrará el presupuesto detallado del mismo. \\
 	
 	\pagebreak
 	
 	\subsection*{Anexo I}
-	\addcontentsline{toc}{subsection}{Anexo I}	
 	\label{anexo I: ficha tecnica}
+	\addcontentsline{toc}{subsection}{Anexo I}	
+	%\label{anexo I: ficha tecnica}
 	\noindent [Fichas técnicas de los componentes usados] \\
 	
 	\pagebreak
@@ -2786,7 +2831,7 @@ void sendMessage(String data) {
 	\pagebreak
 	
 	\subsection*{Anexo III}
-	\label{subsection: presupuesto}
+	\label{anexo III: presupuesto}
 	\addcontentsline{toc}{subsection}{Anexo III}
 	
 	\noindent [Insertar tabla excel del presupuesto]. \\
