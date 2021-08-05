@@ -176,7 +176,8 @@
 	
 	
 	\subsection[Contexto y justificación del trabajo]{Contexto y justificación del trabajo}
-
+	\label{subsection: contexto y justificacion}
+	
 	\noindent Este proyecto ha sido concebido con el objetivo principal de ayudar a la preservación de la vida animal, ante el aumento de especies en extinción, sobre todo en lo que llevamos de siglo [\ref{bib: enlace National Geographic}]-[\ref{bib: enlace Fundación AQUAE}], 
 	y ante el hecho de que miles de animales domésticos siguen siendo abandonados al año en España [\ref{bib: enlace Fundación Affinity}]-[\ref{bib: enlace RTVE}]. \\ %\footnotemark. \\
 	
@@ -208,7 +209,7 @@
 	\end{itemize}
 	
 	\subsection[Objetivos del trabajo]{Objetivos del trabajo}
-	
+	\label{subsection: objetivos del trabajo}
 	El objetivo fundamental del presente trabajo es el diseño de un sistema de alimentación para animales que permita la monitorización de los niveles de agua y pienso que se encuentran en depósitos de reserva, los cuales rellenan un bebedero y un comedero, respectivamente.  Con ello, se pretende automatizar el proceso de alimentación de animales, además del uso de la tecnología LoRa para tener acceso al estado del sistema de forma remota. Así pues, los objetivos concretos son:
 	
 	\begin{itemize}
@@ -244,8 +245,12 @@
 	
 	\noindent [Comentar a modo resumen los proyectos Open Source en los que más me haya basado]. \\
 	
-	\noindent Por último, es importante comentar que este TFG está catalogado como \textit{TFE Específico de Aprendizaje}; según la normativa sobre TFG específico de aprendizaje: \textit{``aquellos TFE específicos ligados a la consecución de los Objetivos de Desarrollo Sostenible (ODS) a través de la vinculación de manera directa a una solicitud de servicio, a desarrollar por el estudiante en su TFE, realizada por una asociación o institución externa, sin ánimo de lucro''}. \\
+	\noindent Por último, es importante comentar que este TFG está catalogado como \textit{TFE Específico de Aprendizaje}; según la normativa sobre TFG específico de aprendizaje: \textit{``aquellos TFE específicos ligados a la consecución de los Objetivos de Desarrollo Sostenible (ODS) a través de la vinculación de manera directa a una solicitud de servicio, a desarrollar por el estudiante en su TFE, realizada por una asociación o institución externa, sin ánimo de lucro''}. Esto es así, ya que:
 	
+	\begin{itemize}
+		\item Cumple el Objetivo 15 de Desarollo Sostenible (ODS), el cual trata de \textit{``Gestionar sosteniblemente los bosques, luchar contra la desertificación, detener e invertir la degradación de las tierras, detener la pérdida de biodiversidad''} [\ref{bib: ods}]. Con este proyecto, nos estamos orientando a la detención de la pérdida de biodiversidad, ya que, como se ha comentado anteriormente, se va a crear un dispositivo capaz de alimentar y abrevar animales en lugares sin electricidad y sin conexión a internet, usando el menor número de dispositivos radio posible (siendo estos de largo alcance y bajo consumo). Instalando estos dispositivos en zonas de cuidado de animales podemos reducir el tiempo que dedican los voluntarios a las diferentes actividades (como hemos mencionado en el apartado \ref{subsection: contexto y justificacion}), permitiendo usar ese tiempo en otras actividades igualmente prioritarias pero que difícilmente se pueden realizar en remoto, como el salvamento o rescate de animales, ubicación, repoblación o cuidados veterinarios. 
+		\item Existe una solicitud formal de la protectora que va a hacer uso del dispositivo que se cree, Patitas Unidas Los Alcázares [\ref{bib: fb patitas}] [\ref{bib: web patitas}]. Dicha solicitud recoge los mínimos que debe tener en cuenta el proyecto, ya expuestos en el apartado \ref{subsection: objetivos del trabajo}.
+	\end{itemize}
 
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
 	
@@ -2115,9 +2120,21 @@
 	
 	\noindent Los enlaces que aparecen en el pie de la página, tal como muestra la Figura \ref{Web: captura pagina principal}, redirigen, respectivamente, a mi cuenta de GitHub (donde se podrá visualizar el repositorio creado para este proyecto y otros, con todo el código y documentación necesaria para recrear este proyecto), y la segunda página de esta web, donde hay un apartado con documentación relativa al uso de la misma (se trata de una guía de usuario a efectos prácticos). \\
 	
-	\noindent El aviso que aparece en rojo existe para avisar al usuario de que no se detecta el dispositivo en el puerto especificado para realizar la comunicación serial. Si todo está conectado correctamente, aparecerá un aviso en verde (\textit{``Conectado a GW''}), el cual nos informará sobre la disponibilidad de dicho puerto, comunicando que estamos conectados al gateway y que, por tanto, se puede realizar la comunicación serial. \\
+	\noindent El aviso que aparece en rojo existe para avisar al usuario de que no se detecta el dispositivo en el puerto especificado para realizar la comunicación serial. Si todo está conectado correctamente, aparecerá un aviso en verde (\textit{``Conectado a GW''}), el cual nos informará sobre la disponibilidad de dicho puerto, comunicando que estamos conectados al gateway y que, por tanto, se puede realizar la comunicación serial (Figura \ref{Web: captura ejemplo consola}). \\
 	
-	\noindent [Imagen captura web con aviso en verde y cosas escritas en la consola de la web que se vea que funciona.] \\
+	\pagebreak
+	
+	%captura_web_2.png
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=1\textwidth]{img/captura_web_2.png}
+			\caption{Captura de la página web creada (primera versión), en concreto, de la página principal, donde se muestra un ejemplo de envío de mensajes y recepción, visible en la consola de la web.}
+			\label{Web: captura ejemplo consola}
+		\end{center}
+	\end{figure}
+
+	\noindent Llegados a este punto, concluimos que el prototipo definitivo es capaz de crear un enlace radio vía LoRa y que desde una web de creación propia podemos enviar comandos hacia el refugio y recibir respuesta de manera satisfactoria. Para entender los diferentes comandos enviados desde la web y, en general, cómo usarla, se ha creado un documento PDF con documentación sobre la web, alojado en el repositorio donde se incluye todo lo relacionado con el proyecto: \href{https://github.com/ChiaFranfer/open-pet-feeder/tree/master/memoria/complementarios}{GitHub: documentación sobre la web}. Tras estos resultados, resta realizar pruebas de campo que validen la creación de un enlace radio LoRa en entornos realistas.\\
 	
 	\pagebreak
 	
@@ -2431,18 +2448,18 @@
 			
 			%41
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}
+			\label{bib: ods}
+			\href{https://www.un.org/sustainabledevelopment/es/biodiversity/}{Objetivo 15 de Desarrollo Sostenible (ODS)}
 
 			%42
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}
+			\label{bib: fb patitas}
+			\href{https://www.facebook.com/patitasunidaslosalcazares/}{Facebook: Patitas Unidas Los Alcázares}
 
 			%43
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}
+			\label{bib: web patitas}
+			\href{https://patitasunidas.org/}{Web de Patitas Unidas Los Alcázares}
 
 			%44
 			\item 
@@ -2564,6 +2581,17 @@
 				\label{bib: AliExpress}
 				\href{https://es.aliexpress.com/item/32972870968.html?spm=a2g0s.9042311.0.0.274263c0xMPROA}{AliExpress: antenas 868MHz 5dBi}				
 				
+				
+				%19
+				\item 
+				\label{bib: patitas logo}
+				\href{https://www.facebook.com/patitasunidaslosalcazares/photos/a.1390104817919443/1979671835629402/?type=1\&theater}{Patitas Unidas (Facebook): logo}		
+				
+				%20
+				\item 
+				\label{bib: ods logo}
+				\href{https://www.un.org/sustainabledevelopment/es/}{ONU: logo ODS}
+					
 			\end{enumerate}
 
 	\pagebreak
