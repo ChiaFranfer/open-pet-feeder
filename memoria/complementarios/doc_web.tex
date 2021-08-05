@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+\usepackage[spanish, english, es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{outlines}
+\usepackage[export]{adjustbox}
+\usepackage{adjustbox}
+\usepackage{multicol}
+\usepackage{lipsum}
+\parskip 1ex
+
+\usepackage{eurosym}
+
+% add code
+\usepackage{listings}
+
+\usepackage{array}
+
+% text font 
+
+\usepackage{courier}
+
+%\usepackage{fontspec}
+
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage[left = 2cm, right = 2cm, bottom = 2cm, top = 3cm]{geometry}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	%filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+\hypersetup{
+	pdftitle= {Diseño y automatización de un sistema de alimentación OpenSource para animales a través de la tecnología LoRa},
+	pdfauthor = {Lucía Francoso Fernández},
+	pdfsubject = {Electrónica y comunicaciones móviles},
+	pdfkeywords = {Arduino, LoRa, automatización, LoRaWAN, punto a punto, OpenSource}
+}
+
+% define color for C code (Anexos)
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\begin{document}
+	\selectlanguage{spanish}
+	
+	%\thispagestyle{empty}
+	
+	
+	
+	%\pagebreak
+	
+	\thispagestyle{empty}
+	
+	\newgeometry{left=0.01cm,bottom=0.01cm, top=0.01cm}
+	
+	%width=0.3\textwidth,
+	
+	%\begin{figure}[h!]
+	%	\includegraphics[height=\textheight,left]{img/banda_etsit_90.png}
+	
+	%	\end{figure}
+	
+	\begin{minipage}{0.2\textwidth}
+		\includegraphics[height=\textheight,left]{img_comp/banda_etsit_90.png}
+	\end{minipage}
+	\centerline{\begin{minipage}[t][7cm][b]{0.5\textwidth}
+			%	\textbf{UNIVERSIDAD POLITÉCNICA DE} \\
+			
+			%	\textbf{CARTAGENA}\\
+			
+			\vspace{2cm}
+			
+			\title{\textbf{Automatización y control de bebederos automáticos para especies animales usando LoRa: }\\
+				
+			\vspace{1cm}
+			
+			\textit{Documentación de la página web} 
+			}
+			
+			\maketitle
+			
+			\vspace{1cm}
+				
+			\hspace{1.5cm} \textbf{TRABAJO FIN DE GRADO} \\
+			
+			\vspace{0.5cm}
+			
+			\hspace{1.3cm} Grado en Ingeniería en Sistemas  de\\
+			
+			\vspace{0.01cm}
+			
+			\hspace{2.7cm} Telecomunicaciones \\
+			
+			\vspace{1cm}
+			
+			\textbf{Autora:}\author{ Lucía Francoso Fernández}\\
+			
+			\textbf{Tutor:} Juan Pascual García
+	\end{minipage}}
+	
+	
+	\restoregeometry
+	
+	\pagebreak
+
+	\tableofcontents
+	
+	\pagebreak
+	
+	\listoffigures
+	\addcontentsline{toc}{section}{Índice de figuras}
+	
+	\pagebreak
+	
+	\listoftables
+	\addcontentsline{toc}{section}{Índice de tablas}
+	
+	\pagebreak
+	
+	\section{Introducción}
+	\section{Apariencia de la web}
+	
+\end{document}
