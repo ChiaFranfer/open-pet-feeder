@@ -235,24 +235,56 @@
 
 	\section[Estado del arte]{Estado del arte}  
 	
-	\noindent En este capítulo se va a exponer un análisis del estado del arte relativo al proyecto (tecnologías y técnicas necesarias para el diseño del sistema planteado). Este análisis se centra en la situación actual en tanto a  la automatización del proceso de alimentación de animales, técnicas, sistemas y proyectos similares y conceptos introductorios a Arduino y LoRa, fundamentales para poder materializar este proyecto.
+	\noindent En el capítulo anterior ya se planteó la motivación y una aproximación a lo que sepretende realizar en este proyecto, pero en este punto se expone con más detalle lasituación actual en el ámbito del control y automatización de sistemas de alimentación para animales, así comoproyectos relacionados con este ámbito y otros ejemplos que emplean Arduino y/o LoRa.
 	
 	\subsection[Contexto actual]{Contexto actual}
+		
+	\noindent Existen muchos proyectos Open Source relacionados con la alimentación automática o semiautomática de animales domésticos, principalmente gatos y perros. Sin embargo, no existen proyectos que usen LoRa como tecnología radio, sino que emplean la red local WiFi del hogar donde se sitúe el dispositivo de alimentación; es decir, se trata de entornos con electricidad e internet, y no del entorno en el que trabajará nuestro proyecto. \\
 	
-		\noindent Existen muchos proyectos Open Source relacionados con la alimentación automática o semiautomática de animales domésticos, principalmente gatos y perros. Sin embargo, no existen proyectos que usen LoRa como tecnología radio, sino que emplean la red local WiFi del hogar donde se sitúe el dispositivo de alimentación.
+	\noindent A pesar de ello, se ha visualizado este tipo de proyectos y tenido en cuenta para el desarrollo del prototipo en tanto a apariencia externa, facilidad de uso, eficiencia de los componentes, o, incluso, opciones para mover el pienso desde la reserva hasta el comedero del animal, o el agua desde la reserva hasta el bebedero. No se realizará comparativa con dispositivos autónomos de alimentación para animales comerciales, ya que se pretende elaborar un proyecto Open Source, que nada tiene que ver con soluciones comerciales propietarias; además, los objetivos de este proyecto (principalmente establecer unas bases para investigar sobre este tipo de dispositivos que ayudan a animales y voluntarios), requerimientos y tecnologías empleadas son totalmente diferentes. \\
 	
-	\noindent A pesar de ello, se ha visualizado este tipo de proyectos y tenido en cuenta para el desarrollo del prototipo en tanto a apariencia externa, comodidad de uso, eficiencia de los componentes, o, incluso, opciones para mover el pienso desde la reserva hasta el comedero del animal, o el agua desde la reserva hasta el bebedero. \\
+	\noindent Aunque se hablará con más detalle en la sección \ref{Sección 3: Diseño del sistema}, en el momento de elaborar la planificación para este proyecto, se tuvo que preconcebir una serie de pasos a seguir. Es en el momento de la concepción del proyecto, mientras se realiza la planificación, cuando se realizó una primera búsqueda de proyectos Open Source, tanto relacionados con alimentación autónoma de animales, como monitorización por LoRa de proyectos y alimentación autónoma de los mismos. No se centró la búsqueda en el primer tópico exclusivamente, ya que, como hemos comentado, no se han encontrado proyectos que engloben alimentación autónoma para animales, monitorización por LoRa y alimentación autónoma del dispositivo.\\
 	
-	\noindent [Comentar a modo resumen los proyectos Open Source en los que más me haya basado]. \\
+	\subsubsection{Ejemplos de proyectos Open Source}
+	
+	\noindent A continuación, se comentarán brevemente algunos ejemplos de proyectos Open Source, relacionados con los tópicos que se han enumerado anteriormente y que, en opinión propia, merecen reconocimiento por la gran labor de investigación y divulgación que han realizado con dichos proyectos. 
+	
+	\subsubsubsection{Relacionados con alimentación autónoma de animales}
+	
+	\noindent \href{https://www.thingiverse.com/thing:27854}{Cat feeder} \\
+	
+	\subsubsubsection{Relacionados con monitorización de proyectos por LoRa}
+	
+	\noindent El usuario \href{https://create.arduino.cc/projecthub/xreef}{xreef}, Renzo Mischianti, liberó uno de sus proyectos sobre monitorización vía LoRa, llamado \href{https://create.arduino.cc/projecthub/xreef/lora-e32-for-arduino-esp32-or-esp8266-specs-and-base-use-804d25}{\textit{LoRa E32 for Arduino, ESP32 or ESP8266: Specs and Base Use}}. En este proyecto, prueba el transceptor LoRa E32-TTL-100 con dos microcontroladores, el microcontrolador Wemos D1 mini (ESP8266), y el Arduino Uno. Libera las conexiones y los sketches que emplea para probar dichos microcontroladores, así como una \href{https://github.com/xreef/LoRa_E32_Series_Library}{librería} de elaboración propia para el E32-TTL-100, sin la cual la comunicación entre microcontrolador en transmisión y microcontrolador en recepción sería imposible (o deberíamos crearla nosotros).
+	
+	\subsubsubsection{Relacionados con alimentación autónoma de dispositivos}
+	
+	\noindent Para este tópico, se han visualizado muchos proyectos a través de YouTube, y vídeos explicativos de opciones de alimentación autónoma de dispositivos. 
+	Se han visualizado asiduamente vídeos de los creadores \href{https://www.youtube.com/channel/UC6mIxFTvXkWQVEHPsEdflzQ}{\textit{GreatScott!}} y \href{https://www.youtube.com/channel/UCu7_D0o48KbfhpEohoP7YSQ}{\textit{Andreas Spiess}}, aunque no han sido los únicos. Un proyecto que me gustaría remarcar, ya que fue de los primeros que me impulsaron a realizar este proyecto, es el de \href{https://www.youtube.com/watch?v=2YJHcGQnpAk}{Automating a Greenhouse with LoRa! (Part 1)}, del creador \textit{GreatScott!}. En este proyecto no solo se usa LoRa para monitorizar un invernadero, sino que se hace uso de paneles solares para alimentar el proyecto. 
+	
+	\subsubsection{Determinación del tipo de TFG}
 	
 	\noindent Por último, es importante comentar que este TFG está catalogado como \textit{TFE Específico de Aprendizaje}; según la normativa sobre TFG específico de aprendizaje: \textit{``aquellos TFE específicos ligados a la consecución de los Objetivos de Desarrollo Sostenible (ODS) a través de la vinculación de manera directa a una solicitud de servicio, a desarrollar por el estudiante en su TFE, realizada por una asociación o institución externa, sin ánimo de lucro''}. Esto es así, ya que:
 	
 	\begin{itemize}
 		\item Cumple el Objetivo 15 de Desarollo Sostenible (ODS), el cual trata de \textit{``Gestionar sosteniblemente los bosques, luchar contra la desertificación, detener e invertir la degradación de las tierras, detener la pérdida de biodiversidad''} [\ref{bib: ods}]. Con este proyecto, nos estamos orientando a la detención de la pérdida de biodiversidad, ya que, como se ha comentado anteriormente, se va a crear un dispositivo capaz de alimentar y abrevar animales en lugares sin electricidad y sin conexión a internet, usando el menor número de dispositivos radio posible (siendo estos de largo alcance y bajo consumo). Instalando estos dispositivos en zonas de cuidado de animales podemos reducir el tiempo que dedican los voluntarios a las diferentes actividades (como hemos mencionado en el apartado \ref{subsection: contexto y justificacion}), permitiendo usar ese tiempo en otras actividades igualmente prioritarias pero que difícilmente se pueden realizar en remoto, como el salvamento o rescate de animales, ubicación, repoblación o cuidados veterinarios. 
-		\item Existe una solicitud formal de la protectora que va a hacer uso del dispositivo que se cree, Patitas Unidas Los Alcázares [\ref{bib: fb patitas}] [\ref{bib: web patitas}]. Dicha solicitud recoge los mínimos que debe tener en cuenta el proyecto, ya expuestos en el apartado \ref{subsection: objetivos del trabajo}.
+		\item Existe una solicitud formal de la protectora que va a hacer uso del dispositivo creado con este proyecto, Patitas Unidas Los Alcázares [\ref{bib: fb patitas}] [\ref{bib: web patitas}]. Dicha solicitud recoge los mínimos que debe tener en cuenta el proyecto, ya expuestos en el apartado \ref{subsection: objetivos del trabajo}.
 	\end{itemize}
+	
+	\begin{figure} [h!]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=50mm]{img/patitas_logo.jpg} &   \includegraphics[width=40mm]{img/ODS_logo.png} \\
+				(a)  & (b) \\ [10pt]
+			\end{tabular}
+			\caption{Logos de la protectora de Patitas Unidas Los Alcázares [\ref{bib: patitas logo}] y de los Objetivos de Desarrollo Sostenible (ODS) [\ref{bib: ods logo}], respectivamente.}
+			\label{Estado del arte: logos}
+		\end{center}
+	\end{figure}
 
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
+	
+	\noindent En este capítulo, se ha presentado el contexto actual en el que se presenta este proyecto, cómo se cataloga dentro del ámbito de los Trabajos Fin de Estudios, y qué proyectos similares Open Source existen en la actualidad. Durante la planificación de este proyecto, se realizó una búsqueda de proyectos Open Source, que si bien no realizan la totalidad de funcionalidades que queremos cubrir con este proyecto, de manera individual sí cubrían algunas de las funcionalidades de interés, como son la alimentación autónoma de animales, monitorización de proyectos a través de LoRa y alimentación autónoma de dispositivos. Se han mostrado ejemplos de dichos proyectos.
 	
 	\pagebreak
 	
@@ -2463,9 +2495,59 @@
 
 			%44
 			\item 
+			\label{bib: xreef proyect}
+			\href{https://create.arduino.cc/projecthub/xreef/lora-e32-for-arduino-esp32-or-esp8266-specs-and-base-use-804d25}{Create Arduino: \textit{LoRa E32 for Arduino, ESP32 or ESP8266: Specs and Base Use}}		
+
+			%45
+			\item 
+			\label{bib: xreef library}
+			\href{https://github.com/xreef/LoRa_E32_Series_Library}{GitHub: LoRa\_E32\_Series\_Library}	
+
+			%46
+			\item 
+			\label{bib: xreef user}
+			\href{https://create.arduino.cc/projecthub/xreef}{Create Arduino: xreef user}	
+
+			%47
+			\item 
 			\label{bib: link12}
-			\href{URL}{text}		
-						
+			\href{URL}{text}	
+
+			%48
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}	
+
+			%49
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}	
+
+			%50
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}	
+
+			%51
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}	
+
+			%52
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}	
+
+			%53
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}	
+
+			%54
+			\item 
+			\label{bib: link12}
+			\href{URL}{text}	
+					
 		\end{enumerate}
 		
 		\subsection*{Imágenes}

@@ -1,4 +1,8 @@
 
+## Anotaciones
+
+- Se recomienda ver el tipo de licencia que tiene cada proyecto, ya que aunque sean Open Source, 
+presentan por norma general licencias que, como mínimo, exigen que se mencione al creador debidamente.
 
 ## Refs a anexos
 \hyperref[anexo I: ficha tecnica]{Anexo I}
@@ -13,10 +17,10 @@
 
 Meter imagenes logo patitas y ods con refs:
 
-    \ref[bib: patitas logo]
-    \ref[bib: ods logo]
+    \ref{bib: patitas logo}
+    \ref{bib: ods logo}
 
-## Hackeo de imagenes
+## Hackeo de imagenes: 5 imagenes
 	\begin{figure}
 		\begin{center}
 			\begin{tabular}{cc}
@@ -26,6 +30,19 @@ Meter imagenes logo patitas y ods con refs:
 				(c) Pieza 3 PVC & (d) Pieza 4 PVC \\[6pt]
 				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/Fotos comedero/pieza5_comedero.jpg} }\\
 				\multicolumn{2}{c}{(e) Pieza 5 PVC}
+			\end{tabular}
+			\caption{Zoom de las piezas que conforman el sistema de conexionado entre reserva y comedero.}
+			\label{Prototipo: piezas PVC reserva-comedero}
+		\end{center}
+	\end{figure}
+
+## Hackeo de imagenes: 2 imagenes
+
+	\begin{figure}
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=50mm]{img/Fotos comedero/pieza1_comedero.jpg} &   \includegraphics[width=50mm]{img/Fotos comedero/pieza2_comedero.jpg} \\
+				(a) Pieza 1 PVC & (b) Pieza 2 PVC \\[6pt]
 			\end{tabular}
 			\caption{Zoom de las piezas que conforman el sistema de conexionado entre reserva y comedero.}
 			\label{Prototipo: piezas PVC reserva-comedero}
