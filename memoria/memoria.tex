@@ -235,11 +235,11 @@
 
 	\section[Estado del arte]{Estado del arte}  
 	
-	\noindent En el capítulo anterior ya se planteó la motivación y una aproximación a lo que sepretende realizar en este proyecto, pero en este punto se expone con más detalle lasituación actual en el ámbito del control y automatización de sistemas de alimentación para animales, así comoproyectos relacionados con este ámbito y otros ejemplos que emplean Arduino y/o LoRa.
+	\noindent En el capítulo anterior ya se planteó la motivación y una aproximación a lo que se pretende realizar en este proyecto, pero en este punto se expone con más detalle la situación actual en el ámbito del control y automatización de sistemas de alimentación para animales (dentro del marco Open Source), así como proyectos relacionados con este ámbito y otros ejemplos que emplean Arduino y/o LoRa.
 	
 	\subsection[Contexto actual]{Contexto actual}
 		
-	\noindent Existen muchos proyectos Open Source relacionados con la alimentación automática o semiautomática de animales domésticos, principalmente gatos y perros. Sin embargo, no existen proyectos que usen LoRa como tecnología radio, sino que emplean la red local WiFi del hogar donde se sitúe el dispositivo de alimentación; es decir, se trata de entornos con electricidad e internet, y no del entorno en el que trabajará nuestro proyecto. \\
+	\noindent Existen muchos proyectos Open Source relacionados con la alimentación automática o semiautomática de animales domésticos, principalmente gatos y perros. Sin embargo, no existen (o al menos, no se han encontrado) proyectos que usen LoRa como tecnología radio, sino que emplean la red local WiFi del hogar donde se sitúe el dispositivo de alimentación; es decir, se trata de entornos con electricidad e internet, y no del entorno en el que trabajará nuestro proyecto. \\
 	
 	\noindent A pesar de ello, se ha visualizado este tipo de proyectos y tenido en cuenta para el desarrollo del prototipo en tanto a apariencia externa, facilidad de uso, eficiencia de los componentes, o, incluso, opciones para mover el pienso desde la reserva hasta el comedero del animal, o el agua desde la reserva hasta el bebedero. No se realizará comparativa con dispositivos autónomos de alimentación para animales comerciales, ya que se pretende elaborar un proyecto Open Source, que nada tiene que ver con soluciones comerciales propietarias; además, los objetivos de este proyecto (principalmente establecer unas bases para investigar sobre este tipo de dispositivos que ayudan a animales y voluntarios), requerimientos y tecnologías empleadas son totalmente diferentes. \\
 	
@@ -251,7 +251,7 @@
 	
 	\subsubsubsection{Relacionados con alimentación autónoma de animales}
 	
-	\noindent \href{https://www.thingiverse.com/thing:27854}{Cat feeder} \\
+	\noindent A través de la plataforma \href{https://www.thingiverse.com/}{Thingiverse}, son varios los usuarios que han compartido sus creaciones relacionadas con alimentación autónoma de animales. Destacaremos al usuario \href{https://www.thingiverse.com/kitlaan/designs}{kitlaan}, con su dispensador automático de pienso para gatos (\href{https://www.thingiverse.com/thing:27854}{Auger-based Cat Feeder}). Con este proyecto, este usuario, entre otros, facilita los archivos de impresión en 3D que usó para construir su dispensador de pienso; documenta su proyecto, especificando las piezas que usa y que no son impresas, así como un vídeo del funcionamiento del dispensador.
 	
 	\subsubsubsection{Relacionados con monitorización de proyectos por LoRa}
 	
@@ -267,7 +267,7 @@
 	\noindent Por último, es importante comentar que este TFG está catalogado como \textit{TFE Específico de Aprendizaje}; según la normativa sobre TFG específico de aprendizaje: \textit{``aquellos TFE específicos ligados a la consecución de los Objetivos de Desarrollo Sostenible (ODS) a través de la vinculación de manera directa a una solicitud de servicio, a desarrollar por el estudiante en su TFE, realizada por una asociación o institución externa, sin ánimo de lucro''}. Esto es así, ya que:
 	
 	\begin{itemize}
-		\item Cumple el Objetivo 15 de Desarollo Sostenible (ODS), el cual trata de \textit{``Gestionar sosteniblemente los bosques, luchar contra la desertificación, detener e invertir la degradación de las tierras, detener la pérdida de biodiversidad''} [\ref{bib: ods}]. Con este proyecto, nos estamos orientando a la detención de la pérdida de biodiversidad, ya que, como se ha comentado anteriormente, se va a crear un dispositivo capaz de alimentar y abrevar animales en lugares sin electricidad y sin conexión a internet, usando el menor número de dispositivos radio posible (siendo estos de largo alcance y bajo consumo). Instalando estos dispositivos en zonas de cuidado de animales podemos reducir el tiempo que dedican los voluntarios a las diferentes actividades (como hemos mencionado en el apartado \ref{subsection: contexto y justificacion}), permitiendo usar ese tiempo en otras actividades igualmente prioritarias pero que difícilmente se pueden realizar en remoto, como el salvamento o rescate de animales, ubicación, repoblación o cuidados veterinarios. 
+		\item Cumple el Objetivo 15 de Desarollo Sostenible (ODS), el cual trata de \textit{``Gestionar sosteniblemente los bosques, luchar contra la desertificación, detener e invertir la degradación de las tierras, detener la pérdida de biodiversidad''} [\ref{bib: ods}]. Con este proyecto, nos estamos enfocando en ayudar en la detención de la pérdida de biodiversidad, ya que, como se ha comentado anteriormente, se va a crear un dispositivo capaz de alimentar y abrevar animales en lugares sin electricidad y sin conexión a internet, usando el menor número de dispositivos radio posible (siendo estos de largo alcance y bajo consumo). Instalando estos dispositivos en zonas de cuidado de animales podemos reducir el tiempo que dedican los voluntarios a las diferentes actividades (como hemos mencionado en el apartado \ref{subsection: contexto y justificacion}), permitiendo usar ese tiempo en otras actividades igualmente prioritarias pero que difícilmente se pueden realizar en remoto, como el salvamento o rescate de animales, ubicación, repoblación o cuidados veterinarios. 
 		\item Existe una solicitud formal de la protectora que va a hacer uso del dispositivo creado con este proyecto, Patitas Unidas Los Alcázares [\ref{bib: fb patitas}] [\ref{bib: web patitas}]. Dicha solicitud recoge los mínimos que debe tener en cuenta el proyecto, ya expuestos en el apartado \ref{subsection: objetivos del trabajo}.
 	\end{itemize}
 	
@@ -916,26 +916,19 @@
 	
 	\subsubsection{Alimentación autónoma del dispositivo}
 	
-	\noindent Para conseguir el objetivo de una alimentación autónoma para el dispositivo de alimentación final que queremos crear, se ha decidido usar la siguiente combinación de componentes, explicados de manera teórica y más ampliamente en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}. \\
-	
-	\begin{itemize}
-		\item Batería recargable Li-ion 18650 sin protección
-		\item Kit protección 18650
-		\item TP4056
-		\item Panel solar 6V
-	\end{itemize}
+	\noindent Para conseguir el objetivo de una alimentación autónoma para el dispositivo de alimentación final que queremos crear, se ha decidido usar la siguiente combinación de componentes, explicados de manera teórica y más ampliamente en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}.
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.8\textwidth]{img/conexiones tfg-alimentacion.png}
+			\includegraphics[width=0.75\textwidth]{img/conexiones tfg-alimentacion.png}
 			\caption{Esquema general de la alimentación elegida para este proyecto.}
 			\label{Alimentación: esquema general}
 		\end{center}
 	\end{figure}
-
+	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.8\textwidth]{img/conexiones tfg-alimentacion (boost en tp).png}
+			\includegraphics[width=0.75\textwidth]{img/conexiones tfg-alimentacion (boost en tp).png}
 			\caption{Esquema general de la alimentación elegida para este proyecto (TP4056 con boost incluido).}
 			\label{Alimentación: esquema general (tp con boost)}
 		\end{center}
@@ -943,7 +936,54 @@
 	
 	\pagebreak
 	
-	\noindent Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame. \\
+	\noindent Así pues,  se adquirieron los siguientes componentes: 
+	
+	\begin{itemize}
+		\item \textbf{Batería recargable Li-ion 18650 sin protección.} Con tensión nominal de 3.7V, para un proyecto en el que las tareas de máximo consumo (rellenar comedero y envío de datos por LoRa) se van a ejecutar, como máximo, dos veces al día (en coste temporal, serán 5 minutos en total), en principio, pueden ser suficientes.
+		\item \textbf{Kit protección 18650}, para pilas sin protección. Las pilas que vienen sin protección conllevan, como mínimo, una ausencia de protección contra cortocircuitos, es decir, si eléctricamente se conectan sus polos podemos dejar inservible la pila.
+		\item \textbf{TP4056 con boost a 5V.} Al tener una tensión nominal de 3.7V, y requerir nuestro proyecto de una alimentación de 5V, necesitaremos algún elemento que eleve esta tensión, que, en nuestro caso, será un boost. No vendrá aislado, ya que lo usaremos en conjunto dentro de una PCB que corresponde a un módulo de carga de baterías li-ion llamado TP4056.
+		\item \textbf{Panel solar 6V.} Se ha escogido un panel solar que, en teoría, nos da una tensión mínimamente funcional, de tamaño reducido para un primer prototipo y aproximación a la energía solar. Nos permitirá añadir la opción de recargar la batería de manera autónoma.
+	\end{itemize}
+
+	\noindent El elemento \textit{PCB} de la Figura \ref{Alimentación: esquema general (tp con boost)} será explicado más adelante, en la Sección \ref{Section: prototipo y pruebas}. A continuación, se muestran los pasos seguidos para montar el sistema de alimentación autónoma para nuestro dispositivo de alimentación para animales. \\
+	
+	\subsubsubsection{Preparación de la alimentación autónoma del dispositivo}
+	
+	\noindent Lo primero fue dejar asegurada la pila. Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame. Es por ello que se hizo uso de un kit para protección de baterías 18650, como el que se muestra en la Figura \ref{Proteccion kit Li-Ion}.\\
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/proteccion_18650.png}
+			\caption{Detalle del kit de protección para una batería 18650, a falta de tubo termoretráctil y contactos para los polos [\ref{bib: aliexpress dual mos}].}
+			\label{Proteccion kit Li-Ion}
+		\end{center}
+	\end{figure}
+	
+	\noindent La protección que se ha añadido con este kit viene determinado por ciertos componentes electrónicos (como el que muestra la Figura \ref{Proteccion kit Li-Ion}), pero, además, por el recubrimiento metálico y plástico que se ha añadido a su alrededor. La construcción de la protección alrededor de la batería 18650, a través del kit adquirido, un termoretráctil y dos contactos metálicos para ambos polos, se resumen en la Figura \ref{Proteccion Li-Ion}. \\
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/construction_prot_circuit.png}
+			\caption{Esquema de la protección que se añade a las pilas Li-ion [\ref{bib: protected li-ion cells}].}
+			\label{Proteccion Li-Ion}
+		\end{center}
+	\end{figure}
+	
+	\pagebreak
+	
+	\noindent Sin entrar en mucho detalle, esta PCB (Figura \ref{PCB proteccion Li-Ion}) que incluye el kit (\textit{PCM}, según la Figura \ref{Proteccion Li-Ion})  actúa como protección extra para la batería en tanto a cortocircuitos, sobrecarga, sobredescarga y exceso de corriente. La batería incluye interiormente cierta protección, pero siempre es recomendable que si la batería no cuenta con este kit, se le añada (o se adquiera con él ya incluido y no añadirlo nosotros). Se ha señalado en la imagen, con un rectángulo rosa, el conjunto de dos MOSFET (8205A) que actúan como switches en las situaciones anteriormente mencionadas (por ejemplo, si hay exceso de corriente, corta el flujo, como un interruptor); señalado con el rectángulo verde, el circuito integrado DW01A, que permite realizar la lógica necesaria para detectar estos casos y actuar en consecuencia. 
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.3\textwidth]{img/batt_prot_circuit_zoom_edited.png}
+			\caption{Detalle de la PCM de protección de la batería 18650 [\ref{bib: aliexpress dual mos}].}
+			\label{PCB proteccion Li-Ion}
+		\end{center}
+	\end{figure}
+	
+	\noindent Finalmente, se muestra en la Figura \ref{18650 con y sin proteccion} fotos de la pila que se ha usado en este proyecto, antes de ponerle protección y después.
 	
 	\begin{figure}[h!]
 		\begin{center}
@@ -959,35 +999,32 @@
 			\label{18650 con y sin proteccion}
 		\end{center}
 	\end{figure}
-
+	
 	\pagebreak
 	
-	\noindent Además, como se indicó en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}, dentro de \textit{opciones para baterías recargables}, se necesita de un circuito que ayude a la pila, hecha de Li-ion, a una correcta carga y descarga, precisamente porque conlleva las mismas consecuencias de una mala manipulación, expuestas anteriormente. Es por ello que se realizó una investigación en tanto a circuitos de protección para evitar sobredecarga, sobrecarga y cortocircuitos, en este tipo de pila (Li-ion). \\
-	
-	\noindent A continuación, se describirán brevemente los componentes enumerados y el por qué de su elección. Para más detalle, se pueden consultar los \textit{datasheet} en el Anexo I. \\
-	
-	\noindent \textbf{TP4056} \\
-	
-	%\noindent El TP4056 es un chip encapsulado en formato SOP-8 que es capaz de gestionar la carga de una batería. Es decir, adecua la entrada de energía para el estándar de 1A de la mayoría de baterías de litio que se usan en la industria electrónica, y también es capaz de controlar la temperatura. \\
-	\noindent Se requiere para gestionar la carga de la batería Li-ion que vamos a utilizar.  Su funcionamiento, a grandes rasgos, consiste en transformar la fuente de energía eléctrica que tiene a su entrada para cargar la batería que tiene conectada a su salida; debido a que las baterías requieren que la energía sea cualitativa y cuantitativamente de una manera concreta, este paso es necesario. Las fuentes de energía eléctrica pueden ser diversas, desde un adaptador conectado a la red eléctrica, una fuente de alimentación, un panel solar, un generador, etc. No en todos los casos se necesitan los mismos componentes, depende de cada caso.\\
-	
-	\noindent Un ejemplo de TP4056 sencillo y fácil de encontrar sería el siguiente:  \\
+	\noindent Como se indicó en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}, dentro de \textit{opciones para baterías recargables}, se necesita de un circuito que ayude a la pila, hecha de Li-ion, a una correcta carga y descarga, precisamente porque conlleva las mismas consecuencias de una mala manipulación, expuestas anteriormente. \\
 		
+	\noindent \textbf{TP4056} \\
+
+	\noindent Es un circuito integrado que se emplea para gestionar la carga de la batería Li-ion.  Realmente, es una PCB donde encontramos el IC TP5046, junto con más componentes, pero de aquí en adelante hablaremos de TP4056 como la PCB global. Su funcionamiento, a grandes rasgos, consiste en transformar la fuente de energía eléctrica que tiene a su entrada para cargar la batería que tiene conectada a su salida; debido a que las baterías requieren que la energía sea cualitativa y cuantitativamente de una manera concreta, este paso es necesario. Además, también controla la temperatura. Las fuentes de energía eléctrica pueden ser diversas, desde un adaptador conectado a la red eléctrica, una fuente de alimentación, un panel solar, un generador, etc. No en todos los casos se necesitan los mismos componentes, depende de cada caso.\\
+	
+	\noindent Un ejemplo de TP4056 sencillo y fácil de encontrar sería el siguiente:  
+
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/tp4056_withoutBoost.png}
-			\caption{Ejemplo de un TP4056 simple.}
+			\caption{Ejemplo de un TP4056 simple [\ref{bib: hwlibre TP4056}].}
 			\label{TP4056 sin boost}
 		\end{center}
 	\end{figure}
 	
-	\noindent Del esquema anterior del módulo TP4056, podemos destacar: \\
+	\noindent Del esquema anterior del módulo TP4056, podemos destacar: 
 	
 	\begin{itemize}
-		\item \textbf{Puerto mini-USB}: para alimentar tu batería a través de este tipo de cables. 
-		\item \textbf{Bornas IN-, IN+}: están a los lados del puerto. Sirven también para alimentar la batería. A estas bornas podemos conectar una placa solar, u otra fuente que se necesite.
-		\item \textbf{LEDs de carga y completado}: avisarán cuando la batería esté cargándose o cuando haya terminado el proceso.
-		\item \textbf{BAT+ y BAT-}: son los otros bornes de salida que irán conectados a los bornes de la batería que se necesita cargar.
+		\item \textbf{Puerto mini-USB}: para alimentar la batería a través de este tipo de cables. Lo usaremos si deseamos cargar la batería de manera externa al proyecto.
+		\item \textbf{Bornas IN-, IN+}: están a los lados del puerto. Sirven también para alimentar la batería. A estas bornas podemos conectar una placa solar, u otra fuente que se necesite. En nuestro caso, será el panel solar de 6V.
+		\item \textbf{LEDs de carga y completado}: avisarán cuando la batería esté cargándose o cuando haya terminado dicho proceso.
+		\item \textbf{BAT+ y BAT-}: son bornas de salida que irán conectados a la batería que se necesita cargar.
 	\end{itemize}
 
 	\noindent Sin embargo, se requieren más elementos para alimentar al dispositivo, como por ejemplo un conversor de tensión tras la batería (entre batería y dispositivo). En nuestro caso, lo requerimos, ya que la batería usada otorga 3.7V nominales (no existen baterías de 5V) y nosotros necesitamos 5V para alimentar el sistema de alimentación. Necesitamos un elemento que nos aumente la tensión a su salida, para alimentar de manera correcta el sistema creado; usaremos, por tanto, un \textit{boost converter}. Es un dispositivo que puede encontrarse aislado, aunque también podemos encontrarlo en una misma PCB con el TP4056, y será esta última opción la que usemos. \\
@@ -995,7 +1032,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.3\textwidth]{img/tp4056_withBoost.png}
-			\caption{Ejemplo de un TP4056 con boost.}
+			\caption{Ejemplo de un TP4056 con boost [\ref{bib: aliradar tp4056 con boost}].}
 			\label{TP4056 con boost}
 		\end{center}
 	\end{figure}
@@ -1007,11 +1044,37 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.4\textwidth]{img/tp4056_withProtection.png}
-			\caption{Ejemplo de un TP4056 con protección.}
+			\caption{Ejemplo de un TP4056 con protección [\ref{bib: electronilab tp4056 con proteccion}].}
 			\label{TP4056 con protección}
 		\end{center}
 	\end{figure}
 	
+	\noindent Para compactar este conglomerado, se han soldado las conexiones en una placa experimental, como la que se muestra en la Figura \ref{Componentes conglomerado}(a). En concreto, se ha soldado el TP4056 de la Figura \ref{TP4056 con boost} con conectores de tipo screw terminal (Figura \ref{Componentes conglomerado}(b))
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=50mm]{img/placa_exp.png} \label{Ejemplo placa experimental} &   \includegraphics[width=40mm]{img/screw.jpg}  \label{Ejemplo screw} \\
+				(a) Placa experimental [\ref{bib: aliexpress placa exp}] & (b) Screw terminal [\ref{bib: rarecomponents screw}] \\[6pt]
+				%\includegraphics[width=50mm]{img/18650_holder.png}  \label{Ejemplo holder 18650} &   %\includegraphics[width=20mm]{img/18650_conProteccion_3.jpg} \\
+				%(c) Holder para una batería 18650\\ [6pt]
+				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/18650_holder.png} \label{Ejemplo holder 18650} }\\
+				\multicolumn{2}{c}{(c) Holder para una batería 18650 [\ref{bib: solarbotics holder para 18650}]}
+			\end{tabular}
+			\caption{.}
+			\label{Componentes conglomerado}
+		\end{center}
+	\end{figure}
+
+%	\begin{figure}[h]
+%		\begin{center}
+%			\includegraphics[width=0.4\textwidth]{img/placa_exp.png}
+%			\caption{Ejemplo de una placa experimental [\ref{bib: aliexpress placa exp}].}
+%			\label{Ejemplo placa experimental}
+%		\end{center}
+%	\end{figure}
 
 	\subsubsection{Automatización y monitorización}
 	
@@ -1729,7 +1792,7 @@
 	
 	
 	\section[Prototipo y pruebas]{Prototipo y pruebas}
-	
+	\label{Section: prototipo y pruebas}
 	% Ensamblado PCB y pruebas
 	\subsection[Ubicación]{Ubicación}
 
@@ -2510,8 +2573,8 @@
 
 			%47
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}	
+			\label{bib: hwlibre TP4056}
+			\href{https://www.hwlibre.com/tp4056/}{HWLibre. TP4056: el módulo para cargar baterías}	
 
 			%48
 			\item 
@@ -2673,8 +2736,60 @@
 				\item 
 				\label{bib: ods logo}
 				\href{https://www.un.org/sustainabledevelopment/es/}{ONU: logo ODS}
-					
+				
+				%https://www.master-instruments.com.au/news-article/119/Protected%20Lithium%20Ion%20Cells.html
+				
+				%21
+				\item 
+				\label{bib: protected li-ion cells}
+				\href{https://www.master-instruments.com.au/news-article/119/Protected\%20Lithium\%20Ion\%20Cells.html}{Master Instruments: protected lithium ion cells}
+				
+				%https://es.aliexpress.com/i/32985307442.html
+				
+				%22
+				\item 
+				\label{bib: aliexpress dual mos}
+				\href{https://es.aliexpress.com/i/32985307442.html}{AliExpress: dual MOS 18650 protection}
+				
+				%https://es.aliexpress.com/item/32752226972.html
+				
+				%23
+				\item 
+				\label{bib: aliexpress placa exp}
+				\href{https://es.aliexpress.com/item/32752226972.html}{AliExpress: placa experimental 9x15cms}
+				
+				%https://en.aliradar.com/item/4001246163578-lithium-li-ion-18650-3.7v-4.2v-9v-5v-2a-battery-charger-board-adjustable-dc-dc-step-up-boost-module-tp4056
+				
+				%24
+				\item 
+				\label{bib: aliradar tp4056 con boost}
+				\href{https://en.aliradar.com/item/4001246163578-lithium-li-ion-18650-3.7v-4.2v-9v-5v-2a-battery-charger-board-adjustable-dc-dc-step-up-boost-module-tp4056}{AliRadar: TP4056 con boost}
+				
+				%https://electronilab.co/tienda/modulo-cargador-bateria-de-lipo-1a-micro-usb-5v/
+				
+				%25
+				\item 
+				\label{bib: electronilab tp4056 con proteccion}
+				\href{https://electronilab.co/tienda/modulo-cargador-bateria-de-lipo-1a-micro-usb-5v/}{Electronilab: TP4056 con protección}
+				
+				%https://rarecomponents.com/store/1219
+				%26
+				\item 
+				\label{bib: rarecomponents screw}
+				\href{https://rarecomponents.com/store/1219}{rareComponents: screw terminals}
+				
+				%27
+				%https://solarbotics.com/product/600058/
+				\item 
+				\label{bib: solarbotics holder para 18650}
+				\href{https://solarbotics.com/product/600058/}{Solarbotics: holder para 18650}
+				
+				
+				
 			\end{enumerate}
+		
+
+			
 
 	\pagebreak
 	
