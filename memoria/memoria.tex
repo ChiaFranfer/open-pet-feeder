@@ -1037,19 +1037,13 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent Problema: no tiene protección contra sobredescargas. \\
+	\noindent Vemos que cuenta con los elementos principales anteriormente mencionados (bornas IN+ e IN-, bornas VOUT + y VOUT-, bornas BAT- y BAT
+	+, micro USB y LEDs). Cuenta con 2 IC's principalmente: el TC4056A y el B6289A. El primer IC viene a ser uno con funcionamiento similar al TP4056, y el segundo es el encargado de la función de boost. Cabe señalar que contamos con un potenciómetro con el que podemos variar la corriente con la que se cargará la batería (página 6 del datasheet del TC4056). 
 	
-	\noindent Existen TP4056 con protección, gracias al MOSFET DW01 (o DW01A). \\
+	%Problema: no tiene protección contra sobredescargas. \\
+
 	
-	\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.4\textwidth]{img/tp4056_withProtection.png}
-			\caption{Ejemplo de un TP4056 con protección [\ref{bib: electronilab tp4056 con proteccion}].}
-			\label{TP4056 con protección}
-		\end{center}
-	\end{figure}
-	
-	\noindent Para compactar este conglomerado, se han soldado las conexiones en una placa experimental, como la que se muestra en la Figura \ref{Componentes conglomerado}(a). En concreto, se ha soldado el TP4056 de la Figura \ref{TP4056 con boost} con conectores de tipo screw terminal (Figura \ref{Componentes conglomerado}(b))
+	\noindent Para compactar este conglomerado (pila  con TP4056), se han unido soldando las conexiones entre ellos en una placa experimental, como la que se muestra en la Figura \ref{Componentes conglomerado}(a). En concreto, se ha soldado el TP4056 de la Figura \ref{TP4056 con boost} con conectores de tipo screw terminal (Figura \ref{Componentes conglomerado}(b)); de esta manera, conectaremos el panel solar a través de sus cables a un screw terminal, el cual unirá mediante soldadura a las bornas IN+ e IN-, y lo mismo sucederá con la pila.
 	
 	\pagebreak
 	
@@ -1063,11 +1057,12 @@
 				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/18650_holder.png} \label{Ejemplo holder 18650} }\\
 				\multicolumn{2}{c}{(c) Holder para una batería 18650 [\ref{bib: solarbotics holder para 18650}]}
 			\end{tabular}
-			\caption{.}
+			\caption{Elementos que formarán nuestro conglomerado provisional de alimentación del dispositivo.}
 			\label{Componentes conglomerado}
 		\end{center}
 	\end{figure}
 
+	\noindent [Foto real de cómo ha quedado, y otra foto conectando todo, hasta panel solar]. \\
 %	\begin{figure}[h]
 %		\begin{center}
 %			\includegraphics[width=0.4\textwidth]{img/placa_exp.png}
@@ -2278,6 +2273,17 @@
 	\section[Conclusiones y líneas futuras]{Conclusiones y líneas futuras}
 	
 	\noindent \textbf{Alimentación:} estudiaría las baterías LiPo, incluso LiFePO4, que aunque son más caras, no limitan tanto en el tema de la protección. Las baterías Li ion tienen bastante cobertura y tienen sus ventajas, pero también sus desventajas. Investigaría más profundamente en general el tema de la alimentación autónoma, ya que es un mundo muy extenso que debe tratarse de manera externa a la parte radio o a la parte de microcontrolador; podemos realizar proyectos donde abarquemos todo, pero para llegar a conclusiones donde se lleguen a prototipos iniciales, que en posteriores investigaciones se expandan y mejoren sus funcionalidades de manera individual, sin perder de vista el proyecto global. Diseñaría una PCB sólo para alimentación, ya que los requerimientos de alimentación para cada proyecto son diferentes y para un proyecto de dimensión media-grande es mucho más práctico diseñar un sistema personalizado de alimentación de dispositivo, algo que conseguimos mediante una PCB, compactando los sistemas que, sin PCB, se traducen en numerosas PCBs ya fabricadas que quizá no se adapten del todo a lo que necesitamos. \\
+	
+		
+	\noindent Como anotación, decir que existen TP4056 con protección, gracias al MOSFET DW01 (o DW01A), los cuales no hemos usado por no tener incorporado un boost, pero pueden ser la base para construir una PCB de alimentación propia. \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/tp4056_withProtection.png}
+			\caption{Ejemplo de un TP4056 con protección [\ref{bib: electronilab tp4056 con proteccion}].}
+			\label{TP4056 con protección}
+		\end{center}
+	\end{figure}
 	
 	\noindent \textbf{Microcontrolador}: el arduino nano para principiantes, con previas nociones de electrónica y con previsiones de realizar una PCB, siempre y cuando el proyecto no sea muy extenso, puede ser empleado. Sin embargo, yo he experimentado que en espacio de memoria se me quedaba corto, sobretodo al usar librerías como OLED, las cuales debía excluir si quería cargar en el arduino mi código restante; teniendo en cuenta que debía importar librerías obligatoriamente para usar por ejemplo la OLED, el servomotor o el transceptor LoRa, este es un punto muy negativo, ya que es un código que no puede ser reducido. Tuve que buscar trucos para compactar el uso de dicha memoria debido a estas limitaciones. Probaría con otras opciones mencionadas en la sección \ref{subsección 3.2.2: automatización y monitorización}, donde hablamos de opciones de microcontroladores, como la Adafruit, NodeMCU o Teensy. \\
 	
