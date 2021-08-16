@@ -309,7 +309,7 @@
 			\item Bloque bebedero (sensores, actuadores)
 		\end{itemize}
 	
-		\item \textbf{Integridad mediante prototipo exterior}. Se entiende por \textit{Integridad mediante prototipo exterior} todos aquellos elementos que usemos para dar forma al proyecto, evitando el uso de elementos demasiado temporales como pueden ser una protoboard o en general, componentes no definitivos (estos sólo se usarán en pruebas, no en producción). Con esta  idea, se buscarán elementos que permitan constituir un primer prototipo usable, sin invertir excesivo dinero, que elimine componentes temporales no funcionales para usar en la ubicación real; es por ello, que se cuenta con la inversión en reservas, conexionado de reserva a comedero/bebedero, diseño de una PCB, etc.
+		\item \textbf{Integridad mediante prototipo exterior}. Se entiende por \textit{Integridad mediante prototipo exterior} todos aquellos elementos que usemos para dar forma al proyecto, evitando el uso de elementos demasiado temporales como pueden ser una protoboard o en general, componentes no definitivos (estos sólo se usarán en pruebas, no en producción). Con esta  idea, se buscarán elementos que permitan constituir un primer prototipo usable, sin invertir dinero en exceso, que elimine componentes temporales no funcionales para usar en la ubicación real; es por ello, que se cuenta con la inversión en reservas, conexionado de reserva a comedero/bebedero, diseño de una PCB, etc.
 	\end{enumerate}
 	
 	\subsection[Búsqueda soluciones]{Búsqueda de soluciones para cada funcionalidad}
@@ -362,7 +362,7 @@
 	
 	\begin{enumerate}
 		
-		\item \textit{Lithium polymer} (LiPo).  Son baterías de gran densidad de energía disponible, es decir, almacenan la mayor parte de energía, una gran cantidad de energía en comparación con el tamaño de la pila (se explica en \textit{Términos y definiciones}). Es por esta razón por la que los teléfonos móviles, los portátiles y otros dispositivos ligeros en peso usan baterías LiPo. Sin embargo, esta alta densidad de energía lleva consigo un coste/inconveniente, y es que son caras, y no son sólo las baterías en sí; cuando se trabaja con baterías de litio, hay que realizar una inversión para conseguir una circuitería especial que mantenga segura la batería. Por ejemplo, cuando estas cargando una batería LiPo, hay que asegurarse de que nunca se excedan los 4.2V por celda; las baterías LiPo explotarían si las sobrecargaras. No solo la carga de la batería es delicada, sino que la descarga también lo es; si se descarga una batería LiPo por debajo de 3V por celda, se perderá permanentemente parte de su capacidad, e incluso pueden deformarse/hincharse. Finalmente, hay que estar pendiente constantemente de la temperatura, para evitar que la batería se sobrecaliente. A pesar de todo esto, es común usar baterías LiPo en proyectos ligeros y pequeños, siempre y cuando se tenga un buen circuito de carga, un buen circuito de descarga (que proteja a valores bajos de tensión, haciendo de corte en el mínimo de tensión de la batería) y un buen circuito de monitorización de temperatura. 
+		\item \textit{Lithium polymer} (LiPo).  Son baterías de gran densidad de energía disponible, es decir, almacenan una gran cantidad de energía en comparación con el tamaño de la pila (se explica en \textit{Términos y definiciones}). Es por esta razón por la que los teléfonos móviles, los portátiles y otros dispositivos ligeros en peso usan baterías LiPo. Sin embargo, esta alta densidad de energía lleva consigo un coste/inconveniente, y es que son caras, y no son sólo las baterías en sí; cuando se trabaja con baterías de litio, hay que realizar una inversión para conseguir una circuitería especial que mantenga segura la batería. Por ejemplo, cuando estas cargando una batería LiPo, hay que asegurarse de que nunca se excedan los 4.2V por celda; las baterías LiPo explotarían si las sobrecargaras. No solo la carga de la batería es delicada, sino que la descarga también lo es; si se descarga una batería LiPo por debajo de 3V por celda, se perderá permanentemente parte de su capacidad, e incluso pueden deformarse/hincharse. Finalmente, hay que estar pendiente constantemente de la temperatura, para evitar que la batería se sobrecaliente. A pesar de todo esto, es común usar baterías LiPo en proyectos ligeros y pequeños, siempre y cuando se tenga un buen circuito de carga, un buen circuito de descarga (que proteja a valores bajos de tensión, haciendo de corte en el mínimo de tensión de la batería) y un buen circuito de monitorización de temperatura. 
 		
 		\item \textit{Lithium-ion} (Li-ion). Son muy similares a las baterías LiPo, pero a diferencia de estas, el electrodo negativo es líquido y el encapsulado y formato de presentación es totalmente diferente (las Li-ion suelen venderse sin protección y en apariencia son similares a unas pilas alcalinas AA). Una batería Li-ion almacena más potencia que las LiPo (mayor capacidad), ofrece mayores corrientes de descarga, es menos costosa de fabricar (y por tanto tienen un precio de venta más asequible),  y tiene un tiempo de vida más largo (aunque con el tiempo pierde sus propiedades). Es, al igual que las LiPo, inflamable si se daña, se calienta en exceso o se sobrecarga. El empaquetado más común es el 18650, y en el mercado existen circuitos de protección varios para evitar la sobrecarga y la sobredescarga  para este encapsulado en concreto, por lo que es una opción barata y sencilla para conseguir un prototipado rápido y realizar pruebas del mismo, siempre y cuando el proyecto no exija mucha potencia; si el proyecto exigiera más tensión de la que proporciona la batería, se puede considerar obtener más unidades y realizar una configuración en serie para aumentar la tensión, o en paralelo si lo que se desea es aumentar la capacidad, o una combinación de ambas configuraciones (usando siempre un \textit{Battery Management System} o BMS, para mantener las baterías balanceadas entre sí). Esta opción se puede considerar para baterías LiPo, pero para usuarios principiantes o poco experimentados resultará, probablemente, más complejo.
 		
@@ -460,7 +460,7 @@
 	
 	\noindent Los electrones necesitan un camino a seguir y la electricidad debe estar en una forma útil. Es por ello que la ruta que creemos para los electrones (el circuito) es importante, ya que, cuando salen de la capa negativa de la celda fotovoltaica, queremos que fluyan a través de nuestras cargas (como nuestras luces y electrodomésticos, en el ejemplo del uso doméstico) para que los electrones puedan dar energía a esas cargas a medida que avanzan hacia la capa positiva de la celda fotovoltaica. \\
 	
-	\noindent \textit{¿explicación sistema fotovoltaico?} \\
+	%\noindent \textit{¿explicación sistema fotovoltaico?} \\
 	
 	\noindent Un elemento muy importante en este sentido es el inversor, el cual convierte la energía DC producida por un panel solar, a energía AC, lista para ser usada en el hogar. Sin embargo, para nuestro proyecto no es necesario, ya que nos interesa crear un proyecto que se alimente de manera autónoma, sin uso de la electricidad disponible en el hogar; el panel solar, en este caso, recargaría una pila, y por ello necesitamos la energía DC, y no necesitamos usar un inversor a AC. \\ 
 	
@@ -632,7 +632,7 @@
 	
 	\pagebreak
 	
-	\noindent \href{https://www.qpvgroup.org/blog/2019/2/3/how-does-air-temperature-affect-photovoltaic-solar-panel-output}{LEER ESTO Y COMENTAR POR AQUÍ, inclusive fórmula porque es relación lineal entre temperaturas ambiente y célula} \\
+	%\noindent \href{https://www.qpvgroup.org/blog/2019/2/3/how-does-air-temperature-affect-photovoltaic-solar-panel-output}{LEER ESTO Y COMENTAR POR AQUÍ, inclusive fórmula porque es relación lineal entre temperaturas ambiente y célula} \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -845,12 +845,12 @@
 	
 	\noindent \textit{Wide area}: tienen un alcance de operación típico de más de 2 km en configuraciones urbanas.\\
 	
-	\noindent Una limitación física para alcanzar bajo consumo y largo alcance es el tamaño pequeño de datos. La mayoría de tecnologías LPWAN pueden enviar solo menos de 1000 bytes de datos por día o menos de 5000 bits por segundo. \\
+	\noindent Una limitación física para alcanzar bajo consumo y largo alcance es el pequeño tamaño de la cantidad total de datos y las reducidas tasas binarias. La mayoría de tecnologías LPWAN pueden enviar solo menos de 1000 bytes de datos por día o menos de 5000 bits por segundo. \\
 	
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/LPWAN_comp.png}
-			\caption{Comparativa entre LPWAN, en términos de alcance y ancho de banda, con respecto a otras comunicaciones inalámbricas.}
+			\caption{Comparativa entre LPWAN, en términos de alcance y ancho de banda, con respecto a otras comunicaciones inalámbricas [\ref{bib: iotforall lpwan options}].}
 			\label{LPWANs vs otros}
 		\end{center}
 	\end{figure}
@@ -2584,8 +2584,8 @@
 
 			%48
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}	
+			\label{bib: iotforall lpwan options}
+			\href{https://www.iotforall.com/lpwan-benefits-vs-iot-connectivity-options}{IoT For All: LPWAN - The Benefits of LPWAN Technology vs. Other IoT Connectivity Options}	
 
 			%49
 			\item 

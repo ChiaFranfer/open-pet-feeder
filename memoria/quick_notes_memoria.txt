@@ -48,3 +48,13 @@ Meter imagenes logo patitas y ods con refs:
 			\label{Prototipo: piezas PVC reserva-comedero}
 		\end{center}
 	\end{figure}
+
+## Revisar
+
+	Integridad mediante prototipo exterior. Cambiar un poco maybe lo que es el título.
+
+	\item \textbf{Integridad mediante prototipo exterior}. Se entiende por \textit{Integridad mediante prototipo exterior} todos aquellos 
+	elementos que usemos para dar forma al proyecto, evitando el uso de elementos demasiado temporales como pueden ser una protoboard o en 
+	general, componentes no definitivos (estos sólo se usarán en pruebas, no en producción). Con esta  idea, se buscarán elementos que 
+	permitan constituir un primer prototipo usable, sin invertir excesivo dinero, que elimine componentes temporales no funcionales para usar 
+	en la ubicación real; es por ello, que se cuenta con la inversión en reservas, conexionado de reserva a comedero/bebedero, diseño de una PCB, etc.
