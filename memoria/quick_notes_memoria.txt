@@ -13,13 +13,6 @@ presentan por norma general licencias que, como mínimo, exigen que se mencione 
 
 `` hdajhdahkd ''
 
-## Por hacer
-
-Meter imagenes logo patitas y ods con refs:
-
-    \ref{bib: patitas logo}
-    \ref{bib: ods logo}
-
 ## Hackeo de imagenes: 5 imagenes
 	\begin{figure}
 		\begin{center}
@@ -58,3 +51,20 @@ Meter imagenes logo patitas y ods con refs:
 	general, componentes no definitivos (estos sólo se usarán en pruebas, no en producción). Con esta  idea, se buscarán elementos que 
 	permitan constituir un primer prototipo usable, sin invertir excesivo dinero, que elimine componentes temporales no funcionales para usar 
 	en la ubicación real; es por ello, que se cuenta con la inversión en reservas, conexionado de reserva a comedero/bebedero, diseño de una PCB, etc.
+
+## Bib Arduino memory
+
+bib: arduino memory foundations
+bib: seeedstudio arduino memory
+bib: electronicsHub arduino memory
+
+## Bib bootloader
+
+bib: Arduino cc  bootloader
+bib: baldEngineer arduino bootloader
+
+## Bib para leer SPI, uart
+
+https://www.arduino.cc/en/reference/SPI
+https://www.circuitbasics.com/basics-of-the-spi-communication-protocol
+https://www.circuitbasics.com/basics-uart-communication/

@@ -845,7 +845,7 @@
 	
 	\noindent \textit{Wide area}: tienen un alcance de operación típico de más de 2 km en configuraciones urbanas.\\
 	
-	\noindent Una limitación física para alcanzar bajo consumo y largo alcance es el pequeño tamaño de la cantidad total de datos y las reducidas tasas binarias. La mayoría de tecnologías LPWAN pueden enviar solo menos de 1000 bytes de datos por día o menos de 5000 bits por segundo. \\
+	\noindent Una limitación física (es decir, el precio que hay que pagar) para alcanzar bajo consumo y largo alcance es la cantidad total de datos (pocos datos y mensajes cortos) y las reducidas tasas binarias. La mayoría de tecnologías LPWAN pueden enviar solo menos de 1000 bytes de datos por día o menos de 5000 bits por segundo. \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -868,7 +868,7 @@
 		\item La capacidad de la reserva de pienso, y del comedero.
 		\item Si la reserva quedará fija o móvil, y su soporte en todo caso.
 		\item Cómo se gestionará el movimiento entre el pienso y el comedero; principalmente, las opciones más directas son movimiento basado en la gravedad, o movimiento gestionado por un motor. También será necesario estudiar el camino que realizará el pienso, para establecer conductos por donde pueda fluir hasta el comedero sin gran dificultad (lo que entendemos por \textit{conexionado entre reserva y comedero}).
-		\item Soporte de los conductos que reflejan el conexionado entre reserva y comedero.
+		\item Soporte de los conductos que conectan la reserva y comedero.
 		\item Conexionado eléctrico con el microcontrolador para recibir las señales de movimiento, en el caso de usar servo, o sensorización de niveles de pienso en reserva y/o en comedero.
 	\end{itemize}
 	
@@ -896,6 +896,37 @@
 	\noindent \textit{Sensores de nivel de agua} \\
 	
 	\noindent \textit{Relé} \\
+	
+	\noindent Un relé es un interruptor electromecánico que se conmuta (cambia de estado) mediante una señal eléctrica, y es digital, ya que sólo puede tomar el valor abierto y el cerrado (1 o 0, True o False). Sería algo parecido a un pulsador, pero sustituyendo el gesto mecánico de un dedo pulsando por una señal eléctrica. De esta forma, mediante una señal eléctrica de poca intensidad podemos controlar un circuito de mucha mayor potencia, aislando la parte de control. \\
+	
+	\pagebreak
+	
+	\begin{figure}
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=60mm]{img/rele_1.png} &   \includegraphics[width=80mm]{img/rele_2.png} \\
+				(a)  & (b)  \\[6pt]
+			\end{tabular}
+			\caption{Imágenes que muestran las partes fundamentales de las que consta un relé [\ref{bib: prometec relés (más info)}].}
+			\label{Rele: teoria}
+		\end{center}
+	\end{figure}
+
+	\noindent El circuito de la Figura \ref{Rele: teoria}(a) consiste sencillamente en un núcleo de hierro (ferromagnético) y un cable conductor eléctrico, arrollado alrededor del núcleo, que se conecta a una batería de corriente continua. Si cerramos el interruptor, en el hierro se induce un campo  magnético sostenido, siguiendo las reglas de las leyes de Maxwell. Es decir se convierte en un electroimán. Si el núcleo no está sujeto a las espiras devanadas, se desplazará lateralmente, y si está sujeto el conjunto se comporta como un imán que podemos encender y apagar, lo que aprovechamos, para construir los relés.
+	
+	\noindent Fijándonos en la Figura \ref{Rele: teoria}(b), podemos observar que, cuando damos tensión a la bobina, el electroimán atrae la armadura haciéndola bascular alrededor del pívot, lo que desplaza el contacto móvil hacia arriba conectando el pin \textit{normalmente abierto} con el \textit{común} cerrando el circuito. A este contacto se le llama normalmente abierto (NA), porque el circuito entre el común y el pin NA, esta normalmente abierto(o sin conexión) hasta que se activa el relé. Por el mismo motivo hablamos del normalmente cerrado (NC), ya que el contacto está cerrado cuando el relé no está excitado. Cuando la bobina pierde la alimentación, el efecto imán desaparece y un resorte devuelve la armadura a la posición de reposo. A este tipo de relé, se le llama de armadura.
+	
+	\noindent Seguramente todo esto recuerde un poco a los transistores, pero tienen finalidades diferentes:
+	
+	\begin{itemize}
+		\item Hay límites en la corriente que puede aceptar un transistor, sin embargo se pueden diseñar relés para aguantar cualquier carga.
+		\item El relé aísla completamente el circuito de control del de potencia, algo muy importante para tensiones altas.
+		\item Utilizaremos relés cuando tengamos cargas de mucha potencia.
+		\item Utilizaremos un transistor para cargas pequeñas y cuando la velocidad de conmutación sea importante.
+		\item Un transistor conmuta (pasa de corte a saturación o viceversa) millones de veces más rápido que un relé.
+	\end{itemize}
+	
+	\noindent Aunque hay muchos tipos de relés, por regla general nuestro Arduino no tiene potencia suficiente para activar un relé. Utilizaremos un transistor para amplificar la señal de la base y así poder conmutar el relé. 
 	
 	\pagebreak
 	
@@ -1265,7 +1296,7 @@
 		\item 
 	\end{itemize}
 	
-	\noindent Se usarán antenas de 5 dBi omnidireccionales. En la práctica, se comportarán como antenas con diagrama de radiación tipo dipolo.\\
+	\noindent Se usarán antenas de 5 dBi con diagrama de radiación tipo dipolo.\\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1292,13 +1323,13 @@
 		\end{center}
 	\end{figure}
 
-	\noindent Radio Mobile es gratuito y fácil de usar e instalar, por lo que para realizar simulaciones de enlaces no muy complejos es altamente recomendable. En este proyecto, sólo contaremos, en un principio, con dos dispositivos equivalentes en tanto a características radio, separados una distancia de 3.5 kms, aproximadamente, en un entorno con pocas fluctuaciones del terreno, rural y pocos obstáculos entre ambos (rayo directo). El proceso de configuración seguido para realizar la simulación del escenario planteado es el que sigue: \\
+	\noindent Radio Mobile es gratuito y fácil de usar e instalar, por lo que para realizar simulaciones de enlaces no muy complejos es altamente recomendable. En este proyecto, sólo contaremos, en un principio, con dos dispositivos equivalentes en tanto a características radio, separados una distancia de 3.5 kms, aproximadamente, en un entorno con pocas fluctuaciones del terreno, rural y pocos obstáculos entre ambos (existe visión directa, \textit{LoS, Line-of-Sight}, entre los extremos). El proceso de configuración seguido para realizar la simulación del escenario planteado es el que sigue: \\
 	
 	\begin{itemize}
-		\item En Google Earth, se cogieron las coordenadas de la casa de campo donde se va a encontrar el gateway, y las coordenadas del refugio.
+		\item En Google Earth, se tomaron las coordenadas de la casa de campo donde se va a encontrar el gateway, y las coordenadas del refugio.
 		\item Ya en Radio Mobile, dentro de \textit{Propiedades del mapa}, introducimos las coordenadas (latitud/ longitud) del campo. Clicamos en \textit{extraer}.
 		\item En \textit{Editar}, seleccionamos \textit{Combinar imágenes} con OpenStreetMaps, y dentro, clicamos en \textit{Multiplicar y mantener imagen}, para poder visualizar el mapa con la capa del terreno sobre él. 
-		\item Volver a \textit{Propiedades del mapa} y usar el cursor sobre el mapa para encontrar el punto medio (aproximadamente) para centrar el mapa (para usar coordenadas del cursor, clicamos sobre \textit{Usar posición del cursor}, y vamos centrando y ajustando el alto a valores inferiores para que no nos muestre mucho más mapa del que necesitamos).
+		\item Volvemos a \textit{Propiedades del mapa} y usamos el cursor sobre el mapa para encontrar el punto medio (aproximadamente) para centrar el mapa (para usar coordenadas del cursor, clicamos sobre \textit{Usar posición del cursor}, y vamos centrando y ajustando el alto a valores inferiores para que no nos muestre mucho más mapa del que necesitamos).
 		\item Guardamos el mapa clicando en \textit{Grabar mapa como…} (Dentro de directorio Radio\_Mobile \textbackslash Mapas, previamente creado) Archivo map (topografía).
 		\item Guardamos la imagen clicando en \textit{Grabar imagen como…}  (Dentro de directorio Radio\_Mobile \textbackslash Imágenes, previamente creado) Archivo imagen, conjunto de mapa e imagen de OpenStreetMap (pero no tiene información topográfica).
 		\item Una vez generados los archivos topográficos e imagen, el siguiente paso es crear la red, clicando en \textit{Nuevas redes} (creación de redes). Primeramente, dejamos los valores por defecto, clicamos en \textit{Usar mapa} y en \textit{ok}.
@@ -1398,7 +1429,7 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e32_1W_desc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 1W (enlace descendente: campo - refugio).}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 30dBm (1W). Enlace descendente: campo - refugio.}
 			\label{fig: resultado enlace e32 1W descendente radio mobile}
 		\end{center}
 	\end{figure}
@@ -1408,7 +1439,7 @@
 	\begin{figure}[h!]
 			\begin{center}
 				\includegraphics[width=0.65\textwidth]{img/resultado_e32_1W_asc.png}
-				\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 1W (enlace ascendente: refugio - campo).}
+				\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 30dBm (1W). Enlace ascendente: refugio - campo.}
 				\label{fig: resultado enlace e32 1W ascendente radio mobile}
 			\end{center}
 	\end{figure}
@@ -1420,7 +1451,7 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e32_125mW_desc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 125 mW (enlace descendente: campo - refugio).}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 21dBm (125 mW). Enlace descendente: campo - refugio.}
 			\label{fig: resultado enlace e32 125mW descendente radio mobile}
 		\end{center}
 	\end{figure}
@@ -1431,7 +1462,7 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e32_125mW_asc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 125 mW (enlace ascendente: refugio - campo).}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 21dBm (125 mW). Enlace ascendente: refugio - campo.}
 			\label{fig: resultado enlace e32 125mW ascendente radio mobile}
 		\end{center}
 	\end{figure}
@@ -1443,7 +1474,7 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e22_100mW_desc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 100 mW (enlace descendente).}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 20dBm (100 mW). Enlace descendente.}
 			\label{fig: resultado enlace e22 100mW descendente radio mobile}
 		\end{center}
 	\end{figure}
@@ -1455,7 +1486,7 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e22_100mW_asc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 100 mW (enlace ascendente).}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 20dBm (100 mW). Enlace ascendente.}
 			\label{fig: resultado enlace e22 100mW ascendente radio mobile}
 		\end{center}
 	\end{figure} 
@@ -1466,7 +1497,7 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e22_10mW_desc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10 mW (enlace descendente).}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10dBm (10 mW). Enlace descendente.}
 			\label{fig: resultado enlace e22 10mW descendente radio mobile}
 		\end{center}
 	\end{figure}
@@ -1477,7 +1508,7 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e22_10mW_asc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10 mW (enlace ascendente).}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10dBm (10 mW). Enlace ascendente.}
 			\label{fig: resultado enlace e22 10mW ascendente radio mobile}
 		\end{center}
 	\end{figure}
@@ -1492,7 +1523,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e32_125mW_conPerdidas_desc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 125 mW (enlace descendente), con pérdidas de 1 dB debido al alargador SMA.}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 21dBm (enlace descendente), con pérdidas de 1 dB debido al alargador SMA.}
 			\label{fig: resultado enlace e32 125mW descendente con perdidas radio mobile}
 		\end{center}
 	\end{figure}
@@ -1504,7 +1535,7 @@
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e32_125mW_conPerdidas_asc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 125 mW (enlace ascendente), con pérdidas de 1 dB debido al alargador SMA.}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 21dBm (enlace ascendente), con pérdidas de 1 dB debido al alargador SMA.}
 			\label{fig: resultado enlace e32 125mW ascendente con perdidas radio mobile}
 		\end{center}
 	\end{figure}
@@ -1516,7 +1547,7 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e22_10mW_conPerdidas_desc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10 mW (enlace descendente), con pérdidas de 1 dB debido al alargador SMA.}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10dBm (enlace descendente), con pérdidas de 1 dB debido al alargador SMA.}
 			\label{fig: resultado enlace e22 10mW descendente con perdidas radio mobile}
 		\end{center}
 	\end{figure}
@@ -1527,12 +1558,12 @@
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e22_10mW_conPerdidas_asc.png}
-			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10 mW (enlace ascendente), con pérdidas de 1 dB debido al alargador SMA.}
+			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E22 transmitiendo a 10dBm (enlace ascendente), con pérdidas de 1 dB debido al alargador SMA.}
 			\label{fig: resultado enlace e22 10mW ascendente con perdidas radio mobile}
 		\end{center}
 	\end{figure}
 	
-	\noindent Resumiendo, para una altura de las antenas de 2m, tanto en el caso del transceptor LoRa E32-868T30D como en el caso del transceptor E22-900T22D, conseguimos establecer un enlace LoRa satisfactorio.
+	\noindent Resumiendo, para una altura de las antenas de 2m, tanto en el caso del transceptor LoRa E32-868T30D como en el caso del transceptor E22-900T22D, conseguimos establecer un enlace LoRa satisfactorio. En todos los casos se observa que el nivel de la señal en el receptor está en verde, y por tanto, se recibe la potencia necesaria. Es más, en todo punto de la línea entre transmisor y receptor hay cobertura, ya que ésta aparece dibujada en color verde.
 	
 	\pagebreak
 	
@@ -1543,7 +1574,7 @@
 	\subsubsubsection{Comedero}
 	\label{subsubsubsection: comedero eleccion}
 	
-	 \noindent Se ha elegido como gestor del movimiento del pienso el uso de un motor, en concreto, de un servomotor de 5V, capaz de girar 360º y capaz de mover cargas de hasta 10 kg (para leer información más detallada, ir a Anexo I FALTA REFERENCIA) \\
+	 \noindent Se ha elegido como gestor del movimiento del pienso el uso de un motor, en concreto, de un servomotor de 5V, capaz de girar 360º y capaz de mover cargas de hasta 10 kg (para leer información más detallada, ir a \hyperref[anexo I: ficha tecnica]{Anexo I}). \\
 	
 		\begin{figure}[h]
 		\begin{center}
@@ -1634,12 +1665,12 @@
 	 	\end{center}
 	 \end{figure}
  
-	 \noindent Su funcionamiento es sencillo: si el nivel del agua queda por encima del sensor, el valor lógico asociado que enviará al microcontrolador será de 1. Si por el contrario queda por debajo, mandará un 0. Dos cables de alimentación, simétricos, se requiere de resistencias de 10k en configuración \textit{pull-down}, ya que al tratarse de switches, al conmutar si no existe esa resistencia da un valor lógico o desconocido o falso 1, consecuencia del ruido del pin que se introduce al estar flotante.\\
+	 \noindent Su funcionamiento es sencillo: si el nivel del agua queda por encima del sensor, el valor lógico asociado que enviará al microcontrolador será de 1. Si por el contrario queda por debajo, mandará un 0. Un sensor de flotación tiene dos cables de alimentación, simétricos (uno para VCC y otro para GND); entre dichos cables y el microcontrolador se requiere de resistencias de 10k en configuración \textit{pull-down} (mirar Figura \ref{Esquema resistencia pull-down}), ya que al tratarse de switches, al conmutar si no existe esa resistencia da un valor lógico o desconocido o falso 1, consecuencia del ruido del pin que se introduce al estar flotante.\\
 	
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=0.2\textwidth]{img/pull-down-resistor.png}
-			\caption{Esquema de un switch conectado a un microcontrolador con una resistencia \textit{pull-down}.}
+			\caption{Esquema de un switch conectado a un microcontrolador con una resistencia \textit{pull-down} [\ref{bib: eepower pull up pull down resistors}].}
 			\label{Esquema resistencia pull-down}
 		\end{center}
 	\end{figure}
@@ -1656,7 +1687,7 @@
 		\end{center}
 	\end{figure}
 
-	\noindent La bomba se comporta como un motor DC, y tiene dos cables únicamente (+5V, GND), por lo que, para poder controlar su funcionamiento, necesitaremos usar un actuador. Elegimos un relé, el cual está conectado al pin D7 del arduino, según podemos ver en la Figura \ref{Esquema conexiones bebedero Fritzing}. Entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$). Se usan debido a que el relé necesita ver a su entrada una corriente superior, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, emite un sonido característico). \\
+	\noindent La bomba se comporta como un motor DC, y tiene dos cables únicamente (+5V, GND), por lo que, para poder controlar su funcionamiento, necesitaremos usar un actuador. Elegimos un relé, el cual está conectado al pin D7 del arduino, según podemos ver en la Figura \ref{Esquema conexiones bebedero Fritzing}. Entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$ y un BJT). Se usan debido a que el relé necesita ver a su entrada una corriente superior, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, emite un sonido característico). \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1691,7 +1722,7 @@
 		\item Localización de las antenas
 	\end{itemize}
 
-	\noindent En el apartado \ref{subsubsubsection: comedero eleccion}  ya se explica lo que pueda ser necesario para el conexionado reserva-comedero (piezas de PVC principalmente). Para la funcionalidad de bebedero, en concreto para conectar la reserva de agua con el bebedero, se hará uso de un tubo de silicona transparente (10mm de diámetro, grosor de 1mm y longitud 1m) y de una pieza impresa en 3D para sujetar el tubo de silicona al bebedero. \\
+	\noindent En el apartado \ref{subsubsubsection: comedero eleccion}  ya se explica lo que pueda ser necesario para el conexionado reserva-comedero (piezas de PVC principalmente). Para la funcionalidad de bebedero, en concreto para conectar la reserva de agua con el bebedero, se hará uso de un tubo de silicona transparente (Figura \ref{Captura tubo silicona}, 10mm de diámetro, grosor de 1mm y longitud 1m) y de una pieza impresa en 3D para sujetar el tubo de silicona al bebedero (Figura \ref{fig: pieza 3D sujecion bebedero}). \\
 	
 	\pagebreak
 	
@@ -1714,11 +1745,11 @@
 				\multicolumn{2}{c}{(c) Pieza impresa en 3D (frontal) }
 			\end{tabular}
 			\caption{Capturas del diseño e impresión en 3D de la pieza creada para la sujeción del tubo de silicona al bebedero. }
-			\label{fig: pieza 3D sujecion bebedero.}
+			\label{fig: pieza 3D sujecion bebedero}
 		\end{center}
 	\end{figure}
 	
-	\noindent En tanto a las reservas que serán empleadas, se trata de dos bidones de plástico (uno para pienso y otro para agua), de capacidad 5L, suficiente para una prueba de concepto. \\
+	\noindent En tanto a las reservas que serán empleadas, se trata de dos bidones de plástico (uno para pienso y otro para agua), de capacidad 5L, suficiente para una prueba de concepto (Figura \ref{Captura bidon}). \\
 	
 	\pagebreak
 	
@@ -1730,7 +1761,7 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent Los recipientes usados como comedero y bebedero son unos cuencos de acero inoxidable, pensado para mascotas pequeñas, con capacidad aproximada de 200mL. Igual que con el bidón, para una prueba de concepto será suficiente. Trae consigo unos ganchos, también de acero inoxidable, de uso opcional, para colgar los cuencos en una jaula (o similar).\\
+	\noindent Los recipientes usados como comedero y bebedero son unos cuencos de acero inoxidable (Figura \ref{fig: capturas bebedero}), pensado para mascotas pequeñas, con capacidad aproximada de 200mL. Igual que con el bidón, para una prueba de concepto será suficiente. Trae consigo unos ganchos, también de acero inoxidable, de uso opcional, para colgar los cuencos en una jaula (o similar).\\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1741,11 +1772,11 @@
 				%\multicolumn{2}{c}{(c) Pieza impresa en 3D (frontal) }
 			\end{tabular}
 			\caption{Capturas del cuenco y ganchos de sujeción usados para comedero y bebedero [\ref{bib: AliExpress cuenco}]. }
-			\label{fig: capturas bebdero.}
+			\label{fig: capturas bebedero}
 		\end{center}
 	\end{figure}
 	
-	\noindent Para proteger la electrónica, se emplearán cajas estancas, ya que están preparadas para proteger conexiones eléctricas (cables u otros), incluso en el exterior. Además, se abren desatornillando unos tornillos en su parte frontal, y es posible hacer agujeros a medida  para pasar cables desde su interior hasta el exterior en diferentes zonas de silicona plástica que tienen en todos sus laterales. \\
+	\noindent Para proteger la electrónica, se emplearán cajas estancas (Figura \ref{fig: capturas caja estanca}), ya que están preparadas para proteger conexiones eléctricas (cables u otros), incluso en el exterior. Además, se abren desatornillando unos tornillos en su parte frontal, y es posible hacer agujeros a medida  para pasar cables desde su interior hasta el exterior en diferentes zonas de silicona plástica que tienen en todos sus laterales. \\
 	
 	\pagebreak
 	
@@ -1758,11 +1789,11 @@
 				\multicolumn{2}{c}{(c) Detalle de ubicación de los tornillos y de zonas perforables para cables. }
 			\end{tabular}
 			\caption{Capturas de una caja estanca (ejemplo) [\ref{bib: cablematic}]. }
-			\label{fig: capturas caja estanca.}
+			\label{fig: capturas caja estanca}
 		\end{center}
 	\end{figure}
 	
-	\noindent Por último, faltaría determinar la ubicación de las antenas. Para mejorar la emisión/recepción de los mensajes, debemos dar una altura mínima a las antenas. Para ello, se propone conectar un alargador SMA desde el transceptor LoRa (el cual está en el interior de la caja estanca) hasta una de las paredes de la caja estanca, la cual habrá que perforar con un taladro para sacar la salida de ese alargador al exterior. De esta manera, podremos conectar otro alargador (de la longitud que se desee) desde el exterior de la caja estanca hasta la altura que dé dicho alargador, y conectar en tal punto la antena (permitiendo, así, mejorar la conexión entre ambos nodos).\\
+	\noindent Por último, faltaría determinar la ubicación de las antenas. Para mejorar la emisión/recepción de los mensajes, debemos dar una altura mínima a las antenas. Para ello, se propone conectar un alargador SMA desde el transceptor LoRa (el cual está en el interior de la caja estanca) hasta una de las paredes de la caja estanca (Figura \ref{fig: capturas alargadores sma caja estanca}(a)), la cual habrá que perforar con un taladro para sacar la salida de ese alargador al exterior. De esta manera, podremos conectar otro alargador (de la longitud que se desee) desde el exterior de la caja estanca hasta la altura que dé dicho alargador (Figura \ref{fig: capturas alargadores sma caja estanca}(b)), y conectar en tal punto la antena (permitiendo, así, mejorar la conexión entre ambos nodos).\\
 	
 	\pagebreak
 	
@@ -1775,14 +1806,15 @@
 				%\multicolumn{2}{c}{(c) Detalle de ubicación de los tornillos y de zonas perforables para cables. }
 			\end{tabular}
 			\caption{Fotos de alargadores SMA usados. }
-			\label{fig: capturas alargadores sma caja estanca.}
+			\label{fig: capturas alargadores sma caja estanca}
 		\end{center}
 	\end{figure}
 	
 	
 	\subsection[Resumen del capítulo]{Resumen de capítulo}
 	
-	En este capítulo se ha hablado de [...]. Se sacan conclusiones para la creación de un prototipo que pueda ser ejecutado y probado en el entorno objetivo.
+	En este capítulo se ha hablado primero, de las funcionalidades que hay que cubrir con este proyecto para poder cumplir con los objetivos marcados. Una vez determinadas las funcionalidades, se realiza y se muestra un estudio acerca de posibles soluciones mediante las cuales podamos llevar a la práctica la funcionalidad en concreto que se esté analizando. Por último, se muestra la selección final de tecnologías (hardware y software) para cada funcionalidad. En resumen, se sacan conclusiones para la creación de un prototipo que pueda ser ejecutado y probado en el entorno objetivo.
+	
 	\pagebreak
 	
 	
@@ -1915,9 +1947,9 @@
 	\noindent El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA.  Para mayor detalle del esquemático o de la PCB, consultar el repositorio de GitHub creado (poner  con href), donde se incluye un archivo .json que, importándolo a EasyEDA, permitirá su visualización. \\
 	
 	\subsubsection{Protocolo}
-	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \texttt{\textit{refugio\_protocolo}}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3; este sketch es el \texttt{\textit{gw\_protocolo}}.  En el Anexo II (\ref{anexo II: codigo}) se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
+	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \texttt{\textit{refugio\_protocolo}}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3; este sketch es el \texttt{\textit{gw\_protocolo}}, el cual explicaremos más adelante (al igual que \texttt{\textit{refugio\_protocolo}}).  En el \hyperref[anexo II: codigo]{Anexo II}  se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
 	
-	\noindent Antes de explicar el código creado, cabe decir que no habría sido posible el desarrollo de este protocolo sin el sustento proporcionado por la librería \href{https://github.com/KrisKasprzak/EBYTE}{EBYTE}, a través de la cual:
+	\noindent Antes de explicar el código creado, cabe decir que no habría sido posible el desarrollo de este protocolo sin el sustento proporcionado por la librería \href{https://github.com/KrisKasprzak/EBYTE}{EBYTE} [\ref{bib: github libreria EBYTE}], a través de la cual:
 	
 	\begin{itemize}
 		\item Se crea una conexión serial por software entre arduino y transceptor LoRa.
@@ -2260,7 +2292,7 @@
 	
 	\subsection[Presupuesto]{Presupuesto}
 
-	\noindent En el Anexo III (\ref{subsection: presupuesto}) se presenta el presupuesto del prototipo construido, sin incluir tiempo de diseño del sistema, prototipado, construcción, instalación del prototipo y pruebas. Como puede verse, el presupuesto material, excluyendo el relacionado con lo requerido por herramientas tales como impresora 3D (filamento) o soldador (estaño, flux), asciende a 248.9\euro, que, para ser un pequeño proyecto académico, presenta un coste considerable, incluso habiendo recurrido a productos \textit{low cost}. \\
+	\noindent En el \hyperref[anexo III: presupuesto]{Anexo III} se presenta el presupuesto del prototipo construido, sin incluir tiempo de diseño del sistema, prototipado, construcción, instalación del prototipo y pruebas. Como puede verse, el presupuesto material, excluyendo el relacionado con lo requerido por herramientas tales como impresora 3D (filamento) o soldador (estaño, flux), asciende a 248.9\euro, que, para ser un pequeño proyecto académico, presenta un coste considerable, incluso habiendo recurrido a productos \textit{low cost}. \\
 	
 	\pagebreak
 	
@@ -2272,18 +2304,19 @@
 	
 	\section[Conclusiones y líneas futuras]{Conclusiones y líneas futuras}
 	
-	\noindent \textbf{Alimentación:} estudiaría las baterías LiPo, incluso LiFePO4, que aunque son más caras, no limitan tanto en el tema de la protección. Las baterías Li ion tienen bastante cobertura y tienen sus ventajas, pero también sus desventajas. Investigaría más profundamente en general el tema de la alimentación autónoma, ya que es un mundo muy extenso que debe tratarse de manera externa a la parte radio o a la parte de microcontrolador; podemos realizar proyectos donde abarquemos todo, pero para llegar a conclusiones donde se lleguen a prototipos iniciales, que en posteriores investigaciones se expandan y mejoren sus funcionalidades de manera individual, sin perder de vista el proyecto global. Diseñaría una PCB sólo para alimentación, ya que los requerimientos de alimentación para cada proyecto son diferentes y para un proyecto de dimensión media-grande es mucho más práctico diseñar un sistema personalizado de alimentación de dispositivo, algo que conseguimos mediante una PCB, compactando los sistemas que, sin PCB, se traducen en numerosas PCBs ya fabricadas que quizá no se adapten del todo a lo que necesitamos. \\
+	\noindent \textbf{Alimentación:} estudiaría las baterías LiPo, incluso LiFePO4, que aunque son más caras, no limitan tanto en el tema de la protección. También investigaría el uso de varias baterías Li-ion en paralelo para aumentar la capacidad. Investigaría más profundamente en general el tema de la alimentación autónoma, ya que es un mundo muy extenso que debe tratarse de manera externa a la parte radio o a la parte de microcontrolador; podemos realizar proyectos donde abarquemos todo, pero para llegar a conclusiones donde se lleguen a prototipos iniciales, que en posteriores investigaciones se expandan y mejoren sus funcionalidades de manera individual, sin perder de vista el proyecto global. Diseñaría una PCB sólo para alimentación, ya que los requerimientos de alimentación para cada proyecto son diferentes y para un proyecto de dimensión media-grande es mucho más práctico diseñar un sistema personalizado de alimentación de dispositivo, algo que conseguimos mediante una PCB, compactando los sistemas que, sin PCB, se traducen en numerosas PCBs ya fabricadas que quizá no se adapten del todo a lo que necesitamos. Podría parecer que la PCB de un TP4056 es suficiente, pero en la práctica vemos cómo carga y consumo tiene que ser en momentos no simultáneos, lo cual puede suponer un problema si se sincroniza con el funcionamiento del dispositivo al que está alimentando. Es un tema complejo que hay que investigar aparte, como se ha mencionado.\\
 	
 		
-	\noindent Como anotación, decir que existen TP4056 con protección, gracias al MOSFET DW01 (o DW01A), los cuales no hemos usado por no tener incorporado un boost, pero pueden ser la base para construir una PCB de alimentación propia. \\
 	
-	\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.4\textwidth]{img/tp4056_withProtection.png}
-			\caption{Ejemplo de un TP4056 con protección [\ref{bib: electronilab tp4056 con proteccion}].}
-			\label{TP4056 con protección}
-		\end{center}
-	\end{figure}
+	%\noindent Como anotación, decir que existen TP4056 con protección, gracias al MOSFET DW01 (o DW01A), los cuales no hemos usado por no tener incorporado un boost, pero pueden ser la base para construir una PCB de alimentación propia. \\
+	
+%	\begin{figure}[h]
+%		\begin{center}
+%			\includegraphics[width=0.4\textwidth]{img/tp4056_withProtection.png}
+%			\caption{Ejemplo de un TP4056 con protección [\ref{bib: electronilab tp4056 con proteccion}].}
+%			\label{TP4056 con protección}
+%		\end{center}
+%	\end{figure}
 	
 	\noindent \textbf{Microcontrolador}: el arduino nano para principiantes, con previas nociones de electrónica y con previsiones de realizar una PCB, siempre y cuando el proyecto no sea muy extenso, puede ser empleado. Sin embargo, yo he experimentado que en espacio de memoria se me quedaba corto, sobretodo al usar librerías como OLED, las cuales debía excluir si quería cargar en el arduino mi código restante; teniendo en cuenta que debía importar librerías obligatoriamente para usar por ejemplo la OLED, el servomotor o el transceptor LoRa, este es un punto muy negativo, ya que es un código que no puede ser reducido. Tuve que buscar trucos para compactar el uso de dicha memoria debido a estas limitaciones. Probaría con otras opciones mencionadas en la sección \ref{subsección 3.2.2: automatización y monitorización}, donde hablamos de opciones de microcontroladores, como la Adafruit, NodeMCU o Teensy. \\
 	
@@ -2295,38 +2328,40 @@
 	\addcontentsline{toc}{section}{Glosario}
 	
 	%%% MICROCONTROLADOR %%%
-	\noindent \textbf{\large SRAM}. \\
+	\noindent \textbf{\large SRAM (\textit{Static Random Access Memory})}. Para placas Arduino basadas en arquitectura AVR, la SRAM es donde se almacenan datos temporales y datos en tiempo de ejecución (el sketch crea y manipula variables cuando se ejecuta). Es una memoria volátil, que se borra cada vez que el microcontrolador deja de tener alimentación [\ref{bib: arduino memory foundations}][\ref{bib: seeedstudio arduino memory}][\ref{bib: electronicsHub arduino memory}].\\
 	
-	\noindent \textbf{\large EEPROM}. \\
+	\noindent \textbf{\large EEPROM (\textit{Electrically Erasable Programmable Read-Only Memory})}. EEPROM en Arduino se usa generalmente para almacenar una pequeña cantidad de datos como estados de dispositivos de entrada o salida para que se puedan retener incluso si el Arduino deja de tener alimentación (ergo, es una memoria no volátil, que usamos para almacenar información a largo plazo) [\ref{bib: arduino memory foundations}][\ref{bib: seeedstudio arduino memory}][\ref{bib: electronicsHub arduino memory}].  \\
 	
-	\noindent \textbf{\large Flash memory}. \\
+	\noindent \textbf{\large Flash memory}. Es la memoria de programa, donde Arduino almacena el sketch. La memoria flash también se llama Flash ROM. En Arduino, la memoria flash almacena el código de la aplicación que se ejecutará. En segundo plano, esto compilará el sketch y producirá un archivo binario y almacenará el archivo binario en la memoria flash de Arduino. Al reiniciar, el Arduino leerá las instrucciones almacenadas en la memoria flash y realizará la operación necesaria. Una parte de esta memoria flash es realmente utilizada por el Bootloader, que es responsable de almacenar el archivo binario en la memoria flash a través de la interfaz en serie.\\
+	\noindent En realidad, la memoria flash también es un tipo de EEPROM. La principal diferencia es que EEPROM se puede borrar a nivel de byte, mientras que la memoria flash se puede borrar a nivel de bloque [\ref{bib: arduino memory foundations}][\ref{bib: seeedstudio arduino memory}][\ref{bib: electronicsHub arduino memory}]. \\
 	
-	\noindent \textbf{\large Bootloader.} \\
+	\noindent \textbf{\large Bootloader.} Al encender o reiniciar, un bootloader es una sección de la memoria del programa que se ejecuta antes de que se ejecute el código principal. Se puede utilizar para configurar el microcontrolador o proporcionar una capacidad limitada para actualizar el código del programa principal. No disponer de un bootloader implica realizar estas funciones a través de un programador externo. \\
+	\noindent En el caso del Uno, el bootloader de Arduino queda en espera a la vez que observa los pines UART. Si el bootloader no recibe una secuencia particular de bytes a través del puerto serie, entonces el procesador salta a la sección del programa ``usuario'' para cargar lo que ya esté en la memoria del programa. Este salto carga nuestro programa (o sketch) [\ref{bib: baldEngineer arduino bootloader}][\ref{bib: Arduino cc  bootloader}].\\
 	
-	\noindent \textbf{\large PWM.} \\
+	\noindent \textbf{\large PWM (\textit{Pulse Width Modulation}).} \\
 	
-	\noindent \textbf{\large UART.} \\
+	\noindent \textbf{\large UART (\textit{Universal Asynchronous Receiver Transmitter}).} No es un protocolo de comunicación como SPI e I2C, sino un circuito físico en un microcontrolador o un IC independiente. El propósito principal de un UART es transmitir y recibir datos en serie. Una de las ventajas de UART es que solo usa dos cables para transmitir datos entre dispositivos.\\
 	
-	\noindent \textbf{\large MOSI.} \\
+	\noindent \textbf{\large SPI (\textit{Serial Peripheral Interface}).} \\
+		
+	\noindent \textbf{\large MOSI (\textit{Master Out Slave In}).} \\
 	
-	\noindent \textbf{\large SDA.} \\
+	\noindent \textbf{\large SDA (\textit{Serial Data}).} \\
 	
-	\noindent \textbf{\large SCL.} \\
+	\noindent \textbf{\large SCL (\textit{Serial Clock}).} \\
 	
-	\noindent \textbf{\large SPI.} \\
-	
-	\noindent \textbf{\large I2C.} \\
+	\noindent \textbf{\large I2C (\textit{Inter-Integrated Circuit}).} \\
 	
 	%%% SERVOMOTOR %%%
-	\noindent \textbf{\large Torque} (en un motor), o par. En mecánica newtoniana, se denomina momento de una fuerza o torque a una magnitud vectorial, obtenida como producto vectorial del vector de posición del punto de aplicación de la fuerza por el vector fuerza, en ese orden. Para un motor, esto es, la fuerza que puede aplicar a través del movimiento rotacional de su eje para levantar o mover una carga; es importante el contexto mecánico previo que hemos establecido para entender la importancia de la dirección en la que apliquemos el movimiento del servo y la fuerza en sí.\\
+	\noindent \textbf{\large Torque} (en un motor), o par. En mecánica newtoniana, se denomina momento de una fuerza o torque a una magnitud vectorial, obtenida como producto vectorial del vector de posición del punto de aplicación de la fuerza por el vector fuerza, en ese orden. Para un motor, esto es, la fuerza que puede aplicar a través del movimiento rotacional de su eje para levantar o mover una carga; es importante el contexto mecánico previo que hemos establecido para entender la importancia de la dirección en la que apliquemos el movimiento del servo y la fuerza en sí [\ref{bib: wikipedia momento de fuerza}].\\
 	
-	\noindent \textbf{\large Fuerza contraelectromotriz} (\textit{back EMF}). Fuerza electromagnética que aparece en un circuito inductivo en una dirección tal que se opone a cualquier cambio de corriente en el circuito. De hecho, la conversión de energía en un motor DC es causada por esta fuerza: la dirección de la corriente en la armadura conductiva que tienen los motores es contraria a la dirección del efecto contraelectromotriz, por lo que debemos realizar un trabajo eléctrico para contrarrestar ese efecto (usar la corriente en contra del \textit{back EMF}), el cual se traduce en realizar un trabajo mecánico, el cual es la función principal de un motor DC. Además, el \textit{back EMF} hace que los motores se autorregulen; por ejemplo, si no existe carga, se hace menos torque, se induce menor corriente y por tanto la fuerza contraelectromotriz aumenta (sería equivalente a la tensión suministrada, ya que su efecto se mide en voltios), pero si aumentamos la carga, la velocidad disminuye, decrece el \textit{back EMF}, aumenta la corriente y la magnitud del torque. Existen fórmulas que relacionan estas variables.\\
+	\noindent \textbf{\large Fuerza contraelectromotriz} (\textit{back EMF}). Fuerza electromagnética que aparece en un circuito inductivo en una dirección tal que se opone a cualquier cambio de corriente en el circuito. De hecho, la conversión de energía en un motor DC es causada por esta fuerza: la dirección de la corriente en la armadura conductiva que tienen los motores es contraria a la dirección del efecto contraelectromotriz, por lo que debemos realizar un trabajo eléctrico para contrarrestar ese efecto (usar la corriente en contra del \textit{back EMF}), el cual se traduce en realizar un trabajo mecánico, el cual es la función principal de un motor DC. Además, el \textit{back EMF} hace que los motores se autorregulen; por ejemplo, si no existe carga, se hace menos torque, se induce menor corriente y por tanto la fuerza contraelectromotriz aumenta (sería equivalente a la tensión suministrada, ya que su efecto se mide en voltios), pero si aumentamos la carga, la velocidad disminuye, decrece el \textit{back EMF}, aumenta la corriente y la magnitud del torque. Existen fórmulas que relacionan estas variables [\ref{bib: circuit globe back emf}].\\
 	
 	%%% SWITCHES DE NIVEL DE AGUA %%%
-	\noindent \textbf{\large Resistencia \textit{pull-down}}. Las resistencias \textit{pull-down}, y \textit{pull-up}, son resistencias que se usan en circuitos lógicos para asegurar un nivel lógico bien definido en un pin bajo cualquier circunstancia. Como recordatorio, los circuitos lógicos digitales tienen tres estados lógicos: alto, bajo y flotante (alta impedancia). El estado de alta impedancia ocurre cuando un pin no llega a estar en valor alto o bajo, y se queda "flotando". Una buena manera de ilustrar esta situación es un pin de entrada desconectado de un microcontrolador; no se encuentra en un estado lógico alto o bajo, y el MCU podría interpretar de manera impredecible el valor de entrada como alto o bajo. También ocurre si en un pin del MCU tenemos un switch; si no hay una resistencia \textit{pull-down} o \textit{pull-up}, el pin estará flotando cuando el switch se abra, y dando valores lógicos conocidos sólo cuanto éste se cierre. Son resistencias de valor fijo, que dependiendo de la aplicación del circuito digital que estemos diseñando tendrán un valor u otro (y de la impedancia de entrada del pin del MCU al que queramos conectarnos, por ejemplo). La diferencia entre una resistencia \textit{pull-down} y una \textit{pull-up} es que la primera se coloca entre tierra y el pin en cuestión, haciendo que, cuando el switch se abra, el pin tenga valor lógico bajo, mientras que la segunda se coloca entre VCC y el pin, haciendo que, cuando el switch se abra, el pin tenga valor lógico de alto.\\ 
+	\noindent \textbf{\large Resistencia \textit{pull-down}}. Las resistencias \textit{pull-down}, y \textit{pull-up}, son resistencias que se usan en circuitos lógicos para asegurar un nivel lógico bien definido en un pin bajo cualquier circunstancia. Como recordatorio, los circuitos lógicos digitales tienen tres estados lógicos: alto, bajo y flotante (alta impedancia). El estado de alta impedancia ocurre cuando un pin no llega a estar en valor alto o bajo, y se queda``flotando''. Una buena manera de ilustrar esta situación es un pin de entrada desconectado de un microcontrolador; no se encuentra en un estado lógico alto o bajo, y el MCU podría interpretar de manera impredecible el valor de entrada como alto o bajo. También ocurre si en un pin del MCU tenemos un switch; si no hay una resistencia \textit{pull-down} o \textit{pull-up}, el pin estará flotando cuando el switch se abra, y dando valores lógicos conocidos sólo cuanto éste se cierre. Son resistencias de valor fijo, que dependiendo de la aplicación del circuito digital que estemos diseñando tendrán un valor u otro (y de la impedancia de entrada del pin del MCU al que queramos conectarnos, por ejemplo). La diferencia entre una resistencia \textit{pull-down} y una \textit{pull-up} es que la primera se coloca entre tierra y el pin en cuestión, haciendo que, cuando el switch se abra, el pin tenga valor lógico bajo, mientras que la segunda se coloca entre VCC y el pin, haciendo que, cuando el switch se abra, el pin tenga valor lógico de alto [\ref{bib: eepower pull up pull down resistors}].\\ 
 	
 	%%PAGINA WEB%%
-	\noindent \textbf{\large Lenguaje de marcado}.
+	\noindent \textbf{\large Lenguaje de marcado}. Es un modo de codificar (redactar) un documento donde, junto con el texto, se incorporan etiquetas (marcas o anotaciones) con información adicional relativa a la estructura del texto o su formato de presentación. Permiten hacer explícita la estructura de un documento, su contenido semántico o cualquier otra información lingüística o extralingüística que se quiera hacer patente [\ref{bib: lenguaje marcado definicion}]. Ejemplos de lenguaje de marcado son HTML o LaTeX, este último usado para la creación del presente documento.
 	
 	\noindent \textbf{\large Framework}. 
 	
@@ -2386,237 +2421,257 @@
 			%10
 			\item 
 			\label{bib: Hackaday battery basics}
-			\href{https://hackaday.com/2014/12/16/battery-basics-choosing-a-battery-for-your-project/}{Hackaday: battery basics. Choosing a battery for your project.}
+			\href{https://hackaday.com/2014/12/16/battery-basics-choosing-a-battery-for-your-project/}{Hackaday: battery basics. Choosing a battery for your project.} Consultado el 16/08/21.
 
 			%11
 			\item 
 			\label{bib: YouTube How to choose  a battery}
-			\href{https://www.youtube.com/watch?v=saxYilLJ7yw}{YouTube: How to choose a battery. A battery chemistry tutorial.}
+			\href{https://www.youtube.com/watch?v=saxYilLJ7yw}{YouTube: How to choose a battery. A battery chemistry tutorial.} Consultado el 16/08/21.
 			
 			%12
 			\item 
 			\label{bib: blog diferencias li-ion y li-po}
-			\href{https://blog.330ohms.com/2020/06/22/que-diferencias-hay-entre-una-li-po-y-una-li-ion/}{Blog: qué diferencias hay entre una Li-ion y una Li-Po}
+			\href{https://blog.330ohms.com/2020/06/22/que-diferencias-hay-entre-una-li-po-y-una-li-ion/}{Blog: qué diferencias hay entre una Li-ion y una Li-Po} Consultado el 16/08/21.
 			
 			%13
 			\item 
 			\label{bib: adafruit pick the right battery}
-			\href{https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project}{Adafruit Learning System: How to pick the right battery for your project}
+			\href{https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project}{Adafruit Learning System: How to pick the right battery for your project} Consultado el 16/08/21.
 			
 			%14
 			\item 
 			\label{bib: prometec baterías para proyectos con arduino}
-			\href{https://www.prometec.net/arduino-baterias/}{Prometec: las baterías}
+			\href{https://www.prometec.net/arduino-baterias/}{Prometec: las baterías} Consultado el 16/08/21.
 			
 			%15
 			\item 
 			\label{bib: prometec consumo Arduino}
-			\href{https://www.prometec.net/consumos-arduino/}{Prometec: cuánto consume Arduino}
+			\href{https://www.prometec.net/consumos-arduino/}{Prometec: cuánto consume Arduino} Consultado el 16/08/21.
 			
 			%16
 			\item 
 			\label{bib: prometec modo sleep arduino}
-			\href{https://www.prometec.net/el-modo-sleep-en-arduino/}{Prometec: Arduino y el modo \textit{sleep}}
+			\href{https://www.prometec.net/el-modo-sleep-en-arduino/}{Prometec: Arduino y el modo \textit{sleep}} Consultado el 16/08/21.
 			
 			%17
 			\item 
 			\label{bib: prometec relés}
-			\href{https://www.prometec.net/reles-s4a/}{Prometec: relés}
+			\href{https://www.prometec.net/reles-s4a/}{Prometec: relés} Consultado el 16/08/21.
 			
 			%18
 			\item 
 			\label{bib: prometec relés (más info)}
-			\href{https://www.prometec.net/mas-sobre-reles/}{Prometec: relés (más info)}
+			\href{https://www.prometec.net/mas-sobre-reles/}{Prometec: relés (más info)} Consultado el 16/08/21.
 			
 			%19
 			\item 
 			\label{bib: prometec relés y arduino}
-			\href{https://www.prometec.net/reles/}{Prometec: arduino y los relés}
+			\href{https://www.prometec.net/reles/}{Prometec: arduino y los relés} Consultado el 16/08/21.
 			
 			%20
 			\item 
 			\label{bib: fly power rechargeable battery param}
-			\href{https://fly-power.com/en/battery-knowledge/item/2-rechargeable-batteries-s-main-parameters}{Fly power: the rechargeable batteries's main parameters}
+			\href{https://fly-power.com/en/battery-knowledge/item/2-rechargeable-batteries-s-main-parameters}{Fly power: the rechargeable batteries's main parameters} Consultado el 16/08/21.
 			
 			%21
 			\item 
 			\label{bib: solar reviews how solar panels work}
-			\href{https://www.solarreviews.com/blog/how-do-solar-panels-work}{Solar Reviews: How do solar panels work?}
+			\href{https://www.solarreviews.com/blog/how-do-solar-panels-work}{Solar Reviews: How do solar panels work?} Consultado el 16/08/21.
 			
 			%22
 			\item 
 			\label{bib: energia solar regulador de carga}
-			\href{https://solar-energia.net/energia-solar-fotovoltaica/elementos/instalaciones-autonomas/reguladores-carga}{Energía solar: regulador de carga}
+			\href{https://solar-energia.net/energia-solar-fotovoltaica/elementos/instalaciones-autonomas/reguladores-carga}{Energía solar: regulador de carga} Consultado el 16/08/21.
 			
 			%23
 			\item 
 			\label{bib: CED greentech how mppt works}
-			\href{https://www.cedgreentech.com/article/how-do-mppt-charge-controllers-work}{CED greentech: how do MPPT charge controllers work?}
+			\href{https://www.cedgreentech.com/article/how-do-mppt-charge-controllers-work}{CED greentech: how do MPPT charge controllers work?} Consultado el 16/08/21.
 			
 			%24
 			\item 
 			\label{bib: TU delft OCW solar cell param}
-			\href{https://ocw.tudelft.nl/wp-content/uploads/solar_energy_section_9_1_9_3.pdf}{TU Delft OCW: solar cell parameters and equivalent circuit}
+			\href{https://ocw.tudelft.nl/wp-content/uploads/solar_energy_section_9_1_9_3.pdf}{TU Delft OCW: solar cell parameters and equivalent circuit} Consultado el 16/08/21.
 			
 			%25
 			\item 
 			\label{bib: alternative energy photovoltaic types}
-			\href{https://www.alternative-energy-tutorials.com/photovoltaics/photovoltaic-types.html}{Alternative Energy Tutorials: photovoltaic types}
+			\href{https://www.alternative-energy-tutorials.com/photovoltaics/photovoltaic-types.html}{Alternative Energy Tutorials: photovoltaic types} Consultado el 16/08/21.
 			
 			%26
 			\item 
 			\label{bib: renewable energy hub main types photo cells}
-			\href{https://www.renewableenergyhub.co.uk/main/solar-panels/types-of-solar-cell/}{Renewable energy hub UK: what Types of Solar Cells Are There}
+			\href{https://www.renewableenergyhub.co.uk/main/solar-panels/types-of-solar-cell/}{Renewable energy hub UK: what Types of Solar Cells Are There} Consultado el 16/08/21.
 			
 			%27
 			\item 
 			\label{bib: SlidePlayer Photovoltaic systems}
-			\href{https://slideplayer.com/slide/9144319/}{SlidePlayer: Photovoltaic systems (Julian Melvyn Chambers)}
+			\href{https://slideplayer.com/slide/9144319/}{SlidePlayer: Photovoltaic systems (Julian Melvyn Chambers)} Consultado el 16/08/21.
 			
 			%28		
 			\item 
 			\label{bib: QVP air temp affect solar panel output}
-			\href{https://www.qpvgroup.org/blog/2019/2/3/how-does-air-temperature-affect-photovoltaic-solar-panel-output}{QVP Research Group: How does air temperature affect photovoltaic solar panel output?}
+			\href{https://www.qpvgroup.org/blog/2019/2/3/how-does-air-temperature-affect-photovoltaic-solar-panel-output}{QVP Research Group: How does air temperature affect photovoltaic solar panel output?} Consultado el 16/08/21.
 			
 			%29
 			\item 
 			\label{bib: arduino alternatives}
-			\href{https://all3dp.com/2/best-arduino-alternatives/}{All3DP: 10 Best Arduino Alternatives}
+			\href{https://all3dp.com/2/best-arduino-alternatives/}{All3DP: 10 Best Arduino Alternatives} Consultado el 16/08/21.
 			
 			%30
 			\item 
 			\label{bib: microcontrollers alternative to arduino}
-			\href{https://www.makeuseof.com/tag/best-arduino-alternative-microcontrollers/}{Make of use: 6 Best Arduino Alternative Microcontrollers}
+			\href{https://www.makeuseof.com/tag/best-arduino-alternative-microcontrollers/}{Make of use: 6 Best Arduino Alternative Microcontrollers} Consultado el 16/08/21.
 			
 			%31
 			\item 
 			\label{bib: alternative to arduino}
-			\href{https://itigic.com/best-alternatives-for-arduino-microcontrollers/}{ITIGIC: The Best Alternatives for Arduino Microcontrollers}
+			\href{https://itigic.com/best-alternatives-for-arduino-microcontrollers/}{ITIGIC: The Best Alternatives for Arduino Microcontrollers} Consultado el 16/08/21.
 			
 			%32
 			\item 
 			\label{bib: raspberry pi pico}
-			\href{https://www.engadget.com/raspberry-pi-pico-microcontroller-154235348.html?guccounter=1}{Engadget: Raspberry Pi Pico is a \$4 Arduino alternative}
+			\href{https://www.engadget.com/raspberry-pi-pico-microcontroller-154235348.html?guccounter=1}{Engadget: Raspberry Pi Pico is a \$4 Arduino alternative} Consultado el 16/08/21.
 			
 						
 			%33
 			\item 
 			\label{bib: raspberry pi pico 2}
-			\href{https://www.raspberrypi.org/blog/raspberry-pi-silicon-pico-now-on-sale/}{Raspberry Pi: Meet Raspberry Silicon: Raspberry Pi Pico now on sale at \$4}
+			\href{https://www.raspberrypi.org/blog/raspberry-pi-silicon-pico-now-on-sale/}{Raspberry Pi: Meet Raspberry Silicon: Raspberry Pi Pico now on sale at \$4} Consultado el 16/08/21.
 			
 						
 			%34
 			\item 
 			\label{bib: thingiverse helices comedero}
-			\href{https://www.thingiverse.com/thing:27854}{Thingiverse: Auger-based Cat Feeder}
+			\href{https://www.thingiverse.com/thing:27854}{Thingiverse: Auger-based Cat Feeder} Consultado el 16/08/21.
 			
 						
 			%35
 			\item 
 			\label{bib: AliExpress cuenco}
-			\href{https://es.aliexpress.com/item/1005001632098703.html?spm=a2g0s.9042311.0.0.274263c05XMd1Y}{AliExpress: cuenco acero inoxidable (bebedero, comedero)}
+			\href{https://es.aliexpress.com/item/1005001632098703.html?spm=a2g0s.9042311.0.0.274263c05XMd1Y}{AliExpress: cuenco acero inoxidable (bebedero, comedero)} Consultado el 16/08/21.
 			
 						
 			%36
 			\item 
 			\label{bib: raspbian}
-			\href{https://www.raspberrypi.org/software/}{Raspberry Pi: software, \textit{Raspberry Pi OS (Raspbian)}}
+			\href{https://www.raspberrypi.org/software/}{Raspberry Pi: software, \textit{Raspberry Pi OS (Raspbian)}} Consultado el 16/08/21.
 			
 						
 			%37
 			\item 
 			\label{bib: flask serial}
-			\href{https://github.com/RedFalsh/flask-serial/blob/master/README.md}{GitHub: flask-serial}
+			\href{https://github.com/RedFalsh/flask-serial/blob/master/README.md}{GitHub: flask-serial} Consultado el 16/08/21.
 		
 						
 			%38
 			\item 
 			\label{bib: flask doc}
-			\href{https://flask.palletsprojects.com/en/2.0.x/}{Flask: documentación}
+			\href{https://flask.palletsprojects.com/en/2.0.x/}{Flask: documentación} Consultado el 16/08/21.
 			
 			
 			%39
 			\item 
 			\label{bib: bootstrap doc}
-			\href{https://getbootstrap.com/docs/5.0/getting-started/introduction/}{Bootstrap: documentación}
+			\href{https://getbootstrap.com/docs/5.0/getting-started/introduction/}{Bootstrap: documentación} Consultado el 16/08/21.
 			
 			
 			%40
 			\item 
 			\label{bib: bootstrap info}
-			\href{https://rockcontent.com/es/blog/bootstrap/}{Bootstrap: información}
+			\href{https://rockcontent.com/es/blog/bootstrap/}{Bootstrap: información} Consultado el 16/08/21.
 			
 			
 			%41
 			\item 
 			\label{bib: ods}
-			\href{https://www.un.org/sustainabledevelopment/es/biodiversity/}{Objetivo 15 de Desarrollo Sostenible (ODS)}
+			\href{https://www.un.org/sustainabledevelopment/es/biodiversity/}{Objetivo 15 de Desarrollo Sostenible (ODS)} Consultado el 16/08/21.
 
 			%42
 			\item 
 			\label{bib: fb patitas}
-			\href{https://www.facebook.com/patitasunidaslosalcazares/}{Facebook: Patitas Unidas Los Alcázares}
+			\href{https://www.facebook.com/patitasunidaslosalcazares/}{Facebook: Patitas Unidas Los Alcázares} Consultado el 16/08/21.
 
 			%43
 			\item 
 			\label{bib: web patitas}
-			\href{https://patitasunidas.org/}{Web de Patitas Unidas Los Alcázares}
+			\href{https://patitasunidas.org/}{Web de Patitas Unidas Los Alcázares} Consultado el 16/08/21.
 
 			%44
 			\item 
 			\label{bib: xreef proyect}
-			\href{https://create.arduino.cc/projecthub/xreef/lora-e32-for-arduino-esp32-or-esp8266-specs-and-base-use-804d25}{Create Arduino: \textit{LoRa E32 for Arduino, ESP32 or ESP8266: Specs and Base Use}}		
+			\href{https://create.arduino.cc/projecthub/xreef/lora-e32-for-arduino-esp32-or-esp8266-specs-and-base-use-804d25}{Create Arduino: \textit{LoRa E32 for Arduino, ESP32 or ESP8266: Specs and Base Use}} Consultado el 16/08/21.	
 
 			%45
 			\item 
 			\label{bib: xreef library}
-			\href{https://github.com/xreef/LoRa_E32_Series_Library}{GitHub: LoRa\_E32\_Series\_Library}	
+			\href{https://github.com/xreef/LoRa_E32_Series_Library}{GitHub: LoRa\_E32\_Series\_Library} Consultado el 16/08/21.
 
 			%46
 			\item 
 			\label{bib: xreef user}
-			\href{https://create.arduino.cc/projecthub/xreef}{Create Arduino: xreef user}	
+			\href{https://create.arduino.cc/projecthub/xreef}{Create Arduino: xreef user} Consultado el 16/08/21.	
 
 			%47
 			\item 
 			\label{bib: hwlibre TP4056}
-			\href{https://www.hwlibre.com/tp4056/}{HWLibre. TP4056: el módulo para cargar baterías}	
+			\href{https://www.hwlibre.com/tp4056/}{HWLibre. TP4056: el módulo para cargar baterías} Consultado el 16/08/21.
 
 			%48
 			\item 
 			\label{bib: iotforall lpwan options}
-			\href{https://www.iotforall.com/lpwan-benefits-vs-iot-connectivity-options}{IoT For All: LPWAN - The Benefits of LPWAN Technology vs. Other IoT Connectivity Options}	
+			\href{https://www.iotforall.com/lpwan-benefits-vs-iot-connectivity-options}{IoT For All: LPWAN - The Benefits of LPWAN Technology vs. Other IoT Connectivity Options} Consultado el 16/08/21.
 
 			%49
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}	
+			\label{bib: github libreria EBYTE}
+			\href{https://github.com/KrisKasprzak/EBYTE}{GitHub: librería EBYTE, de Kris Kasprzak} Consultado el 16/08/21.
 
 			%50
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}	
+			\label{bib: lenguaje marcado definicion}
+			\href{https://www.ticarte.com/contenido/que-son-los-lenguajes-de-marcas}{TicArte: Qué son los lenguajes de marcas}	
 
 			%51
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}	
+			\label{bib: eepower pull up pull down resistors}
+			\href{https://eepower.com/resistor-guide/resistor-applications/pull-up-resistor-pull-down-resistor/#}{EEPower: Pull-up and Pull-down Resistors}	
 
 			%52
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}	
+			\label{bib: circuit globe back emf}
+			\href{https://circuitglobe.com/what-is-back-emf-in-dc-motor.html}{Circuit Globe: Back EMF in DC Motor}	
 
 			%53
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}	
+			\label{bib: wikipedia momento de fuerza}
+			\href{https://es.wikipedia.org/wiki/Momento_de_fuerza}{Wikipedia: Momento de fuerza}	
 
 			%54
 			\item 
-			\label{bib: link12}
-			\href{URL}{text}	
-					
+			\label{bib: arduino memory foundations}
+			\href{https://www.arduino.cc/en/Tutorial/Foundations/Memory}{Arduino: memory foundations}	
+			
+			%55
+			\item 
+			\label{bib: seeedstudio arduino memory}
+			\href{https://www.seeedstudio.com/blog/2021/04/26/managing-arduino-memory-flash-sram-eeprom/}{SeeedStudio: Managing Arduino Memory: Flash, SRAM, EEPROM!}	
+				
+			%56
+			\item 
+			\label{bib: electronicsHub arduino memory}
+			\href{https://www.electronicshub.org/types-of-memory-on-arduino/#Volatile_vs_Non-Volatile}{ElectronicsHub: Different Types of Memory on Arduino $\vert$ SRAM, EEPROM, Flash}
+
+			%57
+			\item 
+			\label{bib: baldEngineer arduino bootloader}
+			\href{https://www.baldengineer.com/arduino-bootloader.html}{BaldEngineer: Arduino Bootloader, What is it?}	
+			
+			%58
+			\item 
+			\label{bib: Arduino cc  bootloader}
+			\href{https://www.arduino.cc/en/hacking/bootloader}{Arduino: Bootloader Development}	
+			
 		\end{enumerate}
 		
 		\subsection*{Imágenes}
@@ -2628,174 +2683,149 @@
 				\label{bib: imagen E32}
 				\href{https://www.ebyte.com/en/product-view-news.aspx?id=189}{EBYTE: E32-868T30D}. Consultado el 15/07/21.
 				
-				%2 bib: imagen E22
+				%2
 				\item 
 				\label{bib: imagen E22}
 				\href{https://www.ebyte.com/en/product-view-news.html?id=1117}{EBYTE: E22-900T22D}. Consultado el 22/07/21.
 				
 				%3
 				\item
-				\label{bib: research gate mppt curve} \href{https://www.researchgate.net/figure/Characteristic-curves-of-MPPT-a-power-voltage-curve-and-b-current-voltage-curve_fig7_278728718}{ResearchGate: Use, Operation and Maintenance of Renewable Energy Systems. Control Methods Applied in Renewable Energy Systems}
+				\label{bib: research gate mppt curve} \href{https://www.researchgate.net/figure/Characteristic-curves-of-MPPT-a-power-voltage-curve-and-b-current-voltage-curve_fig7_278728718}{ResearchGate: Use, Operation and Maintenance of Renewable Energy Systems. Control Methods Applied in Renewable Energy Systems} Consultado el 16/08/21.
 				
 				%3
 				\item 
 				\label{bib: research gate pv power}
-				\href{https://www.researchgate.net/figure/The-I-V-characteristic-curve-of-solar-cells-under-different-temperature_fig1_258388008}{ResearchGate: Two-Stage Fault Diagnosis Method Based on the Extension Theory for PV Power Systems}
+				\href{https://www.researchgate.net/figure/The-I-V-characteristic-curve-of-solar-cells-under-different-temperature_fig1_258388008}{ResearchGate: Two-Stage Fault Diagnosis Method Based on the Extension Theory for PV Power Systems} Consultado el 16/08/21.
 				
 				%4
 				\item 
 				\label{bib: research gate pv cell temp vs others}
-				\href{https://www.researchgate.net/figure/The-PV-module-temperature-and-electrical-power-distribution-together-with-model-inputs_fig1_316548825}{ResearchGate: The PV cell temperature effect on the energy production and module efficiency}
+				\href{https://www.researchgate.net/figure/The-PV-module-temperature-and-electrical-power-distribution-together-with-model-inputs_fig1_316548825}{ResearchGate: The PV cell temperature effect on the energy production and module efficiency} Consultado el 16/08/21.
 				
 				%5
 				\item 
 				\label{bib: research gate pv cell param}
-				\href{https://www.researchgate.net/figure/I-V-characteristics-curve-of-a-PV-cell_fig2_313450163}{ResearchGate: Mathematical modeling of Photovoltaic module and evalute the effect of varoius paramenters on its performance}					
+				\href{https://www.researchgate.net/figure/I-V-characteristics-curve-of-a-PV-cell_fig2_313450163}{ResearchGate: Mathematical modeling of Photovoltaic module and evalute the effect of varoius paramenters on its performance}	Consultado el 16/08/21.				
 			
 				%6
 				\item 
 				\label{bib: research gate JV curve solar panel}
-				\href{https://www.researchgate.net/figure/J-V-characteristic-of-a-typical-solar-cell-in-the-dark-dashed-line-and-under_fig37_283662836}{ResearchGate: Functional graphene: synthesis, characterization and application in optoelectronics}
+				\href{https://www.researchgate.net/figure/J-V-characteristic-of-a-typical-solar-cell-in-the-dark-dashed-line-and-under_fig37_283662836}{ResearchGate: Functional graphene: synthesis, characterization and application in optoelectronics} Consultado el 16/08/21.
 				
 				%7
 				\item 
 				\label{bib: SciELO}
-				\href{https://www.scielo.cl/scielo.php?script=sci_arttext\&pid=S0717-97072008000300001}{SciELO: Organic Photovoltaic Cells: History, principle and techniques}
+				\href{https://www.scielo.cl/scielo.php?script=sci_arttext\&pid=S0717-97072008000300001}{SciELO: Organic Photovoltaic Cells: History, principle and techniques} Consultado el 16/08/21.
 				
 				%8
 				\item 
 				\label{bib: todomicro}
-				\href{https://www.todomicro.com.ar/motores-y-drivers-motores/234-servomotor-mg996r-digital-10kg-torque.html}{TodoMicro: sevomotor MG996R}
+				\href{https://www.todomicro.com.ar/motores-y-drivers-motores/234-servomotor-mg996r-digital-10kg-torque.html}{TodoMicro: sevomotor MG996R} Consultado el 16/08/21.
 				
 				%8
 				\item 
 				\label{bib: forum pycom}
-				\href{https://forum.pycom.io/topic/982/mg996r-pwm-3v3-solved}{Forum Pycom: sevomotor MG996R}
+				\href{https://forum.pycom.io/topic/982/mg996r-pwm-3v3-solved}{Forum Pycom: sevomotor MG996R} Consultado el 16/08/21.
 				
 				%9
 				\item 
 				\label{bib: Nikoi ferreteria}
-				\href{https://www.nikoi.nl/es/pvc-t-stuk-87-125-mm-3-x-mof}{Nikoi: pieza PVC T 87\degree}
+				\href{https://www.nikoi.nl/es/pvc-t-stuk-87-125-mm-3-x-mof}{Nikoi: pieza PVC T 87\degree} Consultado el 16/08/21.
 				
 				%10
 				\item 
 				\label{bib: Poolaria}
-				\href{https://www.poolaria.com/accesorios-de-pvc/317-codo-45-pvc-encolar.html}{Poolaria: pieza PVC codo 45\degree}
-				
-				%https://www.amazon.es/Di%C3%A1metro-%C3%A1ngulo-Rodillera-muffen-Fittings/dp/B017SXJFAM
+				\href{https://www.poolaria.com/accesorios-de-pvc/317-codo-45-pvc-encolar.html}{Poolaria: pieza PVC codo 45\degree} Consultado el 16/08/21.
 				
 				%11
 				\item 
 				\label{bib: Amazon}
-				\href{https://www.amazon.es/Di\%C3\%A1metro-\%C3\%A1ngulo-Rodillera-muffen-Fittings/dp/B017SXJFAM}{Amazon: tubo PVC}
-				
-				%https://www.manomano.es/p/63-mm-21-2-pasamuros-de-pvc-para-tuberias-63-mm-27277644
+				\href{https://www.amazon.es/Di\%C3\%A1metro-\%C3\%A1ngulo-Rodillera-muffen-Fittings/dp/B017SXJFAM}{Amazon: tubo PVC} Consultado el 16/08/21.
 				
 				%12
 				\item 
 				\label{bib: mano a mano}
-				\href{https://www.manomano.es/p/63-mm-21-2-pasamuros-de-pvc-para-tuberias-63-mm-27277644}{Mano a mano: pasamuros de PVC}
-				
-				%https://es.dhgate.com/product/longteng-dc-220v-liquid-water-level-sensor/441493541.html
+				\href{https://www.manomano.es/p/63-mm-21-2-pasamuros-de-pvc-para-tuberias-63-mm-27277644}{Mano a mano: pasamuros de PVC} Consultado el 16/08/21.
 				
 				%13
 				\item 
 				\label{bib: dhgate}
-				\href{https://es.dhgate.com/product/longteng-dc-220v-liquid-water-level-sensor/441493541.html}{DHgate: sensor de nivel de agua}
+				\href{https://es.dhgate.com/product/longteng-dc-220v-liquid-water-level-sensor/441493541.html}{DHgate: sensor de nivel de agua} Consultado el 16/08/21.
 				
 				%14
 				\item 
 				\label{bib: electrostore}
-				\href{https://grupoelectrostore.com/shop/motores/bombas-para-agua/mini-bomba-de-agua-sumergible-5v/}{Electrostore: bomba de agua}
-				
-				%https://www.geekfactory.mx/tienda/componentes-electronicos/relevadores/relevador-5-volts-srd-05vdc-sl-c/
+				\href{https://grupoelectrostore.com/shop/motores/bombas-para-agua/mini-bomba-de-agua-sumergible-5v/}{Electrostore: bomba de agua} Consultado el 16/08/21.
 				
 				%15
 				\item 
 				\label{bib: geek factory}
-				\href{https://www.geekfactory.mx/tienda/componentes-electronicos/relevadores/relevador-5-volts-srd-05vdc-sl-c/}{Geek factory: relé}
+				\href{https://www.geekfactory.mx/tienda/componentes-electronicos/relevadores/relevador-5-volts-srd-05vdc-sl-c/}{Geek factory: relé} Consultado el 16/08/21.
 				
 				%16
 				\item 
 				\label{bib: yellow pimento}
-				\href{https://yellowpimento.com/Para-compresores-de-aire/vdvgx-504009/12mm-OD-ft-m-Tubo-flexible-de-caucho-de-silicona-Tubo-de-manguera-de.htm}{Yellow pimento: tubo de silicona}
-				
-				%https://cablematic.com/es/productos/caja-estanca-de-superficie-rectangular-ip55-200-x-155-x-80-mm-AE006/
+				\href{https://yellowpimento.com/Para-compresores-de-aire/vdvgx-504009/12mm-OD-ft-m-Tubo-flexible-de-caucho-de-silicona-Tubo-de-manguera-de.htm}{Yellow pimento: tubo de silicona} Consultado el 16/08/21.
 				
 				%17
 				\item 
 				\label{bib: cablematic}
-				\href{https://cablematic.com/es/productos/caja-estanca-de-superficie-rectangular-ip55-200-x-155-x-80-mm-AE006/}{Cablematic: caja estanca}
+				\href{https://cablematic.com/es/productos/caja-estanca-de-superficie-rectangular-ip55-200-x-155-x-80-mm-AE006/}{Cablematic: caja estanca} Consultado el 16/08/21.
 				
 				%18
 				\item 
 				\label{bib: AliExpress}
-				\href{https://es.aliexpress.com/item/32972870968.html?spm=a2g0s.9042311.0.0.274263c0xMPROA}{AliExpress: antenas 868MHz 5dBi}				
-				
+				\href{https://es.aliexpress.com/item/32972870968.html?spm=a2g0s.9042311.0.0.274263c0xMPROA}{AliExpress: antenas 868MHz 5dBi}	Consultado el 16/08/21.			
 				
 				%19
 				\item 
 				\label{bib: patitas logo}
-				\href{https://www.facebook.com/patitasunidaslosalcazares/photos/a.1390104817919443/1979671835629402/?type=1\&theater}{Patitas Unidas (Facebook): logo}		
+				\href{https://www.facebook.com/patitasunidaslosalcazares/photos/a.1390104817919443/1979671835629402/?type=1\&theater}{Patitas Unidas (Facebook): logo} Consultado el 16/08/21.
 				
 				%20
 				\item 
 				\label{bib: ods logo}
-				\href{https://www.un.org/sustainabledevelopment/es/}{ONU: logo ODS}
-				
-				%https://www.master-instruments.com.au/news-article/119/Protected%20Lithium%20Ion%20Cells.html
+				\href{https://www.un.org/sustainabledevelopment/es/}{ONU: logo ODS} Consultado el 16/08/21.
 				
 				%21
 				\item 
 				\label{bib: protected li-ion cells}
-				\href{https://www.master-instruments.com.au/news-article/119/Protected\%20Lithium\%20Ion\%20Cells.html}{Master Instruments: protected lithium ion cells}
+				\href{https://www.master-instruments.com.au/news-article/119/Protected\%20Lithium\%20Ion\%20Cells.html}{Master Instruments: protected lithium ion cells} Consultado el 16/08/21.
 				
 				%https://es.aliexpress.com/i/32985307442.html
 				
 				%22
 				\item 
 				\label{bib: aliexpress dual mos}
-				\href{https://es.aliexpress.com/i/32985307442.html}{AliExpress: dual MOS 18650 protection}
-				
-				%https://es.aliexpress.com/item/32752226972.html
+				\href{https://es.aliexpress.com/i/32985307442.html}{AliExpress: dual MOS 18650 protection} Consultado el 16/08/21.
 				
 				%23
 				\item 
 				\label{bib: aliexpress placa exp}
-				\href{https://es.aliexpress.com/item/32752226972.html}{AliExpress: placa experimental 9x15cms}
-				
-				%https://en.aliradar.com/item/4001246163578-lithium-li-ion-18650-3.7v-4.2v-9v-5v-2a-battery-charger-board-adjustable-dc-dc-step-up-boost-module-tp4056
+				\href{https://es.aliexpress.com/item/32752226972.html}{AliExpress: placa experimental 9x15cms} Consultado el 16/08/21.
 				
 				%24
 				\item 
 				\label{bib: aliradar tp4056 con boost}
-				\href{https://en.aliradar.com/item/4001246163578-lithium-li-ion-18650-3.7v-4.2v-9v-5v-2a-battery-charger-board-adjustable-dc-dc-step-up-boost-module-tp4056}{AliRadar: TP4056 con boost}
-				
-				%https://electronilab.co/tienda/modulo-cargador-bateria-de-lipo-1a-micro-usb-5v/
+				\href{https://en.aliradar.com/item/4001246163578-lithium-li-ion-18650-3.7v-4.2v-9v-5v-2a-battery-charger-board-adjustable-dc-dc-step-up-boost-module-tp4056}{AliRadar: TP4056 con boost} Consultado el 16/08/21.
 				
 				%25
-				\item 
-				\label{bib: electronilab tp4056 con proteccion}
-				\href{https://electronilab.co/tienda/modulo-cargador-bateria-de-lipo-1a-micro-usb-5v/}{Electronilab: TP4056 con protección}
 				
-				%https://rarecomponents.com/store/1219
+				%\item 
+				% \label{bib: electronilab tp4056 con proteccion}
+				%	\href{https://electronilab.co/tienda/modulo-cargador-bateria-de-lipo-1a-micro-usb-5v/}{Electronilab: TP4056 con protección}
+				
 				%26
 				\item 
 				\label{bib: rarecomponents screw}
-				\href{https://rarecomponents.com/store/1219}{rareComponents: screw terminals}
+				\href{https://rarecomponents.com/store/1219}{rareComponents: screw terminals} Consultado el 16/08/21.
 				
 				%27
-				%https://solarbotics.com/product/600058/
 				\item 
 				\label{bib: solarbotics holder para 18650}
-				\href{https://solarbotics.com/product/600058/}{Solarbotics: holder para 18650}
-				
-				
-				
-			\end{enumerate}
+				\href{https://solarbotics.com/product/600058/}{Solarbotics: holder para 18650} Consultado el 16/08/21.
 		
-
-			
+			\end{enumerate}
 
 	\pagebreak
 	
