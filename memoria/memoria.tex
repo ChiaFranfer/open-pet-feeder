@@ -912,21 +912,41 @@
 		\end{center}
 	\end{figure}
 
-	\noindent El circuito de la Figura \ref{Rele: teoria}(a) consiste sencillamente en un núcleo de hierro (ferromagnético) y un cable conductor eléctrico, arrollado alrededor del núcleo, que se conecta a una batería de corriente continua. Si cerramos el interruptor, en el hierro se induce un campo  magnético sostenido, siguiendo las reglas de las leyes de Maxwell. Es decir se convierte en un electroimán. Si el núcleo no está sujeto a las espiras devanadas, se desplazará lateralmente, y si está sujeto el conjunto se comporta como un imán que podemos encender y apagar, lo que aprovechamos, para construir los relés.
+	\noindent El circuito de la Figura \ref{Rele: teoria}(a) muestra la base de un relé; consiste sencillamente en un núcleo de hierro (ferromagnético) y un cable conductor eléctrico, arrollado alrededor del núcleo, que se conecta a una batería de corriente continua. Si cerramos el interruptor, en el hierro se induce un campo  magnético sostenido, siguiendo las reglas de las leyes de Maxwell. Es decir se convierte en un electroimán. Si el núcleo no está sujeto a las espiras devanadas, se desplazará lateralmente, y si está sujeto el conjunto se comporta como un imán que podemos encender y apagar, lo que aprovechamos, para construir los relés.
 	
-	\noindent Fijándonos en la Figura \ref{Rele: teoria}(b), podemos observar que, cuando damos tensión a la bobina, el electroimán atrae la armadura haciéndola bascular alrededor del pívot, lo que desplaza el contacto móvil hacia arriba conectando el pin \textit{normalmente abierto} con el \textit{común} cerrando el circuito. A este contacto se le llama normalmente abierto (NA), porque el circuito entre el común y el pin NA, esta normalmente abierto(o sin conexión) hasta que se activa el relé. Por el mismo motivo hablamos del normalmente cerrado (NC), ya que el contacto está cerrado cuando el relé no está excitado. Cuando la bobina pierde la alimentación, el efecto imán desaparece y un resorte devuelve la armadura a la posición de reposo. A este tipo de relé, se le llama de armadura.
+	\noindent Fijándonos en la Figura \ref{Rele: teoria}(b), podemos observar que, cuando damos tensión a la bobina, el electroimán atrae la armadura haciéndola bascular alrededor del pívot, lo que desplaza el contacto móvil hacia arriba conectando el pin \textit{normalmente abierto} con el \textit{común} cerrando el circuito. A este contacto se le llama normalmente abierto (NA), porque el circuito entre el común y el pin NA, esta normalmente abierto (o sin conexión) hasta que se activa el relé. Por el mismo motivo hablamos del normalmente cerrado (NC), ya que el contacto está cerrado cuando el relé no está excitado. Cuando la bobina pierde la alimentación, el efecto imán desaparece y un resorte devuelve la armadura a la posición de reposo. A este tipo de relé, se le llama de armadura.
 	
-	\noindent Seguramente todo esto recuerde un poco a los transistores, pero tienen finalidades diferentes:
+	\noindent Se podría llegar a pensar que los relés deberían tener 4 contactos, dos para la alimentación y dos para cerrar el circuito. Aunque existen, esto tendría el problema de que habría que fabricar un modelo NC y otro NA lo que supone un coste de fabricación mayor. Por eso, la mayor parte de los relés son de 5 pines, 2 se usan para conmutar el relé y los otros tres son el común y los pines NA y NC (al final un relé es un mecanismo, en el que una parte móvil metálica, cierra un contacto o lo abre). \\
+	
+	\noindent Seguramente la funcionalidad de un relé recuerde un poco a los transistores, pero tienen finalidades diferentes:
 	
 	\begin{itemize}
 		\item Hay límites en la corriente que puede aceptar un transistor, sin embargo se pueden diseñar relés para aguantar cualquier carga.
-		\item El relé aísla completamente el circuito de control del de potencia, algo muy importante para tensiones altas.
-		\item Utilizaremos relés cuando tengamos cargas de mucha potencia.
-		\item Utilizaremos un transistor para cargas pequeñas y cuando la velocidad de conmutación sea importante.
-		\item Un transistor conmuta (pasa de corte a saturación o viceversa) millones de veces más rápido que un relé.
+		\item El relé aísla completamente el circuito de control del de potencia, algo muy importante para tensiones altas. Utilizaremos relés cuando tengamos cargas de mucha potencia.
+		\item Un transistor conmuta (pasa de corte a saturación o viceversa) millones de veces más rápido que un relé.  Utilizaremos un transistor para cargas pequeñas y cuando la velocidad de conmutación sea importante.
+		\item Sin embargo, hay que tener en cuenta que el relé cuenta con mayor desgaste, ya que cada vez que conmuta implica el movimiento de partes móviles mecánicas.
 	\end{itemize}
 	
-	\noindent Aunque hay muchos tipos de relés, por regla general nuestro Arduino no tiene potencia suficiente para activar un relé. Utilizaremos un transistor para amplificar la señal de la base y así poder conmutar el relé. 
+	\noindent Tanto los transistores como los relés tiene la ventaja de disponer de un circuito de baja (control), y otra circuito de alta (carga), por lo que se aísla eficazmente el circuito de control, normalmente de baja tensión, como nuestro Arduino, del circuito de carga elevada que puede ser un motor de una cierta potencia, y por consecuente, capaz de inhabilitar nuestros circuitos de control. Por eso, cuando se manejan media y alta tensión en la industria, se suelen usar relés para conseguir aislamiento galvánico, por razones de seguridad, y se exige aislar la tierra del circuito de potencia y el negativo o GND del circuito de control, garantizando así el aislamiento galvánico de los dos circuitos. En el mundo Arduino se suelen usar relés de baja potencia, como mucho tensiones alternas alternas de 220V y máximo 5A para pequeños motores.
+	
+	\noindent Aunque hay muchos tipos de relés, por regla general nuestro Arduino no tiene potencia suficiente para activar un relé. Utilizaremos un transistor para amplificar la señal de la base y así poder conmutar el relé. El ejemplo que veremos a continuación incluye un circuito de transistor/relé completo que nos podrá valer para  cualquier proyecto que lo requiera.
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/rele_transistor.jpg}
+			\caption{Ejemplo de circuito que emplea relé y un transistor entre relé y pin 9 de un arduino [\ref{bib: prometec relés y arduino}]}
+			\label{Ejemplo rele con transistor}
+		\end{center}
+	\end{figure}
+	
+	\begin{itemize}
+		\item Cuando hay un valor HIGH en el pin de control,  el transistor pasa a saturación  y la corriente entre emisor y colector excita la bobina del relé, haciendo que el contacto cambie de posición (y haciendo además un clic muy característico).
+		
+		\item Si hay un valor LOW en el pin de control el transistor entra en corte e impide el flujo de corriente por lo que la bobina cae y el contacto de salida vuelve a su posición de reposo.
+		
+		\item La salida del relé consta de 3 pines y no de dos como se podría esperar.  El motivo es que la conexión entre los pines de salida 2 y 3 es de tipo normalmente abierto (circuito abierto sin excitar) y entre los pines 2 y 4 es normalmente cerrado (circuito cerrado sin excitar la bobina).
+
+	\end{itemize}
 	
 	\pagebreak
 	
@@ -1653,29 +1673,15 @@
 	\subsubsubsection{Bebedero}
 	\label{subsubsubsection: bebedero eleccion}
 		
-	\noindent Elección: sensores de nivel de flotación de agua, relé y bomba. \\
+	\noindent Para cubrir esta funcionalidad, se ha elegido la combinación de opciones formada por sensores de nivel de flotación, relé y bomba. El funcionamiento de esta combinación se resume de la siguiente manera: 
 	
-	\noindent Sensores de nivel de flotación de agua: se comportan como switches, y su respuesta son valores lógicos (0 o 1). \\
-	 
-	 \begin{figure}[h!]
-	 	\begin{center}
-	 		\includegraphics[width=0.3\textwidth]{img/sensor_flotacion.png}
-	 		\caption{Captura de los sensores de flotación escogidos [\ref{bib: dhgate}].}
-	 		\label{Sensor de flotación}
-	 	\end{center}
-	 \end{figure}
- 
-	 \noindent Su funcionamiento es sencillo: si el nivel del agua queda por encima del sensor, el valor lógico asociado que enviará al microcontrolador será de 1. Si por el contrario queda por debajo, mandará un 0. Un sensor de flotación tiene dos cables de alimentación, simétricos (uno para VCC y otro para GND); entre dichos cables y el microcontrolador se requiere de resistencias de 10k en configuración \textit{pull-down} (mirar Figura \ref{Esquema resistencia pull-down}), ya que al tratarse de switches, al conmutar si no existe esa resistencia da un valor lógico o desconocido o falso 1, consecuencia del ruido del pin que se introduce al estar flotante.\\
+	\begin{itemize}
+		\item Se colocarán dos sensores de nivel en posiciones  concretas de la reserva de agua para detectar, conforme se va haciendo uso de la reserva, qué cantidad de agua queda en ella.
+		\item El movimiento del agua desde la reserva al bebedero tendrá lugar gracias a una bomba de agua y un tubo de silicona transparente, por donde circulará el agua propulsada por la bomba.
+		\item Por último, se hará uso de un relé entre arduino y bomba de agua, ya que ésta no tiene una lógica extra que permita su control.
+	\end{itemize}
 	
-	\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.2\textwidth]{img/pull-down-resistor.png}
-			\caption{Esquema de un switch conectado a un microcontrolador con una resistencia \textit{pull-down} [\ref{bib: eepower pull up pull down resistors}].}
-			\label{Esquema resistencia pull-down}
-		\end{center}
-	\end{figure}
-	
-	% bebedero_test_fritzing.jpg
+	\noindent En la Figura \ref{Esquema conexiones bebedero Fritzing} mostramos la configuración en protoboard de todos estos componentes.
 	
 	\pagebreak
 	
@@ -1687,7 +1693,39 @@
 		\end{center}
 	\end{figure}
 
-	\noindent La bomba se comporta como un motor DC, y tiene dos cables únicamente (+5V, GND), por lo que, para poder controlar su funcionamiento, necesitaremos usar un actuador. Elegimos un relé, el cual está conectado al pin D7 del arduino, según podemos ver en la Figura \ref{Esquema conexiones bebedero Fritzing}. Entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$ y un BJT). Se usan debido a que el relé necesita ver a su entrada una corriente superior, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, emite un sonido característico). \\
+	\noindent A continuación, se tratarán los principales componentes de forma individual, recordando su funcionamiento. \\
+	
+	\noindent \textbf{Sensores de nivel}\\
+	
+	\noindent Los sensores de nivel de flotación de agua se comportan como switches, y su respuesta (valor que da como salida) son valores lógicos (0 o 1). Como sensor, se usa como periférico a través del cual se pretende obtener ciertos valores para que el microcontrolador pueda actuar en consecuencia (en base a esos valores).\\
+	 
+	 \begin{figure}[h!]
+	 	\begin{center}
+	 		\includegraphics[width=0.3\textwidth]{img/sensor_flotacion.png}
+	 		\caption{Captura de los sensores de flotación escogidos [\ref{bib: dhgate}].}
+	 		\label{Sensor de flotación}
+	 	\end{center}
+	 \end{figure}
+ 
+ 	\pagebreak
+ 	
+	 \noindent Su funcionamiento es sencillo: si el nivel del agua queda por encima del sensor, el valor lógico asociado que enviará al microcontrolador será de 1. Si por el contrario queda por debajo, mandará un 0. Un sensor de flotación tiene dos cables de alimentación, simétricos, uno para VCC y otro para GND; entre dichos terminales y el microcontrolador se requiere de resistencias de 10k en configuración \textit{pull-down} (mirar Figura \ref{Esquema resistencia pull-down}), ya que al tratarse de switches, al conmutar si no existe esa resistencia da un valor lógico o desconocido o falso 1, consecuencia del ruido del pin que se introduce al estar flotante. El valor de la resistencia \textit{pull-down} dependerá de la situación (leer \hyperref[glosario]{Glosario} para más información).\\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.2\textwidth]{img/pull-down-resistor.png}
+			\caption{Esquema de un switch conectado a un microcontrolador con una resistencia \textit{pull-down} [\ref{bib: eepower pull up pull down resistors}].}
+			\label{Esquema resistencia pull-down}
+		\end{center}
+	\end{figure}
+	
+	
+	
+	\pagebreak
+	
+	\noindent \textbf{Bomba de agua} \\
+	
+	\noindent La bomba se comporta como un motor DC, y tiene dos cables únicamente (+5V, GND), por lo que, para poder controlar su funcionamiento, necesitaremos usar un actuador que haga de intermediario entre el microcontrolador y la bomba. Elegimos un relé, el cual está conectado al pin D7 del arduino, según podemos ver en la Figura \ref{Esquema conexiones bebedero Fritzing} (explicamos el relé más adelante). \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1697,7 +1735,11 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent El relé actúa como un conmutador. [Seguir explicando]. \\
+	\noindent Esta bomba, mientras tenga alimentación, estará propulsando agua, la cual entra, en este caso, por un lateral de la bomba, y sale por el orificio superior (mirar Figura \ref{Captura bomba agua}). A este orificio hay que conectarle un tubo de silicona y guiarlo hasta donde queramos que termine llegando el agua. \\
+	
+	\noindent \textbf{Relé}\\
+	
+	\noindent El relé actúa como un conmutador, que responde a la señal de control de su entrada, actuando en consecuencia según su valor. Al contrario de lo que ocurría en el caso de un sensor, al ser un actuador, la señal de control vendrá del microcontrolador y determinará la actuación del relé. Más adelante veremos cómo, en el apartado \ref{subsubsection: resumen funcionamiento prototipo definitivo}; resumiendo, el microcontrolador le dice al relé, mediante esa señal de control, cuándo cambiar de la posición NA a NC (o NC a NA), para que, así, la corriente fluya o no hacia la bomba y ésta se active, o se desactive. \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1706,6 +1748,15 @@
 			\label{Captura relé}
 		\end{center}
 	\end{figure}
+
+	\noindent Volviendo a la Figura \ref{Esquema conexiones bebedero Fritzing}, entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$ y un BJT). Se usan debido a que el relé necesita ver a su entrada una corriente superior a la que sale del microcontrolador, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, emite un sonido característico). \\
+	
+	\noindent Como anotación, decir que la configuración elegida para el BJT está basada en el circuito que aparece en la Figura \ref{Ejemplo rele con transistor}; se modificó a  un BJT en configuración emisor común  (en la Figura \ref{Ejemplo rele con transistor} se emplea una configuración base común), ya que permite tener una ganancia en corriente (en base común se tiene sólo ganancia en tensión y atenúa la señal a su entrada), lo cual nos interesa; es la configuración más usada para amplificar señales y no sólo eso, sino que es la que produce mayor ganancia de corriente y ganancia en potencia de las tres configuraciones BJT (emisor común, colector común, base común). Hay que tener en cuenta que esta configuración es inversora (desplazamiento de 180\degree) y presenta una ganancia de tensión menor [\ref{electronics tutos bjt}], de cara a usarla para otras funcionalidades.  \\
+	
+	
+
+	
+	\pagebreak
 	
 	\subsubsection{Prototipo exterior}
 	\label{subsubsection: prototipo exterior}
@@ -1900,6 +1951,7 @@
 	\subsection[Prototipo definitivo]{Prototipo definitivo}
 	
 	\subsubsection{Resumen del funcionamiento del prototipo definitivo}
+	\label{subsubsection: resumen funcionamiento prototipo definitivo}
 	
 	\noindent En este punto se mostrará el funcionamiento del prototipo final del sistema de alimentación para animales creado. Se usarán esquemas de elaboración propia, realizados en \textit{draw.io}, con el objetivo de mostrar las conexiones principales entre los bloques fundamentales del sistema creado, de manera sencilla e intuitiva. Se acompañará de una explicación resumen  sobre cómo se ha realizado la automatización y monitorización.
 		
@@ -2325,6 +2377,7 @@
 	\pagebreak
 	
 	\section*{Glosario}
+	\label{glosario}
 	\addcontentsline{toc}{section}{Glosario}
 	
 	%%% MICROCONTROLADOR %%%
@@ -2670,7 +2723,12 @@
 			%58
 			\item 
 			\label{bib: Arduino cc  bootloader}
-			\href{https://www.arduino.cc/en/hacking/bootloader}{Arduino: Bootloader Development}	
+			\href{https://www.arduino.cc/en/hacking/bootloader}{Arduino: Bootloader Development}
+			
+			%59
+			\item
+			\label{electronics tutos bjt}
+			\href{https://www.electronics-tutorials.ws/transistor/tran_1.html}{Electronics tutorials: BJT explanation}	
 			
 		\end{enumerate}
 		
