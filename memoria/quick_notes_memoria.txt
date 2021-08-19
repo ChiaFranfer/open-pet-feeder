@@ -52,6 +52,23 @@ presentan por norma general licencias que, como mínimo, exigen que se mencione 
 	permitan constituir un primer prototipo usable, sin invertir excesivo dinero, que elimine componentes temporales no funcionales para usar 
 	en la ubicación real; es por ello, que se cuenta con la inversión en reservas, conexionado de reserva a comedero/bebedero, diseño de una PCB, etc.
 
+
+	Apartado 4.2.1.2. Bebedero
+	Apartado 4.2.1.1. Comedero
+
+	Explicación de las pruebas de campo
+	Explicación de las pruebas de interior
+
+	Explicación del por qué de elegir los E32 (características técnicas)
+
+	Bloque "Software Arduino"
+
+	Fotos Arduino nano
+
+	Foto conglomerado alimentación soldado
+
+	
+
 ## Bib Arduino memory
 
 bib: arduino memory foundations
@@ -68,3 +85,13 @@ bib: baldEngineer arduino bootloader
 https://www.arduino.cc/en/reference/SPI
 https://www.circuitbasics.com/basics-of-the-spi-communication-protocol
 https://www.circuitbasics.com/basics-uart-communication/
+
+## Insertar una imagen
+
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/LPWAN_comp.png}
+			\caption{Comparativa entre LPWAN, en términos de alcance y ancho de banda, con respecto a otras comunicaciones inalámbricas [\ref{bib: iotforall lpwan options}].}
+			\label{LPWANs vs otros}
+		\end{center}
+	\end{figure}
