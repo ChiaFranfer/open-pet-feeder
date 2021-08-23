@@ -876,14 +876,125 @@
 	
 	\noindent \textit{Servomotor} \\
 	
-	\noindent Un servomotor es... \\
+	\noindent Un servomotor es un motor eléctrico al que se le puede configurar tanto la velocidad, como la posición del eje que gira (también llamada \textit{dirección del eje o giro del rotor}). Gracias a esto, con los servomotores podemos crear toda clase movimientos de una forma controlada, por ejemplo en robótica para el control del movimiento del brazo de un robot o en los sistemas de radio control. \\
 	
-	\noindent Algunos parámetros a tener en cuenta son... \\
-	\noindent Stall current. Máxima corriente que se genera cuando el motor está aplicando su máximo torque. Free current. Corriente que se genera cuando el motor está girando libremente a su máxima velocidad, sin otra carga que la propia fricción y fuerzas contralectromotrices (\textit{back-EMF}). \\
+	\noindent Las características principales de un servomotor son el par y la velocidad:
 	
+	\begin{itemize}
+		\item \textbf{El par}: fuerza que es capaz de hacer en su eje. El par también se puede llamar torque. Se suele expresar en Kg/cm, por ejemplo 3Kg/cm. A mayor par, mayor corriente de consumo del servo, pero no suelen consumir mucho, dependiendo del tipo de servomotor.
+		\item \textbf{Velocidad}: velocidad angular o de rotación.
+	\end{itemize}
+
+	\noindent Cabe anotar que, normalmente, la tensión de alimentación de los servos en c.c. está entre 4 y 8V (voltios).\\ 
+	
+	\noindent \textit{\textbf{Partes de un Servomotor}}\\
+	
+	\noindent Un servomotor es un sistema compuesto por: 
+	
+	\begin{itemize}
+		\item \textbf{Un motor eléctrico}: es el encargado de generar el movimiento, a través de su eje.
+		\item \textbf{Un sistema de regulación}: formado por engranajes, que actúan sobre el motor para regular su velocidad y el par. Mediante estos engranajes, normalmente ruedas dentadas, podemos aumentar la velocidad y el par o disminuirlas.
+		\item \textbf{Un sistema de control o sensor}: circuito electrónico que controla el movimiento del motor mediante el envío de pulsos eléctricos. Propio del servomotor e interno.
+		\item \textbf{Un potenciómetro}: conectado al eje central del motor que nos permite saber en todo momento el ángulo en el que se encuentra el eje del motor. %Recuerda que un potenciómetro es una resistencia eléctrica variable.
+	\end{itemize}
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/servo_parts.png}
+			\caption{Partes principales de las que está conformado un servomotor [\ref{ebotics servo parts}].}
+			\label{servo parts}
+		\end{center}
+	\end{figure}
+
+	\pagebreak
+
+	\noindent Puede venir todo en una caja formando el servo, pero normalmente el servo no trae incluido el sistema de control. Si pone \textit{encoder} incluido, quiere decir que viene el sistema de control incluido en el servo. \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/servo_labels.png}
+			\caption{Partes exteriores de las que está conformado un servomotor, ejemplo del fabricante \textit{Parallax} [\ref{parallex servo}].}
+			\label{parallex labels parts}
+		\end{center}
+	\end{figure}
+
+	\noindent \textbf{Cómo funciona un servomotor}\\
+	
+	\noindent Para posicionar un servomotor tenemos que aplicarle un pulso eléctrico, cuya duración determinará el ángulo de giro del motor. Recibe los pulsos de entrada y ubica al motor en su nueva posición dependiendo de los pulsos recibidos. \\
+	
+	\noindent Un pulso es sencillamente enviar corriente eléctrica al motor durante un tiempo determinado. \\
+	
+	\noindent Puedo enviar un corriente durante 0,5ms (un pulso) o durante 1,5ms (otro pulso diferente). Para el pulso de 0,5ms el eje del motor estará en una posición y para un pulso de 1,5ms el eje del motor estará en otra posición. Veamos un ejemplo: \\
+	
+	\noindent En el caso de la figura, para tiempos de 1ms, el eje del motor estará en la posición izquierda, para pulsos de 1,5ms se colocará en el medio, y para pulsos de 2ms se moverá hasta el extremo derecha, posición final del servomotor. \\
+	
+	\noindent El rango de actuación del servo de la imagen anterior sería entre 1 y 2ms, que son los rangos más habituales de los servomotores. 1,5ms posición intermedia. \\
+	
+	\noindent Como ves la duración del pulso posiciona el eje del motor en una posición u otra.\\
+	
+	\noindent Como ya hemos dicho, normalmente se utiliza un pequeño circuito electrónico para generar estos pulsos de entrada.\\
+	
+	\noindent Como hemos dicho, el control del servo se hace por medio de pulsos eléctricos. \\
+	
+	\noindent Imagina un servo cuyos valores posibles de la señal de entrada (pulsos) están entre 1.5ms y 2.5 ms, que posicionan al motor en ambos extremos de giro (0° y 180°, respectivamente). \\
+	
+	\noindent Fíjate en la imagen. Si mantengo el pulso 1,5ms el motor pasa de la posición inicial a la intermedia (giro de 90º). Si mantengo el pulso 2,5ms el motor gira a la posición final (giro de 180º). Si mantuviera el pulso más tiempo de 2,5ms el motor no giraría más, ya que el potenciómetro del eje detectaría que está en la posición final, y normalmente sonaría un zumbido para indicarnos que está al final del recorrido. \\
+	
+	\noindent El valor 1.5 ms indicaría la posición central o neutra (90º), mientras que otros valores del pulso lo dejan en posiciones intermedias. El cálculo de la posición para pulsos intermedios es muy sencilla, solo hay que aplicar una regla de tres. \\
+	
+	También hay servos que solo tiene dos o tres posiciones. Por ejemplo si mantuviéramos el pulso un tiempo menor de 1,5ms el motor se quedaría en su posición inicial. Para pulsos entre 1,5ms y 2,5ms el motor estaría en la posición intermedia y para pulsos mayores de 2,5 se colocaría en la posición final (solo 3 posiciones). \\
+	
+	\noindent \textbf{Conexión de un Servomotor} \\
+	
+	Un servomotor tiene 3 cables: 
+	
+	\begin{itemize}
+		\item Un cable rojo para alimentación (el positivo). La tensión de alimentación depende del servo.
+		\item Un cable negro para conexión a tierra (el negativo o GND).
+		\item Un cable blanco que es la línea de control por la que se le envía la señal para comunicar el ángulo en el que se debe posicionar según el pulso. Este cable irá al microcontrolador.
+	\end{itemize}
+
+	\noindent No todos los servomotores tienen esos mismos colores de cables (dependerá del fabricante), por lo que se debe ser precavido y buscar en la hoja de especificaciones del fabricante antes de realizar ninguna conexión. Algunas variaciones comunes en los colores de los cables de un servomotor se muestran en la Figura \ref{servo wire color code}. \\
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/servo_wire_color_code.png}
+			\caption{Combinaciones de color posibles para los cables de un servomotor, dependiendo del fabricante [\ref{zaragoza maker arduino y servo curso}].}
+			\label{servo wire color code}
+		\end{center}
+	\end{figure}
+	
+	\noindent \textbf{Tipos de Servomotores}\\
+	
+	\noindent Hay 4 tipos fundamentales de servomotores:
+	
+	\begin{itemize}
+		\item \textbf{Servomotores de corriente continua (cc)}: los más habituales. Funcionan con un pequeño motor de corriente continua. El servomotor se controla por PWM (modulación por ancho de pulso), como ya explicamos.
+		\item \textbf{Servomotores de corriente alterna (ac)}: pueden utilizar corrientes más potentes y por lo tanto se usan para mover fuerzas mucho mayores.
+		\item \textbf{Servomotores de imanes permanentes o \textit{Brushless}}: se llama \textit{brushless} ya que es un motor de corriente alterna sin escobillas (como las que llevan los de cc). Se utilizan para grandes torques o fuerzas y para altas velocidades. Son los más usados en la industria. Están basados en los motores síncronos.
+		\item \textbf{Motor Paso a Paso}: es un motor eléctrico, pero que no gira, sino que avanza un "paso". No giran de manera continua sino por pasos, es decir, giran un número determinado de grados. La característica principal de estos motores es el hecho de poder moverlos un paso a la vez por cada pulso que se le aplique. Su control se basa en polarizar las bobinas que llevan incluidas de manera adecuada para que giren correctamente. Son ideales para la construcción de mecanismos en donde se requieren movimientos muy precisos.
+	\end{itemize}
+	
+	\noindent \textbf{Precauciones a tener en cuenta} \\
+	
+	\noindent Los servomotores son periféricos que demandan más corriente que otros, como pueden ser sensores de temperatura u otros sensores, incluso actuadores (una pequeña bomba de agua o un relé). Es por ello, principalmente, por lo que debemos tener especial precaución a la hora de hacer uso de él. \\
+	
+	\noindent Si la idea que tenemos es usarlo como periférico de un microcontrolador, como Arduino, se recomienda no alimentar el servomotor nunca con el pin 5V del microcontrolador. Por norma general, no es ideal alimentar ningún periférico a través de este pin, pero es especialmente poco recomendable hacerlo con un servomotor, ya que consume bastante corriente y haríamos atravesar desde la fuente de alimentación hasta el pin 5V del arduino una corriente superior a la que es aceptable por el arduino (esa corriente atraviesa los circuitos del arduino y los daña). \\
+	
+	\noindent Otra precaución a tener en cuenta es cuando se produce la subida del programa desde el ordenador al microcontrolador, subida que se puede realizar mediante la conexión USB entre ambos. En el momento en el que subamos el programa, se empezará a ejecutar y si tenemos conectado el servo en ese momento, dañará el serial del arduino, imposibilitando que lo podamos volver a usar y corremos el riesgo de dañar y dejar inservible también el puerto USB del ordenador al que esté conectado. Esto ocurre porque, como ya hemos mencionado, el servo consume más del amperio que suministra el USB (dependerá del servo, pero es recomendable comprobarlo y tener precaución adicional), y exigirá más corriente de la que admite el serial, por lo que se dañará. Para evitar esto, se recomienda subir el programa en el microcontrolador sin tener ningún periférico conectado, y posterior, alimentar de manera externa a dichos periféricos (sólo conectar al microcontrolador las líneas necesarias para el control o sensorización). \\
+		
+		%Si bien es cierto que este pin es de salida y no de entrada, si se es consciente del uso que se le va a dar y se alimenta con una fuente 5V estable, se puede usar como 
+	\noindent Existen precauciones adicionales, como no alimentar al servo fuera de sus márgenes recomendables, o tener cuidado con lo que se conoce como \textit{stall current} y \textit{free current}. No se entrará mucho en detalle, pero se dará una idea de lo que significan para dejar claro que los servomotores son periféricos más complejos que otros y que hay que ser consciente a la hora de usarlo.
+
+	\begin{itemize}
+		\item \textit{Stall current}. Máxima corriente que se genera cuando el motor está aplicando su máximo torque.
+		\item \textit{Free current}. Corriente que se genera cuando el motor está girando libremente a su máxima velocidad, sin otra carga que la propia fricción y fuerzas contralectromotrices (\textit{back-EMF}). 
+	\end{itemize}
+
 	\pagebreak
 	
 	\subsubsubsection{Bebedero}
+	\label{subsubsubsection: bebedero busqueda soluciones}
 	
 	\noindent De manera análoga a \ref{subsubsubsection: comedero busqueda}, para cubrir esta funcionalidad necesitaremos conseguir la manera de mover agua desde la reserva hasta el bebedero. Para ello, de igual manera, hay que tener en cuenta: 
 	
@@ -921,13 +1032,20 @@
 	
 	\pagebreak
 	
-	\noindent Sufuncionamiento se basa en el envío de un pulso de alta frecuencia. Este pulso rebota en los objetos cercanos y es reflejado hacia elsensor, que dispone de un receptor adecuado para esa frecuencia. El sonido se propaga a una velocidad constante en el aire, con lo cual si calculamos el tiempo que demora en emitirse el pulso y la recepción del mismo, causada por el rebote sobre un objeto, podremos calcular la distancia. Dado que la velocidad del sonido es 343 m/s en condiciones de temperatura 20 ºC, 50\% de humedad y presión atmosférica medida a nivel del mar, se tiene que:
+	\noindent Su
+funcionamiento se basa en el envío de un pulso de alta frecuencia. Este pulso rebota en los objetos cercanos y es reflejado hacia el
+sensor, que dispone de un receptor adecuado para esa frecuencia. El sonido se propaga a una velocidad constante en el aire, con lo cual si calculamos el tiempo que demora en emitirse el pulso y la recepción del mismo, causada por el rebote sobre un objeto, podremos calcular la distancia. Dado que la velocidad del sonido es 343 m/s en condiciones de temperatura 20 ºC, 50\% de humedad y presión atmosférica medida a nivel del mar, se tiene que:
 	
 	\begin{equation} \label{Cálculo multiplicador HC-SR04}
 		343 \frac{m}{s} \cdot 100 \frac{cm}{m} \cdot \frac{1}{1000000} \cdot \frac{s}{\mu s} = \frac{1}{29.2} \frac{cm}{\mu s}
 	\end{equation}
 	
-	\noindent Por tanto, se puede conocer la distancia a un objeto simplemente teniendo en cuentael valor anterior, de forma que la distancia viene dada por la mitad del tiempo que hatardado la señal en regresar al sensor. Es decir, si se ha medido 292 microsegundos,entonces la distancia es 5 cm. Para mejor comprensión se muestra esquema en laFigura \ref{esquema funcionamiento hc-sr04}. Si las condiciones de presión temperatura y humedad ambiental sondiferentes las medidas no son tan exactas, aunque el error puede despreciarse. \\
+	\noindent Por tanto, se puede conocer la distancia a un objeto simplemente teniendo en cuenta
+el valor anterior, de forma que la distancia viene dada por la mitad del tiempo que ha
+tardado la señal en regresar al sensor. Es decir, si se ha medido 292 microsegundos,
+entonces la distancia es 5 cm. Para mejor comprensión se muestra esquema en la
+Figura \ref{esquema funcionamiento hc-sr04}. Si las condiciones de presión temperatura y humedad ambiental son
+diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \\
 	
 	%esquema_funcionamiento_hcsr04.png
 	%\ref{TFM LoRa}
@@ -1789,7 +1907,9 @@
 	
 	\noindent \textbf{Sensores de nivel}\\
 	
-	\noindent Ya explicados. [Poner algo más].
+	\noindent Ya explicados con más detalle en el apartado \ref{subsubsubsection: bebedero busqueda soluciones}. Se situarán en uno de los laterales de la reserva de agua, separados entre sí una distancia suficiente como para monitorizar de manera correcta los diferentes estados en los que puede encontrarse la reserva. Irán conectados al microcontrolador a través de los pines digitales D8 y D10, tal como aparece en la Figura \ref{Esquema conexiones bebedero Fritzing}. Como se comentó en el apartado \ref{subsubsubsection: bebedero busqueda soluciones}, necesitaremos hacer uso de una resistencia \textit{pull-down} para evitar estados lógicos no deseados a la entrada de los pines D8 y D10; en este caso, las resistencias empleadas tienen un valor de 10k, y realizarán un puente entre alimentación y el cable del sensor de nivel que vaya al pin digital del arduino.
+	
+	\noindent En tanto a apariencia, se usará el sensor de nivel que ya se mostró en la Figura \ref{Sensor de flotación}, dentro del apartado \ref{subsubsubsection: bebedero busqueda soluciones}.
 
 	\pagebreak
 	
@@ -1821,7 +1941,7 @@
 
 	\noindent Volviendo a la Figura \ref{Esquema conexiones bebedero Fritzing}, entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$ y un BJT). Se usan debido a que el relé necesita ver a su entrada una corriente superior a la que sale del microcontrolador, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, emite un sonido característico). \\
 	
-	\noindent Como anotación, decir que la configuración elegida para el BJT está basada en el circuito que aparece en la Figura \ref{Ejemplo rele con transistor}; se modificó a  un BJT en configuración emisor común  (en la Figura \ref{Ejemplo rele con transistor} se emplea una configuración base común), ya que permite tener una ganancia en corriente (en base común se tiene sólo ganancia en tensión y atenúa la señal a su entrada), lo cual nos interesa; es la configuración más usada para amplificar señales y no sólo eso, sino que es la que produce mayor ganancia de corriente y ganancia en potencia de las tres configuraciones BJT (emisor común, colector común, base común). Hay que tener en cuenta que esta configuración es inversora (desplazamiento de 180\degree) y presenta una ganancia de tensión menor [\ref{electronics tutos bjt}], de cara a usarla para otras funcionalidades.  \\
+	\noindent Como anotación, decir que la configuración elegida para el BJT está basada en el circuito que aparece en la Figura \ref{Ejemplo rele con transistor}; se modificó a  un BJT en configuración emisor común  (en la Figura \ref{Ejemplo rele con transistor} se emplea una configuración emisor común, pero situando el relé en la patilla emisor y no colector, y allí no se produce una amplificación), ya que permite tener una ganancia en corriente, lo cual nos interesa; es la configuración más usada para amplificar señales y no sólo eso, sino que es la que produce mayor ganancia de corriente y ganancia en potencia de las tres configuraciones BJT (emisor común, colector común, base común). Hay que tener en cuenta que esta configuración es inversora (desplazamiento de 180\degree) y presenta una ganancia de tensión menor [\ref{electronics tutos bjt}], de cara a usarla para otras funcionalidades.  \\
 	
 	
 
@@ -2016,6 +2136,9 @@
 		\end{center}
 	\end{figure}
 
+	\noindent Como podemos observar, tanto en la Figura \ref{fig: sistema bebedero refugio.} como en la Figura \ref{fig: sistema comedero refugio.}, el proceso de abrevar y alimentar a los animales requiere de la presencia física de voluntarios en el refugio para que se lleve a cabo. Para rellenar los bebederos, se emplea una reserva común, desde la que se coge agua en cubos y desde esos cubos se rellenan los bebederos de piedra (Figura \ref{fig: sistema bebedero refugio.}(a)), situados dentro de las jaulas (se puede ver en la Figura \ref{Foto jaulas refugio detalle exterior}). En tanto al proceso de rellenar el comedero, se muestra en la Figura \ref{fig: sistema comedero refugio.}(b) 
+	la medida que se usa para rellenarlo, en concreto, se suele usar dos medidas de este bote, que supondría un total aproximado de 150g de pienso. El pienso se almacena también en una reserva común dentro de un almacén, y se recarga el comedero a mano con las medidas recién expuestas.
+		
 	\pagebreak
 	
 	\subsection[Prototipo definitivo]{Prototipo definitivo}
@@ -2035,10 +2158,23 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el \hyperref[anexo I: ficha tecnica]{Anexo I} se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.\\ 
+	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  \\
 	
-	\noindent Ajustar el tiempo de un ciclo de rellenado para desactivar el movimiento del servomotor y que se rellene el comedero la cantidad deseada. \\
+	\noindent A modo resumen, se emitirán unos comentarios previos a la presentación del prototipo, acerca del hardware y software empleados para el comedero. Se hará lo mismo para el bebedero. Así pues:
 	
+	\begin{itemize}
+		\item \textbf{Comentarios sobre el hardware}.
+		\item \textbf{Comentarios sobre el software}.
+		\begin{outline}
+			\1 Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el \hyperref[anexo I: ficha tecnica]{Anexo I} se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero.
+			
+			\1 Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el \hyperref[anexo I: ficha tecnica]{Anexo I} se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.
+			
+			\1 Ajustar el tiempo de un ciclo de rellenado para desactivar el movimiento del servomotor y que se rellene el comedero la cantidad deseada. \\
+		\end{outline}
+	
+	\end{itemize}
+
 	\pagebreak
 	
 	\subsubsubsection{Bebedero}
@@ -2808,7 +2944,10 @@
 			%61
 			\item 
 			\label{TFM LoRa}
-			\href{http://openaccess.uoc.edu/webapps/o2/bitstream/10609/97127/8/radriandTFM0619memoria.pdf}{Diseño de un sistema demonitorización remota de undepósito de agua medianteLoRa (TFM). Rubén Adrián de la Cámara}. Consultado el 19/08/21.
+			\href{http://openaccess.uoc.edu/webapps/o2/bitstream/10609/97127/8/radriandTFM0619memoria.pdf}{Diseño de un sistema de
+monitorización remota de un
+depósito de agua mediante
+LoRa (TFM). Rubén Adrián de la Cámara}. Consultado el 19/08/21.
 			
 		\end{enumerate}
 		
@@ -2962,6 +3101,21 @@
 				\item 
 				\label{bib: solarbotics holder para 18650}
 				\href{https://solarbotics.com/product/600058/}{Solarbotics: holder para 18650} Consultado el 16/08/21.
+				
+				%28
+				\item
+				\label{zaragoza maker arduino y servo curso}
+				\href{https://zaragozamakerspace.com/index.php/lessons/curso-arduino-y-robotica-servomotores/}{Zaragoza Maker Space: Curso Arduino y robótica: Servomotores – Control en bucle}
+			
+				%26
+				\item
+				\label{ebotics servo parts}
+				\href{https://ebotics.com/activity/project-no-3-control-the-servomotor/}{Ebotics: PROJECT Nº 3: Control the servomotor}
+				
+				%27
+				\item
+				\label{parallex servo}
+				\href{https://learn.parallax.com/tutorials/robot/shield-bot/robotics-board-education-shield-arduino/chapter-2-shield-lights-servo-10}{Parallax: Connect Servo Motors and Batteries}
 		
 			\end{enumerate}
 
