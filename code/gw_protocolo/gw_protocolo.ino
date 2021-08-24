@@ -45,7 +45,7 @@ void setup() {
   Transceiver.SetAddressL(0);
   
   Transceiver.SetChannel(LORA_CHANNEL);
-  Transceiver.SetTransmitPower(OPT_TP21); //21dBm
+  Transceiver.SetTransmitPower(OPT_TP21); //change transceiver tx-rx power
   Transceiver.SetPullupMode(0);
   Transceiver.SetFECMode(1);
   
