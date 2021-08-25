@@ -1208,6 +1208,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\noindent El elemento \textit{PCB} de la Figura \ref{Alimentación: esquema general (tp con boost)} será explicado más adelante, en la Sección \ref{Section: prototipo y pruebas}. A continuación, se muestran los pasos seguidos para montar el sistema de alimentación autónoma para nuestro dispositivo de alimentación para animales. \\
 	
 	\subsubsubsection{Preparación de la alimentación autónoma del dispositivo}
+	\label{Preparación de la alimentación autónoma del dispositivo}
 	
 	\noindent Lo primero fue dejar asegurada la pila. Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame. Es por ello que se hizo uso de un kit para protección de baterías 18650, como el que se muestra en la Figura \ref{Proteccion kit Li-Ion}.\\
 	
@@ -1262,7 +1263,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\pagebreak
 	
-	\noindent Como se indicó en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}, dentro de \textit{opciones para baterías recargables}, se necesita de un circuito que ayude a la pila, hecha de Li-ion, a una correcta carga y descarga, precisamente porque conlleva las mismas consecuencias de una mala manipulación, expuestas anteriormente. \\
+	\noindent Como se indicó en el apartado \ref{subseccion 3.2.1: búsqueda soluciones alimentación}, dentro de \textit{opciones para baterías recargables}, se necesita de un circuito que ayude a la pila, de tipo Li-ion, a una correcta carga y descarga, precisamente porque conlleva las mismas consecuencias de una mala manipulación, expuestas anteriormente. \\
 		
 	\noindent \textbf{TP4056} \\
 
@@ -1281,13 +1282,13 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\noindent Del esquema anterior del módulo TP4056, podemos destacar: 
 	
 	\begin{itemize}
-		\item \textbf{Puerto mini-USB}: para alimentar la batería a través de este tipo de cables. Lo usaremos si deseamos cargar la batería de manera externa al proyecto.
-		\item \textbf{Bornas IN-, IN+}: están a los lados del puerto. Sirven también para alimentar la batería. A estas bornas podemos conectar una placa solar, u otra fuente que se necesite. En nuestro caso, será el panel solar de 6V.
+		\item \textbf{Puerto mini-USB}: para alimentar tanto la batería como el TP4056 a través de este tipo de cables. Lo usaremos si deseamos cargar la batería de manera externa al proyecto.
+		\item \textbf{Bornas IN-, IN+}: están a los lados del puerto. Sirven también para alimentar la batería (y el TP4056). A estas bornas podemos conectar una placa solar, u otra fuente que se necesite. En nuestro caso, será el panel solar de 6V.
 		\item \textbf{LEDs de carga y completado}: avisarán cuando la batería esté cargándose o cuando haya terminado dicho proceso.
 		\item \textbf{BAT+ y BAT-}: son bornas de salida que irán conectados a la batería que se necesita cargar.
 	\end{itemize}
 
-	\noindent Sin embargo, se requieren más elementos para alimentar al dispositivo, como por ejemplo un conversor de tensión tras la batería (entre batería y dispositivo). En nuestro caso, lo requerimos, ya que la batería usada otorga 3.7V nominales (no existen baterías de 5V) y nosotros necesitamos 5V para alimentar el sistema de alimentación. Necesitamos un elemento que nos aumente la tensión a su salida, para alimentar de manera correcta el sistema creado; usaremos, por tanto, un \textit{boost converter}. Es un dispositivo que puede encontrarse aislado, aunque también podemos encontrarlo en una misma PCB con el TP4056, y será esta última opción la que usemos. \\
+	\noindent Sin embargo, se requieren más elementos para alimentar al dispositivo, como por ejemplo un conversor de tensión tras la batería (entre batería y dispositivo). En nuestro caso, lo requerimos, ya que la batería usada otorga 3.7V nominales (no existen baterías de 5V) y nosotros necesitamos 5V para alimentar el sistema de alimentación. Necesitamos un elemento que nos aumente la tensión a su salida, para alimentar de manera correcta el sistema creado; usaremos, por tanto, un \textit{boost converter}. Es un dispositivo que puede encontrarse aislado, aunque también podemos encontrarlo en una misma PCB con el TP4056, y será esta última opción la que usemos (Figura \ref{TP4056 con boost}). Una opción diferente que podríamos haber escogido hubiera sido la de emplear varias baterías 18650 en serie, ya que suman sus tensiones, además del uso de un BMS (como se ha mencionado ya anteriormente en este documento, un \textit{Battery Management System}, que permita a las baterías cargarse y descargarse de manera balanceada), y un \textit{buck converter} en este caso, ya que tendríamos más de 5V (por lo que, con el buck, bajaríamos la tensión de salida). Esta opción se descartó por la simple razón de que el dispositivo no estará funcionando todo el día ni se estima elevado consumo; finalmente, se optó por la opción más sencilla de una única batería, la cual si se observa que es insuficiente, se debería estudiar la opción alternativa (inclusive baterías en paralelo también). Por último, anotar que, si usáramos otras baterías de menor tensión nominal, no necesitaríamos un buck (si la suma de sus tensiones fuera exactamente de 5V), pero estas baterías suelen ser no recargables, y no conseguiríamos el objetivo de autonomía en la alimentación del dispositivo. \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1297,8 +1298,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 		\end{center}
 	\end{figure}
 	
-	\noindent Vemos que cuenta con los elementos principales anteriormente mencionados (bornas IN+ e IN-, bornas VOUT + y VOUT-, bornas BAT- y BAT
-	+, micro USB y LEDs). Cuenta con 2 IC's principalmente: el TC4056A y el B6289A. El primer IC viene a ser uno con funcionamiento similar al TP4056, y el segundo es el encargado de la función de boost. Cabe señalar que contamos con un potenciómetro con el que podemos variar la corriente con la que se cargará la batería (página 6 del datasheet del TC4056). 
+	\noindent Vemos en la Figura \ref{TP4056 con boost} que esta PCB cuenta con los elementos principales anteriormente mencionados sobre la Figura \ref{TP4056 sin boost} (bornas IN+ e IN-, bornas VOUT + y VOUT-, bornas BAT- y BAT+, micro USB y LEDs). Cuenta con 2 IC's principalmente: el TC4056A y el B6289A. El primer IC viene a ser uno con funcionamiento similar al TP4056, y el segundo es el encargado de la función de boost. Cabe señalar que contamos con un potenciómetro con el que podemos variar la corriente con la que se cargará la batería (página 6 del datasheet del TC4056). 
 	
 	%Problema: no tiene protección contra sobredescargas. \\
 
@@ -1322,7 +1322,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 		\end{center}
 	\end{figure}
 
-	\noindent A continuación, en la Figura \ref{conglomerado alimentacion}, se muestra el conglomerado final de los elementos presentados en la Figura \ref{Componentes conglomerado}. \\
+	\noindent A continuación, en la Figura \ref{conglomerado alimentacion}, se muestra el conglomerado final de los elementos presentados en la Figura \ref{Componentes conglomerado}. Gracias a la presencia de los \textit{screw terminals} podemos conectar y desconectar el conglomerado fácilmente de la fuente de energía de entrada y del dispositivo al que alimentemos, dejándolo de nuevo aislado (tal como aparece en la Figura \ref{conglomerado alimentacion}) para probarlo o simplemente moverlo (podemos desconectar la entrada de energía, la cual entra por las bornas IN en este caso, y la salida de energía, la cual sale por las bornas VOUT). \\
 	
 	%conglomerado_alimentacion_zoom_1.jpg
 	%conglomerado_caraA_zoom.jpg
@@ -1335,37 +1335,41 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 		\begin{center}
 			\begin{tabular}{cc}
 				\includegraphics[width=60mm]{img/conglomerado_caraB_zoom.jpg} &   \includegraphics[width=60mm]{img/conglomerado_caraA_zoom.jpg} \\
-				(a)  & (b)  \\[6pt]
+				(a) Cara con TP4056 y boost & (b) Cara con holder y 18650  \\[6pt]
 				%\includegraphics[width=50mm]{img/} &   \includegraphics[width=50mm]{img/} \\
 				%(c)  & (d)  \\[6pt]
 				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/conglomerado_lateral_zoom.jpg} }\\
-				\multicolumn{2}{c}{(c) }
+				\multicolumn{2}{c}{(c) Lateral}
 			\end{tabular}
-			\caption{}
+			\caption{Vistas del conglomerado de alimentación ya terminado.}
 			\label{conglomerado alimentacion}
 		\end{center}
 	\end{figure}
 
 	\pagebreak
 	
+	\noindent En la Figura \ref{panel solar} se muestra la pieza impresa en 3D, que actuará como sujeción para el panel solar, adherida mediante silicona al propio panel; además, se han soldado los cables necesarios para conectar el panel solar con el TP4056. \\
+	
 	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
 				\includegraphics[width=50mm]{img/panel_solar_frontal.jpg} &   \includegraphics[width=50mm]{img/panel_solar_trasero.jpg} \\
-				(a)  & (b)  \\[6pt]
+				(a) Frontal & (b) Trasero  \\[6pt]
 			\end{tabular}
-			\caption{}
+			\caption{Vistas del panel solar usado.}
 			\label{panel solar}
 		\end{center}
 	\end{figure}
 	
 	\pagebreak
 	
+	\noindent Por último, en la Figura \ref{conglomerado alimentacion completo} se muestra el conjunto del sistema de alimentación mediante el cual se alimentará el dispositivo. \\
+	
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/conglomerado_alimentacion_zoom_1.jpg}
-			\caption{}
-			\label{}
+			\caption{Conjunto global del sistema de alimentación autónoma creado}
+			\label{conglomerado alimentacion completo}
 		\end{center}
 	\end{figure}
 
@@ -1377,16 +1381,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\subsubsubsection{Entorno Arduino}
 	
 	% Intro: qué es Arduino
-	
-	\noindent [Anotaciones: usamos una versión diferente a la de Arduino nano vendida por la organización Arduino. Seguramente lo mueva de aquí.] \\
-	
-	\noindent Usaremos un arduino nano que usa un ATmega328P y un chip CH340. En la sección X se han explicado las especificaciones técnicas, pinout y componentes que forman parte del arduino nano fabricado por la organización Arduino, pero el que va a ser usado lo está por otro fabricante. A efectos prácticos, las diferencias son pocas, pero hay que considerarlas de igual manera:
-	
-	\begin{itemize}
-		\item El microcontrolador no es ATmega328 (usado en el nano de la organización Arduino), sino que es ATmega328P. La diferencia reside en que es una versión posterior diseñada para consumir menos potencia que el 328, esencialmente tienen la misma arquitectura y características en tanto a memoria flash, EEPROM y SRAM (la P viene de \textit{picoPower}).
-		\item Este arduino usa un regulador diferente, el CH340G, frente al FT232 que usa el arduino original. Además, el fusible/diodo Schottky que usan para proteger la comunicación serial frente a sobrecorrientes es diferente, siendo el MBR0520 para el caso de los arduinos originales, frente al B5819W que usa el arduino que vamos a usar.
-	\end{itemize}
-	
+
 	\noindent Arduino es una plataforma de electrónica \textit{open-source} basada en hardware y software fáciles de usar. Nació en el \textit{Ivrea Interaction Design Institute} (Italia) como una herramienta fácil para la creación rápida de prototipos, dirigida a estudiantes sin experiencia en electrónica y programación. Tan pronto como llegó a una comunidad más amplia, la placa Arduino comenzó a cambiar para adaptarse a las nuevas necesidades y desafíos, tanto de usuarios principiantes como expertos. \\
 	
 	\noindent Las placas Arduino son capaces, por una parte, de ejecutar una serie de instrucciones (determinadas por el usuario) a través de su microcontrolador, de manera que a partir de la lectura de sus entradas analógicas/digitales se puedan generar salidas (analógicas/digitales); por otra parte, son programables a través del software Arduino, lo que se conoce como Arduino IDE. \\
@@ -1429,6 +1424,13 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 		\item Peso: 7g
 	\end{itemize}
 	
+	\noindent \textit{Anotaciones}: usamos una versión diferente a la de Arduino nano vendida por la organización Arduino. Las diferencias en hardware son ínfimas, y en software (en el Arduino IDE) simplemente debemos indicarlo en \textit{Tools $>$ Processor}. Dichas diferencias son el procesador, que es un ATmega328P y el regulador, el cual es CH340.\\
+	
+	\begin{itemize}
+		\item El microcontrolador no es ATmega328 (usado en el nano de la organización Arduino), sino que es ATmega328P. La diferencia reside en que es una versión posterior diseñada para consumir menos potencia que el 328, esencialmente tienen la misma arquitectura y características en tanto a memoria flash, EEPROM y SRAM (la P viene de \textit{picoPower}).
+		\item Este arduino usa un regulador diferente, el CH340G, frente al FT232 que usa el arduino original. Además, el fusible/diodo Schottky que usan para proteger la comunicación serial frente a sobrecorrientes es diferente, siendo el MBR0520 para el caso de los arduinos originales, frente al B5819W que usa el arduino que vamos a usar.
+	\end{itemize}
+
 	\noindent \textit{Pinout del Arduino nano} \\
 	
 	\noindent La funcionalidad de cada uno de los pines analógicos y digitales se pueden ver en la Figura \ref{Pinout Arduino nano}. \\
@@ -1447,15 +1449,17 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\noindent [Foto pines digitales y analógicos, señalando los que son PWM.] \\
 	
-	\noindent Los dos primeros pines de la esquina inferior derecha corresponden a D1 para TX y D0 para RX de la comunicación serie por UART(\textit{Universal Asynchronous Receiver-Transmitter}); en Arduino uno estos mismos pines también aparecían pero en orden invertido. Son un reflejo de las líneas de comunicación provistas por el conversor USB-TTL, aunque por lo general usamos la librería Software serial para definir otros dos pines cualquiera para dicha función. Ya que estamos hablando de comunicación serie, tenemos los pines asociados a la interfaz SPI (\textit{Serial Peripheral Interface}), iguales que en el modelo uno; el pin digital 10 ejecutando la función de slave select, el 11 como MOSI (\textit{Master Output Slave Input}), el 12 como MISO (\textit{Master Input Slave Output}) y el 13 como serial clock. Al igual que en el modelo uno, la interfaz de dos cables, I2C (\textit{Inter-Integrated Circuit}), estará presente en A4 para SDA (\textit{System Data}) y en A5 para SCL (\textit{System Clock}). \\
+	\noindent Los dos primeros pines de la esquina inferior derecha corresponden a D1 para TX y D0 para RX de la comunicación serie por UART(\textit{Universal Asynchronous Receiver-Transmitter}); en Arduino uno estos mismos pines también aparecían pero en orden invertido. Son un reflejo de las líneas de comunicación provistas por el conversor USB-TTL, aunque por lo general usamos la librería \textit{Software serial} para definir otros dos pines cualquiera para dicha función. Ya que estamos hablando de comunicación serie, tenemos los pines asociados a la interfaz SPI (\textit{Serial Peripheral Interface}), iguales que en el modelo uno; el pin digital 10 ejecutando la función de \textit{slave select}, el 11 como MOSI (\textit{Master Output Slave Input}), el 12 como MISO (\textit{Master Input Slave Output}) y el 13 como \textit{serial clock}. Al igual que en el modelo uno, la interfaz de dos cables, I2C (\textit{Inter-Integrated Circuit}), estará presente en A4 para SDA (\textit{System Data}) y en A5 para SCL (\textit{System Clock}). \\
 	
 	\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART.] \\
 		
-	\noindent El resto de pines: Salida de 3,3V. Referencia de las entradas analógicas AREF. Salida regulada de 5V, usada normalmente para alimentar sensores y dispositivos, y dos pines de GND o masa en ambos lados de la placa. Un pin de RESET para realizar dicha función de forma remota si no tenemos acceso al pulsador físico de la placa. Finalmente, Vin se usará para alimentar la placa con una fuente no regulada de entre 7 y 12V; en arduino uno teníamos un conector para alimentación externa de tipo Jack, en arduino uno, como la placa tiene un tamaño reducido, no resultaría práctico colocar un conector tan voluminoso, por eso tenemos un pin destinado para alimentación externa. \\
+	\noindent El resto de pines son: salida de 3.3V, referencia de las entradas analógicas AREF, salida regulada de 5V (usada normalmente para alimentar sensores y dispositivos), y dos pines de GND en ambos lados de la placa; un pin de RESET para realizar dicha función de forma remota si no tenemos acceso al pulsador físico de la placa. Finalmente, Vin se usará para alimentar la placa con una fuente no regulada de entre 7 y 12V (en arduino uno teníamos un conector para alimentación externa de tipo Jack, en arduino nano, como la placa tiene un tamaño reducido, no resultaría práctico colocar un conector tan voluminoso, por eso tenemos un pin destinado para alimentación externa). \\
 	
 	\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART, y pines de alimentación.] \\
 	
-	\noindent Pin de salida de 5V refleja los mismos 5V del puerto  del ordenador; si ahora deseamos trabajar de manera autónoma, sin conexión al ordenador, podremos alimentar la placa con una fuente externa con valores de tensión de entre 7 y 12 V. Dicha tensión se aplica de forma directa al regulador lineal de tensión, el cual convertirá la tensión de entrada no regulada a 5V regulados con un suministro máximo de corriente de hasta 500mA. Para la salida de 3.3V, es diferente en nano respecto de uno; en nano, los 3.3V son generados por el propio conversor USB-TTL (el circuito integrado lleva incorporado el regulador); el modelo uno dispone de un regulador por separado y destinado exclusivamente para el riel de 3.3V. En uno, dicho regulador puede suministrar hasta 150 mA de corriente máxima, mientras que en nano, como no tenemos un regulador especializado, y forma parte de la funcionalidad del conversor, el suministro de corriente será menor, de 50 mA como máximo. \\
+	\noindent El pin de salida 5V refleja los mismos 5V del puerto  del ordenador; si ahora deseamos trabajar de manera autónoma, sin conexión al ordenador, podremos alimentar la placa con una fuente externa con valores de tensión de entre 7 y 12 V. Dicha tensión se aplica de forma directa al regulador lineal de tensión, el cual convertirá la tensión de entrada no regulada a 5V regulados con un suministro máximo de corriente de hasta 500mA. Para la salida de 3.3V, es diferente en nano respecto de uno; en nano, los 3.3V son generados por el propio conversor USB-TTL (el circuito integrado lleva incorporado el regulador); el modelo uno dispone de un regulador por separado y destinado exclusivamente para el riel de 3.3V. En uno, dicho regulador puede suministrar hasta 150 mA de corriente máxima, mientras que en nano, como no tenemos un regulador especializado, y forma parte de la funcionalidad del conversor, el suministro de corriente será menor, de 50 mA como máximo. \\
+	
+	\noindent Cabe mencionar que si conocemos bien la fuente de alimentación, es decir, sabemos que es estable en 5V, podemos aplicar dicha tensión directamente al pin 5V. Retomando una anotación anterior, realizada en el apartado \ref{Preparación de la alimentación autónoma del dispositivo}, acerca de una opción alternativa de batería, como el uso de varias en serie, aumentando la tensión nominal total, con el uso de un buck que redujera la tensión que se suministra al dispositivo. Esto es si se introduce la alimentación a través del pin 5V, si se introduce a través del Vin (siempre y cuando se llegue a los 7V mínimo con esa tensión nominal total) no es necesario el buck para reducir la tensión y dejar estable esa tensión, ya que entrando por Vin pasa por el regulador de tensión del Arduino. \\
 	
 	\noindent [Foto parte rear del nano señalando partes implicadas en la alimentación del nano.] \\
 	
@@ -1470,7 +1474,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 
 	\noindent \textit{Justificación de elección para el proyecto} \\
 	
-	\noindent Se ha elegido esta opción por una serie de razones, que a continuación se expondrán: \\
+	\noindent Se ha elegido esta opción por una serie de razones, que a continuación se expondrán: 
 	
 	\begin{itemize}
 		\item Bajo consumo
