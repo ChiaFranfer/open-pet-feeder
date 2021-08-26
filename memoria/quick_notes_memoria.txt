@@ -61,7 +61,7 @@ presentan por norma general licencias que, como mínimo, exigen que se mencione 
 
 	Explicación del por qué de elegir los E32 (características técnicas)
 
-	Bloque "Software Arduino" -- SEGUIR POR AQUI (p.73)
+	Bloque "Software Arduino" -- HECHO
 
 	Fotos Arduino nano
 

@@ -1494,12 +1494,26 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	% Programación: arduinoIDE, void loop y setup, define, etc
 	
-	\noindent Como hemos mencionado anteriormente, las placas Arduino se pueden programar a través del software Arduino IDE. Además, A continuación, se explicarán los fundamentos básicos que se requieren para empezar a usar este software. \\
+	\noindent Como hemos mencionado anteriormente, las placas Arduino se pueden programar a través del software Arduino IDE (existen más opciones, pero esta es una de las más conocidas), empleando un lenguaje similar al lenguaje de programación C. A continuación, se explicarán los dos bloques principales en los que se divide un \textit{sketch} de Arduino.\\
+	
+	\noindent \textit{Bloque setup()} \\
+	
+	\noindent Se realiza la configuración del dispositivo y la
+	asignación de pines (entradas y salidas analógicas y digitales). Las comunicaciones que necesitemos inicializar lo harán aquí (como la serial), también la programación de mensajes de inicio (por ejemplo, mensaje que aparezca cuando damos alimentación al microcontrolador o lo reiniciemos)\\
+	
+	\noindent \textit{Bloque loop()} \\
+	
+	\noindent En esta sección de código, se definen las tareas que realizará el microcontrolador; siempre que se encienda o reinicie, empezará a ejecutar desde el principio de este bloque. Sería algo así como el programa principal,donde se incluyen todas las sentencias necesarias para obtener lafuncionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea en bucle, y así se marca en el código (estas tareas se enmarcan dentro del bloque \textit{loop}). \\
+	
+	\noindent \textit{Comandos ajenos a los bloques setup() y loop()}\\
+	
+	\noindent No todo el código que se incluye en un \textit{sketch}  de Arduino pertenece a uno de los dos bloques recién introducidos. Por ejemplo:
 	
 	\begin{itemize}
-		\item Bloque de definición de variables globales.
-		\item Bloque de definición de las tareas a realizar por el microcontrolador.
-	\end{itemize}
+		\item Definición de variables globales, escribiendo de manera explícita el tipo (\texttt{char}, \texttt{int}...) y el nombre de la variable (el valor de dicha variable se dará más adelante). Mediante el comando \texttt{\#define} damos valores a constantes antes de que se compile el programa.
+		\item Incluir librerías, mediante el comando \texttt{\#include}. Existe infinidad de librerías compatibles con Arduino, muchas de código abierto y de fácil acceso, que pueden servir para diversos proyectos. 
+		\item Creación de objetos, algunos propios de las librerías que hemos incluido, como un objeto serial o un servomotor; también puede ser una estructura de datos, dependerá de lo que necesitemos.
+	\end{itemize} 
 	
 	\subsubsubsection{LoRa}
 	
@@ -2570,6 +2584,24 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\noindent \textbf{Prueba 1: entorno conocido, no definitivo} \\
 	
+	\noindent Esta prueba se realizó con el prototipo provisional, en protoboard, durante el mes de marzo. Se programó el envío cada 5 segundos de la medida de tensión de un pin analógico (concretamente, el A0) del transmisor; se dejó el nodo transmisor transmitiendo conectado a la corriente, en la segunda planta de un hogar (unos 5m) mientras que el receptor iba conectado a una OLED donde mostraba esos valores e iba conectado a una batería portátil. En el \hyperref[anexo II: codigo]{Anexo II} se muestra el código empleado para esta prueba. \\
+	
+	\noindent En la Figura \ref{prueba 1 captura alcance} se muestra el recorrido que se realizó con el receptor, un recorrido de longitud total 2.7kms. \\
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{img/prueba_1.jpg}
+			\caption{Recorrido realizado con el receptor para probar su alcance}
+			\label{prueba 1 captura alcance}
+		\end{center}
+	\end{figure}
+	
+	\noindent En tanto a resultados, la señal llegó en todo momento. Se perdió en torno a un 15\% de los mensajes en zonas donde la vegetación es más densa y, sobretodo, a partir del kilómetro 2.5, si nos situábamos detrás de domicilios, cortando la línea de visión directa (bajo esta situación, no llegaba ningún mensaje, pero reestablecíamos la conexión al desbloquear la línea de visión). Si que es cierto que quizá a esa distancia y estando a poco más de un metro y medio sobre el suelo no se pueda hablar de \textit{línea de visión directa}, pero mirando la Figura \ref{prueba 1 captura alcance}, donde se muestra que el recorrido fue, en esencia, una línea recta, he decidido denominarlo así.\\
+	
+	\pagebreak 
+	
 	\noindent \textbf{Prueba 2: entorno conocido, definitivo} \\
 
 	%captura_web_cobertura_2.jpg
@@ -2584,6 +2616,8 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 		\end{center}
 	\end{figure}
 
+	\pagebreak
+	
 	\subsubsection{Pruebas de interior}
 	
 	\noindent Estas pruebas han sido las más numerosas, y pueden desglosarse en: \\
@@ -3194,104 +3228,108 @@ LoRa (TFM). Rubén Adrián de la Cámara}. Consultado el 19/08/21.
 	\addcontentsline{toc}{subsection}{Anexo II}
 	\label{anexo II: codigo}
 	
-	\noindent Código Arduino: \textit{refugio\_protocolo} \\
+	\noindent Código Arduino: \textit{SendEBYTE.ino}\\
+	
+	\noindent Código Arduino: \textit{ReceiveEBYTE\_OLED.ino}\\
+	
+	\noindent Código Arduino: \textit{refugio\_protocolo.ino} \\
 	
 	\begin{lstlisting}[language=C]
 #include <SoftwareSerial.h>
 #include "EBYTE.h"
 #include <avr/io.h>
 		
-		#define PIN_RX 2
-		#define PIN_TX 3
-		#define PIN_M0 4
-		#define PIN_M1 5
-		#define PIN_AX 6
+#define PIN_RX 2
+#define PIN_TX 3
+#define PIN_M0 4
+#define PIN_M1 5
+#define PIN_AX 6
 		
-		#define LORA_CHANNEL 5
+#define LORA_CHANNEL 5
 		
-		struct ebyte_struct {
-			unsigned long count;
-			String msg;                                           
-		};
-		ebyte_struct ebyte_msg;
+struct ebyte_struct {
+	unsigned long count;
+	String msg;                                           
+};
+ebyte_struct ebyte_msg;
 		
-		int Chan;
-		unsigned long Last;
+int Chan;
+unsigned long Last;
 		
-		SoftwareSerial ESerial(PIN_RX, PIN_TX);
-		EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
+SoftwareSerial ESerial(PIN_RX, PIN_TX);
+EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
 		
 		
-		void setup() {
-			Serial.begin(115200);
+void setup() {
+	Serial.begin(115200);
 			
-			ESerial.begin(9600);
-			Serial.println("Starting Reader");
+	ESerial.begin(9600);
+	Serial.println("Starting Reader");
 			
-			// this init will set the pinModes for you
-			Transceiver.init();
+	// this init will set the pinModes for you
+	Transceiver.init();
 			
-			// all these calls are optional but shown to give examples of what you can do
+	// all these calls are optional but shown to give examples of what you can do
 			
-			// Serial.println(Transceiver.GetAirDataRate());
-			// Serial.println(Transceiver.GetChannel());
+	// Serial.println(Transceiver.GetAirDataRate());
+	// Serial.println(Transceiver.GetChannel());
 			
-			Transceiver.SetMode(MODE_NORMAL);
+	Transceiver.SetMode(MODE_NORMAL);
 			
-			Transceiver.SetUARTBaudRate(UDR_9600);
-			Transceiver.SetAirDataRate(ADR_2400);
-			Transceiver.SetAddressH(1);
-			Transceiver.SetAddressL(0);
+	Transceiver.SetUARTBaudRate(UDR_9600);
+	Transceiver.SetAirDataRate(ADR_2400);
+	Transceiver.SetAddressH(1);
+	Transceiver.SetAddressL(0);
 			
-			Transceiver.SetChannel(LORA_CHANNEL);
-			Transceiver.SetTransmitPower(OPT_TP21);
-			Transceiver.SetPullupMode(0);
-			Transceiver.SetFECMode(1);
+	Transceiver.SetChannel(LORA_CHANNEL);
+	Transceiver.SetTransmitPower(OPT_TP21);
+	Transceiver.SetPullupMode(0);
+	Transceiver.SetFECMode(1);
 			
-			// save the parameters to the unit,
-			Transceiver.SaveParameters(TEMPORARY);
+	// save the parameters to the unit,
+	Transceiver.SaveParameters(TEMPORARY);
 			
-			// you can print all parameters and is good for debugging
-			// if your units will not communicate, print the parameters
-			// for both sender and receiver and make sure air rates, channel
-			// and address is the same
-			Transceiver.PrintParameters();
+	// you can print all parameters and is good for debugging
+	// if your units will not communicate, print the parameters
+	// for both sender and receiver and make sure air rates, channel
+	// and address is the same
+	Transceiver.PrintParameters();
+}
+		
+void loop() {
+			
+	// if the transceiver serial is available, proces incoming data
+	// you can also use Transceiver.available()
+			
+	if (ESerial.available()) {
+				
+		// i highly suggest you send data using structures and not
+		// a parsed data--i've always had a hard time getting reliable data using
+		// a parsing method
+				
+		Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
+		//read = Transceiver.GetByte();
+				
+		//Serial.println(read);
+				
+		// dump out what was just received
+		Serial.print("Count: "); Serial.println(ebyte_msg.count);
+		Serial.print("msg: "); Serial.println(ebyte_msg.msg);
+		Serial.println("***");
+		// if you got data, update the checker
+		Last = millis();
+				
+	}
+	else {
+		// if the time checker is over some prescribed amount
+		// let the user know there is no incoming data
+		if ((millis() - Last) > 1000) {
+			Serial.println("Searching: ");
+			Last = millis();
 		}
-		
-		void loop() {
-			
-			// if the transceiver serial is available, proces incoming data
-			// you can also use Transceiver.available()
-			
-			if (ESerial.available()) {
 				
-				// i highly suggest you send data using structures and not
-				// a parsed data--i've always had a hard time getting reliable data using
-				// a parsing method
-				
-				Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
-				//read = Transceiver.GetByte();
-				
-				//Serial.println(read);
-				
-				// dump out what was just received
-				Serial.print("Count: "); Serial.println(ebyte_msg.count);
-				Serial.print("msg: "); Serial.println(ebyte_msg.msg);
-				Serial.println("***");
-				// if you got data, update the checker
-				Last = millis();
-				
-			}
-			else {
-				// if the time checker is over some prescribed amount
-				// let the user know there is no incoming data
-				if ((millis() - Last) > 1000) {
-					Serial.println("Searching: ");
-					Last = millis();
-				}
-				
-			}
-		}
+	}
+}
 	\end{lstlisting}
 	
 	\pagebreak
