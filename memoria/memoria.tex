@@ -1503,7 +1503,9 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\noindent \textit{Bloque loop()} \\
 	
-	\noindent En esta sección de código, se definen las tareas que realizará el microcontrolador; siempre que se encienda o reinicie, empezará a ejecutar desde el principio de este bloque. Sería algo así como el programa principal,donde se incluyen todas las sentencias necesarias para obtener lafuncionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea en bucle, y así se marca en el código (estas tareas se enmarcan dentro del bloque \textit{loop}). \\
+	\noindent En esta sección de código, se definen las tareas que realizará el microcontrolador; siempre que se encienda o reinicie, empezará a ejecutar desde el principio de este bloque. Sería algo así como el programa principal,
+donde se incluyen todas las sentencias necesarias para obtener la
+funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea en bucle, y así se marca en el código (estas tareas se enmarcan dentro del bloque \textit{loop}). \\
 	
 	\noindent \textit{Comandos ajenos a los bloques setup() y loop()}\\
 	
@@ -2261,6 +2263,8 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\noindent El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA.  Para mayor detalle del esquemático o de la PCB, consultar el repositorio de GitHub creado (poner  con href), donde se incluye un archivo .json que, importándolo a EasyEDA, permitirá su visualización. \\
 	
 	\subsubsection{Protocolo}
+	\label{protocolo explicacion}
+	
 	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \texttt{\textit{refugio\_protocolo}}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3; este sketch es el \texttt{\textit{gw\_protocolo}}, el cual explicaremos más adelante (al igual que \texttt{\textit{refugio\_protocolo}}).  En el \hyperref[anexo II: codigo]{Anexo II}  se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
 	
 	\noindent Antes de explicar el código creado, cabe decir que no habría sido posible el desarrollo de este protocolo sin el sustento proporcionado por la librería \href{https://github.com/KrisKasprzak/EBYTE}{EBYTE} [\ref{bib: github libreria EBYTE}], a través de la cual:
@@ -2584,26 +2588,79 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\noindent \textbf{Prueba 1: entorno conocido, no definitivo} \\
 	
-	\noindent Esta prueba se realizó con el prototipo provisional, en protoboard, durante el mes de marzo. Se programó el envío cada 5 segundos de la medida de tensión de un pin analógico (concretamente, el A0) del transmisor; se dejó el nodo transmisor transmitiendo conectado a la corriente, en la segunda planta de un hogar (unos 5m) mientras que el receptor iba conectado a una OLED donde mostraba esos valores e iba conectado a una batería portátil. En el \hyperref[anexo II: codigo]{Anexo II} se muestra el código empleado para esta prueba. \\
-	
-	\noindent En la Figura \ref{prueba 1 captura alcance} se muestra el recorrido que se realizó con el receptor, un recorrido de longitud total 2.7kms. \\
+	\noindent Esta prueba se realizó con el prototipo provisional, en protoboard (Figura \ref{protoboard lora}), durante el mes de abril de 2021. Primero se realizó una prueba en interior para investigar cómo funcionaba este transceptor y verificar la comunicación entre ambos nodos (se explicará más en detalle en \hyperref[pruebas de interior]{\textit{Pruebas de interior}}). Una vez completado ese paso, se investigó sobre la librería \href{https://github.com/adafruit/Adafruit_SSD1306}{Adafruit\_SSD1306} [\ref{adafruit library}], la cual permite trabajar con OLEDs monocromáticas SSD1306 de resolución 128x64 y 128x32. Se incorporó las funcionalidades necesarias de dicha librería para poder mostrar información en la OLED; para esta primera prueba la OLED nos fue muy útil, ya que pudimos comprobar si los datos que llegaban eran legibles y coherentes sin tener que hacer uso de una consola en el ordenador para leer por serial lo que se recibe por radio, opción que resulta más incómoda mientras se realizan pruebas de cobertura a pie con el prototipo en la mano.\\
 	
 	\pagebreak
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.4\textwidth]{img/prueba_1.jpg}
+			\includegraphics[width=0.3\textwidth]{img/prueba_lora_protoboard.png}
+			\caption{Montaje en protoboard para verificar el funcionamiento y alcance del transceptor LoRa E32-868T30D}
+			\label{protoboard lora}
+		\end{center}
+	\end{figure}
+
+	\noindent  Dado que en esta prueba sólo se quiere comprobar el alcance del enlace LoRa (y la calidad, si se envían datos y éstos son legibles), se creó un \textit{sketch} de prueba sencillo y provisional; una vez se probara y se pudiera pasar a la prueba en el entorno definitivo, se usaría un \textit{sketch} que tuviera en cuenta todo lo que se quiere hacer con este prototipo (lo que hemos explicado sobre el \hyperref[protocolo explicacion]{\textit{Protocolo}}). Se programó el envío cada 5 segundos de la medida de tensión de un pin analógico (concretamente, el A0) del transmisor. También se enviaba, junto con la medida de tensión (mirar OLED de la Figura \ref{protoboard lora oled}, es el dato que aparece tras \textit{Volts:}) el número de bits de los que consta el mensaje (en la OLED, valor tras \textit{Bits:}) y el número del mensaje que se está enviando (\textit{Count:}); este último empieza desde 0 y se va autoincrementando conforme se envía un mensaje (si se reinicia o apaga el microcontrolador del transmisor, la cuenta empieza desde 0 de nuevo). En el \hyperref[anexo II: codigo]{Anexo II} se muestra el código empleado para esta prueba.\\
+	
+	\noindent Se dejó el nodo transmisor transmitiendo mensajes con estos valores, mientras permanecía conectado a la corriente, en la segunda planta de un hogar (unos 5m, en el exterior). Por otro lado, el receptor iba conectado a una OLED donde mostraba los valores de \textit{Volts, Bits} y \textit{Count} del mensaje que recibía; la alimentación la recibía a través de una batería portátil.  \\
+	
+	\pagebreak
+	
+	%prueba_lora_protoboard_oled.png	
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.3\textwidth]{img/prueba_lora_protoboard_oled.png}
+			\caption{}
+			\label{protoboard lora oled}
+		\end{center}
+	\end{figure}
+
+	\noindent En la Figura \ref{prueba 1 captura alcance} se muestra el recorrido que se realizó con el receptor, un recorrido de longitud total 2.7 kms. \\
+	
+	%\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.3\textwidth]{img/prueba_1.jpg}
 			\caption{Recorrido realizado con el receptor para probar su alcance}
 			\label{prueba 1 captura alcance}
 		\end{center}
 	\end{figure}
 	
+	\pagebreak
+	
 	\noindent En tanto a resultados, la señal llegó en todo momento. Se perdió en torno a un 15\% de los mensajes en zonas donde la vegetación es más densa y, sobretodo, a partir del kilómetro 2.5, si nos situábamos detrás de domicilios, cortando la línea de visión directa (bajo esta situación, no llegaba ningún mensaje, pero reestablecíamos la conexión al desbloquear la línea de visión). Si que es cierto que quizá a esa distancia y estando a poco más de un metro y medio sobre el suelo no se pueda hablar de \textit{línea de visión directa}, pero mirando la Figura \ref{prueba 1 captura alcance}, donde se muestra que el recorrido fue, en esencia, una línea recta, he decidido denominarlo así.\\
 	
-	\pagebreak 
+	%\pagebreak 
 	
 	\noindent \textbf{Prueba 2: entorno conocido, definitivo} \\
+	%\label{prueba 2 entorno definitivo}
+	
+	\noindent Estas pruebas se realizaron durante el mes de agosto de 2021, en las inmediaciones del refugio de Patitas Unidas. Previo a realizar estas pruebas, se tuvieron que dar por concluidos los detalles referidos al prototipo definitivo, por lo que se demoraron unos meses con respecto a las pruebas en el entorno no definitivo. \\
+	
+	\noindent Fue imprescindible dejar preparada la estación del campo. \\
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=70mm]{img/estacion_gw_interior_1.jpg} &   \includegraphics[width=50mm]{img/extensor_antena_ventana.jpg} \\
+				(a)  & (b)  \\[6pt]
+				\includegraphics[width=50mm]{img/extensor_antena_ventana_zoom.jpg} &   \includegraphics[width=50mm]{img/extensor_antena_ventana_exterior.jpg} \\
+				(c)  & (d)  \\[6pt]
+				%\multicolumn{2}{c}{\includegraphics[width=50mm]{img/Fotos comedero/pieza5_comedero.jpg} }\\
+				%\multicolumn{2}{c}{(e) Pieza 5 PVC}
+			\end{tabular}
+			\caption{Situación de la estación del campo para la prueba de cobertura entre campo y refugio}
+			\label{Pruebas: estacion campo}
+		\end{center}	
+	\end{figure}
 
+	\pagebreak
+	
+	\noindent A continuación, en la Figura \ref{captura web prueba cobertura} se muestran capturas de la web creada, vista desde un teléfono móvil, donde podemos ver en la consola los mensajes enviados desde la estación del campo y los mensajes de respuesta, enviados desde la estación del refugio. \\
 	%captura_web_cobertura_2.jpg
 	\begin{figure}[h!]
 		\begin{center}
@@ -2611,7 +2668,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 				\includegraphics[width=50mm]{img/captura_web_cobertura_2.jpg} &   \includegraphics[width=50mm]{img/captura_web_cobertura_1.jpg} \\
 				(a)  & (b) \\[6pt]
 			\end{tabular}
-			\caption{}
+			\caption{Muestras de la consola de la web \textit{Open Pet Feeder} durante la prueba de alcance en el entorno definitivo (estación del refugio)}
 			\label{captura web prueba cobertura}
 		\end{center}
 	\end{figure}
@@ -2619,6 +2676,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\pagebreak
 	
 	\subsubsection{Pruebas de interior}
+	\label{pruebas de interior}
 	
 	\noindent Estas pruebas han sido las más numerosas, y pueden desglosarse en: \\
 	
@@ -2628,11 +2686,20 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 		\item Testeo de los componentes en la PCB, formando el prototipo final. Tenemos en cuenta, además, el formato elegido para el exterior del diseño (reservas, cableados y conexionado físico), probamos su estabilidad y comodidad, y descartamos opciones.
 	\end{itemize}
 	
+	\noindent LoRa: se usó el montaje mostrado en la Figura \ref{protoboard lora}. \\
+	
 	\pagebreak
 	
 	\subsection[Comentarios sobre los resultados de las pruebas]{Comentarios sobre los resultados de las pruebas}
 	
-	\noindent 
+	\noindent Aunque se hablará más adelante en \hyperref[sec: conclusiones]{\textit{Conclusiones y líneas futuras}} con más detalle tanto de deducciones que extraen tras las pruebas, como las que se extraen de los demás apartados de este proyecto, en este punto podemos dejar por escrito ciertos comentarios relacionados con las pruebas que acabamos de comentar: 
+	
+	\begin{itemize}
+		\item Se ha conseguido crear un enlace radio LoRa a 868MHz satisfactorio, donde, tanto a la distancia entre nodos de 2.7kms como a 3.45kms, hemos conseguido mantener una comunicación eficaz y sin problemas.
+		\item La cobertura empeora conforme aumenta la presencia de edificaciones, y la densidad de éstas, sobretodo si la altura de las antenas es bastante inferior a la altura de dichas edificaciones.
+		\item El límite inferior de potencia a la que transmite este transceptor es de 21dBm, pero el límite legal para emitir en la banda de LoRa, en Europa, es de 14dBm. Como ya se ha comentado anteriormente, habría que probar con otro transceptor muy similar, el E22-900T22D, ya que éste puede transmitir a menor potencia y,a demás, dar valores de RSSI, algo que no hemos podido medir en este proyecto por limitaciones del transceptor en este sentido.
+		\item Destacar la importancia de realizar simulaciones antes de la realización de pruebas de campo, ya que éstas requieren de tiempo, tanto de planificación previa de la jornada como de presenciarse in situ en el lugar de pruebas. Si una simulación nos dice que es posible que un enlace no se establezca, nos está indicando que quizá no merezca la pena probarlo bajo esas condiciones en el entorno real, y lo ideal sería probar otras combinaciones.
+	\end{itemize}
 	
 	\pagebreak
 	
@@ -2649,6 +2716,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\pagebreak
 	
 	\section[Conclusiones y líneas futuras]{Conclusiones y líneas futuras}
+	\label{sec: conclusiones}
 	
 	\noindent \textbf{Alimentación:} estudiaría las baterías LiPo, incluso LiFePO4, que aunque son más caras, no limitan tanto en el tema de la protección. También investigaría el uso de varias baterías Li-ion en paralelo para aumentar la capacidad. Investigaría más profundamente en general el tema de la alimentación autónoma, ya que es un mundo muy extenso que debe tratarse de manera externa a la parte radio o a la parte de microcontrolador; podemos realizar proyectos donde abarquemos todo, pero para llegar a conclusiones donde se lleguen a prototipos iniciales, que en posteriores investigaciones se expandan y mejoren sus funcionalidades de manera individual, sin perder de vista el proyecto global. Diseñaría una PCB sólo para alimentación, ya que los requerimientos de alimentación para cada proyecto son diferentes y para un proyecto de dimensión media-grande es mucho más práctico diseñar un sistema personalizado de alimentación de dispositivo, algo que conseguimos mediante una PCB, compactando los sistemas que, sin PCB, se traducen en numerosas PCBs ya fabricadas que quizá no se adapten del todo a lo que necesitamos. Podría parecer que la PCB de un TP4056 es suficiente, pero en la práctica vemos cómo carga y consumo tiene que ser en momentos no simultáneos, lo cual puede suponer un problema si se sincroniza con el funcionamiento del dispositivo al que está alimentando. Es un tema complejo que hay que investigar aparte, como se ha mencionado.\\
 	
@@ -3032,10 +3100,12 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 			%61
 			\item 
 			\label{TFM LoRa}
-			\href{http://openaccess.uoc.edu/webapps/o2/bitstream/10609/97127/8/radriandTFM0619memoria.pdf}{Diseño de un sistema de
-monitorización remota de un
-depósito de agua mediante
-LoRa (TFM). Rubén Adrián de la Cámara}. Consultado el 19/08/21.
+			\href{http://openaccess.uoc.edu/webapps/o2/bitstream/10609/97127/8/radriandTFM0619memoria.pdf}{Diseño de un sistema de monitorización remota de un depósito de agua mediante LoRa (TFM). Rubén Adrián de la Cámara}. Consultado el 19/08/21.
+
+			%62
+			\item
+			\label{adafruit library}
+			\href{https://github.com/adafruit/Adafruit_SSD1306}{GitHub: Adafruit\_SSD1306}. Consultado el 27/08/21.
 			
 		\end{enumerate}
 		
@@ -3230,8 +3300,275 @@ LoRa (TFM). Rubén Adrián de la Cámara}. Consultado el 19/08/21.
 	
 	\noindent Código Arduino: \textit{SendEBYTE.ino}\\
 	
+	\begin{lstlisting}[language=C]
+#include <SoftwareSerial.h>
+#include "EBYTE.h"
+//#include <avr/io.h>
+
+#define PIN_RX 2
+#define PIN_TX 3
+#define PIN_M0 4
+#define PIN_M1 5
+#define PIN_AX 6
+
+// replace with your own
+struct DATA {
+	unsigned long Count;
+	int Bits;
+	float Volts;
+	//float Amps;
+};
+
+int Chan;
+DATA MyData;
+
+// you will need to define the pins to create the serial port
+SoftwareSerial ESerial(PIN_RX, PIN_TX);
+
+
+// create the transceiver object, passing in the serial and pins
+EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
+
+void setup() {
+	
+	Serial.begin(115200);
+	
+	// start the transceiver serial port--data sheet says to keep on 9600
+	ESerial.begin(9600);
+	
+	Serial.println("Starting Sender");
+	
+	// this init will set the pinModes for you
+	Transceiver.init();
+	
+	// all these calls are optional but shown to give examples of what you can do
+	
+	//Serial.println(Transceiver.GetAirDataRate());
+	//Serial.println(Transceiver.GetChannel());
+	
+	Transceiver.SetMode(MODE_NORMAL);
+	//Transceiver.SetMode(MODE_WAKEUP);
+	
+	//Transceiver.SetUARTBaudRate(UDR_9600);
+	//Transceiver.SetAirDataRate(ADR_2400);
+	//Transceiver.SetAddressH(2);
+	//Transceiver.SetAddressL(0);
+	//Chan = 5;
+	//Transceiver.SetChannel(Chan);
+	//Transceiver.SetTransmitPower(OPT_TP21);
+	//Transceiver.SetPullupMode(0);
+	//Transceiver.SetFECMode(1);
+	
+	// save the parameters to the unit,
+	//Transceiver.SaveParameters(PERMANENT);
+	Transceiver.SaveParameters(TEMPORARY);
+	
+	// you can print all parameters and is good for debugging
+	// if your units will not communicate, print the parameters
+	// for both sender and receiver and make sure air rates, channel
+	// and address is the same
+	Transceiver.PrintParameters();
+	
+	MyData.Count = 0;
+}
+
+void loop() {
+	
+	// measure some data and save to the structure
+	MyData.Count++;
+	//MyData.Count = 10;
+	MyData.Bits = analogRead(A0);
+	MyData.Volts = MyData.Bits * ( 5.0 / 1024.0 );
+	//MyData.Volts = 2000.0;
+	
+	// i highly suggest you send data using structures and not
+	// a parsed data--i've always had a hard time getting reliable data using
+	// a parsing method
+	Transceiver.SendStruct(&MyData, sizeof(MyData));
+	//Transceiver.SendByte(8);
+	
+	// let the use know something was sent
+	Serial.println("Sending: Count: " + (String) MyData.Count + " Volts: " + MyData.Volts + " Bits: " + MyData.Bits );
+	delay(4000);
+	
+	
+}		
+	\end{lstlisting}
+
 	\noindent Código Arduino: \textit{ReceiveEBYTE\_OLED.ino}\\
 	
+	\begin{lstlisting}[language=C]
+// LoRa E32 
+#include <SoftwareSerial.h>
+#include "EBYTE.h"
+#include <avr/io.h>
+
+// OLED Display
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+// LoRa E32
+#define PIN_RX 2
+#define PIN_TX 3
+#define PIN_M0 4
+#define PIN_M1 5
+#define PIN_AX 6
+
+// OLED Display
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+// The pins for I2C are defined by the Wire-library. 
+// On an arduino UNO:       A4(SDA), A5(SCL)
+#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3C for 128x32
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 32 // OLED display height, in pixels
+
+
+struct DATA {
+	unsigned long Count;
+	int Bits;
+	float Volts;
+};
+
+// replace with your own
+int Chan;
+DATA MyData;
+unsigned long Last;
+
+// connect to any digital pin to connect to the serial port
+// don't use pin 01 and 1 as they are reserved for USB communications
+SoftwareSerial ESerial(PIN_RX, PIN_TX);
+
+// create the transceiver object, passing in the serial and pins
+EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
+
+uint8_t read;
+
+// OLED Display
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+void setup() {
+	Serial.begin(115200);
+	
+	delay(500);
+	
+	// OLED Display
+	// SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+	if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+		Serial.println(F("SSD1306 allocation failed"));
+		for(;;); // Don't proceed, loop forever
+	}
+	
+	Serial.println("OLED Ready");
+	
+	// Show initial display buffer contents on the screen --
+	// the library initializes this with an Adafruit splash screen.
+	display.display();
+	delay(200); // Pause for 2 mseconds
+	
+	// Clear the buffer
+	display.clearDisplay();
+	
+	// LoRa Init
+	ESerial.begin(9600);
+	Serial.println("Starting Reader");
+	
+	// this init will set the pinModes for you
+	Transceiver.init();
+	
+	// all these calls are optional but shown to give examples of what you can do
+	
+	// Serial.println(Transceiver.GetAirDataRate());
+	// Serial.println(Transceiver.GetChannel());
+	Transceiver.SetUARTBaudRate(UDR_9600);
+	Transceiver.SetMode(MODE_NORMAL);
+	Transceiver.SetAirDataRate(ADR_2400);
+	Transceiver.SetAddressH(1);
+	Transceiver.SetAddressL(0);
+	Chan = 5;
+	Transceiver.SetChannel(Chan);
+	Transceiver.SetTransmitPower(OPT_TP21);
+	Transceiver.SetPullupMode(0);
+	Transceiver.SetFECMode(1);
+	
+	// save the parameters to the unit,
+	Transceiver.SaveParameters(TEMPORARY);
+	
+	// you can print all parameters and is good for debugging
+	// if your units will not communicate, print the parameters
+	// for both sender and receiver and make sure air rates, channel
+	// and address is the same
+	Transceiver.PrintParameters();
+	
+	// OLED Searching... text
+	display.setTextSize(1);
+	display.setTextColor(WHITE);
+	display.setCursor(0, 0);
+	
+	display.println("Searching...");
+	display.display();
+	delay(200);
+}
+
+void loop() {
+	
+	// if the transceiver serial is available, proces incoming data
+	// you can also use Transceiver.available()
+	
+	
+	if (ESerial.available()) {
+		
+		// i highly suggest you send data using structures and not
+		// a parsed data--i've always had a hard time getting reliable data using
+		// a parsing method
+		
+		Transceiver.GetStruct(&MyData, sizeof(MyData));
+		//read = Transceiver.GetByte();
+		
+		//Serial.println(read);
+		
+		// Update OLED Info
+		updateDisplay(&MyData);
+		
+		// dump out what was just received
+		Serial.print("Count: "); Serial.println(MyData.Count);
+		Serial.print("Bits: "); Serial.println(MyData.Bits);
+		Serial.print("Volts: "); Serial.println(MyData.Volts);
+		Serial.println("***");
+		// if you got data, update the checker
+		Last = millis();
+		
+	}
+	else {
+		// if the time checker is over some prescribed amount
+		// let the user know there is no incoming data
+		if ((millis() - Last) > 1000) {
+			Serial.println("Searching: ");
+			Last = millis();
+		}
+		
+	}
+}
+
+void updateDisplay(struct DATA *msg){
+	// Clear the buffer
+	display.clearDisplay();
+	
+	display.setTextSize(1);
+	display.setTextColor(WHITE);
+	display.setCursor(0, 0);
+	
+	display.println("Searching...");
+	// Updating new values
+	display.println("Count: " + (String) msg->Count);
+	display.println("Bits: " + (String) msg->Bits);
+	display.println("Volts: " + (String) msg->Volts);
+	display.display();
+	delay(200);
+}		
+	\end{lstlisting}
+
 	\noindent Código Arduino: \textit{refugio\_protocolo.ino} \\
 	
 	\begin{lstlisting}[language=C]
@@ -3334,7 +3671,7 @@ void loop() {
 	
 	\pagebreak
 	
-	\noindent Código Arduino: \textit{gw\_protocolo} \\
+	\noindent Código Arduino: \textit{gw\_protocolo.ino} \\
 	
 	\begin{lstlisting}[language=C]
 

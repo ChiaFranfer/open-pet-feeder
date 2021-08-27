@@ -44,15 +44,14 @@
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
 
-// i recommend putting this code in a .h file and including it
-// from both the receiver and sender modules
+
 struct DATA {
   unsigned long Count;
   int Bits;
   float Volts;
 };
 
-// these are just dummy variables, replace with your own
+// replace with your own
 int Chan;
 DATA MyData;
 unsigned long Last;

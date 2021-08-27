@@ -28,10 +28,7 @@
 #define PIN_M1 5
 #define PIN_AX 6
 
-// i recommend putting this code in a .h file and including it
-// from both the receiver and sender modules
-
-// these are just dummy variables, replace with your own
+// replace with your own
 struct DATA {
   unsigned long Count;
   int Bits;
@@ -48,14 +45,12 @@ SoftwareSerial ESerial(PIN_RX, PIN_TX);
 
 // create the transceiver object, passing in the serial and pins
 EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
-//EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
 
 void setup() {
 
   Serial.begin(115200);
 
-  // start the transceiver serial port--i have yet to get a different
-  // baud rate to work--data sheet says to keep on 9600
+  // start the transceiver serial port--data sheet says to keep on 9600
   ESerial.begin(9600);
 
   Serial.println("Starting Sender");
