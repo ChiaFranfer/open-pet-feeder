@@ -2600,7 +2600,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 
-	\noindent  Dado que en esta prueba sólo se quiere comprobar el alcance del enlace LoRa (y la calidad, si se envían datos y éstos son legibles), se creó un \textit{sketch} de prueba sencillo y provisional; una vez se probara y se pudiera pasar a la prueba en el entorno definitivo, se usaría un \textit{sketch} que tuviera en cuenta todo lo que se quiere hacer con este prototipo (lo que hemos explicado sobre el \hyperref[protocolo explicacion]{\textit{Protocolo}}). Se programó el envío cada 5 segundos de la medida de tensión de un pin analógico (concretamente, el A0) del transmisor. También se enviaba, junto con la medida de tensión (mirar OLED de la Figura \ref{protoboard lora oled}, es el dato que aparece tras \textit{Volts:}) el número de bits de los que consta el mensaje (en la OLED, valor tras \textit{Bits:}) y el número del mensaje que se está enviando (\textit{Count:}); este último empieza desde 0 y se va autoincrementando conforme se envía un mensaje (si se reinicia o apaga el microcontrolador del transmisor, la cuenta empieza desde 0 de nuevo). En el \hyperref[anexo II: codigo]{Anexo II} se muestra el código empleado para esta prueba.\\
+	\noindent  Dado que en esta prueba sólo se quiere comprobar el alcance del enlace LoRa (y la calidad, si se envían datos y éstos son legibles), se creó un \textit{sketch} de prueba sencillo y provisional; una vez se probara y se pudiera pasar a la prueba en el entorno definitivo, se usaría un \textit{sketch} que tuviera en cuenta todo lo que se quiere hacer con este prototipo (lo que hemos explicado sobre el \hyperref[protocolo explicacion]{\textit{Protocolo}}). Se programó el envío cada 5 segundos de la medida de tensión de un pin analógico (concretamente, el A0) del transmisor. También se enviaba, junto con la medida de tensión (mirar OLED de la Figura \ref{protoboard lora oled}, es el dato que aparece tras \textit{Volts:}) el número de bits de los que consta el mensaje (en la OLED, valor tras \textit{Bits:}) y el número del mensaje que se está enviando (\textit{Count:}); este último empieza desde 0 y se va autoincrementando conforme se envía un mensaje (si se reinicia o apaga el microcontrolador del transmisor, la cuenta empieza desde 0 de nuevo). En el \hyperref[anexo II: codigo]{Anexo II} se muestra el código empleado para esta prueba (\textit{ReceiveEBYTE\_OLED.ino} para el receptor que iba a desplazarse, y \textit{SendEBYTE.ino} para el extremo que iba a quedar fijo transmitiendo datos).\\
 	
 	\noindent Se dejó el nodo transmisor transmitiendo mensajes con estos valores, mientras permanecía conectado a la corriente, en la segunda planta de un hogar (unos 5m, en el exterior). Por otro lado, el receptor iba conectado a una OLED donde mostraba los valores de \textit{Volts, Bits} y \textit{Count} del mensaje que recibía; la alimentación la recibía a través de una batería portátil.  \\
 	
@@ -2637,9 +2637,17 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	\noindent \textbf{Prueba 2: entorno conocido, definitivo} \\
 	%\label{prueba 2 entorno definitivo}
 	
-	\noindent Estas pruebas se realizaron durante el mes de agosto de 2021, en las inmediaciones del refugio de Patitas Unidas. Previo a realizar estas pruebas, se tuvieron que dar por concluidos los detalles referidos al prototipo definitivo, por lo que se demoraron unos meses con respecto a las pruebas en el entorno no definitivo. \\
+	\noindent Estas pruebas se realizaron durante el mes de agosto de 2021, en las inmediaciones del refugio de Patitas Unidas. Previo a realizar estas pruebas, se tuvieron que dar por concluidos los detalles referidos al prototipo definitivo, por lo que se demoraron unos meses con respecto a las pruebas en el entorno no definitivo. En la Figura \ref{esquema resumen enlace lora final} podemos observar la composición del enlace LoRa (tanto dispositivos como conexión entre ellos) que se va a testear con esta prueba. \\
 	
-	\noindent Fue imprescindible dejar preparada la estación del campo. \\
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.9\textwidth]{img/conexiones tfg-resumen flujo datos.png}
+			\caption{Esquema resumen del flujo de la información en ambos sentidos del enlace LoRa, señalando las vías de comunicación entre bloques fundamentales del enlace.}
+			\label{esquema resumen enlace lora final}
+		\end{center}
+	\end{figure}
+	
+	\noindent Para poder comenzar esta prueba, fue imprescindible dejar preparada la estación del campo. Para ello, en una ventana de la segunda planta de la casa se instaló la antena que transmitiría  y recibiría los mensajes de esta estación. Para evitar interferencias, se usó un prolongador que separara la antena de la fachada de la casa y de tuberías de cobre que había cerca; esto fue posible gracias a un alargador SMA de longitud 3FT (aproximadamente 1.8m), ya que nos daba cierto margen para sacar la antena al exterior, desde la caja estanca de electrónica hasta el extremo del prolongador empleado (mirar Figura \ref{Pruebas: estacion campo}).\\
 	
 	\pagebreak
 	
@@ -2658,9 +2666,11 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}	
 	\end{figure}
 
+	\noindent Como el funcionamiento del conjunto electrónico contenido en la caja estanca ya estaba probado, y el de la Raspberry Pi (ya se explicó en el apartado \ref{subsubsection: config GW y web} que se instaló una distribución especialmente ligera de Linux, la Raspbian y se dejó lista para usar), sólo quedaba para poder probar cobertura del enlace la subida de la página web a la Raspberry Pi, para que se ejecutara desde ahí (actuando como servidor) y se comunicara vía serial con el arduino de esta estación. Recordemos que esto lo hacemos porque el arduino nano no tiene la capacidad de comunicarse con la red LAN, por eso lo que reciba el transceptor LoRa, el arduino está programado para que lo envíe por serial a la Raspberry y esta lo muestra en la consola de la web. \\
+	
 	\pagebreak
 	
-	\noindent A continuación, en la Figura \ref{captura web prueba cobertura} se muestran capturas de la web creada, vista desde un teléfono móvil, donde podemos ver en la consola los mensajes enviados desde la estación del campo y los mensajes de respuesta, enviados desde la estación del refugio. \\
+	\noindent Así pues, ya una vez estuvimos en las inmediaciones del refugio de Patitas Unidas, con la estación del refugio alimentada con una batería portátil, cargamos la página web en un teléfono móvil para mandarle órdenes a dicha estación (desde la estación del campo, ya que es desde donde se ejecuta la web); en la Figura \ref{captura web prueba cobertura} se muestran capturas donde podemos ver, en la consola, los mensajes enviados desde la estación del campo y los mensajes de respuesta, enviados desde la estación del refugio (enviando los mensajes con una potencia de 30dBm). Con estos resultados, podemos afirmar que se establece el enlace radio. \\
 	%captura_web_cobertura_2.jpg
 	\begin{figure}[h!]
 		\begin{center}
@@ -2673,12 +2683,42 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 
-	\pagebreak
+	\noindent Por último, también en agosto de 2021, unos días después, se probó cobertura, pero esta vez transmitiendo con una potencia de 21dBm. Se pudo establecer el enlace, una vez más, con facilidad y los mensajes se recibían a los pocos segundos de haber enviado el comando desde la web. En la Figura \ref{fotos prueba 21dbm} se muestran imágenes de cómo se realizó esta prueba y la anterior (fotografías tomadas el día de la prueba con 21dBm), y una imagen donde se ve que, efectivamente, llega la señal tanto en enlace descendente como ascendente (descendente porque los comandos han llegado a la estación del refugio desde la estación del campo, y ascendente porque la estación del refugio responde correctamente a esos comandos y lo sabemos porque todo queda reflejado en la consola de la web).\\
+	
+	%\pagebreak
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\begin{tabular}{cc}
+				\includegraphics[width=85mm]{img/prueba_21dbm_1.jpg} &   \includegraphics[width=60mm]{img/prueba_21dbm_2.jpg} \\
+				(a)  & (b)  \\[10pt]
+				\multicolumn{2}{c}{\includegraphics[width=80mm]{img/prueba_21dbm_3.jpg} }\\
+				\multicolumn{2}{c}{(c)}
+			\end{tabular}
+			\caption{Fotos tomadas el día de la prueba de cobertura, con potencia de transmisión 21dBm.}
+			\label{fotos prueba 21dbm}
+		\end{center}
+	\end{figure}
+	
+	\noindent Anotar que el montaje mostrado en la Figura \ref{fotos prueba 21dbm} fue el mismo para ambas pruebas (tanto para probar el funcionamiento con potencia de transmisión 30dBm como 21dBm).
+	
+	%\pagebreak
+	
+	\noindent Por último, a modo resumen, se muestra en la Figura \ref{imagen resumen sistema final} el funcionamiento que se ha comprobado en estas pruebas de campo. \\
+	
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.9\textwidth]{img/conexiones tfg-digrama resumen web.png}
+			\caption{Imagen resumen del funcionamiento del sistema definitivo}
+			\label{imagen resumen sistema final}
+		\end{center}
+	\end{figure}
+
 	
 	\subsubsection{Pruebas de interior}
 	\label{pruebas de interior}
 	
-	\noindent Estas pruebas han sido las más numerosas, y pueden desglosarse en: \\
+	\noindent Estas pruebas han sido las más numerosas, y pueden desglosarse en: 
 	
 	\begin{itemize}
 		\item Testeo de los componentes de manera individual. Tras la recepción de los productos, y antes de usarlos en ningún prototipo, hay que probarlos de manera individual. Incluye tanto la programación sencilla de programas para el testeo del hardware, como la creación de circuitos sencillos en protoboard para ejecutar esos programas y verificar el estado del componente que se está testeando.
@@ -2686,7 +2726,25 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\item Testeo de los componentes en la PCB, formando el prototipo final. Tenemos en cuenta, además, el formato elegido para el exterior del diseño (reservas, cableados y conexionado físico), probamos su estabilidad y comodidad, y descartamos opciones.
 	\end{itemize}
 	
-	\noindent LoRa: se usó el montaje mostrado en la Figura \ref{protoboard lora}. \\
+	\subsubsubsection{LoRa}
+	
+	\noindent Para comprobar su funcionamiento, se usó el montaje mostrado en la Figura \ref{protoboard lora}. \\
+	
+	\subsubsubsection{Bebedero}
+	
+	\noindent \textbf{Bomba de agua}: se comprobó simplemente conectando su cable USB a la alimentación con un cargador, introduciéndola en un tarro con agua y un tubo transparente conectada a la salida de agua de la bomba, llevando el agua a un tarro vacío. Para uso posterior de la bomba de agua, se cortó el USB y se dejó los cables por separado de la bomba.\\
+	
+	\noindent \textbf{Relé}: \\
+	
+	\subsubsubsection{Comedero}
+	
+	\noindent \textbf{Servomotor}: \\
+	
+	\subsubsubsection{Sistema de alimentación autónoma}
+	
+	\noindent \textbf{Batería 18650}: \\
+	
+	\noindent \textbf{Panel solar y TP4056}: \\
 	
 	\pagebreak
 	
@@ -2699,6 +2757,8 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\item La cobertura empeora conforme aumenta la presencia de edificaciones, y la densidad de éstas, sobretodo si la altura de las antenas es bastante inferior a la altura de dichas edificaciones.
 		\item El límite inferior de potencia a la que transmite este transceptor es de 21dBm, pero el límite legal para emitir en la banda de LoRa, en Europa, es de 14dBm. Como ya se ha comentado anteriormente, habría que probar con otro transceptor muy similar, el E22-900T22D, ya que éste puede transmitir a menor potencia y,a demás, dar valores de RSSI, algo que no hemos podido medir en este proyecto por limitaciones del transceptor en este sentido.
 		\item Destacar la importancia de realizar simulaciones antes de la realización de pruebas de campo, ya que éstas requieren de tiempo, tanto de planificación previa de la jornada como de presenciarse in situ en el lugar de pruebas. Si una simulación nos dice que es posible que un enlace no se establezca, nos está indicando que quizá no merezca la pena probarlo bajo esas condiciones en el entorno real, y lo ideal sería probar otras combinaciones.
+		\item Las órdenes (o comandos) pueden ser enviados usando la frecuencia 868MHz sin problema desde la página web creada, desde dispositivos diferentes, y fuera de la red LAN donde está situado el servidor que aloja esa web. Esta característica lo hace especialmente funcional, ya que no supone la presencialidad en ninguna de las dos estaciones para que funcione.
+		\item El sistema de alimentación autónoma no se probó en el entorno definitivo, ya que en tanto a tiempo y dedicación se escapaba del alcance de este trabajo. Si bien es uno de los objetivos de este proyecto, se ha conseguido desarrollar un prototipo compatible con alimentación autónoma, y un primer prototipo de alimentación autónoma, prototipo que supone un proyecto aparte por su complejidad. Sí se probó en interior, y se sacó en conclusión precisamente que era un tema que tenía que investigarse más en profundidad de manera aislada, ya que aunque funcione, hay que estudiar cómo se comporta a lo largo del tiempo y tener vigilado el sistema, ya que un imprevisto podría perjudicar seriamente la integridad del proyecto.
 	\end{itemize}
 	
 	\pagebreak
@@ -2735,6 +2795,9 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	\noindent \textbf{Microcontrolador}: el arduino nano para principiantes, con previas nociones de electrónica y con previsiones de realizar una PCB, siempre y cuando el proyecto no sea muy extenso, puede ser empleado. Sin embargo, yo he experimentado que en espacio de memoria se me quedaba corto, sobretodo al usar librerías como OLED, las cuales debía excluir si quería cargar en el arduino mi código restante; teniendo en cuenta que debía importar librerías obligatoriamente para usar por ejemplo la OLED, el servomotor o el transceptor LoRa, este es un punto muy negativo, ya que es un código que no puede ser reducido. Tuve que buscar trucos para compactar el uso de dicha memoria debido a estas limitaciones. Probaría con otras opciones mencionadas en la sección \ref{subsección 3.2.2: automatización y monitorización}, donde hablamos de opciones de microcontroladores, como la Adafruit, NodeMCU o Teensy. \\
 	
 	\noindent \textbf{LoRa}: el transceptor LoRa usado en este prototipo (E32-868T30D) no nos proporciona el valor de RSSI. Sin embargo, ya se ha presentado a lo largo del documento otra opción, entre otras que existen, que sí nos proporcionan este valor, como el E22-900T22D, más compacto, con una tecnología igualmente funcional y al mismo precio. Su potencia máxima de transmisión es menor, pero se pueden adquirir otros transceptores E22 que pueden transmitir a 30dBm (E22-900T30D). No obstante, es un valor de potencia que no está permitido en la regulación LoRa europea (ya la hemos presentado en este documento). Otro módulo que resulta interesante es el E220-900T22D, por ser ligero, consumir considerablemente menos que los transceptores anteriormente mencionados y tener las mismas prestaciones en tanto a alcance y potencia de transmisión.\\
+	
+	\noindent Comentar que los transceptores que se han investigado para este TFG tienen diferentes modos, pero no se han empleado. Es otra investigación que queda abierta para posteriores proyectos. \\
+	
 	
 	\pagebreak
 	
@@ -3298,7 +3361,227 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	\addcontentsline{toc}{subsection}{Anexo II}
 	\label{anexo II: codigo}
 	
-	\noindent Código Arduino: \textit{SendEBYTE.ino}\\
+	\noindent \textbf{Código Arduino usado para prueba de componentes} \\
+	
+	\noindent \textit{\textbf{Sensores de nivel de agua y relé}}: \textit{level\_switch\_test.ino} \\
+	
+	\begin{lstlisting}[language=C]
+//Sensor de nivel tipo boya
+//Salida a rele, para bomba de agua
+
+#define nivel 9 //mido el nivel de agua en el pin D9
+#define RELAY_PIN 7 //conecto arduino con rele a traves de pin D7
+
+void setup()
+{
+	Serial.begin(9600);
+	pinMode(nivel, INPUT);
+	pinMode(RELAY_PIN, OUTPUT);
+}
+
+void loop()
+{
+	int SensorNivel = digitalRead(nivel); //leemos lo que marca el nivel
+	
+	Serial.println(SensorNivel); //comprobamos la lectura
+	
+	if (SensorNivel == 1){
+		digitalWrite(RELAY_PIN, LOW); //si el agua supera el nivel, cortamos el paso con rele a 0
+	} else {
+		digitalWrite(RELAY_PIN, HIGH);
+	}
+	
+	delay(1000);
+}
+	\end{lstlisting}
+	\noindent \textit{\textbf{Bebedero}}: \textit{sketch\_waterPumpRelay.ino}\\
+	
+	\begin{lstlisting}[language=C]
+#include <LowPower.h>
+#include "LowPower.h"
+
+
+#define SLEEP_CYCLES 4      // tiempo = 4S * SLEEP_CYCLES[0:5) = 16 seg
+
+//defines for bebedero
+
+#define RELAY_PIN 7
+#define REFILL_TIME 5000    // 5000 ms == 5s para rellenar bebedero (default)
+
+void rellenarBebedero() {
+	
+	Serial.println("Rellenando bebedero...");
+	
+	digitalWrite(RELAY_PIN, HIGH);
+	delay(REFILL_TIME);
+	digitalWrite(RELAY_PIN, LOW);
+	
+	delay(500);
+	
+	Serial.println("Bebedero lleno");
+}
+
+void setup() {
+	
+	Serial.begin(115200);
+	
+	delay(1000);
+	
+	// setup bebedero
+	pinMode(RELAY_PIN, OUTPUT);
+	
+	
+	Serial.println("Ready...");
+	delay(1000);
+}
+
+void loop() {
+	
+	// tengo q decirle aqui que lo haga solo cuando el arduino este despierto, y se supone q esta despierto el tiempo justo
+	// para q se cojan datos de sensores y q se envie por lora
+	Serial.println("Go to sleep...");
+	delay(200);
+	
+	for (int i = 0;  i < SLEEP_CYCLES; i++) {
+		LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);   //se puede subir a SLEEP_8S
+	}
+	Serial.println("Awaken");
+	
+	rellenarBebedero();
+	
+	
+	delay(500);
+	
+}
+	\end{lstlisting}
+
+	\noindent \textit{\textbf{Servomotor}}: \textit{sketch\_servoTest.ino}\\
+	
+	\begin{lstlisting}[language=C]
+#include <Servo.h>
+#include "LowPower.h"
+
+Servo servo1;
+
+#define PIN_SERVO 9         //conectado a D9 del arduino nano, que es pin digital y PWM
+#define NUM_CICLO 4
+#define SPEED_SERVO 1500    //default: 1500. Lower value, it goes faster
+
+#define SLEEP_CYCLES 4      // tiempo = 4S * SLEEP_CYCLES[0:5) = 16 seg
+
+void rellenarComedero(){
+	Serial.println("Rellenando comedero...");
+	for(int i=0; i<=NUM_CICLO; i++){
+		//Serial.println(i);
+		servo1.write(0);
+		delay(SPEED_SERVO);
+		servo1.write(105);
+		delay(SPEED_SERVO);
+	}
+	
+	// Posicion estatica
+	servo1.write(90);
+	delay(SPEED_SERVO);
+	Serial.println("OK");
+}
+
+void setup() {
+	
+	Serial.begin(9600);
+	servo1.attach(PIN_SERVO);
+	
+	delay(1000);
+	//rellenarComedero();
+	
+	Serial.println("Ready...");
+	delay(1000);
+}
+
+void loop() {
+	
+	// tengo q decirle aqui que lo haga solo cuando el arduino este despierto, y se supone q esta despierto el tiempo justo
+	// para q se cojan datos de sensores y q se envie por lora, formacion de paquetes
+	Serial.println("Go to sleep...");
+	delay(200);
+	
+	for (int i = 0;  i < SLEEP_CYCLES; i++){
+		LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);   //se puede subir a SLEEP_8S
+	}
+	Serial.println("Awaken");
+	
+	rellenarComedero();
+	
+	
+	delay(500);
+	
+}
+	\end{lstlisting}
+	
+	\noindent \textit{\textbf{OLED}}: \textit{OLED\_display.ino}\\
+	
+	\begin{lstlisting}[language=C]
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 32 // OLED display height, in pixels
+
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+// The pins for I2C are defined by the Wire-library. 
+// On an arduino UNO:       A4(SDA), A5(SCL)
+#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3C for 128x32
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+void setup() {
+	Serial.begin(115200);
+	
+	// SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+	if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+		Serial.println(F("SSD1306 allocation failed"));
+		for(;;); // Don't proceed, loop forever
+	}
+	
+	// Show initial display buffer contents on the screen --
+	// the library initializes this with an Adafruit splash screen.
+	display.display();
+	delay(2000); // Pause for 2 seconds
+	
+	// Clear the buffer
+	display.clearDisplay();
+	
+	// Example
+	display.setTextSize(1);
+	display.setTextColor(WHITE);
+	display.setCursor(0, 0);
+	
+	display.println("Hola mundo! :D");
+	display.println("msg recibido");
+	display.println("3");
+	display.println("4");
+	display.display();
+	delay(100);
+	
+	// Scrolling mode
+	//display.startscrollright(0x00, 0x0F);
+	//delay(2000);
+	//display.stopscroll();
+	//delay(1000);
+	//display.startscrollleft(0x00, 0x0F);
+	//delay(2000);
+	//display.stopscroll();
+	//delay(1000);  
+}
+
+void loop() {
+	// put your main code here, to run repeatedly:
+	
+}
+	\end{lstlisting}
+
+	\noindent \textit{\textbf{Comunicación LoRa}}: nodo de control, \textit{SendEBYTE.ino}\\
 	
 	\begin{lstlisting}[language=C]
 #include <SoftwareSerial.h>
@@ -3395,7 +3678,7 @@ void loop() {
 }		
 	\end{lstlisting}
 
-	\noindent Código Arduino: \textit{ReceiveEBYTE\_OLED.ino}\\
+	\noindent \textit{\textbf{Comunicación LoRa}}: nodo sensorización, \textit{ReceiveEBYTE\_OLED.ino}\\
 	
 	\begin{lstlisting}[language=C]
 // LoRa E32 
@@ -3569,109 +3852,297 @@ void updateDisplay(struct DATA *msg){
 }		
 	\end{lstlisting}
 
-	\noindent Código Arduino: \textit{refugio\_protocolo.ino} \\
+	\noindent \textbf{Código Arduino usado para prototipo definitivo} \\
+	
+	\noindent \textit{\textbf{Protocolo}}, para terminal de estación del refugio: \textit{refugio\_protocolo.ino} \\
 	
 	\begin{lstlisting}[language=C]
 #include <SoftwareSerial.h>
 #include "EBYTE.h"
 #include <avr/io.h>
-		
+#include <Servo.h>
+
+// v1.1a PCB
+#define PUMP 7
+#define LEVEL_SW1 8  // nivel superior
+#define LEVEL_SW2 10 // nivel inferior
+#define SERVO 9
 #define PIN_RX 2
 #define PIN_TX 3
 #define PIN_M0 4
 #define PIN_M1 5
 #define PIN_AX 6
-		
+
 #define LORA_CHANNEL 5
-		
+
+#define REFILL_TIME 5000  // rellenarBebedero: 5000 ms == 5s para rellenar bebedero (default)
+
+#define SPEED_SERVO 1500  // default: 1500. Lower value, it goes faster
+
+#define NUM_CICLO 4       // rellenarComedero, mantener movimiento giratorio en un ciclo de rellenado
+
+#define TOTAL_REFILL 20   // rellenarComedero, total de recargas de pienso desde reserva hasta llegar al 80% de vaciado (20% no lo contamos por seguridad)
+
+#define BAUDRATE 115200
+
+int num_refill = 0;       // contador de veces que se ha rellenado el comedero desde la reserva, si es igual a TOTAL_REFILL entonces dejamos de rellenar
+Servo servo1;
+
+SoftwareSerial ESerial(PIN_RX, PIN_TX); // "falso" serial para comunicarnos con el E32 (creado en SW)
+EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
+
 struct ebyte_struct {
 	unsigned long count;
-	String msg;                                           
+	char msg[64];
 };
 ebyte_struct ebyte_msg;
-		
-int Chan;
+
 unsigned long Last;
-		
-SoftwareSerial ESerial(PIN_RX, PIN_TX);
-EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
-		
-		
+
 void setup() {
-	Serial.begin(115200);
-			
+	Serial.begin(BAUDRATE);
+	Serial.println("Serial initialized");
+	delay(300);
+	
+	// start the transceiver serial port--i have yet to get a different
+	// baud rate to work--data sheet says to keep on 9600
 	ESerial.begin(9600);
-	Serial.println("Starting Reader");
-			
+	
+	// init ebyte
+	Serial.println("Init transceiver");
 	// this init will set the pinModes for you
 	Transceiver.init();
-			
+	
 	// all these calls are optional but shown to give examples of what you can do
-			
-	// Serial.println(Transceiver.GetAirDataRate());
-	// Serial.println(Transceiver.GetChannel());
-			
+	
+	//Serial.println(Transceiver.GetAirDataRate());
+	//Serial.println(Transceiver.GetChannel());
+	
 	Transceiver.SetMode(MODE_NORMAL);
-			
+	//Transceiver.SetMode(MODE_WAKEUP);
+	
 	Transceiver.SetUARTBaudRate(UDR_9600);
 	Transceiver.SetAirDataRate(ADR_2400);
 	Transceiver.SetAddressH(1);
 	Transceiver.SetAddressL(0);
-			
+	
 	Transceiver.SetChannel(LORA_CHANNEL);
-	Transceiver.SetTransmitPower(OPT_TP21);
+	Transceiver.SetTransmitPower(OPT_TP21); //change transceiver tx-rx power 
 	Transceiver.SetPullupMode(0);
-	Transceiver.SetFECMode(1);
-			
+	Transceiver.SetFECMode(1);  
+	
 	// save the parameters to the unit,
+	//Transceiver.SaveParameters(PERMANENT);
 	Transceiver.SaveParameters(TEMPORARY);
-			
+	
 	// you can print all parameters and is good for debugging
 	// if your units will not communicate, print the parameters
 	// for both sender and receiver and make sure air rates, channel
 	// and address is the same
 	Transceiver.PrintParameters();
+	
+	ebyte_msg.count = 0;
+	
+	// inicializar sensores
+	Serial.println("");
+	pinMode(LEVEL_SW1, INPUT);
+	pinMode(LEVEL_SW2, INPUT);
+	pinMode(PUMP, OUTPUT);
+	
+	servo1.attach(SERVO);
+	
+	Serial.println("Ready...");
+	delay(500);
 }
-		
+
 void loop() {
-			
+	
 	// if the transceiver serial is available, proces incoming data
 	// you can also use Transceiver.available()
-			
+	
 	if (ESerial.available()) {
-				
+		
 		// i highly suggest you send data using structures and not
 		// a parsed data--i've always had a hard time getting reliable data using
 		// a parsing method
-				
+		
 		Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
-		//read = Transceiver.GetByte();
-				
-		//Serial.println(read);
-				
+		
 		// dump out what was just received
-		Serial.print("Count: "); Serial.println(ebyte_msg.count);
-		Serial.print("msg: "); Serial.println(ebyte_msg.msg);
-		Serial.println("***");
+		Serial.print("ID: "); Serial.println(ebyte_msg.count);
+		Serial.print("Msg: "); Serial.println(ebyte_msg.msg);
+		//Serial.println("***");
 		// if you got data, update the checker
 		Last = millis();
-				
+		
+		//ejecutar comandos segun llegue orden por radio
+		
+		executeCommand(ebyte_msg.msg);
+		
 	}
 	else {
 		// if the time checker is over some prescribed amount
 		// let the user know there is no incoming data
 		if ((millis() - Last) > 1000) {
-			Serial.println("Searching: ");
+			//Serial.println("Searching: ");
 			Last = millis();
 		}
-				
+		
 	}
+}
+
+void executeCommand(String data) {
+	String static msg;
+	
+	if (data.equals("status")) {
+		
+		
+		int waterLevel = checkWaterLevel();
+		
+		int feederLevel = TOTAL_REFILL - num_refill;
+		
+		String status;
+		
+		if (waterLevel > 25 && feederLevel > 5){
+			status = "ok";
+		} else if (waterLevel <= 25 || feederLevel <= 5){
+			status = "ko";   
+		} else {
+			status = "unknown";
+		}
+		
+		msg = "ack;status;" + status;
+		
+		sendMessage(msg);
+	}
+	
+	if (data.equals("ping")) {
+		msg = "ack;pong";
+		
+		sendMessage(msg);
+	}
+	
+	if (data.equals("reset_comedero")) {
+		num_refill = 0;
+		
+		msg = "ack;reset_comedero";
+		
+		sendMessage(msg);
+	}
+	
+	if (data.equals("rellenar_comedero")) {
+		String feeder = rellenarComedero();
+		
+		msg = "ack;feeder_refill;" + feeder + ";num_refill;" + num_refill;
+		
+		sendMessage(msg);
+		
+	}
+	
+	if (data.equals("rellenar_bebedero")) {
+		String refill = rellenarBebedero();
+		
+		msg = "ack;water_refill;" + refill;
+		
+		sendMessage(msg);
+	}
+	
+	if (data.equals("check_levels")) {
+		int waterLevel = checkWaterLevel();
+		
+		msg = "ack;water;" + String(waterLevel);
+		
+		sendMessage(msg);
+	}
+	
+	if (data.equals("update_oled")) {
+		Serial.println("to do");
+	}
+	
+}
+//Datos recibidos por serial, por eso printeo desde Serial.
+void sendMessage(String data) {
+	Serial.println("Sending data: " + data);
+	
+	// Send to radio
+	data.toCharArray(ebyte_msg.msg, data.length()+1);
+	ebyte_msg.count++; 
+	
+	Transceiver.SendStruct(&ebyte_msg, sizeof(ebyte_msg));
+	Serial.println("[Refugio] Enviado. ID: " + String(ebyte_msg.count));
+	//Serial.println("***");
+	delay(1000);
+}
+
+int checkWaterLevel() {
+	boolean sw1 = digitalRead(LEVEL_SW1);
+	boolean sw2 = digitalRead(LEVEL_SW2);
+	
+	if (sw1) {
+		return 100; // 100%
+	} else if (sw2) {
+		return 50; // 50%
+	} else {
+		return 25; // < 25%
+	}
+}
+
+String rellenarBebedero() {
+	int waterLevel = checkWaterLevel();
+	
+	if (waterLevel > 25) {
+		//accionar rele para activar bomba
+		Serial.println("Rellenando bebedero...");
+		
+		digitalWrite(PUMP, HIGH);
+		delay(REFILL_TIME);
+		digitalWrite(PUMP, LOW);
+		
+		//delay(500);
+		
+		Serial.println("Bebedero lleno");
+		
+		return "ok";
+	} else {
+		return "ko";
+	}
+	
+}
+
+String rellenarComedero(){
+	
+	if (num_refill >= 0 && num_refill <= TOTAL_REFILL){
+		
+		Serial.println("Rellenando comedero...");
+		Serial.println("Contador de rellenado: " + String(num_refill));
+		Serial.println("Ciclos restantes de rellenado: " + String((TOTAL_REFILL-num_refill)));
+		
+		for (int i = 0; i <= NUM_CICLO; i++) {    //ajustar en defines NUM_CICLO si queremos un ciclo de rellenado mas largo o mas corto
+			//Serial.println(i);
+			servo1.write(0);
+			delay(SPEED_SERVO);
+			servo1.write(105);
+			delay(SPEED_SERVO);
+		}
+		
+		// Posicion estatica
+		servo1.write(90);
+		delay(SPEED_SERVO);   // ajustar en define
+		
+		num_refill++;
+		Serial.println("Ciclo " + String(num_refill) + "/20 de rellenado finalizado.");
+		
+		return("ok");
+	} else{
+		return("ko");
+	}
+	
 }
 	\end{lstlisting}
 	
 	\pagebreak
 	
-	\noindent Código Arduino: \textit{gw\_protocolo.ino} \\
+	\noindent \textit{\textbf{Protocolo}}, para terminal de estación del campo: \textit{gw\_protocolo.ino} \\
 	
 	\begin{lstlisting}[language=C]
 
@@ -3721,7 +4192,7 @@ void setup() {
 	Transceiver.SetAddressL(0);
 	
 	Transceiver.SetChannel(LORA_CHANNEL);
-	Transceiver.SetTransmitPower(OPT_TP21); //21dBm
+	Transceiver.SetTransmitPower(OPT_TP21); //change transceiver tx-rx power
 	Transceiver.SetPullupMode(0);
 	Transceiver.SetFECMode(1);
 	
@@ -3758,7 +4229,7 @@ void loop() {
 		dat_rec = Serial.readString();
 		dat_rec.trim(); //quita espacio en blanco
 		
-		Serial.println("Received data: " + dat_rec);
+		Serial.println("[GW] Comando recibido: " + dat_rec);
 		
 		sendMessage(dat_rec); //dat_rec will be sent via radio/LoRa
 	}
@@ -3775,9 +4246,10 @@ void loop() {
 		Transceiver.GetStruct(&ebyte_msg, sizeof(ebyte_msg));
 		
 		// dump out what was just received
-		//Serial.print("Count: "); 
-		//Serial.println(ebyte_msg.count);
+		Serial.print("[Refugio] ID: "); 
+		Serial.println(ebyte_msg.count);
 		//Serial.print("msg: "); 
+		Serial.print("[Refugio] Msg: ");
 		Serial.println(ebyte_msg.msg);
 		//Serial.println("***");
 		// if you got data, update the checker
@@ -3797,15 +4269,15 @@ void loop() {
 
 //Data received by pc-nano serial comm -- will be transmitted by our gw LoRa transceiver
 void sendMessage(String data) {
-	Serial.println("Sending data: " + data);
+	Serial.println("[GW] Enviando por LoRa: " + data);
 	
 	// Send to radio
 	data.toCharArray(ebyte_msg.msg, data.length()+1);
 	ebyte_msg.count++; 
 	
 	Transceiver.SendStruct(&ebyte_msg, sizeof(ebyte_msg));
-	Serial.println("Sent. Count " + String(ebyte_msg.count));
-	Serial.println("***");
+	Serial.println("[GW] Msg enviado. ID: " + String(ebyte_msg.count));
+	//Serial.println("***");
 	delay(1000);
 }
 	\end{lstlisting}

@@ -56,7 +56,7 @@ presentan por norma general licencias que, como mínimo, exigen que se mencione 
 	Apartado 4.2.1.2. Bebedero
 	Apartado 4.2.1.1. Comedero
 
-	Explicación de las pruebas de campo
+	Explicación de las pruebas de campo -- HECHO
 	Explicación de las pruebas de interior
 
 	Explicación del por qué de elegir los E32 (características técnicas)
