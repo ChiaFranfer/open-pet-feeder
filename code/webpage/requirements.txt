@@ -1,7 +1,0 @@
-flask
-flask-serial
-flask-socketio
-eventlet
-gevent
-gevent-websocket
-datetime

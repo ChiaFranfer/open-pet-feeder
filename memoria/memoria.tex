@@ -77,6 +77,25 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
+%%ENCABEZADO Y PIE DE PAGINA
+
+\usepackage{fancyhdr}
+\fancyhf{}
+\lhead[\leftmark]{\small TFE: Lucía Francoso}
+\rhead[Nombre Autor]{\rightmark}
+\cfoot[\thepage]{}
+\cfoot[]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+	\fancyhf{}
+	\fancyhead[L]{}
+	\fancyfoot[C]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{fancy}
+
 \begin{document}
 	\selectlanguage{spanish}
 	
@@ -141,12 +160,13 @@
 	
 	\pagebreak
 	
-	\listoftables
-	\addcontentsline{toc}{section}{Índice de tablas}
+	%\listoftables
+	%\addcontentsline{toc}{section}{Índice de tablas}
 	
-	\pagebreak
+	%\pagebreak
 	
 	\section*{Agradecimientos}
+	\thispagestyle{plain}
 	\addcontentsline{toc}{section}{Agradecimientos}
 	
 	\noindent Primero, me gustaría agradecer a mi tutor, Juan Pascual García, por aceptar este reto junto a mi, y apoyarlo en todo momento. Fue un proyecto diferente, algo arriesgado, y siempre confió en que lo sacaríamos hacia delante. Muchas gracias por tu apoyo a distancia, debido a la Covid-19, que a pesar de todo siempre he obtenido tu ayuda y tu feedback a tiempo, y confianza en todo proceso requerido en este proyecto, pilares fundamentales en cualquier emprendimiento.\\
@@ -159,11 +179,14 @@
 	
 	\noindent Me gustaría también agradecer a mi amiga Magdalena, mi amiga de toda la vida, la cual me apoya incondicionalmente, y me inspira en su lucha constante por mejorarse así misma y por ganarse la vida en lo que más le gusta, la música. A mi amiga Clara, la cual es una estupenda teleco, que siempre ha confiado en mi más que yo misma, y la cual me inspira por ser una persona fuerte, independiente y que tiene claro lo que quiere. A mi amigo Pablo, porque ni la distancia ni las exigentes carreras que cursamos nos han hecho perder el contacto, ni perder un vínculo que hace años se formó. Es un placer poder contar con estar tres personas.\\  
 	
+	\pagebreak
+	\thispagestyle{plain}
+	
 	\noindent Especial mención a mi compañero Enrique Fernández Sánchez, el cual ha sido también como mi tutor, ayudándome muchísimo a comprender la importancia del Open Source, guiándome en el conocimiento sobre microcontroladores y LoRa, y en general, aconsejándome en todo lo que ha podido y más. Gracias a él, la introducción al mundo maker se me ha hecho más sencilla, mucho más consciente y sin excesivos agobios. A esto, añadir que su aportación económica me ha ayudado muchísimo a sacar este proyecto hacia delante. Sin duda, ajeno a este proyecto, aprenderé muchas cosas de él y gracias a él, y no me cabe la menor duda de que es un gran teleco y una gran persona.\\
 	
 	\noindent Agradecer a Patitas Unidas Los Alcázares por permitirme instalar un dispositivo en sus instalaciones, y por comprender mi ausencia durante algunos meses donde el desarrollo de este proyecto era muy exigente. Especial mención a mi compañera Jen, con la que voy al refugio prácticamente siempre; sus ganas y actitud al tratar con los perros desde luego es una cualidad a admirar, y es una inspiración que recarga fuerzas para seguir luchando por los animales.\\
 	
-	\noindent Por último, agradecer a todas esas personas que han subido a la nube su proyecto, su documentación y dejan todo ese desarrollo bajo licencia Open Source, permitiendo que gente como yo desarrolle su proyecto basándome en sus librerías, o me den ideas que sin duda impulsen el mío. Estarán debidamente mencionadas, ya que merecen ese crédito.\\
+	\noindent Por último, agradecer a todas esas personas que han publicado su proyecto,  documentación y dejan todo ese desarrollo bajo licencias Open Source, permitiendo que gente como yo desarrolle su proyecto basándome en sus librerías, o me den ideas que sin duda impulsen el mío. Estarán debidamente mencionadas, ya que merecen ese crédito.\\
 	
 	\pagebreak
 	
@@ -221,15 +244,55 @@
 	\end{itemize}
 	
 	\subsection[Enfoque y método seguido]{Enfoque y método seguido}
+	
+	\noindent En primer lugar, es necesario aclarar que se trata de un trabajo académico, de modoque el proyecto buscará en todo momento el aprendizaje y la aplicación de lo aprendido. Es decir, partiendo de que los objetivos del proyecto están definidos, se requiere una investigación continua y su aplicación al diseño del sistema de todas laspartes que conformarán el todo (tanto para la consecución de dichos objetivos como para establecer unas bases para futuros proyectos). Así, conocer el entorno Arduino y la tecnología LoRason los pilares de este proyecto, suponiendo la mayor carga de trabajo de estudio yaplicación. \\
+	
+	\noindent En tanto al método seguido, decir que se ha separado en bloques temáticos; se investiga cada bloque por separado (búsqueda y recopilación de información), y se prueba (diseño y simulaciones, en software y hardware). Posteriormente, siguiendo una metodología en cascada, una vez resueltos los bloques individuales, se unen los bloques formando un prototipo y se prueba en conjunto. En resumen, a lo largo del trabajo se profundiza en cada uno de los bloques mediante elestudio de las tecnologías, el análisis de requisitos y la búsqueda de soluciones quepermitan resolver cada bloque y la interconexión entre ellos. \\
+	
+	\noindent Finalmente, para mayor claridad se describe cada bloque:
+	
+	\begin{itemize}
+		\item \textbf{Monitorización:} sensores que se emplearán en el sistema.
+		\item \textbf{Control: }microcontrolador para procesado.
+		\item \textbf{Comunicaciones: }módulo LoRa.
+		\item \textbf{Actuación: } actuación sobre bombas de agua y reserva de comida.
+		\item \textbf{Alimentación autónoma:} posible uso de baterías recargables.
+	\end{itemize}
+	
+	\noindent Todo esto puede variar ligeramente respecto a lo inicialmente aquí expuesto, según seprofundice en cada bloque y se adquieran mayores conocimientos.
+	
 	\subsection[Planificación del trabajo]{Planificación del trabajo}
 	
-	\noindent A continuación, se mostrará una tabla resumen, elaborada durante el proceso de concepción del proyecto (etapa inicial), de manera que, por una parte, se pudiera tener una idea de los recursos necesarios para poder dar comienzo al proyecto (tanto materiales como software); por otra parte, serviría, a grosso modo, para conocer y planificar una serie de pasos desde esa concepción hasta una presentación de un prototipo funcional, resultado del desarrollo del proyecto. \\
-	
-	\noindent [Insertar tabla con Planificación inicial] \\
+	\noindent En el \hyperref[anexo III: presupuesto]{Anexo III}, se adjunta una tabla resumen, elaborada durante el proceso de concepción del proyecto (etapa inicial), de manera que, por una parte, se pudiera tener una idea de los recursos necesarios para poder dar comienzo al proyecto (tanto materiales como software); por otra parte, serviría, a grosso modo, para conocer y planificar una serie de pasos desde esa concepción hasta una presentación de un prototipo funcional, resultado del desarrollo del proyecto. 
 	
 	\subsection[Breve sumario de productos obtenidos]{Breve sumario de productos obtenidos}
+	
+	\noindent Dado que el objetivo fundamental de este proyecto es el diseño del sistema y laconstrucción y pruebas de un prototipo para verificar su funcionalidad, se trata puesde obtener los siguientes productos:
+	
+	\begin{itemize}
+		\item \textbf{Prototipo hardware} del sistema perfectamente operativo.
+		\item \textbf{Software} que implemente las funciones elementales que demuestren elcorrecto funcionamiento del sistema.
+		\item \textbf{Memoria} del proyecto, donde se expone detalladamente todo el proceso dediseño y su argumentación.
+		\item \textbf{Video demostración de las pruebas realizadas}, para mostrar elcontexto de aplicación de la solución diseñada mediante el prototipoconstruido.
+		\item \textbf{Presentación} del proyecto en Power Point o similar, para exponer las ideas yrecursos esenciales incluidos en el diseño.
+	\end{itemize}
+	
+	\noindent Además, se ampliará el alcance del proyecto creando un repositorio en \textit{GitHub }(\url{https://github.com/}), donde se incluirá todo el desarrollo de este proyecto (\url{https://github.com/ChiaFranfer/open-pet-feeder}), permitiendo así que otras personas puedan usarlo o mejorarlo.
+	
 	\subsection[Breve descripción de los capítulos restantes de la memoria]{Breve descripción de los capítulos restantes de la memoria}
 	
+	\noindent Esta memoria se divide en 5 capítulos:\\
+	
+	\noindent \textbf{Capítulo 1: }se contextualiza el problema y se propone la solución, se detalla todo elproceso de planificación, finalizando conla descripción de resultados o productos obtenidos.\\
+	
+	\noindent \textbf{Capítulo 2: }se realiza una aproximación al estado actual del ámbito del tema delproyecto. También, se presentan ejemplos Open Source dentro de este ámbito.\\
+	
+	\noindent \textbf{Capítulo 3:} se trata del capítulo principal del proyecto, donde se expone todo elproceso de diseño del sistema. Se parte de la determinación de las funcionalidades que hay que cubrir, para determinar posibles necesidad y así iniciar una búsqueda de soluciones. Es aquí donde se exponen tanto las tecnologías que seemplean en el diseño de la solución (Arduino y LoRa), como distintos componentes hardware necesarios para cada funcionalidad. Finalmente, se expone la elección de soluciones hardware, y se define un primer prototipo provisional. Se proponen losdispositivos que se emplean y las pruebas necesarias para verificar su funcionamiento,tanto en monitorización como en comunicaciones. \\
+	
+	\noindent \textbf{Capítulo 4: }se trata el proceso de construcción del prototipo definitivo, sus evoluciones desde el prototipo provisional y laspruebas realizadas para verificar su funcionamiento, incluyendo el contexto real (entorno definitivo).\\
+	
+	\noindent \textbf{Capítulo 5:} se proponen los resultados y las conclusiones obtenidas a la finalización del proyecto, así como las opciones futuras con las que se puede mejorar el diseño.\\
+
 	\pagebreak
 	
 
@@ -268,7 +331,7 @@
 	
 	\begin{itemize}
 		\item Cumple el Objetivo 15 de Desarollo Sostenible (ODS), el cual trata de \textit{``Gestionar sosteniblemente los bosques, luchar contra la desertificación, detener e invertir la degradación de las tierras, detener la pérdida de biodiversidad''} [\ref{bib: ods}]. Con este proyecto, nos estamos enfocando en ayudar en la detención de la pérdida de biodiversidad, ya que, como se ha comentado anteriormente, se va a crear un dispositivo capaz de alimentar y abrevar animales en lugares sin electricidad y sin conexión a internet, usando el menor número de dispositivos radio posible (siendo estos de largo alcance y bajo consumo). Instalando estos dispositivos en zonas de cuidado de animales podemos reducir el tiempo que dedican los voluntarios a las diferentes actividades (como hemos mencionado en el apartado \ref{subsection: contexto y justificacion}), permitiendo usar ese tiempo en otras actividades igualmente prioritarias pero que difícilmente se pueden realizar en remoto, como el salvamento o rescate de animales, ubicación, repoblación o cuidados veterinarios. 
-		\item Existe una solicitud formal de la protectora que va a hacer uso del dispositivo creado con este proyecto, Patitas Unidas Los Alcázares [\ref{bib: fb patitas}] [\ref{bib: web patitas}]. Dicha solicitud recoge los mínimos que debe tener en cuenta el proyecto, ya expuestos en el apartado \ref{subsection: objetivos del trabajo}.
+		\item Existe una solicitud formal de la protectora que va a hacer uso del dispositivo creado con este proyecto (ver Figura \ref{Estado del arte: logos}), Patitas Unidas Los Alcázares [\ref{bib: fb patitas}] [\ref{bib: web patitas}]. Dicha solicitud recoge los mínimos que debe tener en cuenta el proyecto, ya expuestos en el apartado \ref{subsection: objetivos del trabajo}.
 	\end{itemize}
 	
 	\begin{figure} [h!]
@@ -335,7 +398,7 @@
 		\item La \textit{\textbf{capacidad}}, medida en amperio-hora (Ah), de una batería (o celda) es su figura de mérito más importante: se define como la cantidad de corriente que una batería puede entregar durante 1 hora antes de que el voltaje de la batería llegue al final de su vida útil. 
  		\item La \textit{\textbf{tasa ``c''}}  es una corriente que es numéricamente igual a la clasificación Ah de la celda. Las corrientes de carga y descarga se expresan típicamente en fracciones o múltiplos de la tasa c. 
  		\item El \textit{\textbf{MPV (voltaje de punto medio)}} es el voltaje nominal de la celda y es el voltaje que se mide cuando la batería se ha descargado el 50\% de su energía total. \\
- 		\noindent La oscilación de voltaje máxima y mínima del valor nominal es una consideración de diseño importante: una curva de descarga "más plana" significa menos variación de voltaje que el diseño debe tolerar.
+ 		\noindent La oscilación de voltaje máxima y mínima del valor nominal es una consideración de diseño importante: una curva de descarga ``más plana" significa menos variación de voltaje que el diseño debe tolerar.
  		\item El \textit{\textbf{voltaje de celda medido al final de su vida útil}} se llama \textit{\textbf{EODV}}, que significa \textit{Fin de voltaje de descarga} (algunos fabricantes se refieren a esto como \textit{EOL} o \textit{voltaje de fin de vida útil}). \\
  		\noindent Cuando se carga al máximo, el voltaje real de la celda será más alto que el MPV. Al acercarse al punto EODV (final del voltaje de descarga), el voltaje de la celda será menor que el MPV. 
  		\item La \textit{\textbf{densidad de energía gravimétrica}} de una batería es una medida de cuánta energía contiene una batería en comparación con su peso. Normalmente viene expresada en Watt-horas/kilogramo (Wh/kg).
@@ -344,15 +407,16 @@
  		\item Un \textit{\textbf{cargador de corriente constante}} es un circuito que carga una batería al suministrar una corriente fija a la batería, independientemente del voltaje de la batería.
 	\end{itemize}
 
-	\pagebreak
+	%\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.6\textwidth]{img/chargeDischargeCurve_TxInst.png}
+			\includegraphics[width=0.5\textwidth]{img/chargeDischargeCurve_TxInst.png}
 			\caption{Curva de la carga/descarga de una batería [\ref{bib: TI rechargeable batteries}].}
 		\end{center}
 	\end{figure}
 
+	\pagebreak
 
 	% \noindent Entrarían dentro de esta categoría  las conocidas baterías recargables, formato LiPo o Li-ion, por ejemplo, o formato powerbank, que si bien en su interior usan baterías LiPo/Li-ion, el encapsulado en el que se presentan y la forma en que se usan son totalmente diferentes. \\
 	
@@ -378,49 +442,18 @@
 	
 	\noindent \textit{Comparativa entre tipos de baterías recargables} \\
 	
-	\noindent \textit{\textbf{Densidad de energía}}
+	\noindent Hemos visto que existen diferentes tipos de baterías, las cuales podemos comparar entre ellas basándonos en diferentes parámetros. Fijándonos en un estudio de \textit{Texas Instruments} [\ref{bib: TI rechargeable batteries}], el cual compara baterías de Ni-MH, Ni-Cd y Li-Ion, algunos parámetros que podemos comparar son:
 	
-		\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/energyDensityComparison_TxInst.png}
-			\caption{Comparación densidad de energía para diferentes baterías [\ref{bib: TI rechargeable batteries}].}
-			\label{fig: comparación densidad energía}
-		\end{center}
-	\end{figure}
-	
-	 
-	
-	\noindent Al revisar los datos de la Figura \ref{fig: comparación densidad energía}, la ventaja de Li-Ion en densidad gravimétrica es claramente la más sorprendente, casi duplicando las cifras de Ni-Cd y Ni-MH. Esto significa que los productos que funcionan con celdas de iones de litio se pueden hacer mucho más livianos sin sacrificar el tiempo de ejecución. Alternativamente, si el peso de la batería se mantiene igual, el tiempo de funcionamiento se duplicará si se utilizan baterías de iones de litio. Este hecho explica la razón por la que Li-Ion está reemplazando rápidamente al Ni-MH en los teléfonos celulares y computadoras portátiles de primera línea. \\
-	
-	\noindent \textit{\textbf{Estabilidad de tensión o tensión de celda}}\\
-	
-	\noindent La tensión proporcionada para alimentar la carga es la más importante: las baterías Ni-Cd y Ni-MH tienen una tensión por celda de 1.25V (sus tensiones de descarga se asumen por norma general idénticas). \\
-	\noindent La tensión por celda de las baterías Ni-Cd y Ni-MH son sólo una tercera parte de la tensión nominal de 3.6V proporcionada por una celda de Li-ion (Figura \ref{fig: curva descarga celdas}), lo que significa que se requerirían tres celdas de Ni-Cd/Ni-MH conectadas en serie para igualar la tensión de una única celda de Li-ion.\\
-	\noindent Sin embargo, la Figura \ref{fig: curva descarga celdas} muestra también la gran ventaja de las baterías Ni-Cd y Ni-MH: su curva de descarga es extremadamente plana, próxima a la de una batería ideal. Esta importante diferencia entre tipos de baterias significa que las celdas de Ni-Cd y Ni-MH son adecuadas para su uso con reguladores lineales, pero las baterías de Li-ion requieren convertidores reductores (\textit{Buck converters}) para obtener una buena eficiencia de conversión de energía en la fuente de alimentación. \\
+	\begin{itemize}
+		\item \textit{\textbf{Densidad de energía}}. La batería Li-Ion duplica en densidad gravimétrica a las baterías Ni-MH y Ni-Cd, lo que significa que el producto que emplee una batería Li-Ion será más liviano y durará más tiempo la propia batería
 		
-	\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/cellDischargeCurve_TxInst.png}
-			\caption{Curva de descarga de una celda Li-ion y una celda Ni-Cd/Ni-MH (caída de tensión conforme aumentan las horas de uso de la batería) [\ref{bib: TI rechargeable batteries}].}
-			\label{fig: curva descarga celdas}
-		\end{center}
-	\end{figure}
+		\item \textit{\textbf{Estabilidad de tensión o tensión de celda}}. 	La tensión proporcionada para alimentar la carga es la más importante: las baterías Ni-Cd y Ni-MH tienen una tensión por celda de 1.25V (sus tensiones de descarga se asumen por norma general idénticas). \\
+		La tensión por celda de las baterías Ni-Cd y Ni-MH son sólo una tercera parte de la tensión nominal de 3.6V proporcionada por una celda de Li-ion Lo que significa que se requerirían tres celdas de Ni-Cd/Ni-MH conectadas en serie para igualar la tensión de una única celda de Li-ion.\\
+		Sin embargo,su curva de descarga es extremadamente plana, próxima a la de una batería ideal. Esta importante diferencia entre tipos de baterías significa que las celdas de Ni-Cd y Ni-MH son adecuadas para su uso con reguladores lineales, pero las baterías de Li-ion requieren convertidores reductores (\textit{Buck converters}) para obtener una buena eficiencia de conversión de energía en la fuente de alimentación. 
+		
+		\item \textit{\textbf{Corriente pico}}, \textit{\textbf{Autodescarga}}, etc. No entraremos en más detalle por no extender en exceso la longitud del documento, pero si es de interés, se puede consultar la fuente, ya incluida en el apartado bibliográfico.
+	\end{itemize}
 	
-	\pagebreak 
-	
-	\noindent \textit{\textbf{Corriente pico}}\\	
-	
-	\noindent \textit{\textbf{Autodescarga}}\\	
-	
-	\noindent \textit{\textbf{Tiempo de carga}}\\	
-	
-	\noindent \textit{\textbf{Coste}}\\
-	
-	\noindent \textit{\textbf{Fiabilidad}}\\		
-	
-	\noindent \textit{\textbf{Modos de falla relacionados con la edad}}\\	
-	
-	\noindent \textit{\textbf{Temperatura de funcionamiento}}\\	
 	
 	\noindent \textbf{Panel solar}\\ 
 	
@@ -430,15 +463,15 @@
 	
 	\noindent \textit{Funcionamiento y composición de un panel solar}
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.6\textwidth]{img/layersSolarPanel.png}
+			\includegraphics[width=0.5\textwidth]{img/layersSolarPanel.png}
 			\caption{Capas y componentes que componen un panel solar [\ref{bib: solar reviews how solar panels work}].}
 			\label{fig: capas panel solar}
 		\end{center}
 	\end{figure}
 
-	\pagebreak
+	%\pagebreak
 	
 	\noindent Un panel solar es una agrupación de muchas células fotovoltaicas (PV) que están cubiertas con vidrio protector y unidas con un marco de metal. Es por eso que el nombre oficial de un panel solar es "módulo fotovoltaico" (\textit{PV module}). Estas células solares fotovoltaicas están hechas de material semiconductor, generalmente silicio, que se corta en tiras muy finas.\\
 	
@@ -446,11 +479,11 @@
 	
 	\noindent Cada célula fotovoltaica tiene una capa negativa y una capa positiva. Para que un panel solar genere electricidad solo necesitamos algo de energía para hacer que esos electrones fluyan de la capa negativa a la capa positiva. \\
 	
-	\noindent Así pues, en resumen, la energía de los fotones del sol hace que los electrones en el lado negativo de la celda fotovoltaica se muevan (existe electricidad). Esto se llama \texttt{efecto fotovoltaico}.\\
+	\noindent Así pues, en resumen, la energía de los fotones del sol hace que los electrones en el lado negativo de la celda fotovoltaica se muevan (existe electricidad). Esto se llama \textit{efecto fotovoltaico}.\\
 	
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.6\textwidth]{img/photovoltaic_effect.png}
+			\includegraphics[width=0.5\textwidth]{img/photovoltaic_effect.png}
 			\caption{Dibujo representativo del efecto fotovoltaico [\ref{bib: solar reviews how solar panels work}].}
 			\label{fig: efecto fotovoltaico}
 		\end{center}
@@ -480,7 +513,7 @@
 			\caption{Curva I-V de una célula solar [\ref{bib: research gate pv cell param}].}
 			\label{fig: I-V curve of a solar cell}
 		\end{subfigure}
-		\caption{Curvas J-V e I-V de una célula fotovoltaica}
+		\caption{Curvas J-V e I-V de una célula fotovoltaica [\ref{bib: research gate JV curve solar panel}][\ref{bib: research gate pv cell param}]}
 		\label{fig:curvas J-V e I-V célula PV}
 	\end{figure}
 
@@ -541,7 +574,7 @@
 	
 	\noindent Una célula fotovoltaica iluminada puede comportarse como un diodo ideal, y este comportamiento puede describirse a través de un circuito equivalente simple, como el que se muestra en la Figura \ref{fig: equivalent circuit solar cell} (a). donde un diodo y una fuente de corriente están conectados en paralelo. El diodo está formado por una unión p-n. \\
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/circuitEquivalent_solarCell.png}
 			\caption{Circuito equivalente de una célula fotovoltaica, en el caso ideal (a) y considerando pérdidas (b) [\ref{bib: TU delft OCW solar cell param}].}
@@ -551,7 +584,7 @@
 	
 	\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/JV_curve_withRsRp.png}
 			\caption{Curva J-V de una célula fotovoltaica, mostrando el efecto de aumentar o disminuir el valor de las resistencias $R_{s}$ y $R_{p}$ o $R_{sh}$ (\textit{shunt}) [\ref{bib: SciELO}].}
@@ -564,7 +597,7 @@
 	\footnotetext{El factor de idealidad del diodo es una medida de cómo de cerca el diodo sigue la ecuación del diodo ideal.}
 
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/nonIdeal_equivCircuit_solarCell.png}
 			\caption{Circuito equivalente de una célula fotovoltaica con un modelo de dos diodos, donde $n_{1}$ y $n_{2}$ son los factores de idealidad e $I_{d1}$ y $I_{d2}$ las corrientes que atraviesan cada diodo [\ref{bib: TU delft OCW solar cell param}].}
@@ -572,14 +605,17 @@
 		\end{center}
 	\end{figure}	
 	
+	%\pagebreak
 %	\noindent Uno de los parámetros más importantes en un panel solar es la \texttt{eficiencia}. Mide el porcentaje de luz solar que llega a la celda solar y que se convierte en electricidad utilizable. Cuanto mayor sea la eficiencia, menor será la superficie que necesitarán los paneles solares para satisfacer sus necesidades energéticas, pero mayor será el precio. \\
 	
 %	\noindent Algunas personas asocian mayores niveles de eficiencia con paneles de mayor calidad, pero esto no es necesariamente cierto. Alta eficiencia significa que su sistema fotovoltaico solar utilizará menos espacio en su azotea. Por lo tanto, quienes viven en áreas de alta densidad y tienen un espacio muy limitado para la energía solar generalmente están más preocupados por los niveles de eficiencia. \\
 	
 	\noindent \textit{Factores principales que influyen en la potencia de salida de una célula PV}\\
 	
+	\noindent Por la propia naturaleza del panel solar, su rendimiento (el cual, resumiendo, se traduce en cuál será su potencia de salida) se verá afectado por determinados factores, a destacar la radiación solar, la temperatura ambiente y la temperatura de la célula. \\
+	
 	\noindent \textit{\textbf{Radiación solar}}
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{subfigure}{0.45\textwidth}
 			\includegraphics[width=0.8\textwidth]{img/generalEffect_irradianceIVcurve_solarCell.png} 
 			\caption{Efecto general [\ref{bib: SlidePlayer Photovoltaic systems}].}
@@ -590,15 +626,17 @@
 			\caption{Efecto según valores concretos de radiación [\ref{bib: research gate pv power}].}
 			\label{fig:variación con valores en la curva I-V de una célula PV con la intensidad de la radiación solar.}
 		\end{subfigure}
-		\caption{Variación en la curva I-V ante la radiación solar.}
+		\caption{Variación en la curva I-V ante la radiación solar [\ref{bib: SlidePlayer Photovoltaic systems}][\ref{bib: research gate pv power}].}
 		\label{fig:variación I-V radiación solar}
 	\end{figure}
+	
+	\noindent En la Figura \ref{fig:variación I-V radiación solar} podemos observar que, a valores mayores de radiación, la corriente en cortocircuito (ya explicada con anterioridad en este documento) es mayor, y por tanto aumenta la potencia de salida de la célula. En menor medida, el valor de tensión en circuito abierto se desplaza a valores superiores, desplazando consigo el valor de tensión \textit{mpp} a valores también superiores. \\
 	
 	\pagebreak
 	
 	\noindent \textit{\textbf{Temperatura ambiente y temperatura de la célula}} \\
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{subfigure}{0.45\textwidth}
 			\includegraphics[width=0.8\textwidth]{img/generalEffect_celTempIVcurve_solarCell.png} 
 			\caption{Efecto general [\ref{bib: SlidePlayer Photovoltaic systems}].}
@@ -609,13 +647,15 @@
 			\caption{Efecto según valores concretos de temperatura ambiente [\ref{bib: research gate pv power}].}
 			\label{fig:variación con valores en la curva I-V de una célula PV con la temperatura.}
 		\end{subfigure}
-		\caption{Variación en la curva I-V ante la temperatura ambiente}
+		\caption{Variación en la curva I-V ante la temperatura ambiente [\ref{bib: SlidePlayer Photovoltaic systems}][\ref{bib: research gate pv power}]}
 		\label{fig:variación I-V temperatura}
 	\end{figure}
 	
 	\noindent Nótese que en la Figura \ref{fig: variación general en la curva I-V de una célula PV con la temperatura.} se hace referencia a \textit{temperatura de la célula} y en la Figura \ref{fig:variación con valores en la curva I-V de una célula PV con la temperatura.} a \textit{temperatura ambiente}. Si bien son dos magnitudes diferentes, la temperatura ambiente tiene un efecto sobre la temperatura de la célula que puede considerarse lineal. A una temperatura ambiente de $25^{\circ}C$, la temperatura de una célula de silicio cristalino suele situarse en el valor de $48^{\circ}C$. \\
 	
-	\begin{figure}[h]
+	\noindent Observamos también que según aumenta la temperatura de la célula, el valor de tensión en circuito abierto se desplaza a valores inferiores (y con él, el valor de la tensión \textit{mpp}). También lo hace conforme aumenta la temperatura ambiente (y acabamos de decir que cuando aumenta la ambiente, aumenta la de la célula de manera lineal). Esto implica un peor rendimiento del panel solar (ver Figura \ref{fig:solar temp}(b)).
+	
+	\begin{figure}[h!]
 		\begin{subfigure}{0.52\textwidth}
 			\includegraphics[width=1\textwidth]{img/PVcellTemp_AirTemp.png} 
 			\caption{}
@@ -634,22 +674,22 @@
 	
 	%\noindent \href{https://www.qpvgroup.org/blog/2019/2/3/how-does-air-temperature-affect-photovoltaic-solar-panel-output}{LEER ESTO Y COMENTAR POR AQUÍ, inclusive fórmula porque es relación lineal entre temperaturas ambiente y célula} \\
 	
-	\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/cellTemp_ambTemp_Irrad_Pow.png}
-			\caption{Variación de la potencia de salida de una célula PV dependiendo de la hora del día, la temperatura y la radiación solar [\ref{bib: research gate pv cell temp vs others}].}
-			\label{fig:cellTemp_ambTemp_Irrad_Pow}
-		\end{center}
-	\end{figure}
+%	\begin{figure}[h]
+%		\begin{center}
+%			\includegraphics[width=0.7\textwidth]{img/cellTemp_ambTemp_Irrad_Pow.png}
+%			\caption{Variación de la potencia de salida de una célula PV dependiendo de la hora del día, la temperatura y la radiación solar [\ref{bib: research gate pv cell temp vs others}].}
+%			\label{fig:cellTemp_ambTemp_Irrad_Pow}
+%		\end{center}
+%	\end{figure}
 	
-	\pagebreak
+%	\pagebreak
 	
 	\noindent \textit{Opciones: tipos de paneles solares}\\
 	
-	\noindent Existen diferentes tipos de células fotovoltaicas disponibles en el mercado, aunque en su mayoría están fabricadas de silicio (Si), el segundo elemento más abundante en la corteza terrestre (después del oxígeno), el cual es el mismo material del cual está hecha la arena. El silicio por sí mismo no es muy puro y debe ser refinado para conseguir una pureza de hasta el 99.99 \% antes de que pueda usarse como material semiconductor en muchos tipos distintos de células fotovoltaicas, transistores o circuitos integrados digitales. El uso de silicio en la fabricación de células fotovoltaicas produce la típica célula fotovoltaica de color azul uniforme. \\
+	\noindent Existen diferentes tipos de células fotovoltaicas disponibles en el mercado, aunque en su mayoría están fabricadas de silicio (Si), el cual por sí mismo no es muy puro y debe ser refinado para que pueda usarse como material semiconductor en muchos tipos distintos de células fotovoltaicas, transistores o circuitos integrados digitales. El uso de silicio en la fabricación de células fotovoltaicas produce la típica célula fotovoltaica de color azul uniforme. \\
 	\noindent Los dos tipos principales de materiales usados para células fotovoltaicas son el silicio cristalino y los depósitos de película fina, los cuales varían entre unos y otros en términos de eficiencia en absorción de luz, eficiencia en la conversión de energía, tecnología de fabricación y coste de producción. Las células fotovoltaicas (a partir de ahora, células PV, \textit{PhotoVoltaic}) hechas de silicio cristalino son el tipo más común de células PV que se utilizan en la actualidad y también son uno de los primeros dispositivos PV que tuvieron éxito.\\
 	
-	\noindent Los tres tipos generales de células PV hechas de silicio son:\\ 
+	\noindent Los tres tipos generales de células PV hechas de silicio son:
 	
 	\begin{itemize}
 		\item Silicio monocristalino, conocido tambien como silicio de un único cristal, cristal de silicio único o silicio monocristal (\textit{Mono-crystalline silicon, single-crystal silicon}).
@@ -657,11 +697,13 @@
 		\item Silicio de película fina. \\
 	\end{itemize}
 
-	\noindent \textit{\textbf{Silicio cristalino (c-Si)}} \\
+	%\noindent \textit{\textbf{Silicio cristalino (c-Si)}} \\
 	
-	\noindent \textit{\textbf{Célula PV de película fina}} \\
+	%\noindent \textit{\textbf{Célula PV de película fina}} \\
 	
-	\noindent \textit{\textbf{Otros tipos de células PV}} \\
+	%\noindent \textit{\textbf{Otros tipos de células PV}} \\
+	
+	%\pagebreak
 	
 	\subsubsection{Automatización y monitorización}
 	\label{subsección 3.2.2: automatización y monitorización}
@@ -677,11 +719,11 @@
 	\noindent A continuación, se va a presentar una lista con algunas opciones de microcontroladores [\ref{bib: arduino alternatives}][\ref{bib: microcontrollers alternative to arduino}][\ref{bib: alternative to arduino}]. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar; la elección de un microcontrolador u otro dependerá de lo que necesite nuestro proyecto (si necesita muchas entradas porque tendremos muchos periféricos, si necesitamos ahorro de energía al máximo, o una buena potencia de procesamiento, etc). \\
 	
 	\begin{itemize}
-		\item \textbf{Arduino}. Se trata de una plataforma de desarrollo Open Source hardware y software, característica por su facilidad de uso e integración entre la solución hardware (placas Arduino) y la solución software (Arduino IDE). Existe una gama variada de placas Arduino, entre las que podemos destacar la nano o la uno. A modo de ejemplo, se mostrará la información de la uno, placa recomendada por la propia organización Arduino para principiantes.\\
+		\item \textbf{Arduino}. Se trata de una plataforma de desarrollo Open Source hardware y software, característica por su facilidad de uso e integración entre la solución hardware (placas Arduino) y la solución software (Arduino IDE). Existe una gama variada de placas Arduino, entre las que podemos destacar la Nano o la Uno. A modo de ejemplo, se mostrará la información de la Uno, placa recomendada por la propia organización Arduino para principiantes.\\
 		
 		\textit{Especificaciones:} ATMega328P a 16 MHz, 32 kB de memoria flash, 2kB de SRAM y 1kB de EEPROM.\\
 		
-		\textit{Características:} 14 pines I/O digitales, 6 entradas analógicas, conexión USB, conector jack. \\
+		\textit{Características:} 14 pines I/O digitales, 6 entradas analógicas, conexión USB, conector de alimentación jack. \\
 		
 		\textit{Precio:} 20 \euro \enspace en Arduino.\\
 		
@@ -693,7 +735,7 @@
 		
 		\textit{Precio:} aprox. 8 \euro \enspace en Amazon.\\
 	
-		\item \textbf{STM32}. La familia STM32 de microcontroladores de 32 bits basada en el procesador Arm Cortex-M ofrece productos que combinan un rendimiento muy alto, capacidades en tiempo real, procesamiento de señales digitales, operación de bajo consumo / bajo voltaje y conectividad, mientras se mantiene una integración completa y facilidad de desarrollo.
+		\item \textbf{STM32}. La familia STM32 de microcontroladores de 32 bits basada en el procesador ARM Cortex-M ofrece productos que combinan un rendimiento muy alto, capacidades en tiempo real, procesamiento de señales digitales, operación de bajo consumo / bajo voltaje y conectividad, mientras se mantiene una integración completa y facilidad de desarrollo.
 		
 		La gama de microcontroladores STM32, basada en un núcleo estándar de la industria, viene con una amplia variedad de herramientas y software para respaldar el desarrollo de proyectos, lo que hace que esta familia de productos sea ideal tanto para proyectos pequeños como para plataformas de extremo a extremo. \\
 		
@@ -703,22 +745,6 @@
 		
 		\textit{Precio:} depende del microcontrolador. En este ejemplo, aprox. 10\$ en eBay. \\
 		
-		\item \textbf{The Pinguino 45K50}. Pinguino Project existe para acercar la simplicidad del lenguaje Arduino a los microcontroladores PIC de Microchip pero con un hardware USB incorporado y una placa que se puede construir en casa. El 45K50 es una de las opciones que nace de este proyecto Open Source.  Viene como un kit que se debe ensamblar antes de usarlo. \\
-		
-		\textit{Especificaciones:} procesador de 12 MIPS de 8 bits que se ejecuta a 48 MHz.\\
-		
-		\textit{Características:} 17 entradas / salidas digitales con 5 entradas analógicas compartidas, 2 salidas PWM, UART para comunicación en serie, etc.  IDE propio, también Open Source, compatible con el lenguaje Arduino y sus librerías.\\
-		
-		\textit{Precio:} aprox. 25\$.\\
-		
-		\item \textbf{Nanode}. Nanode ofrece una amplia gama de microcontroladores. Viene como un kit de desarrollo, lo que significa se debe ensamblar y soldar previamente antes de comenzar con la placa. 	El microcontrolador Nanode puede servir como alternativa a Arduino Uno, Mega y Yun, y también es Open Source.
-		
-		\textit{Especificaciones:} ATMega328P a 16MHz, 2kB de SRAM, 1kB de EEPROM, 32kB de memoria flash ISP.\\
-		
-		\textit{Características:} mini USB, controlador ethernet ENC8J60, conector ethernet, LEDs de diagnóstico.\\
-		
-		\textit{Precio:} aprox. 50\$.\\
-		
 		\item \textbf{Teensy 3.6. o Teensy 2.0}. La familia de placas Teensy fue desarrollada por PJRC durante los últimos años. Inicialmente, Teensy se creó prometiendo un poco más de factor de forma más pequeño. Uno de los Teensy más apreciados es el 3.6.; tiene un procesador ARM de 32 bits, 52 entradas/salidas en total, ADC, lector de tarjetas SD y muchas más funciones. Además, PJRC proporciona un complemento software \textit{Teensyduino} para una compatibilidad casi completa con los programas Arduino. \\ 
 		
 		\textit{Especificaciones}: 180-MHz Cortex M4F, 256 kB RAM, almacenamiento flash 1MB, 4K EEPROM. \\
@@ -726,34 +752,6 @@
 		\textit{Características}: Teensyduino para Arduino IDE, lector SD. \\
 		
 		\textit{Precio}: aprox. 30 \$ en PJRC. \\
-		
-		\item \textbf{Launchpad MSP430}. Launchpad es una placa de desarrollo fabricada por Texas Instruments (TI). Junto con el hecho de que viene con un MSP430 de TI, también brinda compatibilidad con el software y hardware de TI. Esto viene en forma de paquetes de refuerzo y herramientas de desarrollo en línea. Además, permite la depuración onboard. Existe un IDE similar a Arduino llamado Energia para un enfoque más sencillo. \\
-		
-		\textit{Especificaciones}: 24-MHz MSP430, 32 kB Program FRAM, 4 kB RAM. \\
-		
-		\textit{Características}: tecnología \textit{EnergyTrace} para bajo consumo, Energia (similar a Arduino IDE), dos botones onboard y LEDs, compatible con el \textit{Booster Pack}. \\
-		
-		\textit{Precio}: aprox. 13 \$ en Texas Instruments. \\
-		
-		\item \textbf{Netduino N3 Wi-Fi}. Una alternativa diferente a Arduino de Wilderness Labs, el Netduino N3 utiliza .NET MicroFramework y Netduino.Foundation Framework, lo que significa que está programado en un lenguaje de programación de nivel superior (C\#). Esto puede resultar atractivo para aquellos que no quieren lidiar con los niveles más bajos de programación de MCU.
-		
-		Esta placa, con Wi-Fi incorporado, está diseñada para conexión inalámbrica entre dispositivos. Otra característica notable de Netduino es la disposición de los pines hecha para la compatibilidad del shield Arduino. Dicho todo esto, Netduino puede atraer a aquellos que ya están familiarizados con el marco .NET y les gustaría programar su placa MCU a través de Microsoft Visual Studio y similares. \\
-		
-		\textit{Especificaciones}: 168 MHz, 164+ kB RAM, 1408kB de almacenamiento flash.  \\
-		
-		\textit{Características}: .NET  MicroFramework, librerías Netduino.Foundation, Wi-Fi, lector SD,  22 pines de entrada-salida de propósito general (GPIO). \\
-		
-		\textit{Precio}: aprox. 50\$. \\
-		
-		\item \textbf{Particle Photon}. Particle Photon es la placa ideal para el proyecto de IoT conectado. El Photon tiene un chip Wi-Fi Cypress integrado y viene con conectividad gratuita con Device Cloud y todas sus funciones. Particle incluso proporciona JavaScript y SDK móviles junto con su IDE web y local.
-		
-		Gracias a todo el soporte, guías y herramientas proporcionadas por Particle, Photon es una buena alternativa a Arduino. Es ideal para aficionados principiantes o intermedios que buscan la plataforma adecuada para un proyecto de IoT simple. \\
-		
-		\textit{Especificaciones}:  ARM Cortex M3 de 120 MHz, RAM de 128 kB, almacenamiento flash de 1 MB.\\
-		
-		\textit{Características}: Device Cloud, SDK para dispositivos móviles y ParticleJS, 18 GPIO, muchas referencias y guías. \\
-		
-		\textit{Precio}: aprox. 19\$.\\
 		
 		\item \textbf{SparkFun Thing Plus}. SparkFun tomó el ESP32 e hizo esta placa. El ESP32 es sin duda una gran opción para una placa IoT. Viene con Wi-Fi, Bluetooth y Bluetooth Low Energy integrados. Incluso agregaron una conexión Li-Po para complementar aún más su naturaleza inalámbrica.
 		
@@ -775,49 +773,6 @@
 		
 		\textit{Precio}: aprox. 17\$ en Adafruit.\\
 		
-		\item \textbf{BeagleBoard PocketBeagle}. El PocketBeagle es el más pequeño de los BeagleBoards. Ejecuta Linux desde el primer momento y se puede programar a través de su navegador web. Esta opción, por tanto, se trataría de un ordenador, como lo es una Raspberry Pi, no un microcontrolador. Ideal para proyectos pequeños que necesitan los recursos de una computadora. 
-		
-		El Sitara AM3358 ARM Cortex-A8 en el PocketBeagle tiene dos PRU (unidades programables en tiempo real) que son esencialmente microcontroladores conectados al procesador principal. Estos son, en palabras de sus preguntas frecuentes, ``ideales para una latencia baja predecible, mientras que el procesador ARM es bueno para el rendimiento". \\
-		
-		\textit{Especificaciones}: 1GHz Cortex-A8, 512 MB RAM\\
-		
-		\textit{Características}: sistema operativo Linux, conector SD, 2 PRUs, 72 pines de expansión, fácilmente programable a través de un navegador web.\\
-		
-		\textit{Precio}: aprox. 35\$. \\
-		
-		\item \textbf{SparkFun RedBoard Artemis}. El RedBoard Artemis es la versión mejorada de SparkFun del Arduino Uno. Viene en el mismo factor de forma y agrega Bluetooth, 24 GPIO, 21 PWM y aumenta significativamente las especificaciones.
-		
-		SparkFun continúa reconociendo el valor de la plataforma Arduino y, por lo tanto, ha hecho que esta placa sea compatible con el IDE de Arduino. Además, han expuesto el conector JTAG para aquellos usuarios más avanzados que desean depurar correctamente su MCU.
-		
-		Esta placa relativamente nueva también es capaz de ejecutar modelos TensorFlow, llevándola al IDE de Arduino.  \\
-		
-		\textit{Especificaciones}: 48 MHz (96 MHz turbo), 384 kB RAM, 1MB de almacenamiento flash. \\
-		
-		\textit{Características}: compatibilidad con Arduino IDE, Bluetooth, 24 GPIO.\\
-		
-		\textit{Precio}: aprox. 20\$.\\
-		
-		\item \textbf{STM32F3 Discovery}. El STM32F3 es solo una de las diversas placas Discovery fabricadas por ST que vale la pena revisar. Este, sin embargo, viene con un giroscopio y acelerómetro de 3 ejes, un sensor magnético 3D, 10 LED y algunas características más.
-		
-		Si bien esta alternativa no tiene compatibilidad con Arduino IDE, ST proporciona herramientas de software. Actualmente, su ecosistema STM32Cube incluye un generador de código de inicialización e IDE. \\
-		
-		\textit{Especificaciones}: 48 kB RAM, 256kB de almacenamiento flash.\\
-		
-		\textit{Características}: Giroscopio/acelerómetro de 3 ejes, sensor magnético 3D, 10 LED, 2 botones, sensor de movimiento.\\
-		
-		\textit{Precio}: aprox. 16\$ en ST.
-		\\
-		
-		\item \textbf{Silicon Labs Wonder Gecko}. Esta placa de Silicon Labs se basa en el EFM32. Si bien es una placa más cara, viene con una serie de características muy destacables. Incluyen un micro LCD, un control deslizante táctil, un sensor de luz ambiental y un condensador de 0.03F para proporcionar energía de respaldo, por nombrar algunos.
-		
-		El Wonder Gecko está más orientado al desarrollo, pero aún tiene una cantidad decente de referencias y guías para ser accesible. Silicon Labs también ofrece su Simplicity Studio. Si el precio no es un problema, esta placa y sus variaciones son buenas alternativas. \\
-		
-		\textit{Especificaciones}: 48MHz Cortex M4, 32 kB RAM, 256kB almacenamiento flash.\\
-		
-		\textit{Características}: debugger integrado, sistema de monitoreo de energía, varios sensores, LCD, Simplicity Studio.\\
-		
-		\textit{Precio}: aprox.  100\$ en Silicon Labs.\\
-		
 		\item \textbf{Raspberry Pi Pico}. Este microcontrolador lleva en el mercado desde el 25 de enero de 2021, apenas unos meses; este hecho, sin embargo, no impide que miles de personas ya lo hayan probado, y es que actualmente existe en internet muchos proyectos y documentación acerca de esta nueva Raspberry Pi, la cual se aleja de su antecesora mini ordenador para acercarse más al mundo de los microcontroladores similares a Arduino. Está construido sobre el propio silicio interno de Raspberry Pi, el RP2040. El RP2040 también forma parte de un ecosistema más amplio. Adafruit, Pimoroni, SparkFun e incluso el equipo de Arduino han desarrollado placas adaptadas a necesidades más específicas. Uno de los dispositivos de Pimoroni, el PicoSystem, es una ``experiencia de creación de juegos portátil" de 58.50 £ (alrededor de 80 \$) que te permite programar una consola incluso más pequeña que la Game Boy Micro.\\
 		
 		Para los usuarios avanzados, la organización Raspberry Pi proporciona un C SDK completo, una cadena de herramientas basada en GCC e integración con Visual Studio Code. \\
@@ -828,7 +783,7 @@
 		
 		\textit{Precio}: 4 \$.\\
 		
-		\item \textbf{Opción DIY} (\textit{Do It Yourself}hacer tú mismo tu propio arduino o microcontrolador). Existen tutoriales varios en internet que nos enseñan a crear nuestro propio microcontrolador haciendo uso de componentes como ICs (\textit{Integrated Circuits}), diodos, resistencias, condensadores, etc. Es una buena opción para aprender cómo funciona un microcontrolador a nivel electrónico, o si queremos personalizar a nuestro gusto para reducir el consumo del sistema global que constituye el microcontrolador, por ejemplo.\\
+		\item \textbf{Opción DIY} (\textit{Do It Yourself}, hacer tú mismo tu propio arduino o microcontrolador). Existen tutoriales varios en internet que nos enseñan a crear nuestro propio microcontrolador haciendo uso de componentes como ICs (\textit{Integrated Circuits}), diodos, resistencias, condensadores, etc. Es una buena opción para aprender cómo funciona un microcontrolador a nivel electrónico, o si queremos personalizar a nuestro gusto para reducir el consumo del sistema global que constituye el microcontrolador, por ejemplo.\\
 
 	\end{itemize}
 	\subsubsubsection{Comunicación radio}
@@ -885,11 +840,11 @@
 		\item \textbf{Velocidad}: velocidad angular o de rotación.
 	\end{itemize}
 
-	\noindent Cabe anotar que, normalmente, la tensión de alimentación de los servos en c.c. está entre 4 y 8V (voltios).\\ 
+	\noindent Cabe anotar que, normalmente, la tensión de alimentación de los servos en c.c. está entre 4 y 8V.\\ 
 	
 	\noindent \textit{\textbf{Partes de un Servomotor}}\\
 	
-	\noindent Un servomotor es un sistema compuesto por: 
+	\noindent Un servomotor es un sistema compuesto por (ver Figura \ref{servo parts}): 
 	
 	\begin{itemize}
 		\item \textbf{Un motor eléctrico}: es el encargado de generar el movimiento, a través de su eje.
@@ -908,7 +863,7 @@
 
 	\pagebreak
 
-	\noindent Puede venir todo en una caja formando el servo, pero normalmente el servo no trae incluido el sistema de control. Si pone \textit{encoder} incluido, quiere decir que viene el sistema de control incluido en el servo. \\
+	\noindent Puede venir todo en una caja formando el servo (ver Figura \ref{parallex labels parts}), pero normalmente el servo no trae incluido el sistema de control. Si pone \textit{encoder} incluido, quiere decir que viene el sistema de control incluido en el servo. \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -920,33 +875,23 @@
 
 	\noindent \textbf{Cómo funciona un servomotor}\\
 	
-	\noindent Para posicionar un servomotor tenemos que aplicarle un pulso eléctrico, cuya duración determinará el ángulo de giro del motor. Recibe los pulsos de entrada y ubica al motor en su nueva posición dependiendo de los pulsos recibidos. \\
+	\noindent Para posicionar un servomotor tenemos que aplicarle un pulso eléctrico (una señal PWM). Los pulsos siempre tendrán el mismo periodo, pero variará la duración del valor en alto del pulso, y será esa duración la que determine la posición del servo (ver Figura \ref{posicion servo}); por ejemplo, si el periodo de la señal es de 2ms, podríamos hacer que, para pulsos de duración en alta de 1ms, el eje del motor esté en la posición más a la izquierda, para pulsos de duración 1.5ms esté en la posición intermedia, y para 2ms, esté en la posición final del servomotor (estos son rangos muy comunes). Si mantuviera el pulso más tiempo de 2ms el motor no giraría más, ya que el potenciómetro del eje detectaría que está en la posición final, y normalmente sonaría un zumbido para indicarnos que está al final del recorrido. \\
 	
-	\noindent Un pulso es sencillamente enviar corriente eléctrica al motor durante un tiempo determinado. \\
+	%posicion_servomotor.png
 	
-	\noindent Puedo enviar un corriente durante 0,5ms (un pulso) o durante 1,5ms (otro pulso diferente). Para el pulso de 0,5ms el eje del motor estará en una posición y para un pulso de 1,5ms el eje del motor estará en otra posición. Veamos un ejemplo: \\
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{img/posicion_servomotor.png}
+			\caption{Relación entre la duración en alta de una señal PWM y la posición de un servomotor [\ref{areatecnologia: servomotores}].}
+			\label{posicion servo}
+		\end{center}
+	\end{figure}
 	
-	\noindent En el caso de la figura, para tiempos de 1ms, el eje del motor estará en la posición izquierda, para pulsos de 1,5ms se colocará en el medio, y para pulsos de 2ms se moverá hasta el extremo derecha, posición final del servomotor. \\
-	
-	\noindent El rango de actuación del servo de la imagen anterior sería entre 1 y 2ms, que son los rangos más habituales de los servomotores. 1,5ms posición intermedia. \\
-	
-	\noindent Como ves la duración del pulso posiciona el eje del motor en una posición u otra.\\
-	
-	\noindent Como ya hemos dicho, normalmente se utiliza un pequeño circuito electrónico para generar estos pulsos de entrada.\\
-	
-	\noindent Como hemos dicho, el control del servo se hace por medio de pulsos eléctricos. \\
-	
-	\noindent Imagina un servo cuyos valores posibles de la señal de entrada (pulsos) están entre 1.5ms y 2.5 ms, que posicionan al motor en ambos extremos de giro (0° y 180°, respectivamente). \\
-	
-	\noindent Fíjate en la imagen. Si mantengo el pulso 1,5ms el motor pasa de la posición inicial a la intermedia (giro de 90º). Si mantengo el pulso 2,5ms el motor gira a la posición final (giro de 180º). Si mantuviera el pulso más tiempo de 2,5ms el motor no giraría más, ya que el potenciómetro del eje detectaría que está en la posición final, y normalmente sonaría un zumbido para indicarnos que está al final del recorrido. \\
-	
-	\noindent El valor 1.5 ms indicaría la posición central o neutra (90º), mientras que otros valores del pulso lo dejan en posiciones intermedias. El cálculo de la posición para pulsos intermedios es muy sencilla, solo hay que aplicar una regla de tres. \\
-	
-	También hay servos que solo tiene dos o tres posiciones. Por ejemplo si mantuviéramos el pulso un tiempo menor de 1,5ms el motor se quedaría en su posición inicial. Para pulsos entre 1,5ms y 2,5ms el motor estaría en la posición intermedia y para pulsos mayores de 2,5 se colocaría en la posición final (solo 3 posiciones). \\
+	\noindent Si quisiéramos girar el servo otros valores que no fueran los ya mencionados, también podríamos (dejaríamos el servo en posiciones intermedias); el cálculo de la posición para pulsos intermedios es muy sencilla, solo hay que aplicar una regla de tres y especificarlo en el código del microcontrolador que sea el encargado de mandar la señal PWM. Anotar también que existe servomotores que pueden girar más de 180\degree.\\
 	
 	\noindent \textbf{Conexión de un Servomotor} \\
 	
-	Un servomotor tiene 3 cables: 
+	\noindent Un servomotor tiene 3 cables: 
 	
 	\begin{itemize}
 		\item Un cable rojo para alimentación (el positivo). La tensión de alimentación depende del servo.
@@ -964,6 +909,8 @@
 		\end{center}
 	\end{figure}
 	
+	\pagebreak
+	
 	\noindent \textbf{Tipos de Servomotores}\\
 	
 	\noindent Hay 4 tipos fundamentales de servomotores:
@@ -977,18 +924,18 @@
 	
 	\noindent \textbf{Precauciones a tener en cuenta} \\
 	
-	\noindent Los servomotores son periféricos que demandan más corriente que otros, como pueden ser sensores de temperatura u otros sensores, incluso actuadores (una pequeña bomba de agua o un relé). Es por ello, principalmente, por lo que debemos tener especial precaución a la hora de hacer uso de él. \\
+	\noindent Los servomotores son periféricos que demandan más corriente que otros, como pueden ser sensores de temperatura u otros sensores, incluso actuadores (una pequeña bomba de agua o un relé). Es por ello, principalmente, por lo que debemos tener especial precaución a la hora de hacer uso de él. Además, son dispositivos activos, que como hemos visto cuentan con una bobina (el motor DC es básicamente una bobina) capaz de introducir energía al circuito, algo que si no tenemos controlado puede ser peligroso.\\
 	
 	\noindent Si la idea que tenemos es usarlo como periférico de un microcontrolador, como Arduino, se recomienda no alimentar el servomotor nunca con el pin 5V del microcontrolador. Por norma general, no es ideal alimentar ningún periférico a través de este pin, pero es especialmente poco recomendable hacerlo con un servomotor, ya que consume bastante corriente y haríamos atravesar desde la fuente de alimentación hasta el pin 5V del arduino una corriente superior a la que es aceptable por el arduino (esa corriente atraviesa los circuitos del arduino y los daña). \\
 	
 	\noindent Otra precaución a tener en cuenta es cuando se produce la subida del programa desde el ordenador al microcontrolador, subida que se puede realizar mediante la conexión USB entre ambos. En el momento en el que subamos el programa, se empezará a ejecutar y si tenemos conectado el servo en ese momento, dañará el serial del arduino, imposibilitando que lo podamos volver a usar y corremos el riesgo de dañar y dejar inservible también el puerto USB del ordenador al que esté conectado. Esto ocurre porque, como ya hemos mencionado, el servo consume más del amperio que suministra el USB (dependerá del servo, pero es recomendable comprobarlo y tener precaución adicional), y exigirá más corriente de la que admite el serial, por lo que se dañará. Para evitar esto, se recomienda subir el programa en el microcontrolador sin tener ningún periférico conectado, y posterior, alimentar de manera externa a dichos periféricos (sólo conectar al microcontrolador las líneas necesarias para el control o sensorización). \\
 		
 		%Si bien es cierto que este pin es de salida y no de entrada, si se es consciente del uso que se le va a dar y se alimenta con una fuente 5V estable, se puede usar como 
-	\noindent Existen precauciones adicionales, como no alimentar al servo fuera de sus márgenes recomendables, o tener cuidado con lo que se conoce como \textit{stall current} y \textit{free current}. No se entrará mucho en detalle, pero se dará una idea de lo que significan para dejar claro que los servomotores son periféricos más complejos que otros y que hay que ser consciente a la hora de usarlo.
+	\noindent Existen precauciones adicionales, como no alimentar al servo fuera de sus márgenes recomendables, o lo que es similar, tener cuidado con lo que se conoce como \textit{stall current} y \textit{free current}. No se entrará mucho en detalle, pero se dará una idea de lo que significan para dejar claro que los servomotores son periféricos más complejos que otros y que hay que ser consciente a la hora de usarlo.
 
 	\begin{itemize}
-		\item \textit{Stall current}. Máxima corriente que se genera cuando el motor está aplicando su máximo torque.
-		\item \textit{Free current}. Corriente que se genera cuando el motor está girando libremente a su máxima velocidad, sin otra carga que la propia fricción y fuerzas contralectromotrices (\textit{back-EMF}). 
+		\item \textit{Free current}. Corriente que se genera cuando el motor está girando libremente a su máxima velocidad, sin otra carga que la propia fricción y fuerzas contralectromotrices (\textit{back-EMF}). Podría entenderse como el mínimo de corriente; esto se produce cuando una fuente externa o un evento causan que el motor se mueva más rápido que el movimiento producido por la tensión/corriente que se le suministra. Esto puede convertir momentáneamente al motor en un generador (\textit{regenerative braking}), algo poco recomendable ya que estamos introduciendo energía extra al circuito.
+		\item \textit{Stall current}. Máxima corriente que se genera cuando el motor está aplicando su máximo torque. Este máximo puede excederse cuando el motor adquiere momento, es decir, continúa convirtiendo esa energía en fuerza electromotriz (tensión) aunque no se le esté suministrando alimentación. Por ejemplo, cuando está cambiando de dirección de giro de forma abrupta, la tensión de la bobina del motor es momentáneamente el doble de la tensión de alimentación previa, ya que la fuerza contraelectromotriz del motor está en serie con la alimentación (esto resulta en un exceso de corriente, superando el valor de \textit{stall current}) [\ref{robotics stall and free current}].
 	\end{itemize}
 
 	\pagebreak
@@ -1006,11 +953,11 @@
 		\item El conexionado eléctrico con el microcontrolador para que éste envíe señales de control o pueda recibir datos resultado de la sensorización.
 	\end{itemize}
 	
-	\noindent Como opciones más directas para solucionar esta funcionalidad, están: 
+	\noindent Como opciones más directas para solucionar estas necesidades, están: 
 	
 	\begin{itemize}
-		\item Sensor ultrasónico, situado en la parte superior de la reserva, para realizar la sensorización del nivel de agua de la reserva, y para gestionar el movimiento del agua desde la reserva hasta el bebedero, la combinación de relé y bomba de agua. 
-		\item Sensores de nivel de agua (flotación) para realizar la sensorización del nivel de agua de la reserva, y para gestionar el movimiento del agua desde la reserva hasta el bebedero, la combinación de relé y bomba de agua.
+		\item Sensor ultrasónico, situado en la parte superior de la reserva, para realizar la medición del nivel de agua de la reserva, y la combinación de relé y bomba de agua para gestionar el movimiento del agua desde la reserva hasta el bebedero.
+		\item Sensores de nivel de agua (flotación) para realizar la medición del nivel de agua de la reserva, y la combinación de relé y bomba de agua para gestionar el movimiento del agua desde la reserva hasta el bebedero.
 	\end{itemize}
 	
 	\noindent A continuación, se introducirán estos elementos de manera individual para comprender su funcionamiento y su manera de actuar dentro de esta funcionalidad en concreto. \\
@@ -1032,20 +979,13 @@
 	
 	\pagebreak
 	
-	\noindent Su
-funcionamiento se basa en el envío de un pulso de alta frecuencia. Este pulso rebota en los objetos cercanos y es reflejado hacia el
-sensor, que dispone de un receptor adecuado para esa frecuencia. El sonido se propaga a una velocidad constante en el aire, con lo cual si calculamos el tiempo que demora en emitirse el pulso y la recepción del mismo, causada por el rebote sobre un objeto, podremos calcular la distancia. Dado que la velocidad del sonido es 343 m/s en condiciones de temperatura 20 ºC, 50\% de humedad y presión atmosférica medida a nivel del mar, se tiene que:
+	\noindent Su funcionamiento se basa en el envío de un pulso de alta frecuencia. Este pulso rebota en los objetos cercanos y es reflejado hacia el sensor, que dispone de un receptor adecuado para esa frecuencia. El sonido se propaga a una velocidad constante en el aire, con lo cual si calculamos el tiempo que demora en emitirse el pulso y la recepción del mismo, causada por el rebote sobre un objeto, podremos calcular la distancia. Dado que la velocidad del sonido es 343 m/s en condiciones de temperatura 20 ºC, 50\% de humedad y presión atmosférica medida a nivel del mar, se tiene que:
 	
 	\begin{equation} \label{Cálculo multiplicador HC-SR04}
 		343 \frac{m}{s} \cdot 100 \frac{cm}{m} \cdot \frac{1}{1000000} \cdot \frac{s}{\mu s} = \frac{1}{29.2} \frac{cm}{\mu s}
 	\end{equation}
 	
-	\noindent Por tanto, se puede conocer la distancia a un objeto simplemente teniendo en cuenta
-el valor anterior, de forma que la distancia viene dada por la mitad del tiempo que ha
-tardado la señal en regresar al sensor. Es decir, si se ha medido 292 microsegundos,
-entonces la distancia es 5 cm. Para mejor comprensión se muestra esquema en la
-Figura \ref{esquema funcionamiento hc-sr04}. Si las condiciones de presión temperatura y humedad ambiental son
-diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \\
+	\noindent Por tanto, se puede conocer la distancia a un objeto simplemente teniendo en cuenta el valor anterior, de forma que la distancia viene dada por la mitad del tiempo que ha tardado la señal en regresar al sensor. Es decir, si se ha medido 292 microsegundos, entonces la distancia es 5 cm. Para mejor comprensión se muestra esquema en la Figura \ref{esquema funcionamiento hc-sr04}. Si las condiciones de presión temperatura y humedad ambiental son diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \\
 	
 	%esquema_funcionamiento_hcsr04.png
 	%\ref{TFM LoRa}
@@ -1082,9 +1022,11 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 			\end{center}
 	\end{figure}
 	
-	\pagebreak
+	%\pagebreak
 	
 	\noindent Su funcionamiento es sencillo: si el nivel del agua queda por encima del sensor, el valor lógico asociado que enviará al microcontrolador será de 1. Si por el contrario queda por debajo, mandará un 0. Un sensor de flotación tiene dos cables de alimentación, simétricos, uno para VCC y otro para GND; entre dichos terminales y el microcontrolador se requiere de resistencias de 10k en configuración \textit{pull-down} (mirar Figura \ref{Esquema resistencia pull-down}), ya que al tratarse de switches, al conmutar si no existe esa resistencia da un valor lógico o desconocido o falso 1, consecuencia del ruido del pin que se introduce al estar flotante. El valor de la resistencia \textit{pull-down} dependerá de la situación (leer \hyperref[glosario]{Glosario} para más información).\\
+	
+	\pagebreak
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1096,11 +1038,11 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 
 	\noindent \textit{Relé} \\
 	
-	\noindent Un relé es un interruptor electromecánico que se conmuta (cambia de estado) mediante una señal eléctrica, y es digital, ya que sólo puede tomar el valor abierto y el cerrado (1 o 0, True o False). Sería algo parecido a un pulsador, pero sustituyendo el gesto mecánico de un dedo pulsando por una señal eléctrica. De esta forma, mediante una señal eléctrica de poca intensidad podemos controlar un circuito de mucha mayor potencia, aislando la parte de control. \\
+	\noindent Un relé es un interruptor electromecánico que se conmuta (cambia de estado) mediante una señal eléctrica, y es digital, ya que sólo puede tomar el valor abierto y el cerrado (1 o 0, True o False). Sería algo parecido a un pulsador, pero sustituyendo el gesto mecánico de un dedo pulsando por una señal eléctrica. De esta forma, mediante una señal eléctrica de poca intensidad podemos controlar un circuito de mucha mayor potencia, aislando la parte de control. 
 	
-	\pagebreak
+	%\pagebreak
 	
-	\begin{figure}
+	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
 				\includegraphics[width=60mm]{img/rele_1.png} &   \includegraphics[width=80mm]{img/rele_2.png} \\
@@ -1110,7 +1052,9 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 			\label{Rele: teoria}
 		\end{center}
 	\end{figure}
-
+	
+	\pagebreak
+	
 	\noindent El circuito de la Figura \ref{Rele: teoria}(a) muestra la base de un relé; consiste sencillamente en un núcleo de hierro (ferromagnético) y un cable conductor eléctrico, arrollado alrededor del núcleo, que se conecta a una batería de corriente continua. Si cerramos el interruptor, en el hierro se induce un campo  magnético sostenido, siguiendo las reglas de las leyes de Maxwell. Es decir se convierte en un electroimán. Si el núcleo no está sujeto a las espiras devanadas, se desplazará lateralmente, y si está sujeto el conjunto se comporta como un imán que podemos encender y apagar, lo que aprovechamos, para construir los relés.
 	
 	\noindent Fijándonos en la Figura \ref{Rele: teoria}(b), podemos observar que, cuando damos tensión a la bobina, el electroimán atrae la armadura haciéndola bascular alrededor del pívot, lo que desplaza el contacto móvil hacia arriba conectando el pin \textit{normalmente abierto} con el \textit{común} cerrando el circuito. A este contacto se le llama normalmente abierto (NA), porque el circuito entre el común y el pin NA, esta normalmente abierto (o sin conexión) hasta que se activa el relé. Por el mismo motivo hablamos del normalmente cerrado (NC), ya que el contacto está cerrado cuando el relé no está excitado. Cuando la bobina pierde la alimentación, el efecto imán desaparece y un resorte devuelve la armadura a la posición de reposo. A este tipo de relé, se le llama de armadura.
@@ -1128,7 +1072,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\noindent Tanto los transistores como los relés tiene la ventaja de disponer de un circuito de baja (control), y otra circuito de alta (carga), por lo que se aísla eficazmente el circuito de control, normalmente de baja tensión, como nuestro Arduino, del circuito de carga elevada que puede ser un motor de una cierta potencia, y por consecuente, capaz de inhabilitar nuestros circuitos de control. Por eso, cuando se manejan media y alta tensión en la industria, se suelen usar relés para conseguir aislamiento galvánico, por razones de seguridad, y se exige aislar la tierra del circuito de potencia y el negativo o GND del circuito de control, garantizando así el aislamiento galvánico de los dos circuitos. En el mundo Arduino se suelen usar relés de baja potencia, como mucho tensiones alternas alternas de 220V y máximo 5A para pequeños motores.
 	
-	\noindent Aunque hay muchos tipos de relés, por regla general nuestro Arduino no tiene potencia suficiente para activar un relé. Utilizaremos un transistor para amplificar la señal de la base y así poder conmutar el relé. El ejemplo que veremos a continuación incluye un circuito de transistor/relé completo que nos podrá valer para  cualquier proyecto que lo requiera.
+	\noindent Aunque hay muchos tipos de relés, por regla general nuestro Arduino no suministra la suficiente corriente para activar un relé. Utilizaremos un transistor para amplificar la señal de la base y así poder conmutar el relé. El ejemplo que veremos a continuación incluye un circuito de transistor/relé completo que nos podrá valer para  cualquier proyecto que lo requiera.
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1157,7 +1101,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	 	\item \textbf{Opción B}: \textit{sensor de nivel de flotación con relé y bomba de agua}. Se situarían dos o más sensores de nivel de flotación en uno de los lados de la reserva (en su eje longitudinal), de manera que se podría conocer el estado de la reserva de agua; cuantos más sensores, más preciso será el estado de la reserva. Por ejemplo, con 2 sensores de flotación podríamos tener 4 estados, lleno, por debajo del 70\%, por debajo de 50\% y menos de 25\% (estado crítico en el que habría que rellenar la reserva). El movimiento del agua de la reserva al bebedero sería el mismo que en la Opción A; mientras no estemos en el estado crítico, y según haya configurado el usuario (bajo petición y/o cada cierto tiempo), el microcontrolador mandará una señal de control al relé que activará la bomba o la desactivará, de manera que se va rellenando el bebedero.
 	 \end{itemize}
 	
-	\pagebreak
+	%\pagebreak
 	
 	\subsubsection{Prototipo exterior}
 	
@@ -1210,13 +1154,13 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\subsubsubsection{Preparación de la alimentación autónoma del dispositivo}
 	\label{Preparación de la alimentación autónoma del dispositivo}
 	
-	\noindent Lo primero fue dejar asegurada la pila. Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame. Es por ello que se hizo uso de un kit para protección de baterías 18650, como el que se muestra en la Figura \ref{Proteccion kit Li-Ion}.\\
+	\noindent Lo primero fue dejar asegurada la pila. Como se indica, la batería 18650 no tiene protección. Esto significa que cualquier manipulación incorrecta de la misma puede derivar en la rotura de la pila, o incluso en que ésta se inflame y se produzca una deflagración. Es por ello que se hizo uso de un kit para protección de baterías 18650, como el que se muestra en la Figura \ref{Proteccion kit Li-Ion}.\\
 	
 	\pagebreak
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.4\textwidth]{img/proteccion_18650.png}
+			\includegraphics[width=0.3\textwidth]{img/proteccion_18650.png}
 			\caption{Detalle del kit de protección para una batería 18650, a falta de tubo termoretráctil y contactos para los polos [\ref{bib: aliexpress dual mos}].}
 			\label{Proteccion kit Li-Ion}
 		\end{center}
@@ -1226,7 +1170,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.5\textwidth]{img/construction_prot_circuit.png}
+			\includegraphics[width=0.45\textwidth]{img/construction_prot_circuit.png}
 			\caption{Esquema de la protección que se añade a las pilas Li-ion [\ref{bib: protected li-ion cells}].}
 			\label{Proteccion Li-Ion}
 		\end{center}
@@ -1238,7 +1182,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.3\textwidth]{img/batt_prot_circuit_zoom_edited.png}
+			\includegraphics[width=0.2\textwidth]{img/batt_prot_circuit_zoom_edited.png}
 			\caption{Detalle de la PCM de protección de la batería 18650 [\ref{bib: aliexpress dual mos}].}
 			\label{PCB proteccion Li-Ion}
 		\end{center}
@@ -1249,7 +1193,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
-				\includegraphics[width=40mm]{img/18650_sinProteccion.jpg} &   \includegraphics[width=40mm]{img/18650_conProteccion_1.jpg} \\
+				\includegraphics[width=50mm]{img/18650_sinProteccion.jpg} &   \includegraphics[width=50mm]{img/18650_conProteccion_1.jpg} \\
 				(a) & (b) \\[6pt]
 				\includegraphics[width=25mm]{img/18650_conProteccion_2.jpg} &   \includegraphics[width=20mm]{img/18650_conProteccion_3.jpg} \\
 				(c)  & (d)  \\[6pt]
@@ -1283,12 +1227,12 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\begin{itemize}
 		\item \textbf{Puerto mini-USB}: para alimentar tanto la batería como el TP4056 a través de este tipo de cables. Lo usaremos si deseamos cargar la batería de manera externa al proyecto.
-		\item \textbf{Bornas IN-, IN+}: están a los lados del puerto. Sirven también para alimentar la batería (y el TP4056). A estas bornas podemos conectar una placa solar, u otra fuente que se necesite. En nuestro caso, será el panel solar de 6V.
+		\item \textbf{Bornas IN-, IN+}: están a los lados del puerto. Sirven también para cargar la batería (y el TP4056). A estas bornas podemos conectar una placa solar, u otra fuente que se necesite. En nuestro caso, será el panel solar de 6V.
 		\item \textbf{LEDs de carga y completado}: avisarán cuando la batería esté cargándose o cuando haya terminado dicho proceso.
 		\item \textbf{BAT+ y BAT-}: son bornas de salida que irán conectados a la batería que se necesita cargar.
 	\end{itemize}
 
-	\noindent Sin embargo, se requieren más elementos para alimentar al dispositivo, como por ejemplo un conversor de tensión tras la batería (entre batería y dispositivo). En nuestro caso, lo requerimos, ya que la batería usada otorga 3.7V nominales (no existen baterías de 5V) y nosotros necesitamos 5V para alimentar el sistema de alimentación. Necesitamos un elemento que nos aumente la tensión a su salida, para alimentar de manera correcta el sistema creado; usaremos, por tanto, un \textit{boost converter}. Es un dispositivo que puede encontrarse aislado, aunque también podemos encontrarlo en una misma PCB con el TP4056, y será esta última opción la que usemos (Figura \ref{TP4056 con boost}). Una opción diferente que podríamos haber escogido hubiera sido la de emplear varias baterías 18650 en serie, ya que suman sus tensiones, además del uso de un BMS (como se ha mencionado ya anteriormente en este documento, un \textit{Battery Management System}, que permita a las baterías cargarse y descargarse de manera balanceada), y un \textit{buck converter} en este caso, ya que tendríamos más de 5V (por lo que, con el buck, bajaríamos la tensión de salida). Esta opción se descartó por la simple razón de que el dispositivo no estará funcionando todo el día ni se estima elevado consumo; finalmente, se optó por la opción más sencilla de una única batería, la cual si se observa que es insuficiente, se debería estudiar la opción alternativa (inclusive baterías en paralelo también). Por último, anotar que, si usáramos otras baterías de menor tensión nominal, no necesitaríamos un buck (si la suma de sus tensiones fuera exactamente de 5V), pero estas baterías suelen ser no recargables, y no conseguiríamos el objetivo de autonomía en la alimentación del dispositivo. \\
+	\noindent Sin embargo, se requieren más elementos para alimentar al dispositivo, como por ejemplo un conversor de tensión tras la batería (entre batería y dispositivo). En nuestro caso, lo requerimos, ya que la batería usada otorga 3.7V nominales (no existen baterías de 5V) y nosotros necesitamos 5V para alimentar el sistema de alimentación. Necesitamos un elemento que nos aumente la tensión a su salida, para alimentar de manera correcta el sistema creado; usaremos, por tanto, un \textit{boost converter}. Es un dispositivo que puede encontrarse aislado, aunque también podemos encontrarlo en una misma PCB con el TP4056, y será esta última opción la que usemos (Figura \ref{TP4056 con boost}). Una opción diferente que podríamos haber escogido hubiera sido la de emplear varias baterías 18650 en serie, ya que suman sus tensiones, además del uso de un BMS (como se ha mencionado ya anteriormente en este documento, un \textit{Battery Management System}, que permita a las baterías cargarse y descargarse de manera balanceada), y un \textit{buck converter} en este caso, ya que tendríamos más de 5V (por lo que, con el buck, bajaríamos la tensión de salida). Esta opción se descartó por la simple razón de que el dispositivo no estará funcionando todo el día ni se estima elevado consumo; finalmente, se optó por la opción más sencilla de una única batería, la cual si se observa que es insuficiente, se debería estudiar la opción alternativa (inclusive baterías en paralelo también).  \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1303,26 +1247,26 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	%Problema: no tiene protección contra sobredescargas. \\
 
 	
-	\noindent Para compactar este conglomerado (pila  con TP4056), se han unido soldando las conexiones entre ellos en una placa experimental, como la que se muestra en la Figura \ref{Componentes conglomerado}(a). En concreto, se ha soldado el TP4056 de la Figura \ref{TP4056 con boost} con conectores de tipo screw terminal (Figura \ref{Componentes conglomerado}(b)); de esta manera, conectaremos el panel solar a través de sus cables a un screw terminal, el cual unirá mediante soldadura a las bornas IN+ e IN-, y lo mismo sucederá con la pila.
+	\noindent Para compactar este prototipo (pila  con TP4056), se han unido soldando las conexiones entre ellos en una placa experimental, como la que se muestra en la Figura \ref{Componentes prototipo}(a). En concreto, se ha soldado el TP4056 de la Figura \ref{TP4056 con boost} con conectores de tipo screw terminal (Figura \ref{Componentes prototipo}(b)); de esta manera, conectaremos el panel solar a través de sus cables a un screw terminal, el cual unirá mediante soldadura a las bornas IN+ e IN-, y lo mismo sucederá con la pila.
 	
 	\pagebreak
 	
 	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
-				\includegraphics[width=50mm]{img/placa_exp.png} \label{Ejemplo placa experimental} &   \includegraphics[width=40mm]{img/screw.jpg}  \label{Ejemplo screw} \\
+				\includegraphics[width=50mm]{img/placa_exp.png} \label{Ejemplo placa experimental} &   \includegraphics[width=30mm]{img/screw.jpg}  \label{Ejemplo screw} \\
 				(a) Placa experimental [\ref{bib: aliexpress placa exp}] & (b) Screw terminal [\ref{bib: rarecomponents screw}] \\[6pt]
 				%\includegraphics[width=50mm]{img/18650_holder.png}  \label{Ejemplo holder 18650} &   %\includegraphics[width=20mm]{img/18650_conProteccion_3.jpg} \\
 				%(c) Holder para una batería 18650\\ [6pt]
 				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/18650_holder.png} \label{Ejemplo holder 18650} }\\
 				\multicolumn{2}{c}{(c) Holder para una batería 18650 [\ref{bib: solarbotics holder para 18650}]}
 			\end{tabular}
-			\caption{Elementos que formarán nuestro conglomerado provisional de alimentación del dispositivo.}
-			\label{Componentes conglomerado}
+			\caption{Elementos que formarán nuestro prototipo provisional de alimentación del dispositivo [\ref{bib: aliexpress placa exp}][\ref{bib: rarecomponents screw}][\ref{bib: solarbotics holder para 18650}].}
+			\label{Componentes prototipo}
 		\end{center}
 	\end{figure}
 
-	\noindent A continuación, en la Figura \ref{conglomerado alimentacion}, se muestra el conglomerado final de los elementos presentados en la Figura \ref{Componentes conglomerado}. Gracias a la presencia de los \textit{screw terminals} podemos conectar y desconectar el conglomerado fácilmente de la fuente de energía de entrada y del dispositivo al que alimentemos, dejándolo de nuevo aislado (tal como aparece en la Figura \ref{conglomerado alimentacion}) para probarlo o simplemente moverlo (podemos desconectar la entrada de energía, la cual entra por las bornas IN en este caso, y la salida de energía, la cual sale por las bornas VOUT). \\
+	\noindent A continuación, en la Figura \ref{prototipo alimentacion}, se muestra el prototipo final de los elementos presentados en la Figura \ref{Componentes prototipo}. Gracias a la presencia de los \textit{screw terminals} podemos conectar y desconectar el prototipo fácilmente de la fuente de energía de entrada y del dispositivo al que alimentemos, dejándolo de nuevo aislado (tal como aparece en la Figura \ref{prototipo alimentacion}) para probarlo o simplemente moverlo (podemos desconectar la entrada de energía, la cual entra por las bornas IN en este caso, y la salida de energía, la cual sale por las bornas VOUT). \\
 	
 	%conglomerado_alimentacion_zoom_1.jpg
 	%conglomerado_caraA_zoom.jpg
@@ -1334,15 +1278,15 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
-				\includegraphics[width=60mm]{img/conglomerado_caraB_zoom.jpg} &   \includegraphics[width=60mm]{img/conglomerado_caraA_zoom.jpg} \\
+				\includegraphics[width=65mm]{img/conglomerado_caraB_zoom.jpg} &   \includegraphics[width=65mm]{img/conglomerado_caraA_zoom.jpg} \\
 				(a) Cara con TP4056 y boost & (b) Cara con holder y 18650  \\[6pt]
 				%\includegraphics[width=50mm]{img/} &   \includegraphics[width=50mm]{img/} \\
 				%(c)  & (d)  \\[6pt]
 				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/conglomerado_lateral_zoom.jpg} }\\
 				\multicolumn{2}{c}{(c) Lateral}
 			\end{tabular}
-			\caption{Vistas del conglomerado de alimentación ya terminado.}
-			\label{conglomerado alimentacion}
+			\caption{Vistas del prototipo de alimentación ya terminado.}
+			\label{prototipo alimentacion}
 		\end{center}
 	\end{figure}
 
@@ -1363,13 +1307,13 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\pagebreak
 	
-	\noindent Por último, en la Figura \ref{conglomerado alimentacion completo} se muestra el conjunto del sistema de alimentación mediante el cual se alimentará el dispositivo. \\
+	\noindent Por último, en la Figura \ref{prototipo alimentacion completo} se muestra el conjunto del sistema de alimentación mediante el cual se alimentará el dispositivo. \\
 	
 	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/conglomerado_alimentacion_zoom_1.jpg}
 			\caption{Conjunto global del sistema de alimentación autónoma creado}
-			\label{conglomerado alimentacion completo}
+			\label{prototipo alimentacion completo}
 		\end{center}
 	\end{figure}
 
@@ -1393,18 +1337,20 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 		\item \textbf{Es de bajo coste}. Las placas de Arduino son relativamente de bajo coste comparadas con las plataformas de otros microcontroladores. La versión más económica de un módulo Arduino puede ser ensamblada a mano, e incluso los módulos Arduino pre-ensamblados cuestan menos de 50 \$.
 		\item \textbf{Multiplataforma}. El software de Arduino, Arduino IDE, es capaz de ejecutarse en Macintosh OSX, Windows y Linux. La mayoría de sistemas de microcontroladores están limitados a Windows.
 		\item  	\textbf{Entorno de programación simple y claro}. El software de Arduino (IDE) es fácil de usar para principiantes, sin dejar de ser lo suficientemente flexible para usuarios más avanzados.
-		\item \textbf{Software Open Source y extensible}. El software Arduino está publicado como un conjunto de herramientas open source, disponible para ser ampliada por otros programadores a través de librerías basadas en el lenguaje C++; las personas que quieran comprender los detalles técnicos pueden dar el salto de Arduino al lenguaje de programación AVR C en el que se basa. Del mismo modo, se puede agregar código AVR-C directamente en los  programas Arduino si así se desea.
+		\item \textbf{Software Open Source y extensible}. El software Arduino está publicado como un conjunto de herramientas open source, disponible para ser ampliada por otros programadores a través de librerías basadas en el lenguaje C++; las personas que quieran comprender los detalles técnicos pueden dar el salto de Arduino al lenguaje de programación AVR-C en el que se basa. Del mismo modo, se puede agregar código AVR-C directamente en los  programas Arduino si así se desea.
 		\item \textbf{Hardware Open Source y extensible}. Los planos de las placas Arduino están publicados bajo licencia \textit{Creative Commons}, así pues, diseñadores de circuitos experimentados pueden hacer su propia versión del módulo, extendiéndola y mejorándola. Incluso usuarios sin experiencia pueden crear una versión en protoboard del módulo para entender cómo funciona y ahorrar dinero.
 	
 	\end{itemize}
+
+	\pagebreak
 
 	\noindent \textbf{Hardware: placas Arduino} \\
 	
 	\noindent Existen diferentes placas Arduino, cuya elección dependerá del objetivo que persiga nuestro proyecto y de los requerimientos y limitaciones sobre dicho proyecto. \\
 	
-	\noindent Algunas de las placas básicas de Arduino más usadas son Arduino nano, Arduino uno o Arduino mega. Nos centraremos en el Arduino nano, ya que es el que vamos a usar; aún así, ya se comentaron las especificaciones y características del Arduino uno en el apartado \ref{subsección 3.2.2: automatización y monitorización}, sección \textit{Microcontroladores}, como ejemplo de placa Arduino de cara a comparar con otras opciones de microcontrolador, por lo que no se volverá a explicar en esta sección.  \\
+	\noindent Algunas de las placas básicas de Arduino más usadas son Arduino Nano, Arduino Uno o Arduino Mega. Nos centraremos en el Arduino Nano, ya que es el que vamos a usar; aún así, ya se comentaron las especificaciones y características del Arduino Uno en el apartado \ref{subsección 3.2.2: automatización y monitorización}, sección \textit{Microcontroladores}, como ejemplo de placa Arduino de cara a comparar con otras opciones de microcontrolador, por lo que no se volverá a explicar en esta sección.  \\
 	
-	\noindent \textit{Especificaciones del Arduino nano} \\
+	\noindent \textit{Especificaciones del Arduino Nano} \\
 	
 	\begin{itemize}
 		\item Microcontrolador: ATmega328
@@ -1435,42 +1381,52 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\noindent La funcionalidad de cada uno de los pines analógicos y digitales se pueden ver en la Figura \ref{Pinout Arduino nano}. \\
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.7\textwidth]{img/Pinout-NANO_official.png}
-			\caption{Pinout de un Arduino nano.}
+			\includegraphics[width=0.9\textwidth]{img/Pinout-NANO_official.png}
+			\caption{Pinout de un Arduino Nano.}
 			\label{Pinout Arduino nano}
 		\end{center}
 	\end{figure}
 
 	\pagebreak
 	
-	\noindent Tendremos la misma cantidad de pines digitales configurables como entrada o salida (D2 a D13), donde 6 de ellos tendrán capacidad PWM, igual que arduino uno. Respecto a los pines analógicos tenemos los pines A0 a A5 igual que el modelo uno, pero aparecen dos pines adicionales, A6 y A7, consiguiendo así un total de 8 entradas analógicas. \\
+	\noindent Comparando con el Arduino Uno, tendremos la misma cantidad de pines digitales configurables como entrada o salida (D2 a D13), donde 6 de ellos tendrán capacidad PWM, igual que arduino uno. Respecto a los pines analógicos tenemos los pines A0 a A5 igual que el modelo uno, pero aparecen dos pines adicionales, A6 y A7, consiguiendo así un total de 8 entradas analógicas. \\
 	
-	\noindent [Foto pines digitales y analógicos, señalando los que son PWM.] \\
+	%\noindent [Foto pines digitales y analógicos, señalando los que son PWM.] \\
 	
-	\noindent Los dos primeros pines de la esquina inferior derecha corresponden a D1 para TX y D0 para RX de la comunicación serie por UART(\textit{Universal Asynchronous Receiver-Transmitter}); en Arduino uno estos mismos pines también aparecían pero en orden invertido. Son un reflejo de las líneas de comunicación provistas por el conversor USB-TTL, aunque por lo general usamos la librería \textit{Software serial} para definir otros dos pines cualquiera para dicha función. Ya que estamos hablando de comunicación serie, tenemos los pines asociados a la interfaz SPI (\textit{Serial Peripheral Interface}), iguales que en el modelo uno; el pin digital 10 ejecutando la función de \textit{slave select}, el 11 como MOSI (\textit{Master Output Slave Input}), el 12 como MISO (\textit{Master Input Slave Output}) y el 13 como \textit{serial clock}. Al igual que en el modelo uno, la interfaz de dos cables, I2C (\textit{Inter-Integrated Circuit}), estará presente en A4 para SDA (\textit{System Data}) y en A5 para SCL (\textit{System Clock}). \\
+	\noindent Los dos primeros pines de la esquina inferior derecha corresponden a D1 para TX y D0 para RX de la comunicación serie por UART(\textit{Universal Asynchronous Receiver-Transmitter}); en Arduino uno estos mismos pines también aparecían pero en orden invertido. Son un reflejo de las líneas de comunicación provistas por el conversor USB-TTL, aunque por lo general usamos la librería \textit{Software serial} para definir otros dos pines cualquiera para dicha función. En relación al apartado de comunicaciones, tenemos los pines asociados a la interfaz SPI (\textit{Serial Peripheral Interface}), iguales que en el modelo Uno; el pin digital 10 ejecutando la función de \textit{slave select}, el 11 como MOSI (\textit{Master Output Slave Input}), el 12 como MISO (\textit{Master Input Slave Output}) y el 13 como \textit{serial clock}. Al igual que en el modelo Uno, la interfaz de dos cables, I2C (\textit{Inter-Integrated Circuit}), estará presente en A4 para SDA (\textit{System Data}) y en A5 para SCL (\textit{System Clock}). \\
 	
-	\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART.] \\
+	%\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART.] \\
 		
-	\noindent El resto de pines son: salida de 3.3V, referencia de las entradas analógicas AREF, salida regulada de 5V (usada normalmente para alimentar sensores y dispositivos), y dos pines de GND en ambos lados de la placa; un pin de RESET para realizar dicha función de forma remota si no tenemos acceso al pulsador físico de la placa. Finalmente, Vin se usará para alimentar la placa con una fuente no regulada de entre 7 y 12V (en arduino uno teníamos un conector para alimentación externa de tipo Jack, en arduino nano, como la placa tiene un tamaño reducido, no resultaría práctico colocar un conector tan voluminoso, por eso tenemos un pin destinado para alimentación externa). \\
+	\noindent El resto de pines son: salida de alimentación de 3.3V, referencia de las entradas analógicas AREF, salida regulada de 5V (usada normalmente para alimentar sensores y dispositivos), y dos pines de GND en ambos lados de la placa; un pin de RESET para realizar dicha función de forma remota si no tenemos acceso al pulsador físico de la placa. Finalmente, Vin se usará para alimentar la placa con una fuente no regulada de entre 7 y 12V (en arduino Uno teníamos un conector para alimentación externa de tipo Jack, en arduino Nano, como la placa tiene un tamaño reducido, no resultaría práctico colocar un conector tan voluminoso, por eso tenemos un pin destinado para alimentación externa). \\
 	
-	\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART, y pines de alimentación.] \\
+	%\noindent [Foto pines digitales y analógicos, señalando los especiales para comunicaciones SPI, I2C y UART, y pines de alimentación.] \\
 	
-	\noindent El pin de salida 5V refleja los mismos 5V del puerto  del ordenador; si ahora deseamos trabajar de manera autónoma, sin conexión al ordenador, podremos alimentar la placa con una fuente externa con valores de tensión de entre 7 y 12 V. Dicha tensión se aplica de forma directa al regulador lineal de tensión, el cual convertirá la tensión de entrada no regulada a 5V regulados con un suministro máximo de corriente de hasta 500mA. Para la salida de 3.3V, es diferente en nano respecto de uno; en nano, los 3.3V son generados por el propio conversor USB-TTL (el circuito integrado lleva incorporado el regulador); el modelo uno dispone de un regulador por separado y destinado exclusivamente para el riel de 3.3V. En uno, dicho regulador puede suministrar hasta 150 mA de corriente máxima, mientras que en nano, como no tenemos un regulador especializado, y forma parte de la funcionalidad del conversor, el suministro de corriente será menor, de 50 mA como máximo. \\
+	\noindent El pin de salida 5V refleja los mismos 5V del puerto  del ordenador; si ahora deseamos trabajar de manera autónoma, sin conexión al ordenador, podremos alimentar la placa con una fuente externa con valores de tensión de entre 7 y 12 V. Dicha tensión se aplica de forma directa al regulador lineal de tensión, el cual convertirá la tensión de entrada no regulada a 5V regulados con un suministro máximo de corriente de hasta 500mA. Para la salida de 3.3V, es diferente en nano respecto de uno; en nano, los 3.3V son generados por el propio conversor USB-TTL (el circuito integrado lleva incorporado el regulador); el modelo Uno dispone de un regulador por separado y destinado exclusivamente para el riel de 3.3V. En Uno, dicho regulador puede suministrar hasta 150 mA de corriente máxima, mientras que en Nano, como no tenemos un regulador especializado, y forma parte de la funcionalidad del conversor, el suministro de corriente será menor, de 50 mA como máximo. \\
 	
-	\noindent Cabe mencionar que si conocemos bien la fuente de alimentación, es decir, sabemos que es estable en 5V, podemos aplicar dicha tensión directamente al pin 5V. Retomando una anotación anterior, realizada en el apartado \ref{Preparación de la alimentación autónoma del dispositivo}, acerca de una opción alternativa de batería, como el uso de varias en serie, aumentando la tensión nominal total, con el uso de un buck que redujera la tensión que se suministra al dispositivo. Esto es si se introduce la alimentación a través del pin 5V, si se introduce a través del Vin (siempre y cuando se llegue a los 7V mínimo con esa tensión nominal total) no es necesario el buck para reducir la tensión y dejar estable esa tensión, ya que entrando por Vin pasa por el regulador de tensión del Arduino. \\
+	\noindent Cabe mencionar que si conocemos bien la fuente de alimentación, es decir, sabemos que es estable en 5V, podemos aplicar dicha tensión directamente al pin 5V. También podemos alimentar al Arduino a través del pin Vin (siempre y cuando se entregue a ese pin entre 7 y 12V); en este caso no es necesario un regulador externo para dejar estable esa tensión, ya que entrando por Vin pasa por el regulador de tensión del Arduino. 
 	
-	\noindent [Foto parte rear del nano señalando partes implicadas en la alimentación del nano.] \\
+	\pagebreak
+	
+	%\noindent [Foto parte rear del nano señalando partes implicadas en la alimentación del nano.] \\
 	
 	\noindent \textit{Componentes que forman el Arduino nano} \\
 	
-	\noindent \textbf{Vista superior:} conector mini USB, más pequeño que el que usa arduino uno. El arduino nano tiene el mismo microcontrolador que el arduino uno (ATmega328P con encapsulado de montaje superficial), por lo que los programas/instrucciones que se desarrollen para uno son válidos/equivalentes para el otro. \\
+	\noindent \textbf{Vista superior:} conector mini USB, más pequeño que el que usa arduino uno. El arduino nano tiene el mismo microcontrolador que el arduino uno (ATmega328P con encapsulado de montaje superficial), por lo que los programas/instrucciones que se desarrollen para uno son válidos/equivalentes para el otro (ver Figura \ref{arduino rear and front}). \\
 	
-	\noindent [Foto vista superior e inferior del Arduino nano.] \\
+	%bib arduino nano front and rear
+	%front_rear_arduino.jpg
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{img/front_rear_arduino.jpg}
+			\caption{Imagen de la parte frontal y trasera de un Arduino Nano [\ref{arduino nano front and rear}].}
+			\label{arduino rear and front}
+		\end{center}
+	\end{figure}
 	
-	\noindent \textbf{Vista inferior:} tenemos una tirada de pines macho para conectar a protoboard o a cables directamente. Difiere del arduino uno en este sentido, ya que el arduino uno tenía pines hembra en la parte superior. La idea principal para estos pines macho es conectarla a protoboard en un circuito impreso con un zócalo o soldado de forma directa.
-	Cerca del conector USB tenemos un CI, un conversor USB-TTL, que nos permite conectar la placa al ordenador, obtener de él alimentación y comunicación para cargar programas y monitoreo serie. Finalmente, un regulador de tensión de 5V, permite obtener dicha tensión en un pin de salida para alimentar dispositivos externos cuando es alimentada la placa de forma externa mediante un pin especial llamado Vin.  \\
+	\noindent \textbf{Vista inferior:} tenemos una tirada de pines macho para conectar a protoboard o a cables directamente (ver Figura \ref{arduino rear and front}). Difiere del arduino Uno en este sentido, ya que el arduino Uno tenía pines hembra en la parte superior. La idea principal para estos pines macho es conectarla a protoboard en un circuito impreso con un zócalo o soldado de forma directa.
+	Cerca del conector USB tenemos un circuito integrado, un conversor USB-TTL, que nos permite conectar la placa al ordenador, obtener de él alimentación y comunicación para cargar programas y monitoreo serie. Finalmente, un regulador de tensión de 5V, permite obtener dicha tensión en un pin de salida para alimentar dispositivos externos cuando es alimentada la placa de forma externa mediante un pin especial llamado Vin.  \\
 
 	\noindent \textit{Justificación de elección para el proyecto} \\
 	
@@ -1481,7 +1437,7 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 		\item Precio reducido
 		\item Facilidad para la incorporación a una PCB
 		\item Tamaño reducido
-		\item Amplia cobertura por la comunidad
+		\item Lenguaje de programación sencillo (Arduino) y amplia cobertura por la comunidad
 		\item Open Source
 	\end{itemize}
 	
@@ -1496,18 +1452,16 @@ diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \
 	
 	\noindent Como hemos mencionado anteriormente, las placas Arduino se pueden programar a través del software Arduino IDE (existen más opciones, pero esta es una de las más conocidas), empleando un lenguaje similar al lenguaje de programación C. A continuación, se explicarán los dos bloques principales en los que se divide un \textit{sketch} de Arduino.\\
 	
-	\noindent \textit{Bloque setup()} \\
+	\noindent \textit{Bloque} \texttt{setup()} \\
 	
 	\noindent Se realiza la configuración del dispositivo y la
 	asignación de pines (entradas y salidas analógicas y digitales). Las comunicaciones que necesitemos inicializar lo harán aquí (como la serial), también la programación de mensajes de inicio (por ejemplo, mensaje que aparezca cuando damos alimentación al microcontrolador o lo reiniciemos)\\
 	
-	\noindent \textit{Bloque loop()} \\
+	\noindent \textit{Bloque} \texttt{loop()} \\
 	
-	\noindent En esta sección de código, se definen las tareas que realizará el microcontrolador; siempre que se encienda o reinicie, empezará a ejecutar desde el principio de este bloque. Sería algo así como el programa principal,
-donde se incluyen todas las sentencias necesarias para obtener la
-funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea en bucle, y así se marca en el código (estas tareas se enmarcan dentro del bloque \textit{loop}). \\
+	\noindent En esta sección de código, se definen las tareas que realizará el microcontrolador; siempre que se encienda o reinicie, empezará a ejecutar desde el principio de este bloque. Sería algo así como el programa principal, donde se incluyen todas las sentencias necesarias para obtener la funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea en bucle, y así se marca en el código (estas tareas se enmarcan dentro del bloque \textit{loop}). \\
 	
-	\noindent \textit{Comandos ajenos a los bloques setup() y loop()}\\
+	\noindent \textit{Comandos ajenos a los bloques} \texttt{setup()} \textit{y} \texttt{loop()}\\
 	
 	\noindent No todo el código que se incluye en un \textit{sketch}  de Arduino pertenece a uno de los dos bloques recién introducidos. Por ejemplo:
 	
@@ -1557,15 +1511,29 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	 
 	% LoRaWAN uses unlicensed spectrum in the ISM bands to define the communication protocol and system architecture for the network while the LoRa physical layer creates the long-range communication links between remote sensors and gateways connected to the network. This protocol helps in the quick setup of public or private IoT networks anywhere using hardware and software.
 	
-	\noindent  \textbf{Regulación LoRa en Europa: ERC 70-03} \\
+	\noindent  \textbf{Regulación LoRa en Europa} \\
 	
-	\noindent \href{https://docdb.cept.org/download/25c41779-cd6e/Rec7003e.pdf}{ERC 70-03} \\
-
+	\noindent LoRaWAN es la capa de aplicación y protocolo que corre sobre la modulación de radio LoRa. LoRa en España opera en banda no licenciada del radioespectro, esto implica que se puede transmitir en esa frecuencia sin necesidad de pagar por su uso (de la misma manera que se hace con el WiFi). La modulación LoRa, como todas las demás emisiones de radiofrecuencia, está sujeta a una regulación que le marca sus límites de uso. \\
+	
+	\noindent Como cualquier radiofrecuencia utilizada para la transmisión de datos, el estándar normativo genérico a nivel europeo está definido por el European Telecommunications Standards Institut (ETSI). Actualmente, la regulación actual viene marcada por la \href{https://www.etsi.org/deliver/etsi_en/300200_300299/30022001/03.01.01_60/en_30022001v030101p.pdf}{ETSI EN 300 220-1}[\ref{etsi}]. Ahora bien, la ETSI EN 300 220-1 marca cómo se deben usar las ondas de radio de un rango de 25 MHz hasta 1000 MHz, es decir, gran parte de este estándar no aplica a LoRa, ya que su uso mayoritario en el ámbito europeo está acotado a la banda libre de 868 MHz. Es por ello que la LoRa Alliance ha desarrollado un documento llamado \href{https://lora-alliance.org/resource_hub/rp2-1-0-3-lorawan-regional-parameters/}{LoRaWAN Regional Parameters}[\ref{lora regional parameters}] donde se explica la normativa específica para LoRa y LoRaWAN. En este documento se diferencia cual es la regulación concreta que aplica a la modulación LoRa y cúal a LoRaWAN (conjunto modulación y capa de aplicación).\\
+	
+	\noindent Lora Alliance resumió toda la normativa a nivel mundial, por lo que para conocer lo que afecta a nivel español, tendremos que seguir la regulación europea y, por tanto, fijarnos en aquellos puntos titulados EU863-870MHz. Si bien es cierto que los fabricantes de dispositivos tienen que estar muy atentos a esta regulación, a nivel de usuario de una red LoRaWAN propia, lo que tenemos que ser conscientes son las siguientes limitaciones:
+	
+	\begin{itemize}
+		\item Bandas de frecuencia: 868-869 MHz
+		\item 10 canales, 8 con data rates de entre 250bps y 5.5 kbps, 1 de 11kbps y 1 FSK de 50 kbps
+		\item Potencia de salida máxima: +14 dBM
+		\item Duty Cycle de entre 0,1\% y 1\% dependiendo del canal
+		\item En redes privadas no hay limitación de tiempo de permanencia en el canal
+	\end{itemize}
+	
+	\noindent Es importante conocer estos límites porque si la red es privada y autogestionada, es responsabilidad del usuario cumplir con la regulación. De todos modos, siempre va a ser complicado que dispositivos certificados para transmitir LoRaWAN permitan configuraciones no reglamentarias [\ref{param regionales lorawan}].\\
+	
 	\noindent \textbf{Transceptores LoRa elegidos: E32-868T30D} \\
 	
-	\noindent Los módulos LoRa que vamos a usar son los E32-868T30D. En la Figura \ref{fig: capturas E32.} se adjunta una imagen del dispositivo en cuestión. \\
+	\noindent Aunque existen más opciones, se han escogido los módulos LoRa E32-868T30D. En la Figura \ref{fig: capturas E32.} se adjunta una imagen del dispositivo en cuestión. \\
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
 				\includegraphics[width=60mm]{img/e32_front.png} &   \includegraphics[width=60mm]{img/e32_rear.png} \\
@@ -1578,10 +1546,15 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}	
 	
-	\noindent La ficha técnica de este dispositivo se puede consultar en el Anexo I. Destacaremos algunos parámetros en los que se ha basado su elección: \\
+	\noindent Destacaremos algunos parámetros en los que se ha basado su elección: 
 	
 	\begin{itemize}
-		\item 
+		\item Comunicación y configuración vía UART
+		\item Disponibilidad de librerías para Arduino
+		\item Conector de antena tipo SMA
+		\item Potencia de transmisión entre 21dBm y 30 dBm 
+		\item Alcance hasta 8kms
+		\item Fácil incorporación en PCB personalizada
 	\end{itemize}
 	
 	\noindent Se usarán antenas de 5 dBi con diagrama de radiación tipo dipolo.\\
@@ -1596,12 +1569,12 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	\noindent \textit{Simulación en Radio Mobile}\\
 	
-	\noindent Una vez elegidos los componentes (transceptores y antenas) y antes de realizar las pruebas de campo, es procedente simular el enlace radio con los parámetros de los componentes escogidos. Para ello, se empleó el programa de simulación \textit{Radio Mobile}. No simularemos únicamente los transceptores E32-868T30D, sino que, además, se simulará para el transceptor E22-900T22D, un transceptor que se comentó en el apartado de \textit{Búsqueda de soluciones}, y que además de tener una tecnología muy similar al E32, nos puede proporcionar el RSSI, un parámetro que nos ayuda a valorar la intensidad de la señal en recepción sin necesidad de otras herramientas (las cuales habría que comprar o tomar prestadas, calibrar, etcétera). El estudio en profundidad de este transceptor no entra dentro del alcance programado para este proyecto, sin embargo, se realizan las simulaciones correspondientes para allanar terreno de cara a futuras investigaciones.\\
+	\noindent Una vez elegidos los componentes (transceptores y antenas) y antes de realizar las pruebas de campo, es procedente simular el enlace radio con los parámetros de los componentes escogidos. Para ello, se empleó el programa de simulación \href{https://www.ve2dbe.com/english1.html}{\textit{Radio Mobile}} [\ref{radio mobile web}]. No simularemos únicamente los transceptores E32-868T30D, sino que, además, se simulará para el transceptor E22-900T22D, un transceptor que se comentó en el apartado de \textit{Búsqueda de soluciones}, y que además de tener una tecnología muy similar al E32, nos puede proporcionar el RSSI, un parámetro que nos ayuda a valorar la intensidad de la señal en recepción sin necesidad de otras herramientas (las cuales habría que comprar o tomar prestadas, calibrar, etcétera). El estudio en profundidad de este transceptor no entra dentro del alcance programado para este proyecto, sin embargo, se realizan las simulaciones correspondientes para allanar terreno de cara a futuras investigaciones.
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
-				\includegraphics[width=60mm]{img/e22_front.png} &   \includegraphics[width=60mm]{img/e22_rear.png} \\
+				\includegraphics[width=60mm]{img/e22_front.png} &   \includegraphics[width=50mm]{img/e22_rear.png} \\
 				(a) Parte frontal & (b) Parte trasera\\[6pt]
 				%	\multicolumn{2}{c}{\includegraphics[width=60mm]{img/Fotos comedero/helice_v3VSv2VSv1_rotated.png} }\\
 				%	\multicolumn{2}{c}{(c) Versión 3 de las hélices (comparado con v1 y v2)}
@@ -1611,7 +1584,9 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 
-	\noindent Radio Mobile es gratuito y fácil de usar e instalar, por lo que para realizar simulaciones de enlaces no muy complejos es altamente recomendable. En este proyecto, sólo contaremos, en un principio, con dos dispositivos equivalentes en tanto a características radio, separados una distancia de 3.5 kms, aproximadamente, en un entorno con pocas fluctuaciones del terreno, rural y pocos obstáculos entre ambos (existe visión directa, \textit{LoS, Line-of-Sight}, entre los extremos). El proceso de configuración seguido para realizar la simulación del escenario planteado es el que sigue: \\
+	\pagebreak 
+	
+	\noindent Radio Mobile es gratuito y fácil de usar e instalar, por lo que para realizar simulaciones de enlaces no muy complejos es altamente recomendable. En este proyecto, sólo contaremos, en un principio, con dos dispositivos equivalentes en tanto a características radio; uno se ubicará en una casa de campo y otro en el refugio, ambos separados una distancia de 3.5 kms, aproximadamente, en un entorno con pocas fluctuaciones del terreno, rural y pocos obstáculos entre ambos (existe visión directa, \textit{LoS, Line-of-Sight}, entre los extremos). El proceso de configuración seguido para realizar la simulación del escenario planteado es el que sigue: 
 	
 	\begin{itemize}
 		\item En Google Earth, se tomaron las coordenadas de la casa de campo donde se va a encontrar el gateway, y las coordenadas del refugio.
@@ -1624,9 +1599,9 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\item Abrimos el mapa ya creado y la imagen ya creada.
 		\item Ahora debemos clicar en \textit{Propiedades de redes: Parámetros}, e introducir los parámetros de nuestra red.
 		
-		\begin{figure}[h]
+		\begin{figure}[h!]
 			\begin{center}
-				\includegraphics[width=0.7\textwidth]{img/prop_redes_radiomobile.png}
+				\includegraphics[width=0.68\textwidth]{img/prop_redes_radiomobile.png}
 				\caption{Configuración de los parámetros de la red a simular en Radio Mobile, dentro de \textit{Propiedades de las redes}.}
 				\label{Prop redes param radiomobile}
 			\end{center}
@@ -1636,23 +1611,25 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		
 		\item Se configura la topología de la red según corresponda.
 		
-		\pagebreak
+		%\pagebreak
 		
-		\begin{figure}[h]
+		\begin{figure}[h!]
 			\begin{center}
-				\includegraphics[width=0.7\textwidth]{img/propRedes_topo_RadioMobile.png}
+				\includegraphics[width=0.68\textwidth]{img/propRedes_topo_RadioMobile.png}
 				\caption{Configuración de la topología de la red a simular en Radio Mobile, dentro de \textit{Propiedades de las redes}.}
 				\label{Prop redes topo radiomobile}
 			\end{center}
 		\end{figure}
 		
+		\pagebreak
+		
 		\item El siguiente paso es la creación de los sistemas que conforman esa red, que serán dos, uno el localizado en la casa de campo y otro en el refugio. Habrá más de un sistema campo o refugio, ya que variarán en función de la potencia de transmisión, altura de las antenas o diagrama de radiación, principalmente, parámetros que cambiamos dependiendo de la simulación. Podemos cambiar, también la ganancia de las antenas o las pérdidas, pero como son parámetros que, en nuestro caso, no van a cambiar, no serán variables a considerar. Cuando creemos un sistema, debemos clicar en \textit{Agregar a Radiosys.dat}. \\
 		
 		Para el caso de la potencia de transmisión 14dBm (se consigue con E22): \\
 		
-		\pagebreak
+		%\pagebreak
 		
-		\begin{figure}[h]
+		\begin{figure}[h!]
 			\begin{center}
 				\includegraphics[width=0.7\textwidth]{img/propRedes_sistemasE2214_radioMobile.png}
 				\caption{Configuración de los sistemas de la red a simular en Radio Mobile, dentro de \textit{Propiedades de las redes}. Ejemplo para transceptor LoRa E22, transmitiendo a 14 dBm.}
@@ -1664,11 +1641,11 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		
 		\item Una vez creados los sistemas y asociados a una unidad, hay que asociarles un rol dentro de la red, en \textit{Miembros}, dentro de \textit{Propiedades de las redes}. \textit{Miembros} y \textit{Sistemas} depende de la simulación. Se ha creado una sola red, pero varios sistemas dependiendo de la potencia de transmisión. Como hay que asociar los sistemas a los miembros, miembro se convierte en un valor dinámico según el sistema que haya que simular; creando dos miembros y asignando ese rol al sistema que se deba simular en ese momento, es suficiente. Además, siendo ambos extremos de la comunicación equivalentes, sería suficiente con crear un sistema y  asignándole los dos miembros creados posteriormente, en nuestro caso. Dentro de \textit{Miembros}, cambiando Sistema (E32\_22 o Campo\_omni/Refugio\_omni, que sería el caso del E32 a 30 dBm, por ejemplo) se pueden configurar los equipos para las potencias de transmisión probadas. \\
 		
-		\pagebreak
+		%\pagebreak
 		
 		Siguiendo con el mismo ejemplo que el presentado en \textit{Sistemas} (E22 a 14 dBm): \\
 		
-		\begin{figure}[h]
+		\begin{figure}[h!]
 			\begin{subfigure}{0.5\textwidth}
 				\includegraphics[width=1\textwidth]{img/propRedes_miembrosE2214_radioMobile.png} 
 				\caption{}
@@ -1685,7 +1662,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		
 		\item Si todo ha sido configurado correctamente, clicando en \textit{Ver - Mostrar redes - Todo}, nos enseñará en el mapa el enlace radio, con las unidades asociadas a sistemas.
 		
-		\begin{figure}[h]
+		\begin{figure}[h!]
 			\begin{center}
 				\includegraphics[width=0.2\textwidth]{img/mostrarRed_radioMobile.png}
 				\caption{Enlace radio creado en Radio Mobile para simular la red creada entre la casa de campo y el refugio.}
@@ -1699,7 +1676,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		
 		%ejemplo_resultadoEnlace_radioMobile.png
 		
-		\begin{figure}[h]
+		\begin{figure}[h!]
 			\begin{center}
 				\includegraphics[width=0.6\textwidth]{img/ejemplo_resultadoEnlace_radioMobile.png}
 				\caption{Resultado de la simulación del enlace radio creado en Radio Mobile.}
@@ -1803,12 +1780,12 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	\pagebreak
 	
-	\noindent A continuación, se mostrarán las simulaciones realizadas teniendo en cuenta las pérdidas adicionales por el alargador SMA de 1.8 m. Según el datasheet sobre RG316, el tipo de cable que se ha usado como alargador, dicho cable introduce unas pérdidas a 900 MHz de 26.3 dB/100ft. Si el cable que se ha usado es de longitud 3FT (hay otro interno en la caja pero al ser de 15 cms se ha despreciado), se introducen unas pérdidas de 0.7dB, por lo que redondeando al caso peor, introduce 1dB de pérdidas. Se ha introducido este dB de pérdidas en \textit{Propiedades de las redes - Sistemas - Pérdida de la línea}. Se desprecian las pérdidas en los conectores SMA.\\
+	\noindent A continuación, se mostrarán las simulaciones realizadas teniendo en cuenta las pérdidas adicionales por el alargador SMA de 1.8 m; se ha elegido usar un alargador para las antenas ya que daría mayor facilidad a la hora de instalar las mismas en un mástil (para darles altura y mejorar la comunicación). Según el datasheet sobre RG316, el tipo de cable que se ha usado como alargador, dicho cable introduce unas pérdidas a 900 MHz de 26.3 dB/100ft. Si el cable que se ha usado es de longitud 3FT (hay otro interno en la caja pero al ser de 15 cms se ha despreciado), se introducen unas pérdidas de 0.7dB, por lo que redondeando al caso peor, introduce 1dB de pérdidas. Se ha introducido este dB de pérdidas en \textit{Propiedades de las redes - Sistemas - Pérdida de la línea}. Se desprecian las pérdidas en los conectores SMA.\\
 	
 	% resultado_e32_125mW_conPerdidas_desc.png
 	\noindent \textit{\textbf{Simulación con E32-868T30D}} \\
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e32_125mW_conPerdidas_desc.png}
 			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 21dBm (enlace descendente), con pérdidas de 1 dB debido al alargador SMA.}
@@ -1820,7 +1797,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	% resultado_e32_125mW_conPerdidas_asc.png
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.65\textwidth]{img/resultado_e32_125mW_conPerdidas_asc.png}
 			\caption{Resultado de la simulación del enlace radio creado en Radio Mobile, para transceptor E32 transmitiendo a 21dBm (enlace ascendente), con pérdidas de 1 dB debido al alargador SMA.}
@@ -1828,7 +1805,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 
-	\pagebreak
+	%\pagebreak
 	
 	\noindent \textit{\textbf{Simulación con E22-900T22D}} \\
 	% resultado_e22_10mW_conPerdidas_desc.png
@@ -1853,7 +1830,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	\noindent Resumiendo, para una altura de las antenas de 2m, tanto en el caso del transceptor LoRa E32-868T30D como en el caso del transceptor E22-900T22D, conseguimos establecer un enlace LoRa satisfactorio. En todos los casos se observa que el nivel de la señal en el receptor está en verde, y por tanto, se recibe la potencia necesaria. Es más, en todo punto de la línea entre transmisor y receptor hay cobertura, ya que ésta aparece dibujada en color verde.
 	
-	\pagebreak
+	%\pagebreak
 	
 %	\subsubsection{Cálculo teórico de pérdidas de enlace}
 %	\subsubsection{Simulación en \textit{Radio Mobile}}
@@ -1862,9 +1839,13 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	\subsubsubsection{Comedero}
 	\label{subsubsubsection: comedero eleccion}
 	
-	 \noindent Se ha elegido como gestor del movimiento del pienso el uso de un motor, en concreto, de un servomotor de 5V, capaz de girar 360º y capaz de mover cargas de hasta 10 kg (para leer información más detallada, ir a \hyperref[anexo I: ficha tecnica]{Anexo I}). \\
+	 \noindent Se ha elegido como gestor del movimiento del pienso el uso de un motor, en concreto, de un servomotor de 5V, capaz de girar 360º y capaz de mover cargas de hasta 10 kg. \\
 	
-		\begin{figure}[h]
+	\noindent Este servo, con la ayuda de unas hélices imprimidas en 3D, moverá el pienso en dirección longitudinal a una pieza T de PVC donde irán insertados. En la Figura \ref{Imagen servomotor MG996R} se muestra un kit bastante común de un servomotor MG996R, con varias hélices para transferir el movimiento rotatorio del servo; sin embargo, para el planteamiento que se pretende llevar a cabo se requieren unas hélices especiales. Se buscaron unas hélices (ver Figura \ref{fig: capturas thingiverse helices kitlaan.}) que ayudasen al pienso en su recorrido longitudinal a través de la pieza T de PVC. Este planteamiento está inspirado en la creación de \href{https://www.thingiverse.com/kitlaan/designs}{kitlaan}, subido a la plataforma \href{https://www.thingiverse.com/}{\textit{Thingiverse}}[\ref{thingiverse web}], bajo el nombre \href{https://www.thingiverse.com/thing:27854}{Auger-based Cat Feeder}[\ref{bib: thingiverse helices comedero}]. 
+	
+	\pagebreak
+	
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.4\textwidth]{img/servo_mg996r.jpg}
 			\caption{Imagen del servomotor elegido para conformar el prototipo inicial de nuestro sistema de alimentación para animales [\ref{bib: todomicro}]}
@@ -1872,11 +1853,9 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 	
-	\noindent Este servo, con la ayuda de unas hélices imprimidas en 3D, moverá el pienso en dirección longitudinal a una pieza T de PVC donde irán insertados. En la Figura \ref{Imagen servomotor MG996R} se muestra un kit bastante común de un servomotor MG996R, con varias hélices para transferir el movimiento rotatorio del servo; sin embargo, para el planteamiento que se pretende llevar a cabo se requieren unas hélices especiales . Se buscan unas hélices que ayuden al pienso en su recorrido longitudinal a través de la pieza T de PVC. Este planteamiento está inspirado en la creación de \href{https://www.thingiverse.com/kitlaan/designs}{kitlaan}, subido a la plataforma  \textit{Thingiverse}, bajo el nombre \href{https://www.thingiverse.com/thing:27854}{Auger-based Cat Feeder}.  \\
+	%\pagebreak
 	
-	\pagebreak
-	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
 				\includegraphics[width=60mm]{img/thingiverse_helice_1.png} &   \includegraphics[width=60mm]{img/thingiverse_helice_2.png} \\
@@ -1884,12 +1863,14 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 				%	\multicolumn{2}{c}{\includegraphics[width=60mm]{img/Fotos comedero/helice_v3VSv2VSv1_rotated.png} }\\
 				%	\multicolumn{2}{c}{(c) Versión 3 de las hélices (comparado con v1 y v2)}
 			\end{tabular}
-			\caption{Capturas de la solución del movimiento de pienso del usuario kitlaan en \textit{Thingiverse} [\ref{bib: thingiverse helices comedero}].}
+			\caption{Capturas de la solución del movimiento de pienso del usuario \textit{kitlaan} en \textit{Thingiverse} [\ref{bib: thingiverse helices comedero}].}
 			\label{fig: capturas thingiverse helices kitlaan.}
 		\end{center}
 	\end{figure}
 	
-	\noindent Además, se hará uso de una serie de piezas de PVC para crear la conexión comedero-reserva, desde la salida de pienso en el fondo de la reserva hasta la salida del pienso hacia el comedero. Como mínimo, será necesaria una pieza de PVC tipo T.\\
+	\noindent Además, se hará uso de una serie de piezas de PVC para crear la conexión comedero-reserva, desde la salida de pienso en el fondo de la reserva hasta la salida del pienso hacia el comedero. Como mínimo, será necesaria una pieza de PVC tipo T (ver Figura \ref{Pieza PVC T}).\\
+	
+	\pagebreak
 	
 	%pieza_pvc_T.png
 	
@@ -1903,7 +1884,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	\noindent Otras piezas PVC que podrán ser empleadas son codos de 45\degree, prolongaciones de tubo PVC o conectores de unión, como los que se muestran en la Figura \ref{fig: piezas PVC posibles.}.\\
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
 				\includegraphics[width=30mm]{img/pieza_pvc_codo45.png} &   \includegraphics[width=30mm]{img/tubo_pvc.jpg} \\
@@ -1946,12 +1927,12 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	\begin{itemize}
 		\item Se colocarán dos sensores de nivel en posiciones  concretas de la reserva de agua para detectar, conforme se va haciendo uso de la reserva, qué cantidad de agua queda en ella.
 		\item El movimiento del agua desde la reserva al bebedero tendrá lugar gracias a una bomba de agua y un tubo de silicona transparente, por donde circulará el agua propulsada por la bomba.
-		\item Por último, se hará uso de un relé entre arduino y bomba de agua, ya que ésta no tiene una lógica extra que permita su control.
+		\item Por último, se hará uso de un relé entre arduino y bomba de agua, con el fin de accionar la bomba cuando el usuario lo desee.
 	\end{itemize}
 	
 	\noindent En la Figura \ref{Esquema conexiones bebedero Fritzing} mostramos la configuración en protoboard de todos estos componentes.
 	
-	\pagebreak
+	%\pagebreak
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1967,9 +1948,9 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	\noindent Ya explicados con más detalle en el apartado \ref{subsubsubsection: bebedero busqueda soluciones}. Se situarán en uno de los laterales de la reserva de agua, separados entre sí una distancia suficiente como para monitorizar de manera correcta los diferentes estados en los que puede encontrarse la reserva. Irán conectados al microcontrolador a través de los pines digitales D8 y D10, tal como aparece en la Figura \ref{Esquema conexiones bebedero Fritzing}. Como se comentó en el apartado \ref{subsubsubsection: bebedero busqueda soluciones}, necesitaremos hacer uso de una resistencia \textit{pull-down} para evitar estados lógicos no deseados a la entrada de los pines D8 y D10; en este caso, las resistencias empleadas tienen un valor de 10k, y realizarán un puente entre alimentación y el cable del sensor de nivel que vaya al pin digital del arduino.
 	
-	\noindent En tanto a apariencia, se usará el sensor de nivel que ya se mostró en la Figura \ref{Sensor de flotación}, dentro del apartado \ref{subsubsubsection: bebedero busqueda soluciones}.
+	\noindent En tanto a apariencia, se usará el sensor de nivel que ya se mostró en la Figura \ref{Sensor de flotación}, dentro del apartado \ref{subsubsubsection: bebedero busqueda soluciones}.\\
 
-	\pagebreak
+	%\pagebreak
 	
 	\noindent \textbf{Bomba de agua} \\
 	
@@ -1987,7 +1968,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	\noindent \textbf{Relé}\\
 	
-	\noindent El relé actúa como un conmutador, que responde a la señal de control de su entrada, actuando en consecuencia según su valor. Al contrario de lo que ocurría en el caso de un sensor, al ser un actuador, la señal de control vendrá del microcontrolador y determinará la actuación del relé. Más adelante veremos cómo, en el apartado \ref{subsubsection: resumen funcionamiento prototipo definitivo}; resumiendo, el microcontrolador le dice al relé, mediante esa señal de control, cuándo cambiar de la posición NA a NC (o NC a NA), para que, así, la corriente fluya o no hacia la bomba y ésta se active, o se desactive. \\
+	\noindent El relé (ver Figura \ref{Captura relé}) actúa como un conmutador, que responde a la señal de control de su entrada, actuando en consecuencia según su valor. Al contrario de lo que ocurría en el caso de un sensor, al ser un actuador, la señal de control vendrá del microcontrolador y determinará la actuación del relé. Más adelante veremos cómo, en el apartado \ref{subsubsection: resumen funcionamiento prototipo definitivo}; resumiendo, el microcontrolador le dice al relé, mediante esa señal de control, cuándo cambiar de la posición NA a NC (o NC a NA), para que, así, la corriente fluya o no hacia la bomba y ésta se active, o se desactive. \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1997,12 +1978,9 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 
-	\noindent Volviendo a la Figura \ref{Esquema conexiones bebedero Fritzing}, entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$ y un BJT). Se usan debido a que el relé necesita ver a su entrada una corriente superior a la que sale del microcontrolador, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, emite un sonido característico). \\
+	\noindent Volviendo a la Figura \ref{Esquema conexiones bebedero Fritzing}, entre el pin D7 y el relé, vemos que existe una serie de componentes intermedios (un LED, una resistencia de un 1k$\Omega$ y un transistor BJT). Se usan debido a que el relé necesita ver a su entrada una corriente superior a la que sale del microcontrolador, y el transistor BJT amplifica dicha corriente para su correcto funcionamiento. La resistencia sirve para estabilizar la corriente a la entrada del LED, el cual usamos para ver visualmente cuándo cambia de estado el relé (aunque cuando lo hace, emite un sonido característico). \\
 	
-	\noindent Como anotación, decir que la configuración elegida para el BJT está basada en el circuito que aparece en la Figura \ref{Ejemplo rele con transistor}; se modificó a  un BJT en configuración emisor común  (en la Figura \ref{Ejemplo rele con transistor} se emplea una configuración emisor común, pero situando el relé en la patilla emisor y no colector, y allí no se produce una amplificación), ya que permite tener una ganancia en corriente, lo cual nos interesa; es la configuración más usada para amplificar señales y no sólo eso, sino que es la que produce mayor ganancia de corriente y ganancia en potencia de las tres configuraciones BJT (emisor común, colector común, base común). Hay que tener en cuenta que esta configuración es inversora (desplazamiento de 180\degree) y presenta una ganancia de tensión menor [\ref{electronics tutos bjt}], de cara a usarla para otras funcionalidades.  \\
-	
-	
-
+	\noindent Como anotación, decir que la configuración elegida para el BJT está basada en el circuito que aparece en la Figura \ref{Ejemplo rele con transistor}; se modificó a un BJT en configuración emisor común (en la Figura \ref{Ejemplo rele con transistor} se emplea una configuración emisor común, pero situando el relé en la patilla emisor y no colector, y allí no se produce una amplificación), ya que permite tener una ganancia en corriente, lo cual nos interesa; es la configuración más usada para amplificar señales y no sólo eso, sino que es la que produce mayor ganancia de corriente y ganancia en potencia de las tres configuraciones BJT (emisor común, colector común, base común). Hay que tener en cuenta que esta configuración es inversora (desplazamiento de 180\degree) y presenta una ganancia de tensión menor [\ref{electronics tutos bjt}], de cara a usarla para otras funcionalidades.  
 	
 	\pagebreak
 	
@@ -2023,7 +2001,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 
 	\noindent En el apartado \ref{subsubsubsection: comedero eleccion}  ya se explica lo que pueda ser necesario para el conexionado reserva-comedero (piezas de PVC principalmente). Para la funcionalidad de bebedero, en concreto para conectar la reserva de agua con el bebedero, se hará uso de un tubo de silicona transparente (Figura \ref{Captura tubo silicona}, 10mm de diámetro, grosor de 1mm y longitud 1m) y de una pieza impresa en 3D para sujetar el tubo de silicona al bebedero (Figura \ref{fig: pieza 3D sujecion bebedero}). \\
 	
-	\pagebreak
+	%\pagebreak
 	
 	%tubo_silicona.png
 	
@@ -2035,6 +2013,8 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 
+	\pagebreak
+	
 	\begin{figure}[h]
 		\begin{center}
 			\begin{tabular}{cc}
@@ -2050,7 +2030,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	\noindent En tanto a las reservas que serán empleadas, se trata de dos bidones de plástico (uno para pienso y otro para agua), de capacidad 5L, suficiente para una prueba de concepto (Figura \ref{Captura bidon}). \\
 	
-	\pagebreak
+	%\pagebreak
 	
 	\begin{figure}[h!]
 		\begin{center}
@@ -2060,9 +2040,11 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 	
+	\pagebreak
+	
 	\noindent Los recipientes usados como comedero y bebedero son unos cuencos de acero inoxidable (Figura \ref{fig: capturas bebedero}), pensado para mascotas pequeñas, con capacidad aproximada de 200mL. Igual que con el bidón, para una prueba de concepto será suficiente. Trae consigo unos ganchos, también de acero inoxidable, de uso opcional, para colgar los cuencos en una jaula (o similar).\\
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
 				\includegraphics[width=50mm]{img/cuenco_1.png} &   \includegraphics[width=30mm]{img/cuenco_2.png} \\
@@ -2075,16 +2057,16 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 	
-	\noindent Para proteger la electrónica, se emplearán cajas estancas (Figura \ref{fig: capturas caja estanca}), ya que están preparadas para proteger conexiones eléctricas (cables u otros), incluso en el exterior. Además, se abren desatornillando unos tornillos en su parte frontal, y es posible hacer agujeros a medida  para pasar cables desde su interior hasta el exterior en diferentes zonas de silicona plástica que tienen en todos sus laterales. \\
+	\noindent Para proteger la electrónica, se emplearán cajas estancas (Figura \ref{fig: capturas caja estanca}), ya que están preparadas para proteger conexiones eléctricas (cables u otros), incluso en el exterior. Además, se abren desatornillando unos tornillos en su parte frontal, y es posible hacer agujeros a medida  para pasar cables desde su interior hasta el exterior en diferentes zonas de silicona plástica que tienen en todos sus laterales. 
 	
-	\pagebreak
+	%\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
-				\includegraphics[width=50mm]{img/caja_estanca_1.png} &   \includegraphics[width=60mm]{img/caja_estanca_2.png} \\
+				\includegraphics[width=32mm]{img/caja_estanca_1.png} &   \includegraphics[width=42mm]{img/caja_estanca_2.png} \\
 				(a) Exterior de una caja estanca & (b) Detalle de interior de una caja estanca  \\[6pt]
-				\multicolumn{2}{c}{\includegraphics[width=50mm]{img/caja_estanca_3.png} }\\
+				\multicolumn{2}{c}{\includegraphics[width=32mm]{img/caja_estanca_3.png} }\\
 				\multicolumn{2}{c}{(c) Detalle de ubicación de los tornillos y de zonas perforables para cables. }
 			\end{tabular}
 			\caption{Capturas de una caja estanca (ejemplo) [\ref{bib: cablematic}]. }
@@ -2092,9 +2074,11 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 	
-	\noindent Por último, faltaría determinar la ubicación de las antenas. Para mejorar la emisión/recepción de los mensajes, debemos dar una altura mínima a las antenas. Para ello, se propone conectar un alargador SMA desde el transceptor LoRa (el cual está en el interior de la caja estanca) hasta una de las paredes de la caja estanca (Figura \ref{fig: capturas alargadores sma caja estanca}(a)), la cual habrá que perforar con un taladro para sacar la salida de ese alargador al exterior. De esta manera, podremos conectar otro alargador (de la longitud que se desee) desde el exterior de la caja estanca hasta la altura que dé dicho alargador (Figura \ref{fig: capturas alargadores sma caja estanca}(b)), y conectar en tal punto la antena (permitiendo, así, mejorar la conexión entre ambos nodos).\\
-	
 	\pagebreak
+	
+	\noindent Por último, faltaría determinar la ubicación de las antenas. Para mejorar la emisión/recepción de los mensajes, debemos dar una altura mínima a las antenas. Para ello, se propone conectar un alargador SMA desde el transceptor LoRa (el cual está en el interior de la caja estanca) hasta una de las paredes de dicha caja (Figura \ref{fig: capturas alargadores sma caja estanca}(a)), la cual habrá que perforar con un taladro para sacar la salida de ese alargador al exterior. De esta manera, podremos conectar otro alargador (de la longitud que se desee) desde el exterior de la caja estanca hasta la altura que dé dicho alargador (Figura \ref{fig: capturas alargadores sma caja estanca}(b)), y conectar en tal punto la antena (permitiendo, así, mejorar la conexión entre ambos nodos).\\
+	
+	%\pagebreak
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -2128,7 +2112,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.6\textwidth]{img/refugio_global.jpg}
+			\includegraphics[width=0.8\textwidth]{img/refugio_global.jpg}
 			\caption{Foto del refugio de Patitas Unidas Los Alcázares.}
 			\label{Foto global refugio}
 		\end{center}
@@ -2138,7 +2122,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.6\textwidth]{img/refugio_jaulas.jpg}
+			\includegraphics[width=0.7\textwidth]{img/refugio_jaulas.jpg}
 			\caption{Foto de las jaulas existentes en refugio de Patitas Unidas.}
 			\label{Foto jaulas refugio}
 		\end{center}
@@ -2166,12 +2150,12 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 
 	\noindent Se adjuntan imágenes donde se contextualiza la manera actual de alimentar y abrevar a los animales alojados en el refugio. \\
 	
-	\pagebreak
+	%\pagebreak
 	
 	\begin{figure}[h!]
 		\begin{center}
 			\begin{tabular}{cc}
-				\includegraphics[width=55mm]{img/bebedero_refugio.jpg} &   \includegraphics[width=60mm]{img/bidon_refugio.jpg} \\
+				\includegraphics[width=55mm]{img/bebedero_refugio.jpg} &   \includegraphics[width=50mm]{img/bidon_refugio.jpg} \\
 				(a) Foto del bebedero estándar & (b) Bidón estándar para rellenar los bebederos\\[6pt]
 				%\multicolumn{2}{c}{\includegraphics[width=50mm]{img/caja_estanca_3.png} }\\
 				%\multicolumn{2}{c}{(c) Detalle de ubicación de los tornillos y de zonas perforables para cables. }
@@ -2180,6 +2164,8 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 			\label{fig: sistema bebedero refugio.}
 		\end{center}
 	\end{figure}
+	
+	\pagebreak
 	
 	\begin{figure}[h!]
 		\begin{center}
@@ -2204,7 +2190,7 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	\subsubsection{Resumen del funcionamiento del prototipo definitivo}
 	\label{subsubsection: resumen funcionamiento prototipo definitivo}
 	
-	\noindent En este punto se mostrará el funcionamiento del prototipo final del sistema de alimentación para animales creado. Se usarán esquemas de elaboración propia, realizados en \textit{draw.io}, con el objetivo de mostrar las conexiones principales entre los bloques fundamentales del sistema creado, de manera sencilla e intuitiva. Se acompañará de una explicación resumen  sobre cómo se ha realizado la automatización y monitorización.
+	\noindent En este punto se mostrará el funcionamiento del prototipo final del sistema de alimentación para animales creado. Se usarán esquemas de elaboración propia, realizados en \href{https://app.diagrams.net/}{\textit{draw.io}} [\ref{draw.io web}], con el objetivo de mostrar las conexiones principales entre los bloques fundamentales del sistema creado, de manera sencilla e intuitiva. Se acompañará de una explicación resumen  sobre cómo se ha realizado la automatización y monitorización.
 		
 	\subsubsubsection{Comedero}
 
@@ -2216,17 +2202,22 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 	
-	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  \\
+	\noindent Nótese en la Figura \ref{Conexiones TFG comedero.} que se omite la presencia de la segunda PCB que recibe los datos de monitorización del pienso.  
+	
+	\pagebreak 
 	
 	\noindent A modo resumen, se emitirán unos comentarios previos a la presentación del prototipo, acerca del hardware y software empleados para el comedero. Se hará lo mismo para el bebedero. Así pues:
 	
 	\begin{itemize}
 		\item \textbf{Comentarios sobre el hardware}.
+		\begin{outline}
+			\1 Es importante asegurarse de que la alimentación está conectada antes de usar el servo, y que no haya conexión serial activa.
+			\1 También debemos asegurarnos de que tanto las hélices como el servo están bien conectadas con la pieza en T de PVC. 
+			\1 Vigilar cómo pasa el pienso a través de la pieza en T (si se atranca, si hay que ajustar el giro del servomotor para mayor facilidad de paso del pienso... Esto último se ajusta en software). 
+		\end{outline}	
 		\item \textbf{Comentarios sobre el software}.
 		\begin{outline}
-			\1 Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el \hyperref[anexo I: ficha tecnica]{Anexo I} se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero.
-			
-			\1 Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el \hyperref[anexo I: ficha tecnica]{Anexo I} se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.
+			\1 Es necesario calibrar en software el arduino que monitorizará el pienso; esto se consigue calculando el número de recargas que ponemos realizar dada la capacidad de la reserva y del comedero. En nuestro caso, tenemos una reserva de 5 kg y un comedero de 200g, por lo que, haciendo cálculos, tenemos para 25 ciclos de rellenado. Por seguridad y por desnivel de la reserva (la pieza por donde cae el pienso está a un nivel superior del tope inferior de la reserva, por lo que esos dos centímetros de desnivel no permitirían al pienso restante caer por él), reduciremos esos ciclos al 20\%, por lo que realmente consideraremos que serán 20 ciclos de rellenado. En el sketch de Arduino que se adjunta en el  \hyperref[anexo II: codigo]{Anexo II} se muestran las variables que permiten ajustar este cálculo y permiten la calibración si se cambiara la reserva o el comedero. Tendremos un contador que permitirá saber en qué ciclo de rellenado estamos, si quedan recargas o necesitamos rellenar la reserva. Esta información se transmitirá desde el transceptor LoRa del refugio hasta el transceptor LoRa en el otro extremo, y será gestionado por la Raspberry Pi al que está conectada la PCB de este extremo.
 			
 			\1 Ajustar el tiempo de un ciclo de rellenado para desactivar el movimiento del servomotor y que se rellene el comedero la cantidad deseada. \\
 		\end{outline}
@@ -2244,13 +2235,29 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 	
-	\noindent Nótese en la Figura \ref{Conexiones TFG bebedero.} que se omite la presencia de la segunda PCB que recibe los niveles de sensorización de agua: se miden niveles de agua con los sensores, y controlamos la acción de la bomba con el relé, conectados al arduino, el cual envía datos mediante transceptor LoRa al transceptor LoRa que tenemos en el otro extremo, el cual no necesitará alimentación autónoma al estar en una casa, y es este el que irá conectado a la Raspberry (que tiene función de servidor y gestor de los datos en recepción). \\
+	\noindent Nótese en la Figura \ref{Conexiones TFG bebedero.} que se omite la presencia de la segunda PCB que recibe los niveles de medición de agua.
 	
 	\pagebreak
 	
+	\begin{itemize}
+		\item \textbf{Comentarios sobre el hardware.}
+		\begin{outline}
+			\1 Es conveniente vigilar cómo sale el agua tanto de la reserva como al final del tubo de silicona (hacia el bebedero); fijar con bridas para que no se formen codos que imposibiliten una correcta llegada del agua, y asegurar el final del tubo de silicona al bebedero para que no caiga el agua fuera del mismo.
+			\1 Al igual que con el comedero, se recomienda asegurarse de que está todo bien conectado, especialmente la alimentación.
+		\end{outline}
+		\item \textbf{Comentarios sobre el software.}
+		\begin{outline}
+			\1 Se miden niveles de agua con los sensores, y controlamos la acción de la bomba con el relé, conectados al arduino, el cual envía datos mediante transceptor LoRa al transceptor LoRa que tenemos en el otro extremo, el cual no necesitará alimentación autónoma al estar en una casa, y es este el que irá conectado a la Raspberry (que tiene función de servidor y gestor de los datos en recepción).
+			\1 El bebedero se estará rellenando durante un tiempo, el cual hay que ajustar según el tamaño del bebedero. Anotar que se rellenará siempre y cuando los sensores de nivel detecten que la capacidad de la reserva está por encima del 25\%; si alcanza este nivel, notifica al gateway y deja de rellenar.
+		\end{outline}
+	\end{itemize}
+
+
+	%\pagebreak
+	
 	\subsubsection{PCB}
 	
-	\noindent Como hemos visto en la sección \ref{Sección 3: Diseño del sistema}, subsección \ref{Subsección 3.3: elección de soluciones para cada funcionalidad}, son muchos componentes los que forman el cómputo total del sistema de alimentación para animales. Para facilitar el prototipado y simplificar las conexiones de todos los elementos, se creó una PCB, como la que se muestra a continuación: \\
+	\noindent Como hemos visto en la sección \ref{Sección 3: Diseño del sistema}, subsección \ref{Subsección 3.3: elección de soluciones para cada funcionalidad}, son muchos componentes los que forman el cómputo total del sistema de alimentación para animales. Para facilitar el prototipado y simplificar las conexiones de todos los elementos, se diseñó y se mandó a fabricar una PCB (\textit{Printed Circuit Board}), como la que se muestra a continuación: \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -2260,7 +2267,9 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 		\end{center}
 	\end{figure}
 	
-	\noindent El fabricante de la PCB es JLCPCB, y se usó su editor EasyEDA.  Para mayor detalle del esquemático o de la PCB, consultar el repositorio de GitHub creado (poner  con href), donde se incluye un archivo .json que, importándolo a EasyEDA, permitirá su visualización. \\
+	\noindent El fabricante de la PCB es \href{https://jlcpcb.com/}{JLCPCB}[], y se usó su editor \href{https://easyeda.com/es}{EasyEDA}[], donde se implementaron los esquemáticos del prototipo. Una vez hecho, el programa lo traduce a una PCB, y tras unos retoques en enrutado, se pide al fabricante. Cuando llega, se comprueba su funcionamiento y se sueldan los componentes. Anotar que se han añadido conexiones extra a la PCB que no existían en el prototipo provisional, con el fin de facilitar las pruebas y/o futuras funcionalidades.\\
+	
+	\noindent Para mayor detalle del esquemático o de la PCB, consultar el repositorio de GitHub creado (poner  con href), donde se incluye un archivo .json que, importándolo a EasyEDA, permitirá su visualización. \\
 	
 	\subsubsection{Protocolo}
 	\label{protocolo explicacion}
@@ -2816,7 +2825,11 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	\noindent \textbf{\large Bootloader.} Al encender o reiniciar, un bootloader es una sección de la memoria del programa que se ejecuta antes de que se ejecute el código principal. Se puede utilizar para configurar el microcontrolador o proporcionar una capacidad limitada para actualizar el código del programa principal. No disponer de un bootloader implica realizar estas funciones a través de un programador externo. \\
 	\noindent En el caso del Uno, el bootloader de Arduino queda en espera a la vez que observa los pines UART. Si el bootloader no recibe una secuencia particular de bytes a través del puerto serie, entonces el procesador salta a la sección del programa ``usuario'' para cargar lo que ya esté en la memoria del programa. Este salto carga nuestro programa (o sketch) [\ref{bib: baldEngineer arduino bootloader}][\ref{bib: Arduino cc  bootloader}].\\
 	
-	\noindent \textbf{\large PWM (\textit{Pulse Width Modulation}).} \\
+	\noindent \textbf{\large PWM (\textit{Pulse Width Modulation}).} La modulación de ancho de pulso está formada por una señal de onda cuadrada que no siempre tiene la misma relación entre el tiempo que esta en alto y el tiempo que está en bajo. El tiempo que la señal se encuentra en el nivel alto (5V) lo denominamos Ton, mientras que el tiempo que está en nivel bajo lo denominamos Toff; la suma de ambos es el perido de la señal (T). La variación de ancho de pulso consiste en variar Ton y Toff; al cambiar el valor de un PWM, en realidad se están modificando estos tiempos.
+	
+	\noindent Una de las características más importantes de una señal PWM es su ciclo de trabajo o \textit{Duty Cycle}, es decir, la relación entre el tiempo de encendido y el periodo o tiempo total del PWM. Cuanto mayor sea el duty cycle, más tiempo estará la señal de tensión en alto, sin variar el periodo. Por consecuencia, como el periodo no varía y la suma de Ton y Toff, si el tiempo de encendido aumenta, el tiempo de apagado disminuye. Este es el motivo por el cual se llama modulación de ancho de pulso, porque literalmente se varia el ancho del pulso de nivel alto. 
+	
+	\noindent Lo cierto es que al variar el duty cycle de una señal PWM, lo que estamos haciendo es variar su tensión media; cuando una señal media de tensión atraviesa ciertos componentes electrónicos, puede hacer que su comportamiento cambie. Por ejemplo, los LED, los motores de corriente continua o ventiladores, incluso altavoces y zumbadores. Existen muchas alternativas a la hora de generar una señal PWM. Una de las más clásicas es usar un microcontrolador (en Arduino, la señal de PWM la generamos mediante el uso del método analogWrite()). Otra posibilidad es usar el 555 [\ref{bib: pwm}].\\
 	
 	\noindent \textbf{\large UART (\textit{Universal Asynchronous Receiver Transmitter}).} No es un protocolo de comunicación como SPI e I2C, sino un circuito físico en un microcontrolador o un IC independiente. El propósito principal de un UART es transmitir y recibir datos en serie. Una de las ventajas de UART es que solo usa dos cables para transmitir datos entre dispositivos.\\
 	
@@ -2841,11 +2854,11 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 	%%PAGINA WEB%%
 	\noindent \textbf{\large Lenguaje de marcado}. Es un modo de codificar (redactar) un documento donde, junto con el texto, se incorporan etiquetas (marcas o anotaciones) con información adicional relativa a la estructura del texto o su formato de presentación. Permiten hacer explícita la estructura de un documento, su contenido semántico o cualquier otra información lingüística o extralingüística que se quiera hacer patente [\ref{bib: lenguaje marcado definicion}]. Ejemplos de lenguaje de marcado son HTML o LaTeX, este último usado para la creación del presente documento.
 	
-	\noindent \textbf{\large Framework}. 
+	\noindent \textbf{\large Framework}. Un framework, que se podría traducir aproximadamente como marco de trabajo, es el esquema o estructura que se establece y que se aprovecha para desarrollar y organizar un software determinado; podría resumirse como el entorno pensado para hacer más sencilla la programación de cualquier aplicación o herramienta actual. Sirve para poder escribir código o desarrollar una aplicación de manera más sencilla, ya que permite una mejor organización y control de todo el código elaborado, así como una posible reutilización en el futuro (entre algunas ventajas, la automatización de procesos para tareas repetitivas como consulta en base de datos o realizar llamadas a internet). Debido a esto, garantiza una mayor productividad que los métodos más convencionales y una minimización del coste al agilizar las horas de trabajo volcadas en el desarrollo. Por otra parte, su acción es algo que afecta también a los errores, minimizándolos considerablemente [\ref{neoattack framework}]. \\
 	
-	\noindent \textbf{\large Front-end}.
+	\noindent \textbf{\large Front-end}. El Front end es la parte de una web que conecta e interactúa con los usuarios que la visitan. Es la parte visible, la que muestra el diseño, los contenidos y la que permite a los visitantes navegar por las diferentes páginas. Es una de las dos mitades en las que se divide la estructura de cualquier página web; la otra mitad es el Back end. Ambas se reúnen en cualquier sitio web que visite una persona y son las que, trabajando, hacen que funcione en todo momento tal y como lo hace. Esta parte es la que engloba y muestra todo el trabajo de diseño web y, por lo general, reúne en su interior hasta 3 lenguajes de programación diferentes: HTML, CSS y JavaScript. Cada uno orientado a determinados fines en concreto, se suman para conseguir el resultado final que aparece por la pantalla de cada usuario que entra en una web, sea cual sea [\ref{bib: neoattack front end}]. \\
 	
-	\noindent \textbf{\large Back-end}.  
+	\noindent \textbf{\large Back-end}. El backend es la parte del desarrollo web que se encarga de que toda la lógica de una página web  funcione. Se trata del conjunto de acciones que pasan en una web pero que no vemos como, por ejemplo, la comunicación con el servidor. Algunas de las funciones que se gestionan en la parte del back-end son: desarrollo de funciones que simplifiquen el proceso de desarrollo, acciones de lógica, conexión con bases de datos o uso de librerías del servidor web (por ejemplo para implementar temas de caché o para comprimir las imágenes de la web). Además, tiene que velar por la seguridad de los sitios web que gestiona y optimizar al máximo los recursos para que las páginas sean ligeras. Algunos lenguajes de programación back end son Python, PHP, Java o .Net \ref{bib: backend}. \\
 	
 	\pagebreak
 	
@@ -3170,6 +3183,77 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 			\label{adafruit library}
 			\href{https://github.com/adafruit/Adafruit_SSD1306}{GitHub: Adafruit\_SSD1306}. Consultado el 27/08/21.
 			
+			%63
+			\item
+			\label{neoattack framework}
+			\href{https://neoattack.com/neowiki/framework/}{NeoAttack: Framework}. Consultado el 03/09/21.
+			
+			%64
+			\item
+			\label{bib: neoattack front end}
+			\href{https://neoattack.com/neowiki/front-end/}{NeoAttack: Front end}. Consultado el 03/09/21.
+			
+			%65
+			\item
+			\label{bib: backend}
+			\href{https://rafarjonilla.com/que-es/backend/}{Rafa Arjonilla: BackEnd}. Consultado el 03/09/21.
+			
+			%https://www.rinconingenieril.es/que-es-pwm-y-para-que-sirve/
+			%66
+			\item
+			\label{bib: pwm}
+			\href{https://www.rinconingenieril.es/que-es-pwm-y-para-que-sirve/}{Rincón Ingenieril: Qué es PWM y para qué sirve}. Consultado el 03/09/21.
+			
+			%67
+			\item
+			\label{robotics stall and free current}
+			\href{https://robotics.stackexchange.com/questions/613/wha; t-is-stall-current-and-free-current-of-motors}{Robotics stackexchange: what is stall current and free current of motors?}. Consultado el 03/09/21.
+			
+			%68
+			\item
+			\label{areatecnologia: servomotores}
+			\href{https://www.areatecnologia.com/electricidad/servomotor.html}{Area Tecnologia: servomotores}. Consultado el 03/09/21.
+			
+			%69
+			\item
+			\label{param regionales lorawan}
+			\href{https://www.m2mlogitek.com/parametros-regionales-de-lorawan/}{M2M Logitek: Parámetros regionales de LoRaWAN}. Consultado el 03/09/21.
+			
+			%70
+			\item
+			\label{lora regional parameters}
+			\href{https://lora-alliance.org/resource_hub/rp2-1-0-3-lorawan-regional-parameters/}{LoRa Alliance: regional parameters}. Consultado el 03/09/21.
+			
+			%71
+			\item
+			\label{etsi}
+			\href{https://www.etsi.org/deliver/etsi_en/300200_300299/30022001/03.01.01_60/en_30022001v030101p.pdf}{ETSI: EN 300 200-1 v3.1.1}. Consultado el 03/09/21.
+			
+			%72
+			\item
+			\label{radio mobile web}
+			\href{https://www.ve2dbe.com/english1.html}{Radio Mobile}. Consultado el 03/09/21.
+			
+			%73
+			\item
+			\label{thingiverse web}
+			\href{https://www.thingiverse.com/}{Thingiverse}
+			
+			%74
+			\item
+			\label{draw.io web}
+			\href{https://app.diagrams.net/}{draw.io}
+			
+			%75
+			\item
+			\label{easyeda web}
+			\href{https://easyeda.com/es}{EasyEDA}
+			
+			%76
+			\item
+			\label{jlcpcb web}
+			\href{URL}{text}
+			
 		\end{enumerate}
 		
 		\subsection*{Imágenes}
@@ -3326,17 +3410,22 @@ funcionalidad deseada. Al tratarse de un microcontrolador, realizará esta tarea
 				%28
 				\item
 				\label{zaragoza maker arduino y servo curso}
-				\href{https://zaragozamakerspace.com/index.php/lessons/curso-arduino-y-robotica-servomotores/}{Zaragoza Maker Space: Curso Arduino y robótica: Servomotores – Control en bucle}
+				\href{https://zaragozamakerspace.com/index.php/lessons/curso-arduino-y-robotica-servomotores/}{Zaragoza Maker Space: Curso Arduino y robótica: Servomotores – Control en bucle}. Consultado el 02/08/21.
 			
 				%26
 				\item
 				\label{ebotics servo parts}
-				\href{https://ebotics.com/activity/project-no-3-control-the-servomotor/}{Ebotics: PROJECT Nº 3: Control the servomotor}
+				\href{https://ebotics.com/activity/project-no-3-control-the-servomotor/}{Ebotics: PROJECT Nº 3: Control the servomotor}. Consultado el 02/08/21.
 				
 				%27
 				\item
 				\label{parallex servo}
-				\href{https://learn.parallax.com/tutorials/robot/shield-bot/robotics-board-education-shield-arduino/chapter-2-shield-lights-servo-10}{Parallax: Connect Servo Motors and Batteries}
+				\href{https://learn.parallax.com/tutorials/robot/shield-bot/robotics-board-education-shield-arduino/chapter-2-shield-lights-servo-10}{Parallax: Connect Servo Motors and Batteries}. Consultado el 02/08/21.
+				
+				%28
+				\item
+				\label{arduino nano front and rear}
+				\href{https://es.aliexpress.com/item/898608940.html}{AliExpress: Arduino Nano}. Consultado el 03/09/21.
 		
 			\end{enumerate}
 
@@ -4282,6 +4371,244 @@ void sendMessage(String data) {
 }
 	\end{lstlisting}
 
+	\noindent \textit{\textbf{Aplicación web}}: \textit{app.py}\\
+
+\begin{lstlisting}[language=python]
+import engineio
+from flask import Flask, render_template
+from flask_socketio import SocketIO
+from flask_serial import Serial
+from datetime import datetime
+	
+import json
+import socketio
+import os
+	
+app = Flask(__name__)
+	
+## Configuration Serial GW
+serial_port = '/dev/ttyUSB0'                    # Modificar aqui el serial del Arduino, lo dice el IDE
+app.config['SERIAL_PORT'] = serial_port
+app.config['SERIAL_TIMEOUT'] = 0.1
+app.config['SERIAL_BAUDRATE'] = 115200
+app.config['SERIAL_BYTESIZE'] = 8
+app.config['SERIAL_PARITY'] = 'N'
+app.config['SERIAL_STOPBITS'] = 1
+	
+socketio = SocketIO(app, async_mode="gevent", ping_timeout=5, logger=False, engineio_logger=False)
+	ser = Serial(app)
+	
+#
+#   Enpoints
+#
+	
+# Endpoint home page
+@app.route("/")
+def index():
+	# Comprobamos que el serial existe
+	if os.path.exists(serial_port):
+		serial_exists = True
+	else:
+		serial_exists = False
+	
+	return render_template("index.html", serial_port=serial_port, serial_exists=serial_exists)
+	
+# Endpoint documentation page
+@app.route("/doc")
+def doc():
+	return render_template("doc.html")
+	
+#
+#   SocketIO
+#
+	
+# Handler SocketIO [messages of web]
+@socketio.on('send')
+def handle_send(json_str):
+	data = json.loads(json_str)["message"]
+	print("Boton pulsado: {}".format(data))
+	
+	# Enviamos por serial
+	try:
+		ser.on_send(data)
+	except Exception as ex:
+		print("Error on serial: {}".format(ex))
+	
+	# Enviamos en el socket 'receive_message' [hacer en recepcion serial]
+	now = datetime.now()
+	msg = "{} >> Comando a gateway: {}".format(now.strftime("%H:%M:%S"), data)
+	socketio.emit("receive_message", data={"message":str(msg)})
+	
+#
+#   Flask-Serial
+#
+	
+# Handler incoming serial messages
+@ser.on_message()
+def handle_message(msg):
+	try:
+		print("receive message: {}".format(msg))
+		now = datetime.now()
+		msg = "{} >> Respuesta: {}".format(now.strftime("%H:%M:%S"), 	msg.decode("utf-8").strip('\n'))
+		print("Send socket msg: {}".format(msg))
+		socketio.emit("receive_message", data={"message":str(msg)})
+	except Exception as ex:
+		print(ex)
+	
+# Log thread serial
+@ser.on_log()
+def handle_logging(level, info):
+	print(level, info)
+	
+if __name__ == '__main__':
+	socketio.run(app, debug=False, log_output=True)
+\end{lstlisting}
+
+\noindent \textit{\textbf{Página principal de la web}}: \textit{index.html}\\
+
+\begin{lstlisting}[language=html]
+<!doctype html>
+<html lang="es">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/png" href="static/favicon.ico">
+	
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	
+		<title>Open Pet Feeder</title>
+	</head>
+	<body>
+		<h1 style="text-align: center; margin-top: 2%;"><a href="/" style="text-decoration: none; color: inherit;"><i class="fas fa-paw"></i> Open Pet Feeder</a></h1>
+	
+	
+		<div class="container" style="margin-top: 3%;">
+			{% if serial_exists == True %}
+			<div class="alert alert-success" role="alert" style="margin-bottom: 3%;">
+				<i class="fas fa-laptop-house"></i> Conectado a GW utilizando el serial: {{serial_port}}!
+			</div>
+			{% else %}
+			<div class="alert alert-danger" role="alert" style="margin-bottom: 3%;">
+				<i class="fas fa-laptop-house"></i> No existe el serial '{{serial_port}}'. Configura el serial y reinicia el programa.
+			</div>
+			{% endif %}
+				
+			<div class="row" style="text-align: center;">
+				<div class="col">
+					<button type="button" class="btn btn-dark mt-1" id="send_ping" value="ping"><i class="fas fa-comments"></i>  Comprobar actividad</button>
+				</div>
+				<div class="col">
+					<button type="button" class="btn btn-dark mt-1" id="send_status" value="status"><i class="fas fa-clipboard-list"></i>  Comprobar estado</button>
+				</div>
+				<div class="col">
+					<button type="button" class="btn btn-dark mt-1" id="send_check_levels" value="check_levels"> <i class="far fa-check-circle"></i>  Comprobar niveles</button>
+				</div>
+				<div class="col">
+					<button type="button" class="btn btn-dark mt-1" id="send_comedero" value="rellenar_comedero"><i class="fas fa-utensils"></i> Rellenar comedero</button>
+				</div>
+				<div class="col">
+					<button type="button" class="btn btn-dark mt-1" id="send_reset_comedero" value="reset_comedero"><i class="fas fa-eraser"></i> Reiniciar comedero</button>
+				</div>
+				<div class="col">
+					<button type="button" class="btn btn-dark mt-1" id="send_bebedero" value="rellenar_bebedero"><i class="fas fa-faucet"></i> Rellenar bebedero</button>
+				</div>
+				
+				<div class="col">
+					<button type="button" class="btn btn-dark mt-1" id="send_oled" value="update_oled"><i class="fas fa-desktop"></i> Actualizar pantalla</button>
+				</div>
+			</div>
+		</div>
+				
+		<div class="container" style="margin-top: 3%;">
+			<div class="console">
+				<label class="form-label" for="receive"> <h4> <b>Mensajes recibidos:</b> </h4>  </label>
+				<textarea readonly class="form-control" name="receive" id="receive" rows="8" style="width: 100%; height: auto;"></textarea>
+				</div>
+		</div>
+				
+		<!-- Footer -->
+		<div class="footer fixed-bottom mt-4 py-4">
+			<div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05); margin-bottom: -1%;">
+				C  2021  <i class="fab fa-github" style="margin-left: 1%;"></i> Github:
+				<a class="text-reset fw-bold" href="https://github.com/ChiaFranfer">ChiaFranfer</a> 
+				<i class="fas fa-scroll" style="margin-left: 1%;"></i> Documentacion: <a class="text-reset fw-bold" href="{{url_for('doc')}}"> Ir a documentacion</a>
+				<i class="fas fa-dog" style="margin-left: 3%;"></i> <i class="fas fa-cat"></i> <i class="fas fa-heart"></i>
+			</div>
+		</div>
+				
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				var socket = io.connect('http://' + document.domain + ':' + location.port);
+					
+				$('#send_status').on('click', function() {
+					var message = $(this)[0].value;
+					console.log('Enviando: ' + message);
+					var data = '{' + '"message": "' + message + '"}';
+					socket.emit('send', data=data);
+				});
+					
+				$('#send_ping').on('click', function() {
+					var message = $(this)[0].value;
+					console.log('Enviando: ' + message);
+					var data = '{' + '"message": "' + message + '"}';
+					socket.emit('send', data=data);
+				});
+					
+				$('#send_reset_comedero').on('click', function() {
+					var message = $(this)[0].value;
+					console.log('Enviando: ' + message);
+					var data = '{' + '"message": "' + message + '"}';
+					socket.emit('send', data=data);
+				});
+					
+				$('#send_comedero').on('click', function() {
+					var message = $(this)[0].value;
+					console.log('Enviando: ' + message);
+					var data = '{' + '"message": "' + message + '"}';
+					socket.emit('send', data=data);
+				});
+					
+				$('#send_bebedero').on('click', function() {
+					var message = $(this)[0].value;
+					console.log('Enviando: ' + message);
+					var data = '{' + '"message": "' + message + '"}';
+					socket.emit('send', data=data);
+				});
+					
+				$('#send_check_levels').on('click', function() {
+					var message = $(this)[0].value;
+					console.log('Enviando: ' + message);
+					var data = '{' + '"message": "' + message + '"}';
+					socket.emit('send', data=data);
+				});
+					
+				$('#send_oled').on('click', function() {
+					var message = $(this)[0].value;
+					console.log('Enviando: ' + message);
+					var data = '{' + '"message": "' + message + '"}';
+					socket.emit('send', data=data);
+				});
+					
+				socket.on('receive_message', function(data){
+					console.log(data);
+					var text = data['message'];
+					var $textarea = $('#receive');
+					$textarea.val($textarea.val() + text + '\n');
+					$textarea.scrollTop($textarea[0].scrollHeight);
+				})
+			});
+				
+		</script>
+	</body>
+</html>
+	\end{lstlisting}
+		
 	\pagebreak
 	
 	\subsection*{Anexo III}
@@ -4289,6 +4616,7 @@ void sendMessage(String data) {
 	\addcontentsline{toc}{subsection}{Anexo III}
 	
 	\noindent [Insertar tabla excel del presupuesto]. \\
+	\noindent [Insertar tabla con Planificación inicial] \\
 	
 	\pagebreak
 	
