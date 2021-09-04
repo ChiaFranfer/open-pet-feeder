@@ -160,10 +160,10 @@
 	
 	\pagebreak
 	
-	%\listoftables
-	%\addcontentsline{toc}{section}{Índice de tablas}
+	\listoftables
+	\addcontentsline{toc}{section}{Índice de tablas}
 	
-	%\pagebreak
+	\pagebreak
 	
 	\section*{Agradecimientos}
 	\thispagestyle{plain}
@@ -2267,16 +2267,16 @@
 		\end{center}
 	\end{figure}
 	
-	\noindent El fabricante de la PCB es \href{https://jlcpcb.com/}{JLCPCB}[], y se usó su editor \href{https://easyeda.com/es}{EasyEDA}[], donde se implementaron los esquemáticos del prototipo. Una vez hecho, el programa lo traduce a una PCB, y tras unos retoques en enrutado, se pide al fabricante. Cuando llega, se comprueba su funcionamiento y se sueldan los componentes. Anotar que se han añadido conexiones extra a la PCB que no existían en el prototipo provisional, con el fin de facilitar las pruebas y/o futuras funcionalidades.\\
+	\noindent El fabricante de la PCB es \href{https://jlcpcb.com/}{JLCPCB}[\ref{jlcpcb web}], y se usó su editor \href{https://easyeda.com/es}{EasyEDA}[\ref{easyeda web}], donde se implementaron los esquemáticos del prototipo. Una vez hecho, el programa lo traduce a una PCB, y tras unos retoques en enrutado, se pide al fabricante. Cuando llega, se comprueba su funcionamiento y se sueldan los componentes. Anotar que se han añadido conexiones extra a la PCB que no existían en el prototipo provisional, con el fin de facilitar las pruebas y/o futuras funcionalidades.\\
 	
-	\noindent Para mayor detalle del esquemático o de la PCB, consultar el repositorio de GitHub creado (poner  con href), donde se incluye un archivo .json que, importándolo a EasyEDA, permitirá su visualización. \\
+	\noindent Para mayor detalle del esquemático o de la PCB, consultar el repositorio de GitHub (\href{https://github.com/ChiaFranfer/open-pet-feeder}{\textit{open pet feeder}}[\ref{github repo}]), donde se incluye un archivo .json que, importándolo a EasyEDA, permitirá su visualización. \\
 	
 	\subsubsection{Protocolo}
 	\label{protocolo explicacion}
 	
-	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \texttt{\textit{refugio\_protocolo}}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3; este sketch es el \texttt{\textit{gw\_protocolo}}, el cual explicaremos más adelante (al igual que \texttt{\textit{refugio\_protocolo}}).  En el \hyperref[anexo II: codigo]{Anexo II}  se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
+	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \texttt{\textit{refugio\_protocolo.ino}}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3; este sketch es el \texttt{\textit{gw\_protocolo.ino}}, el cual explicaremos más adelante (al igual que \texttt{\textit{refugio\_protocolo}}).  En el \hyperref[anexo II: codigo]{Anexo II}  se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
 	
-	\noindent Antes de explicar el código creado, cabe decir que no habría sido posible el desarrollo de este protocolo sin el sustento proporcionado por la librería \href{https://github.com/KrisKasprzak/EBYTE}{EBYTE} [\ref{bib: github libreria EBYTE}], a través de la cual:
+	\noindent Antes de explicar el código creado, cabe decir que no habría sido posible el desarrollo de este protocolo sin el sustento proporcionado por la librería \href{https://github.com/KrisKasprzak/EBYTE}{EBYTE} [\ref{bib: github libreria EBYTE}], creada por el usuario KrisKasprzak, a través de la cual:
 	
 	\begin{itemize}
 		\item Se crea una conexión serial por software entre arduino y transceptor LoRa.
@@ -2292,7 +2292,7 @@
 	
 	\noindent \textbf{\texttt{\textit{gw\_protocolo}}} \\
 	
-	\noindent Corresponde al código empleado para programar el arduino nano de la estación del gateway, de manera que: \\
+	\noindent Corresponde al código empleado para programar el Arduino Nano de la estación del gateway, de manera que: 
 	
 	\begin{itemize}
 		\item Pueda comunicarse a través de la comunicación serial ordenador - arduino
@@ -2307,11 +2307,11 @@
 			\end{outline}
 	\end{itemize}
 	
-	\noindent Configuración GW: \ref{subsubsection: config GW y web}. De momento, está programado y funcionando el código recién comentado. El envío de mensajes desde gw hasta refugio están programados de manera que estos sean escritos por consola serial; queda que puedan enviarse mensajes desde una web piloto (la consola serial es más para el testeo en fase de desarrollo, y la web piloto es la primera interfaz que vendría siendo parte de la fase de producción). Además, de momento está programado que cuando recibe mensajes sólo los "decodifique", pero no hace nada con ellos, salvo mostrarlos por consola; la idea es que lo suba a la Raspberry Pi, como mínimo, y si todo va bien, que también pueda mostrarse en la web piloto.\\
+	%\noindent Configuración GW: \ref{subsubsection: config GW y web}. De momento, está programado y funcionando el código recién comentado. El envío de mensajes desde gw hasta refugio están programados de manera que estos sean escritos por consola serial; queda que puedan enviarse mensajes desde una web piloto (la consola serial es más para el testeo en fase de desarrollo, y la web piloto es la primera interfaz que vendría siendo parte de la fase de producción). Además, de momento está programado que cuando recibe mensajes sólo los "decodifique", pero no hace nada con ellos, salvo mostrarlos por consola; la idea es que lo suba a la Raspberry Pi, como mínimo, y si todo va bien, que también pueda mostrarse en la web piloto.\\
 	
 	\noindent \textbf{\texttt{\textit{refugio\_protocolo}}} \\
 	
-	\noindent Corresponde al código empleado para programar el arduino nano de la estación del refugio, de manera que: \\
+	\noindent Corresponde al código empleado para programar el Arduino Nano de la estación del refugio, de manera que: 
 	
 	\begin{itemize}
 		\item Se crea una estructura de datos que define la forma de los mensajes que se van a recibir y enviar.
@@ -2320,24 +2320,22 @@
 		\item Bloque \texttt{loop()}: \textit{si hay conexión serial entre arduino - LoRa}, comprueba si hay mensajes entrantes. Si lo hay, lo decodifica mediante funciones internas del transceptor (librería EBYTE), lo muestra en la consola del serial del pc, y ejecuta la llamada a la función \texttt{executeCommand (String data)}. Esta función es la que permite realizar una equivalencia entre datos recibidos y respuesta a ejecutar, de manera que, en función de un determinado mensaje recibido, el microcontrolador sepa actuar en consecuencia. La lista de comandos programados, y por tanto, válidos, se mostrará a continuación. Cabe señalar que los mensajes respuesta a estos comandos tienen la siguiente estructura: \texttt{ack;field1;var1}.
 			\begin{outline}
 				\1 \texttt{status}: si se recibe la orden \texttt{status}, se realizará una comprobación de los niveles de la reserva de agua (llamando a la función \texttt{checkWaterLevel()}) y la reserva de pienso. Si la reserva de agua está por encima del 25\% y quedan más de 5 recargas de pienso, se enviará como mensaje respuesta a \texttt{status} un \texttt{msg;status;ok}. Si por el contrario, el nivel de la reserva de agua es igual o está por debajo del 25\% o quedan 5 o menos recargas de pienso, entonces se enviará \texttt{msg;status;ko}. 
-				\1 \texttt{ping}
-				\1 \texttt{reset\_comedero}
-				\1 \texttt{rellenar\_comedero}
-				\1 \texttt{rellenar\_bebedero}
-				\1 \texttt{check\_levels}
-				\1 \texttt{update\_oled}
+				\1 \texttt{ping}: se usa para una comprobación rápida (es decir, sin valores de medición, al contrario que \texttt{status}) de que la estación del refugio está activa. Si se recibe, se envía como respuesta \texttt{ack;pong}.
+				\1 \texttt{reset\_comedero}. El contador de veces que se ha rellenado el comedero desde la reserva es \texttt{num\_refill}. Este comando vuelve a poner a 0 este contador. Está pensado para ejecutarse una vez se ha vaciado la reserva y se ha vuelto a rellenar (manualmente y al 100\%). Si se recibe, se envía como respuesta \texttt{ack;reset\_comedero}.
+				\1 \texttt{rellenar\_comedero}. El número total de recargas que podemos realizar se recoge en la variable \texttt{TOTAL\_REFILL}; mientras que el contador \texttt{num\_refill} esté por debajo del número máximo de recargas (\texttt{TOTAL\_REFILL}), podremos rellenar el comedero. Mostraremos por serial, si lo hay, los ciclos restantes de rellenado. Aquí también se ajusta la duración del ciclo de rellenado y los giros del servo. Antes de terminar, incrementamos el contador de recargas. Si se recibe, se envía como respuesta \texttt{ack;feeder\_refill;ok;num\_refill;<num\_refill>}, si se puede rellenar; si no, se enviará \texttt{ack;feeder\_refill;ko;num\_refill;<num\_refill>}.
+				\1 \texttt{rellenar\_bebedero}. Haciendo uso de la función \texttt{check\_levels}, leemos los niveles de agua de la reserva; mientras estén por encima del 25\% de la reserva, se activará la bomba durante el tiempo marcado en \texttt{REFILL\_TIME} para rellenar el bebedero. Si se recibe, se envía como respuesta \texttt{ack;water\_refill;ok} si se ha podido rellenar, y \texttt{ack;water\_refill;ko} si no (reserva por debajo de 25\%).
+				\1 \texttt{check\_levels}. Se leen los valores de los dos sensores de nivel y se almacenan en variables locales de la función de tipo \texttt{boolean} (\texttt{sw1} y \texttt{sw2}, respectivamente). Si el valor de \texttt{sw1} es alto (el sensor de nivel superior), significa que el nivel de agua en la reserva es el máximo (100\%). Si es bajo, pero el valor de \texttt{sw2} es alto, entonces la capacidad de la reserva está al 50\%. Si ambos están en bajo, significa que hay que rellenar la reserva porque está por debajo de su mínimo (25\%). Tanto si se solicita en otra función como si se recibe este comando tal cual, se envía como respuesta el valor de la capacidad en ese momento tal que \texttt{ack;water;<water\_level>}.
+				\1 \texttt{update\_oled}. Comando implementado pero no su funcionalidad, por falta de espacio en memoria en Arduino Nano. Si se recibe, se envía como respuesta \texttt{to do}.
 			\end{outline}
-		\item También se hace uso de la función \texttt{sendMessage}, introducida anteriormente, para enviar en este caso los datos requeridos por los comandos recién expuestos (o bien datos requeridos por actualizaciones automáticas, que por el momento no están implementadas).
+		\item También se hace uso de la función \texttt{sendMessage}, introducida anteriormente, para enviar en este caso los datos requeridos por los comandos recién expuestos. En resumen, \texttt{sendMessage} recoge las instrucciones necesarias para enviar un mensaje utilizando el transceptor LoRa, según el comando recibido.
 	\end{itemize}
 
 	\pagebreak
 	
-
-	
 	\subsubsection{Imágenes del prototipo final}
 	\noindent \textbf{Comedero} \\
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/Fotos comedero/caja1.png}
 			\caption{Imagen del interior de la caja, con PCB y componentes. }
@@ -2347,7 +2345,7 @@
 	
 	\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/Fotos comedero/caja_servo.jpg}
 			\caption{Imagen del interior de la caja con servomotor conectado.}
@@ -2357,7 +2355,7 @@
 
 	\pagebreak
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/caja_servo_zoomConexion.jpg}
 			\caption{Imagen del interior de la caja con servomotor conectado (zoom).}
@@ -2367,7 +2365,7 @@
 	
 	\pagebreak
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/caja_abrazaderas.png}
 			\caption{Imagen del exterior de la caja (detalle de las abrazaderas).}
@@ -2377,7 +2375,7 @@
 
 	\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/Fotos comedero/caja_servo_exterior.jpg}
 			\caption{Imagen del exterior de la caja con servomotor conectado. Se muestra, además, parte de los conductos para mover el pienso, y ubicación del servomotor.}
@@ -2387,7 +2385,7 @@
 
 	\pagebreak
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/servo_sujecion_zoom.jpg}
 			\caption{Imagen del exterior de la caja con servomotor conectado. Zoom de sujeción a pieza PVC.}
@@ -2397,7 +2395,7 @@
 
 	\pagebreak
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/helice_enT.jpg}
 			\caption{Detalle de la hélice v3 dentro de la pieza PVC tipo T.}
@@ -2407,7 +2405,7 @@
 	
 	\pagebreak
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/aproximacion_conHeliceV3.jpg}
 			\caption{Aproximación de cómo quedaría la hélice v3 dentro del brazo PVC.}
@@ -2417,7 +2415,7 @@
 
 	\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos comedero/comedero_overview.png}
 			\caption{Imagen global del comedero.}
@@ -2459,7 +2457,7 @@
 	
 	\noindent \textbf{Bebedero} \\
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/Fotos bebedero/caja_bomba_conexion_rotated.jpg}
 			\caption{Interior de la caja con conexiones a servo, a bomba y a switches.}
@@ -2467,11 +2465,11 @@
 		\end{center}
 	\end{figure}
 
-	\pagebreak
+	%\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.6\textwidth]{img/Fotos bebedero/caja_bomba_conexion_zoom.jpg}
+			\includegraphics[width=0.5\textwidth]{img/Fotos bebedero/caja_bomba_conexion_zoom.jpg}
 			\caption{Interior de la caja con conexiones a servo, a bomba y a switches (zoom).}
 			\label{Prototipo: bebedero conexiones (zoom)}
 		\end{center}
@@ -2479,7 +2477,7 @@
 
 	\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos bebedero/bebedero_switches.jpg}
 			\caption{Imagen del interior de la reserva de agua (detalle de los switches).}
@@ -2489,7 +2487,7 @@
 	
 	\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos bebedero/bebedero_switches_bomba.jpg}
 			\caption{Imagen del interior de la reserva de agua (detalle de los switches y bomba).}
@@ -2499,7 +2497,7 @@
 	
 	\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos bebedero/bomba_agua_detalle.jpg}
 			\caption{Detalle de la bomba de agua usada en la reserva de agua.}
@@ -2509,7 +2507,7 @@
 	
 	\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/Fotos bebedero/reserva_exterior.jpg}
 			\caption{Exterior de la reserva de agua (detalle de perforaciones para switches).}
@@ -2517,9 +2515,9 @@
 		\end{center}
 	\end{figure}
 	
-	\pagebreak
+	%\pagebreak
 	
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/Fotos bebedero/agujeros_reserva_superior.png}
 			\caption{Exterior de la reserva de agua (detalle de perforaciones para conexiones de la bomba y ventilación).}
@@ -2531,7 +2529,7 @@
 	
 	\noindent \textbf{Sistema de alimentación conjunto (prototipo)} \\
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{img/Fotos bebedero/bebedero_comedero_conjunto.png}
 			\caption{Prototipo conjunto del sistema de alimentación creado, formado por bebedero y comedero.}
@@ -2544,16 +2542,18 @@
 	\subsubsection{Configuración del gateway y página web}
 	\label{subsubsection: config GW y web}
 	
-	\noindent El dispositivo usado como gateway es una Raspberry Pi 3, una opción \textit{Open Source}, económica, sencilla y bien documentada. Al ser un dispositivo con recursos limitados (es una de las opciones más básicas para servidor), instalaremos \textit{Raspbian} (actualmente, \textit{Raspberry Pi OS}), una distribución de linux ligera y adaptada a Raspberry Pi [\ref{bib: raspbian}]. \\
+	\noindent El dispositivo usado como gateway es una Raspberry Pi 3, una opción \textit{Open Source}, económica, sencilla y bien documentada. Al ser un dispositivo con recursos limitados (es una de las opciones más básicas para servidor), instalaremos \href{https://www.raspberrypi.org/software/operating-systems/}{\textit{Raspbian}} (actualmente, \textit{Raspberry Pi OS} [\ref{bib: raspbian}]), una distribución de linux ligera y adaptada a Raspberry Pi [\ref{bib: raspbian}]. \\
 	
-	\noindent Este dispositivo será nuestro servidor, y estará conectado por serial con el arduino nano en del extremo de la comunicación que entendemos como estación del campo (extremo de control). Así pues, será donde se aloje la página web creada para el control remoto del bebedero y comedero. \\
+	\noindent Este dispositivo será nuestro servidor, y estará conectado por serial con el Arduino Nano en del extremo de la comunicación que entendemos como estación del campo (extremo de control). Así pues, será donde se aloje la página web creada para el control remoto del bebedero y comedero. \\
 	
 	\noindent Para crear la página web, se han empleado Python como lenguaje de programación, y los lenguajes de \textit{maquetado} (lenguajes de \textit{marcado}) HTML + CSS + JavaScript. Se ha hecho uso, además de dos frameworks, uno para la parte front-end de la aplicación web, y otro para la parte back-end:
 	
 	\begin{itemize}
-		\item \textbf{Back-end}. Está programado con el lenguaje de programación Python, haciendo uso del framework conocido como \textit{Flask}, el cual permite un importante grado de personalización, idóneo para emprender proyectos web sencillos (aunque el framework ofrece la posibilidad de que escale al gusto de cada uno)[\ref{bib: flask doc}]. A través de una librería especial de Flask, ofrecida por el usuario \href{https://github.com/RedFalsh}{RedFalsh}, con el nombre \href{https://github.com/RedFalsh/flask-serial/blob/master/README.md}{\textit{flask-serial}}, establecemos la comunicación serial entre la página web y el arduino nano del GW, para poder enviar órdenes desde la página web y que el arduino nano los reciba y pueda transmitir vía LoRa hacia la estación del refugio [\ref{bib: flask serial}]. 
+		\item \textbf{Back-end}. Está programado con el lenguaje de programación Python, haciendo uso del framework web conocido como \href{https://flask.palletsprojects.com/en/2.0.x/}{\textit{Flask}}[\ref{flask web}], el cual permite un importante grado de personalización, idóneo para emprender proyectos web sencillos (aunque el framework ofrece la posibilidad de que escale al gusto de cada uno)[\ref{bib: flask doc}]. A través de una librería especial de Flask, ofrecida por el usuario \href{https://github.com/RedFalsh}{RedFalsh}, con el nombre \href{https://github.com/RedFalsh/flask-serial/blob/master/README.md}{\textit{flask-serial}}[\ref{bib: flask serial}], establecemos y simplificamos la comunicación serial entre la página web y el Arduino Nano del GW, para poder enviar órdenes desde la página web y que el Arduino Nano los reciba y pueda transmitir vía LoRa hacia la estación del refugio. 
 		\item \textbf{Front-end}. Haciendo uso de los lenguajes de marcado mencionados, se define el estilo de la web (su apariencia) y se emplea el framework \textit{Bootstrap}; se trata de un framework que combina CSS y JavaScript  para estilizar los elementos  de una página HTML, proporcionando interactividad  y dinamismo en la página web, donde se mostrarán los elementos de la misma sin necesidad de volver a cargar la página para ver cómo varían en apariencia o valor. Su característica más significativa es que permite la construcción de páginas web \textit{responsive}, es decir, páginas web cuya presentación se adaptará al dispositivo donde se visualicen [\ref{bib: bootstrap doc}][\ref{bib: bootstrap info}].
 	\end{itemize} 
+	
+	\noindent Además, en la versión final de la web hemos introducido el framework \href{https://socket.io/}{\textit{socket.io}}[\ref{socketio}], tanto en el Front-end como en el Back-end (\href{https://flask-socketio.readthedocs.io/en/latest/}{\textit{flask-socketio}})[\ref{flask socketio}]. Este framework nos ofrece comunicación en tiempo real entre Front-end y Back-end sin tener que recargar la página web.\\ 
 	
 	\noindent La apariencia de la página web creada es tal como muestra la Figura \ref{Web: captura pagina principal}: \\
 	
@@ -2583,7 +2583,7 @@
 		\end{center}
 	\end{figure}
 
-	\noindent Llegados a este punto, concluimos que el prototipo definitivo es capaz de crear un enlace radio vía LoRa y que desde una web de creación propia podemos enviar comandos hacia el refugio y recibir respuesta de manera satisfactoria. Para entender los diferentes comandos enviados desde la web y, en general, cómo usarla, se ha creado un documento PDF con documentación sobre la web, alojado en el repositorio donde se incluye todo lo relacionado con el proyecto: \href{https://github.com/ChiaFranfer/open-pet-feeder/tree/master/memoria/complementarios}{GitHub: documentación sobre la web}. Tras estos resultados, resta realizar pruebas de campo que validen la creación de un enlace radio LoRa en entornos realistas.\\
+	\noindent Llegados a este punto, concluimos que el prototipo definitivo es capaz de crear un enlace radio vía LoRa y que desde una web de creación propia podemos enviar comandos hacia el refugio y recibir respuesta de manera satisfactoria. Tras estos resultados, resta realizar pruebas de campo que validen la creación de un enlace radio LoRa en entornos realistas.\\
 	
 	\pagebreak
 	
@@ -2599,45 +2599,49 @@
 	
 	\noindent Esta prueba se realizó con el prototipo provisional, en protoboard (Figura \ref{protoboard lora}), durante el mes de abril de 2021. Primero se realizó una prueba en interior para investigar cómo funcionaba este transceptor y verificar la comunicación entre ambos nodos (se explicará más en detalle en \hyperref[pruebas de interior]{\textit{Pruebas de interior}}). Una vez completado ese paso, se investigó sobre la librería \href{https://github.com/adafruit/Adafruit_SSD1306}{Adafruit\_SSD1306} [\ref{adafruit library}], la cual permite trabajar con OLEDs monocromáticas SSD1306 de resolución 128x64 y 128x32. Se incorporó las funcionalidades necesarias de dicha librería para poder mostrar información en la OLED; para esta primera prueba la OLED nos fue muy útil, ya que pudimos comprobar si los datos que llegaban eran legibles y coherentes sin tener que hacer uso de una consola en el ordenador para leer por serial lo que se recibe por radio, opción que resulta más incómoda mientras se realizan pruebas de cobertura a pie con el prototipo en la mano.\\
 	
-	\pagebreak
+	%\pagebreak
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.3\textwidth]{img/prueba_lora_protoboard.png}
+			\includegraphics[width=0.6\textwidth]{img/prueba_lora_protoboard_rotated.png}
 			\caption{Montaje en protoboard para verificar el funcionamiento y alcance del transceptor LoRa E32-868T30D}
 			\label{protoboard lora}
 		\end{center}
 	\end{figure}
 
+	\pagebreak
+	
 	\noindent  Dado que en esta prueba sólo se quiere comprobar el alcance del enlace LoRa (y la calidad, si se envían datos y éstos son legibles), se creó un \textit{sketch} de prueba sencillo y provisional; una vez se probara y se pudiera pasar a la prueba en el entorno definitivo, se usaría un \textit{sketch} que tuviera en cuenta todo lo que se quiere hacer con este prototipo (lo que hemos explicado sobre el \hyperref[protocolo explicacion]{\textit{Protocolo}}). Se programó el envío cada 5 segundos de la medida de tensión de un pin analógico (concretamente, el A0) del transmisor. También se enviaba, junto con la medida de tensión (mirar OLED de la Figura \ref{protoboard lora oled}, es el dato que aparece tras \textit{Volts:}) el número de bits de los que consta el mensaje (en la OLED, valor tras \textit{Bits:}) y el número del mensaje que se está enviando (\textit{Count:}); este último empieza desde 0 y se va autoincrementando conforme se envía un mensaje (si se reinicia o apaga el microcontrolador del transmisor, la cuenta empieza desde 0 de nuevo). En el \hyperref[anexo II: codigo]{Anexo II} se muestra el código empleado para esta prueba (\textit{ReceiveEBYTE\_OLED.ino} para el receptor que iba a desplazarse, y \textit{SendEBYTE.ino} para el extremo que iba a quedar fijo transmitiendo datos).\\
 	
-	\noindent Se dejó el nodo transmisor transmitiendo mensajes con estos valores, mientras permanecía conectado a la corriente, en la segunda planta de un hogar (unos 5m, en el exterior). Por otro lado, el receptor iba conectado a una OLED donde mostraba los valores de \textit{Volts, Bits} y \textit{Count} del mensaje que recibía; la alimentación la recibía a través de una batería portátil.  \\
+	\noindent Se dejó el nodo transmisor transmitiendo mensajes con estos valores, mientras permanecía conectado a la corriente, en la segunda planta de un hogar (unos 5m, en el exterior). Por otro lado, el receptor iba conectado a una OLED donde mostraba los valores de \textit{Volts, Bits} y \textit{Count} del mensaje que recibía; la alimentación la recibía a través de una batería portátil (powerbank de 5V).  \\
 	
-	\pagebreak
+	%\pagebreak
 	
 	%prueba_lora_protoboard_oled.png	
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.3\textwidth]{img/prueba_lora_protoboard_oled.png}
+			\includegraphics[width=0.6\textwidth]{img/prueba_lora_protoboard_oled.png}
 			\caption{}
 			\label{protoboard lora oled}
 		\end{center}
 	\end{figure}
 
-	\noindent En la Figura \ref{prueba 1 captura alcance} se muestra el recorrido que se realizó con el receptor, un recorrido de longitud total 2.7 kms. \\
+	\pagebreak
+	
+	\noindent En la Figura \ref{prueba 1 captura alcance} se muestra el recorrido que se realizó con el receptor, un recorrido de longitud total 2.7 kms. 
 	
 	%\pagebreak
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[width=0.3\textwidth]{img/prueba_1.jpg}
+			\includegraphics[width=0.4\textwidth]{img/prueba_1.jpg}
 			\caption{Recorrido realizado con el receptor para probar su alcance}
 			\label{prueba 1 captura alcance}
 		\end{center}
 	\end{figure}
 	
-	\pagebreak
+	%\pagebreak
 	
 	\noindent En tanto a resultados, la señal llegó en todo momento. Se perdió en torno a un 15\% de los mensajes en zonas donde la vegetación es más densa y, sobretodo, a partir del kilómetro 2.5, si nos situábamos detrás de domicilios, cortando la línea de visión directa (bajo esta situación, no llegaba ningún mensaje, pero reestablecíamos la conexión al desbloquear la línea de visión). Si que es cierto que quizá a esa distancia y estando a poco más de un metro y medio sobre el suelo no se pueda hablar de \textit{línea de visión directa}, pero mirando la Figura \ref{prueba 1 captura alcance}, donde se muestra que el recorrido fue, en esencia, una línea recta, he decidido denominarlo así.\\
 	
@@ -2730,30 +2734,12 @@
 	\noindent Estas pruebas han sido las más numerosas, y pueden desglosarse en: 
 	
 	\begin{itemize}
-		\item Testeo de los componentes de manera individual. Tras la recepción de los productos, y antes de usarlos en ningún prototipo, hay que probarlos de manera individual. Incluye tanto la programación sencilla de programas para el testeo del hardware, como la creación de circuitos sencillos en protoboard para ejecutar esos programas y verificar el estado del componente que se está testeando.
+		\item Testeo de los componentes de manera individual. Tras la recepción de los productos, hay que probarlos de manera individual. Incluye tanto la programación sencilla de programas para el testeo del hardware, como la creación de circuitos sencillos en protoboard para ejecutar esos programas y verificar el estado del componente que se está testeando.
 		\item Testeo de los componentes en protoboard formando el prototipo provisional.
 		\item Testeo de los componentes en la PCB, formando el prototipo final. Tenemos en cuenta, además, el formato elegido para el exterior del diseño (reservas, cableados y conexionado físico), probamos su estabilidad y comodidad, y descartamos opciones.
 	\end{itemize}
 	
-	\subsubsubsection{LoRa}
-	
-	\noindent Para comprobar su funcionamiento, se usó el montaje mostrado en la Figura \ref{protoboard lora}. \\
-	
-	\subsubsubsection{Bebedero}
-	
-	\noindent \textbf{Bomba de agua}: se comprobó simplemente conectando su cable USB a la alimentación con un cargador, introduciéndola en un tarro con agua y un tubo transparente conectada a la salida de agua de la bomba, llevando el agua a un tarro vacío. Para uso posterior de la bomba de agua, se cortó el USB y se dejó los cables por separado de la bomba.\\
-	
-	\noindent \textbf{Relé}: \\
-	
-	\subsubsubsection{Comedero}
-	
-	\noindent \textbf{Servomotor}: \\
-	
-	\subsubsubsection{Sistema de alimentación autónoma}
-	
-	\noindent \textbf{Batería 18650}: \\
-	
-	\noindent \textbf{Panel solar y TP4056}: \\
+	\noindent Destacar la prueba realizada para probar el transceptor LoRa, por ser la que mayor tiempo requirió, tanto en montaje como en comprensión e implementación de las librerías Arduino que debían ser usadas (muy poco material en internet). Para comprobar su funcionamiento, se usó el montaje mostrado en la Figura \ref{protoboard lora}. \\
 	
 	\pagebreak
 	
@@ -2764,46 +2750,108 @@
 	\begin{itemize}
 		\item Se ha conseguido crear un enlace radio LoRa a 868MHz satisfactorio, donde, tanto a la distancia entre nodos de 2.7kms como a 3.45kms, hemos conseguido mantener una comunicación eficaz y sin problemas.
 		\item La cobertura empeora conforme aumenta la presencia de edificaciones, y la densidad de éstas, sobretodo si la altura de las antenas es bastante inferior a la altura de dichas edificaciones.
-		\item El límite inferior de potencia a la que transmite este transceptor es de 21dBm, pero el límite legal para emitir en la banda de LoRa, en Europa, es de 14dBm. Como ya se ha comentado anteriormente, habría que probar con otro transceptor muy similar, el E22-900T22D, ya que éste puede transmitir a menor potencia y,a demás, dar valores de RSSI, algo que no hemos podido medir en este proyecto por limitaciones del transceptor en este sentido.
+		\item El límite inferior de potencia a la que transmite este transceptor es de 21dBm, pero el límite legal para emitir en la banda de LoRa, en Europa, es de 14dBm. Como ya se ha comentado anteriormente, habría que probar con otro transceptor muy similar, el E22-900T22D, ya que éste puede transmitir a menor potencia y, además, dar valores de RSSI, algo que no hemos podido medir en este proyecto por limitaciones del transceptor en este sentido.
 		\item Destacar la importancia de realizar simulaciones antes de la realización de pruebas de campo, ya que éstas requieren de tiempo, tanto de planificación previa de la jornada como de presenciarse in situ en el lugar de pruebas. Si una simulación nos dice que es posible que un enlace no se establezca, nos está indicando que quizá no merezca la pena probarlo bajo esas condiciones en el entorno real, y lo ideal sería probar otras combinaciones.
 		\item Las órdenes (o comandos) pueden ser enviados usando la frecuencia 868MHz sin problema desde la página web creada, desde dispositivos diferentes, y fuera de la red LAN donde está situado el servidor que aloja esa web. Esta característica lo hace especialmente funcional, ya que no supone la presencialidad en ninguna de las dos estaciones para que funcione.
-		\item El sistema de alimentación autónoma no se probó en el entorno definitivo, ya que en tanto a tiempo y dedicación se escapaba del alcance de este trabajo. Si bien es uno de los objetivos de este proyecto, se ha conseguido desarrollar un prototipo compatible con alimentación autónoma, y un primer prototipo de alimentación autónoma, prototipo que supone un proyecto aparte por su complejidad. Sí se probó en interior, y se sacó en conclusión precisamente que era un tema que tenía que investigarse más en profundidad de manera aislada, ya que aunque funcione, hay que estudiar cómo se comporta a lo largo del tiempo y tener vigilado el sistema, ya que un imprevisto podría perjudicar seriamente la integridad del proyecto.
+		\item El sistema de alimentación autónoma no se probó en el entorno definitivo, ya que en tanto a tiempo y dedicación se escapaba del alcance de este trabajo. Si bien es uno de los objetivos de este proyecto, se ha conseguido desarrollar un prototipo compatible con alimentación autónoma (sin necesidad de estar conectado a la red eléctrica ni emplear batería portátil), y un primer prototipo de alimentación autónoma, prototipo que supone un proyecto aparte por su complejidad. Sí se probó en interior, y se sacó en conclusión precisamente que era un tema que tenía que investigarse más en profundidad de manera aislada, ya que aunque funcione, hay que estudiar cómo se comporta a lo largo del tiempo y tener vigilado el sistema, ya que un imprevisto podría perjudicar seriamente la integridad del proyecto.
 	\end{itemize}
 	
 	\pagebreak
 	
 	\subsection[Presupuesto]{Presupuesto}
 
-	\noindent En el \hyperref[anexo III: presupuesto]{Anexo III} se presenta el presupuesto del prototipo construido, sin incluir tiempo de diseño del sistema, prototipado, construcción, instalación del prototipo y pruebas. Como puede verse, el presupuesto material, excluyendo el relacionado con lo requerido por herramientas tales como impresora 3D (filamento) o soldador (estaño, flux), asciende a 248.9\euro, que, para ser un pequeño proyecto académico, presenta un coste considerable, incluso habiendo recurrido a productos \textit{low cost}. \\
+	\noindent En el \hyperref[anexo III: presupuesto]{Anexo III} se presenta el presupuesto del prototipo construido, sin incluir tiempo de diseño del sistema, prototipado, construcción, instalación del prototipo y pruebas. Como puede verse, el presupuesto material, excluyendo el relacionado con lo requerido por herramientas tales como impresora 3D (filamento) o soldador (estaño, flux), asciende a 248.9\euro.\\
+	
+	\noindent A continuación vamos a realizar un desglose de gastos por cada estación (prototipo final), donde apreciamos mejor el coste. En total, la suma de las dos estaciones vemos que queda en 97.84\euro, cantidad que difiere mucho de la anteriormente comentada. Esta diferencia radica en que en las siguientes tablas no incluimos el envío, que muchos componentes sólo podían ser adquiridos en set de varios y que algunos otros eran sólo necesarios para realizar las pruebas (y no serían incluidos en el prototipo final). \\
+	
+	\noindent \textbf{Estación del campo}\\
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{l|l|l|l|l}
+			\cline{1-4}
+			\multicolumn{1}{|c|}{\textbf{Concepto}}                          & \multicolumn{1}{c|}{\textbf{P.unitario {[}euros{]}}} & \multicolumn{1}{c|}{\textbf{Cantidad}} & \multicolumn{1}{c|}{\textbf{Total {[}euros{]}}} &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Caja estanca (pequeña)}} & 3.95                                                 & 1                                      & 3.95                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{E32-868T30D}}                       & 7.5                                                  & 1                                      & 7.5                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Antena 868MHz 5dBi}}                & 1.88                                                 & 1                                      & 1.88                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Arduino Nano}}                      & 2.09                                                 & 1                                      & 2.09                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Level shifter 3.3V a 5V 4CH}}       & 0.14                                                 & 1                                      & 0.14                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Conectores JST (kit)}}              & 1.70                                                 & 1                                      & 1.70                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Extensor SMA 15cm}}                 & 0.6                                                  & 1                                      & 0.6                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Resistencias}}                      & 0.2                                                  & 2                                      & 0.4                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Diodo}}                             & 0.05                                                 & 1                                      & 0.05                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Alargador SMA 3FT}}                 & 1.97                                                 & 1                                      & 1.97                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{PCB prototipo final}}               & 1.3                                                  & 1                                      & 1.3                                             &  \\ \cline{1-4}
+			\multicolumn{1}{r|}{}                                            & \multicolumn{2}{r|}{\textbf{TOTAL:}}                                                          & 21.58                                           &  \\ \cline{2-4}
+		\end{tabular}
+		\caption{Presupuesto estación gateway}
+		\label{tab:estacion-gateway}
+	\end{table}
+	
+	\pagebreak
+	
+	\noindent \textbf{Estación del refugio}\\
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{l|l|l|l|l}
+			\cline{1-4}
+			\multicolumn{1}{|c|}{\textbf{Concepto}}                         & \multicolumn{1}{c|}{\textbf{P.unitario {[}euros{]}}} & \multicolumn{1}{c|}{\textbf{Cantidad}} & \multicolumn{1}{c|}{\textbf{Total {[}euros{]}}} &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Cuenco acero inoxidable}}          & 4.29                                                 & 2                                      & 8.41                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Caja estanca (grande)}} & 4.75                                                 & 1                                      & 4.75                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Tubo silicona}}                    & 1                                                    & 2m                                     & 1                                               &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Pieza PVC en T}}                   & 1                                                    & 1                                      & 1                                               &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Botella reservas}}                 & 5.5                                                  & 2                                      & 11                                              &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Sensor nivel agua}}                & 0.56                                                 & 2                                      & 1.12                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Bomba agua}}                       & 0.74                                                 & 1                                      & 0.74                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{E32-868T30D}}                      & 7.5                                                  & 1                                      & 7.5                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Antena 868MHz 5dBi}}               & 1.88                                                 & 1                                      & 1.88                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{OLED 0.96}}                        & 1.45                                                 & 1                                      & 1.45                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Arduino Nano}}                     & 2.09                                                 & 1                                      & 2.09                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Servomotor MG996R}}                & 2.35                                                 & 1                                      & 2.35                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Panel solar 6V 210mA}}             & 5.25                                                 & 1                                      & 5.25                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Pila 18650 Samsung 2600mAh}}       & 7.99                                                 & 1                                      & 7.99                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Level shifter 3.3V a 5V 4CH}}      & 0.14                                                 & 1                                      & 0.14                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Conectores JST (kit)}}             & 1.70                                                 & 1                                      & 1.70                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Extensor SMA 15cm}}                & 0.6                                                  & 1                                      & 0.6                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Resistencias}}                     & 0.2                                                  & 2                                      & 0.4                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Relé 5V}}                          & 3.08                                                 & 1                                      & 3.08                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Transistor PN2222A}}               & 0.2                                                  & 1                                      & 0.2                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Diodo}}                            & 0.05                                                 & 1                                      & 0.05                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{TP4056 con regulador}}             & 0.42                                                 & 1                                      & 0.42                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Tubo PVC}}                         & 2.40/m                                               & 0.5m                                   & 1.2                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Codo 67 grados PVC}}               & 0.87                                                 & 1                                      & 0.87                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Kit protección 18650}}             & 3.39                                                 & 1                                      & 3.39                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Screw terminals}}                  & 0.1                                                  & 3                                      & 0.3                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{PCB soldadura}}                    & 0.5                                                  & 1                                      & 0.5                                             &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Alargador SMA 3FT}}                & 1.97                                                 & 1                                      & 1.97                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Conector PVC 50mm}}                & 2.61                                                 & 1                                      & 2.61                                            &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{Abrazadera PVC 50mm}}              & 0.5                                                  & 2                                      & 1                                               &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\textit{PCB prototipo final}}              & 1.3                                                  & 1                                      & 1.3                                             &  \\ \cline{1-4}
+			\multicolumn{1}{r|}{}                                           & \multicolumn{2}{r|}{\textbf{TOTAL:}}                                                          & 76.26                                           &  \\ \cline{2-4}
+		\end{tabular}
+		\caption{Presupuesto estación refugio}
+		\label{tab:estacion-refugio}
+	\end{table}
 	
 	\pagebreak
 	
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
 	
-	\noindent En este capítulo, partiendo de la especificación de la ubicación donde se realizan las pruebas, se ha mostrado el prototipo del sistema diseñado junto con las pruebas realizadas y algunos comentarios sobre los resultados obtenidos. Por un lado, se ha construido un primer prototipo que emplea 868MHz en el enlace LoRa punto a punto y se ha comprobado mediante pruebas que cumple con lo esperado. Por otro lado, se ha realizado una pequeña descripción del prototipo definitivo que se ha construido, de forma que tanto el sistema de bebedero como el de comedero funcionen, así como nuestro gateway personalizado, manteniendo funcional el enlace punto a punto. Pese a los condicionantes, se ha podido comprobar que el sistema funciona y el prototipo construido, aunque es mejorable, logra los objetivos planteados inicialmente. Para acabar, además del presupuesto material,  se han expuesto algunas conclusiones que se han obtenido tras la realización de las pruebas, comentando aspectos relacionados con  [...]. \\
+	\noindent En este capítulo, partiendo de la especificación de la ubicación donde se realizan las pruebas, se ha mostrado el prototipo del sistema diseñado junto con las pruebas realizadas y algunos comentarios sobre los resultados obtenidos. Por un lado, se ha construido un primer prototipo que emplea 868MHz en el enlace LoRa punto a punto y se ha comprobado mediante pruebas que cumple con lo esperado. Por otro lado, se ha realizado una pequeña descripción del prototipo definitivo que se ha construido, de forma que tanto el sistema de bebedero como el de comedero funcionen, así como nuestro gateway personalizado, manteniendo funcional el enlace punto a punto. Pese a los condicionantes, se ha podido comprobar que el sistema funciona y el prototipo construido, aunque es mejorable, logra los objetivos planteados inicialmente. \\
 	
 	\pagebreak
 	
 	\section[Conclusiones y líneas futuras]{Conclusiones y líneas futuras}
 	\label{sec: conclusiones}
 	
-	\noindent \textbf{Alimentación:} estudiaría las baterías LiPo, incluso LiFePO4, que aunque son más caras, no limitan tanto en el tema de la protección. También investigaría el uso de varias baterías Li-ion en paralelo para aumentar la capacidad. Investigaría más profundamente en general el tema de la alimentación autónoma, ya que es un mundo muy extenso que debe tratarse de manera externa a la parte radio o a la parte de microcontrolador; podemos realizar proyectos donde abarquemos todo, pero para llegar a conclusiones donde se lleguen a prototipos iniciales, que en posteriores investigaciones se expandan y mejoren sus funcionalidades de manera individual, sin perder de vista el proyecto global. Diseñaría una PCB sólo para alimentación, ya que los requerimientos de alimentación para cada proyecto son diferentes y para un proyecto de dimensión media-grande es mucho más práctico diseñar un sistema personalizado de alimentación de dispositivo, algo que conseguimos mediante una PCB, compactando los sistemas que, sin PCB, se traducen en numerosas PCBs ya fabricadas que quizá no se adapten del todo a lo que necesitamos. Podría parecer que la PCB de un TP4056 es suficiente, pero en la práctica vemos cómo carga y consumo tiene que ser en momentos no simultáneos, lo cual puede suponer un problema si se sincroniza con el funcionamiento del dispositivo al que está alimentando. Es un tema complejo que hay que investigar aparte, como se ha mencionado.\\
+	\noindent Con el fin de ser más concretos, procedo a dividir las conclusiones en las diferentes funcionalidades que hemos tratado durante este trabajo. \\
 	
-		
+	\noindent \textbf{Alimentación:} estudiaría las baterías LiPo, incluso LiFePO4, que aunque son más caras, no limitan tanto en el tema de la protección. También investigaría el uso de varias baterías Li-ion en paralelo para aumentar la capacidad. Investigaría más profundamente en general el tema de la alimentación autónoma, ya que es un mundo muy extenso que debe tratarse de manera externa a la parte radio o a la parte de microcontrolador; podemos realizar proyectos donde abarquemos todo, pero sólo llegaríamos a prototipos iniciales, que en posteriores investigaciones se expandan. Diseñaría una PCB sólo para alimentación, ya que los requerimientos de alimentación para cada proyecto son diferentes, y para un proyecto de dimensión media-grande es mucho más práctico diseñar un sistema personalizado de alimentación de dispositivo. Diseñando una propia PCB de alimentación no sólo estaríamos compactando los sistemas, sino que, además, estaríamos ofreciendo una solución única para ese proyecto (y no adaptando el proyecto a soluciones ya existentes que quizá no se terminen de adaptar o, directamente, no sean válidas). Por lo tanto, es un tema complejo que hay que investigar aparte, como se ha mencionado.\\
 	
-	%\noindent Como anotación, decir que existen TP4056 con protección, gracias al MOSFET DW01 (o DW01A), los cuales no hemos usado por no tener incorporado un boost, pero pueden ser la base para construir una PCB de alimentación propia. \\
+	\noindent \textbf{Microcontrolador}: el Arduino Nano para principiantes, con previas nociones de electrónica y con previsiones de realizar una PCB, siempre y cuando el proyecto no sea muy extenso, puede ser empleado. Sin embargo, yo he experimentado que en espacio de memoria se me quedaba corto, sobretodo al usar librerías como OLED, las cuales debía excluir si quería cargar en el arduino mi código restante; teniendo en cuenta que debía importar librerías obligatoriamente para usar por ejemplo la OLED, el servomotor o el transceptor LoRa, este es un punto muy negativo, ya que es un código que no puede ser reducido. Tuve que buscar formas de ahorrar memoria para compactar el uso de dicha memoria debido a estas limitaciones. Probaría con otras opciones mencionadas en la sección \ref{subsección 3.2.2: automatización y monitorización}, donde hablamos de opciones de microcontroladores, como la Adafruit, NodeMCU o Teensy. Sería interesante estudiar la incorporación de microcontroladores tipo ESP-32, ya que nos ofrecen la posibilidad de conexión WiFi (podríamos simplificar el gateway, ya que el Nano no tiene dicha conexión), e, incluso, BLE (tanto WiFi como BLE serían útiles para futuras versiones más domésticas).   \\
 	
-%	\begin{figure}[h]
-%		\begin{center}
-%			\includegraphics[width=0.4\textwidth]{img/tp4056_withProtection.png}
-%			\caption{Ejemplo de un TP4056 con protección [\ref{bib: electronilab tp4056 con proteccion}].}
-%			\label{TP4056 con protección}
-%		\end{center}
-%	\end{figure}
-	
-	\noindent \textbf{Microcontrolador}: el arduino nano para principiantes, con previas nociones de electrónica y con previsiones de realizar una PCB, siempre y cuando el proyecto no sea muy extenso, puede ser empleado. Sin embargo, yo he experimentado que en espacio de memoria se me quedaba corto, sobretodo al usar librerías como OLED, las cuales debía excluir si quería cargar en el arduino mi código restante; teniendo en cuenta que debía importar librerías obligatoriamente para usar por ejemplo la OLED, el servomotor o el transceptor LoRa, este es un punto muy negativo, ya que es un código que no puede ser reducido. Tuve que buscar trucos para compactar el uso de dicha memoria debido a estas limitaciones. Probaría con otras opciones mencionadas en la sección \ref{subsección 3.2.2: automatización y monitorización}, donde hablamos de opciones de microcontroladores, como la Adafruit, NodeMCU o Teensy. \\
-	
-	\noindent \textbf{LoRa}: el transceptor LoRa usado en este prototipo (E32-868T30D) no nos proporciona el valor de RSSI. Sin embargo, ya se ha presentado a lo largo del documento otra opción, entre otras que existen, que sí nos proporcionan este valor, como el E22-900T22D, más compacto, con una tecnología igualmente funcional y al mismo precio. Su potencia máxima de transmisión es menor, pero se pueden adquirir otros transceptores E22 que pueden transmitir a 30dBm (E22-900T30D). No obstante, es un valor de potencia que no está permitido en la regulación LoRa europea (ya la hemos presentado en este documento). Otro módulo que resulta interesante es el E220-900T22D, por ser ligero, consumir considerablemente menos que los transceptores anteriormente mencionados y tener las mismas prestaciones en tanto a alcance y potencia de transmisión.\\
+	\noindent \textbf{LoRa}: el transceptor LoRa usado en este prototipo (E32-868T30D) no nos proporciona el valor de RSSI. Sin embargo, ya se ha presentado a lo largo del documento otra opción, entre otras que existen, que sí nos proporcionan este valor, como el E22-900T22D, más compacto, con una tecnología igualmente funcional y al mismo precio. Su potencia máxima de transmisión es menor, pero se pueden adquirir otros transceptores E22 que pueden transmitir a 30dBm (E22-900T30D). No obstante, es un valor de potencia que no está permitido en la regulación LoRa europea (ya la hemos presentado en este documento). Otro módulo que resulta interesante es el E220-900T22D, por ser ligero, consumir considerablemente menos que los transceptores anteriormente mencionados y tener las mismas prestaciones en tanto a alcance y potencia de transmisión (estas opciones recién comentadas carecen de librerías específicas para Arduino, o bien se encuentran en fase de desarrollo).\\
 	
 	\noindent Comentar que los transceptores que se han investigado para este TFG tienen diferentes modos, pero no se han empleado. Es otra investigación que queda abierta para posteriores proyectos. \\
 	
@@ -2819,29 +2867,23 @@
 	
 	\noindent \textbf{\large EEPROM (\textit{Electrically Erasable Programmable Read-Only Memory})}. EEPROM en Arduino se usa generalmente para almacenar una pequeña cantidad de datos como estados de dispositivos de entrada o salida para que se puedan retener incluso si el Arduino deja de tener alimentación (ergo, es una memoria no volátil, que usamos para almacenar información a largo plazo) [\ref{bib: arduino memory foundations}][\ref{bib: seeedstudio arduino memory}][\ref{bib: electronicsHub arduino memory}].  \\
 	
-	\noindent \textbf{\large Flash memory}. Es la memoria de programa, donde Arduino almacena el sketch. La memoria flash también se llama Flash ROM. En Arduino, la memoria flash almacena el código de la aplicación que se ejecutará. En segundo plano, esto compilará el sketch y producirá un archivo binario y almacenará el archivo binario en la memoria flash de Arduino. Al reiniciar, el Arduino leerá las instrucciones almacenadas en la memoria flash y realizará la operación necesaria. Una parte de esta memoria flash es realmente utilizada por el Bootloader, que es responsable de almacenar el archivo binario en la memoria flash a través de la interfaz en serie.\\
+	\noindent \textbf{\large Flash memory}. Es la memoria de programa, donde Arduino almacena el sketch. La memoria flash también se llama Flash ROM. En Arduino, la memoria flash almacena el código de la aplicación que se ejecutará. En segundo plano, esto compilará el sketch y producirá un archivo binario y almacenará el archivo binario en la memoria flash de Arduino. Al reiniciar, el Arduino leerá las instrucciones almacenadas en la memoria flash y realizará la operación necesaria. Una parte de esta memoria flash es realmente utilizada por el bootloader, que es responsable de almacenar el archivo binario en la memoria flash a través de la interfaz en serie.\\
 	\noindent En realidad, la memoria flash también es un tipo de EEPROM. La principal diferencia es que EEPROM se puede borrar a nivel de byte, mientras que la memoria flash se puede borrar a nivel de bloque [\ref{bib: arduino memory foundations}][\ref{bib: seeedstudio arduino memory}][\ref{bib: electronicsHub arduino memory}]. \\
 	
-	\noindent \textbf{\large Bootloader.} Al encender o reiniciar, un bootloader es una sección de la memoria del programa que se ejecuta antes de que se ejecute el código principal. Se puede utilizar para configurar el microcontrolador o proporcionar una capacidad limitada para actualizar el código del programa principal. No disponer de un bootloader implica realizar estas funciones a través de un programador externo. \\
+	\noindent \textbf{\large Bootloader.} Un bootloader es una sección de la memoria del programa que se ejecuta antes de que se ejecute el código principal, es decir, al encender o reiniciar el microcontrolador. Se puede utilizar para configurar el microcontrolador o proporcionar una capacidad limitada para actualizar el código del programa principal. No disponer de un bootloader implica realizar estas funciones a través de un programador externo. \\
 	\noindent En el caso del Uno, el bootloader de Arduino queda en espera a la vez que observa los pines UART. Si el bootloader no recibe una secuencia particular de bytes a través del puerto serie, entonces el procesador salta a la sección del programa ``usuario'' para cargar lo que ya esté en la memoria del programa. Este salto carga nuestro programa (o sketch) [\ref{bib: baldEngineer arduino bootloader}][\ref{bib: Arduino cc  bootloader}].\\
 	
-	\noindent \textbf{\large PWM (\textit{Pulse Width Modulation}).} La modulación de ancho de pulso está formada por una señal de onda cuadrada que no siempre tiene la misma relación entre el tiempo que esta en alto y el tiempo que está en bajo. El tiempo que la señal se encuentra en el nivel alto (5V) lo denominamos Ton, mientras que el tiempo que está en nivel bajo lo denominamos Toff; la suma de ambos es el perido de la señal (T). La variación de ancho de pulso consiste en variar Ton y Toff; al cambiar el valor de un PWM, en realidad se están modificando estos tiempos.
+	\noindent \textbf{\large PWM (\textit{Pulse Width Modulation}).} La modulación de ancho de pulso está formada por una señal de onda cuadrada que no siempre tiene la misma relación entre el tiempo que esta en alto y el tiempo que está en bajo. El tiempo que la señal se encuentra en el nivel alto (5V) lo denominamos $T_{on}$, mientras que el tiempo que está en nivel bajo lo denominamos $T_{off}$; la suma de ambos es el periodo de la señal (T). La variación de ancho de pulso consiste en variar $T_{on}$ y $T_{off}$; al cambiar el valor de un PWM, en realidad se están modificando estos tiempos.
 	
-	\noindent Una de las características más importantes de una señal PWM es su ciclo de trabajo o \textit{Duty Cycle}, es decir, la relación entre el tiempo de encendido y el periodo o tiempo total del PWM. Cuanto mayor sea el duty cycle, más tiempo estará la señal de tensión en alto, sin variar el periodo. Por consecuencia, como el periodo no varía y la suma de Ton y Toff, si el tiempo de encendido aumenta, el tiempo de apagado disminuye. Este es el motivo por el cual se llama modulación de ancho de pulso, porque literalmente se varia el ancho del pulso de nivel alto. 
+	\noindent Una de las características más importantes de una señal PWM es su ciclo de trabajo o \textit{Duty Cycle}, es decir, la relación entre el tiempo de encendido y el periodo o tiempo total del PWM. Cuanto mayor sea el duty cycle, más tiempo estará la señal de tensión en alto, sin variar el periodo. Por consecuencia, como el periodo no varía y la suma de $T_{on}$ y $T_{off}$, si el tiempo de encendido aumenta, el tiempo de apagado disminuye. Este es el motivo por el cual se llama modulación de ancho de pulso, porque literalmente se varia el ancho del pulso de nivel alto. 
 	
 	\noindent Lo cierto es que al variar el duty cycle de una señal PWM, lo que estamos haciendo es variar su tensión media; cuando una señal media de tensión atraviesa ciertos componentes electrónicos, puede hacer que su comportamiento cambie. Por ejemplo, los LED, los motores de corriente continua o ventiladores, incluso altavoces y zumbadores. Existen muchas alternativas a la hora de generar una señal PWM. Una de las más clásicas es usar un microcontrolador (en Arduino, la señal de PWM la generamos mediante el uso del método analogWrite()). Otra posibilidad es usar el 555 [\ref{bib: pwm}].\\
 	
+	\noindent \textbf{\large SPI (\textit{Serial Peripheral Interface}).} Estándar de comunicación serie utilizado principalmente para la transferencia de información entre circuitos integrados. Es una comunicación síncrona (es decir, controlada por un reloj). Está compuesto por cuatro cables (MOSI, MISO, SCL y SDA), que sirven para seleccionar el modo de comunicación, ya que ésta es una comunicación \textit{maestro-esclavo} con bus compartido.\\
+	
+	\noindent \textbf{\large I2C (\textit{Inter-Integrated Circuit})}. Estándar de comunicación serie utilizado principalmente para la transferencia de información entre circuitos integrados. Al igual que SPI, también dispone de un bus compartido, y es de topología \textit{maestro-esclavo}. Utiliza sólo dos cables para la comunicación, uno para el reloj y otro para la información. Es un protocolo muy utilizado para sensores digitales. \\
+	
 	\noindent \textbf{\large UART (\textit{Universal Asynchronous Receiver Transmitter}).} No es un protocolo de comunicación como SPI e I2C, sino un circuito físico en un microcontrolador o un IC independiente. El propósito principal de un UART es transmitir y recibir datos en serie. Una de las ventajas de UART es que solo usa dos cables para transmitir datos entre dispositivos.\\
-	
-	\noindent \textbf{\large SPI (\textit{Serial Peripheral Interface}).} \\
-		
-	\noindent \textbf{\large MOSI (\textit{Master Out Slave In}).} \\
-	
-	\noindent \textbf{\large SDA (\textit{Serial Data}).} \\
-	
-	\noindent \textbf{\large SCL (\textit{Serial Clock}).} \\
-	
-	\noindent \textbf{\large I2C (\textit{Inter-Integrated Circuit}).} \\
 	
 	%%% SERVOMOTOR %%%
 	\noindent \textbf{\large Torque} (en un motor), o par. En mecánica newtoniana, se denomina momento de una fuerza o torque a una magnitud vectorial, obtenida como producto vectorial del vector de posición del punto de aplicación de la fuerza por el vector fuerza, en ese orden. Para un motor, esto es, la fuerza que puede aplicar a través del movimiento rotacional de su eje para levantar o mover una carga; es importante el contexto mecánico previo que hemos establecido para entender la importancia de la dirección en la que apliquemos el movimiento del servo y la fuerza en sí [\ref{bib: wikipedia momento de fuerza}].\\
@@ -2852,13 +2894,13 @@
 	\noindent \textbf{\large Resistencia \textit{pull-down}}. Las resistencias \textit{pull-down}, y \textit{pull-up}, son resistencias que se usan en circuitos lógicos para asegurar un nivel lógico bien definido en un pin bajo cualquier circunstancia. Como recordatorio, los circuitos lógicos digitales tienen tres estados lógicos: alto, bajo y flotante (alta impedancia). El estado de alta impedancia ocurre cuando un pin no llega a estar en valor alto o bajo, y se queda``flotando''. Una buena manera de ilustrar esta situación es un pin de entrada desconectado de un microcontrolador; no se encuentra en un estado lógico alto o bajo, y el MCU podría interpretar de manera impredecible el valor de entrada como alto o bajo. También ocurre si en un pin del MCU tenemos un switch; si no hay una resistencia \textit{pull-down} o \textit{pull-up}, el pin estará flotando cuando el switch se abra, y dando valores lógicos conocidos sólo cuanto éste se cierre. Son resistencias de valor fijo, que dependiendo de la aplicación del circuito digital que estemos diseñando tendrán un valor u otro (y de la impedancia de entrada del pin del MCU al que queramos conectarnos, por ejemplo). La diferencia entre una resistencia \textit{pull-down} y una \textit{pull-up} es que la primera se coloca entre tierra y el pin en cuestión, haciendo que, cuando el switch se abra, el pin tenga valor lógico bajo, mientras que la segunda se coloca entre VCC y el pin, haciendo que, cuando el switch se abra, el pin tenga valor lógico de alto [\ref{bib: eepower pull up pull down resistors}].\\ 
 	
 	%%PAGINA WEB%%
-	\noindent \textbf{\large Lenguaje de marcado}. Es un modo de codificar (redactar) un documento donde, junto con el texto, se incorporan etiquetas (marcas o anotaciones) con información adicional relativa a la estructura del texto o su formato de presentación. Permiten hacer explícita la estructura de un documento, su contenido semántico o cualquier otra información lingüística o extralingüística que se quiera hacer patente [\ref{bib: lenguaje marcado definicion}]. Ejemplos de lenguaje de marcado son HTML o LaTeX, este último usado para la creación del presente documento.
+	\noindent \textbf{\large Lenguaje de marcado}. Es un modo de codificar (redactar) un documento donde, junto con el texto, se incorporan etiquetas (marcas o anotaciones) con información adicional relativa a la estructura del texto o su formato de presentación. Permiten hacer explícita la estructura de un documento, su contenido semántico o cualquier otra información lingüística o extralingüística que se quiera hacer patente [\ref{bib: lenguaje marcado definicion}]. Ejemplos de lenguaje de marcado son HTML o LaTeX, este último usado para la creación del presente documento. \\
 	
 	\noindent \textbf{\large Framework}. Un framework, que se podría traducir aproximadamente como marco de trabajo, es el esquema o estructura que se establece y que se aprovecha para desarrollar y organizar un software determinado; podría resumirse como el entorno pensado para hacer más sencilla la programación de cualquier aplicación o herramienta actual. Sirve para poder escribir código o desarrollar una aplicación de manera más sencilla, ya que permite una mejor organización y control de todo el código elaborado, así como una posible reutilización en el futuro (entre algunas ventajas, la automatización de procesos para tareas repetitivas como consulta en base de datos o realizar llamadas a internet). Debido a esto, garantiza una mayor productividad que los métodos más convencionales y una minimización del coste al agilizar las horas de trabajo volcadas en el desarrollo. Por otra parte, su acción es algo que afecta también a los errores, minimizándolos considerablemente [\ref{neoattack framework}]. \\
 	
-	\noindent \textbf{\large Front-end}. El Front end es la parte de una web que conecta e interactúa con los usuarios que la visitan. Es la parte visible, la que muestra el diseño, los contenidos y la que permite a los visitantes navegar por las diferentes páginas. Es una de las dos mitades en las que se divide la estructura de cualquier página web; la otra mitad es el Back end. Ambas se reúnen en cualquier sitio web que visite una persona y son las que, trabajando, hacen que funcione en todo momento tal y como lo hace. Esta parte es la que engloba y muestra todo el trabajo de diseño web y, por lo general, reúne en su interior hasta 3 lenguajes de programación diferentes: HTML, CSS y JavaScript. Cada uno orientado a determinados fines en concreto, se suman para conseguir el resultado final que aparece por la pantalla de cada usuario que entra en una web, sea cual sea [\ref{bib: neoattack front end}]. \\
+	\noindent \textbf{\large Front-end}. El Front end es la parte de una web que conecta e interactúa con los usuarios que la visitan. Es la parte visible, la que muestra el diseño, los contenidos y la que permite a los visitantes navegar por las diferentes páginas. Es una de las dos mitades en las que se divide la estructura de cualquier página web; la otra mitad es el Back-end. Ambas se reúnen en cualquier sitio web que visite una persona y son las que, trabajando, hacen que funcione en todo momento tal y como lo hace. Esta parte es la que engloba y muestra todo el trabajo de diseño web y, por lo general, reúne en su interior hasta 3 lenguajes de programación diferentes: HTML, CSS y JavaScript. Cada uno orientado a determinados fines en concreto, se suman para conseguir el resultado final que aparece por la pantalla de cada usuario que entra en una web, sea cual sea [\ref{bib: neoattack front end}]. \\
 	
-	\noindent \textbf{\large Back-end}. El backend es la parte del desarrollo web que se encarga de que toda la lógica de una página web  funcione. Se trata del conjunto de acciones que pasan en una web pero que no vemos como, por ejemplo, la comunicación con el servidor. Algunas de las funciones que se gestionan en la parte del back-end son: desarrollo de funciones que simplifiquen el proceso de desarrollo, acciones de lógica, conexión con bases de datos o uso de librerías del servidor web (por ejemplo para implementar temas de caché o para comprimir las imágenes de la web). Además, tiene que velar por la seguridad de los sitios web que gestiona y optimizar al máximo los recursos para que las páginas sean ligeras. Algunos lenguajes de programación back end son Python, PHP, Java o .Net \ref{bib: backend}. \\
+	\noindent \textbf{\large Back-end}. El backend es la parte del desarrollo web que se encarga de que toda la lógica de una página web  funcione. Se trata del conjunto de acciones que pasan en una web pero que no vemos como, por ejemplo, la comunicación con el servidor. Algunas de las funciones que se gestionan en la parte del back-end son: desarrollo de funciones que simplifiquen el proceso de desarrollo, acciones de lógica, conexión con bases de datos o uso de librerías del servidor web (por ejemplo para implementar temas de caché o para comprimir las imágenes de la web). Además, tiene que velar por la seguridad de los sitios web que gestiona y optimizar al máximo los recursos para que las páginas sean ligeras. Algunos lenguajes de programación back end son Python, PHP, Java o .Net [\ref{bib: backend}]. \\
 	
 	\pagebreak
 	
@@ -3237,22 +3279,42 @@
 			%73
 			\item
 			\label{thingiverse web}
-			\href{https://www.thingiverse.com/}{Thingiverse}
+			\href{https://www.thingiverse.com/}{Thingiverse}. Consultado el 03/09/21.
 			
 			%74
 			\item
 			\label{draw.io web}
-			\href{https://app.diagrams.net/}{draw.io}
+			\href{https://app.diagrams.net/}{draw.io}. Consultado el 03/09/21.
 			
 			%75
 			\item
 			\label{easyeda web}
-			\href{https://easyeda.com/es}{EasyEDA}
+			\href{https://easyeda.com/es}{EasyEDA}. Consultado el 03/09/21.
 			
 			%76
 			\item
 			\label{jlcpcb web}
-			\href{URL}{text}
+			\href{https://jlcpcb.com/}{JLCPCB}. Consultado el 03/09/21.
+			
+			%77
+			\item
+			\label{github repo}
+			\href{https://github.com/ChiaFranfer/open-pet-feeder}{GitHub: \textit{open pet feeder} (ChiaFranfer)}. Consultado el 03/09/21.
+			
+			%78
+			\item
+			\label{flask web}
+			\href{https://flask.palletsprojects.com/en/2.0.x/}{\textit{Flask}}. Consultado el 03/09/21.
+			
+			%79
+			\item
+			\label{socketio}
+			\href{https://socket.io/}{Socket.IO}. Consultado el 03/09/21.
+			
+			%80
+			\item
+			\label{flask socketio}
+			\href{https://flask-socketio.readthedocs.io/en/latest/}{flask-socketio}. Consultado el 03/09/21.
 			
 		\end{enumerate}
 		
@@ -3434,512 +3496,17 @@
 	\section*{Anexos}
 	\addcontentsline{toc}{section}{Anexos}
 	
-	\noindent Se presentan tres anexos. El \hyperref[anexo I: ficha tecnica]{Anexo I} mostrará detalles técnicos de los componentes usados. El \hyperref[anexo II: codigo]{Anexo II}, el código de programación creado para este proyecto. Por último, en el \hyperref[anexo III: presupuesto]{Anexo III} se mostrará el presupuesto detallado del mismo. \\
+	\noindent Se presentan dos anexos. El \hyperref[anexo I: codigo]{Anexo I}, el código de programación creado para este proyecto. Por último, en el \hyperref[anexo II: presupuesto]{Anexo II} se mostrará el presupuesto detallado del mismo. \\
 	
 	\pagebreak
 	
 	\subsection*{Anexo I}
-	\label{anexo I: ficha tecnica}
-	\addcontentsline{toc}{subsection}{Anexo I}	
-	%\label{anexo I: ficha tecnica}
-	\noindent [Fichas técnicas de los componentes usados] \\
+	\addcontentsline{toc}{subsection}{Anexo I}
+	\label{anexo I: codigo}
 	
-	\pagebreak
+	\noindent \textbf{Código Arduino usado para las pruebas}\\
 	
-	\subsection*{Anexo II}
-	\addcontentsline{toc}{subsection}{Anexo II}
-	\label{anexo II: codigo}
-	
-	\noindent \textbf{Código Arduino usado para prueba de componentes} \\
-	
-	\noindent \textit{\textbf{Sensores de nivel de agua y relé}}: \textit{level\_switch\_test.ino} \\
-	
-	\begin{lstlisting}[language=C]
-//Sensor de nivel tipo boya
-//Salida a rele, para bomba de agua
-
-#define nivel 9 //mido el nivel de agua en el pin D9
-#define RELAY_PIN 7 //conecto arduino con rele a traves de pin D7
-
-void setup()
-{
-	Serial.begin(9600);
-	pinMode(nivel, INPUT);
-	pinMode(RELAY_PIN, OUTPUT);
-}
-
-void loop()
-{
-	int SensorNivel = digitalRead(nivel); //leemos lo que marca el nivel
-	
-	Serial.println(SensorNivel); //comprobamos la lectura
-	
-	if (SensorNivel == 1){
-		digitalWrite(RELAY_PIN, LOW); //si el agua supera el nivel, cortamos el paso con rele a 0
-	} else {
-		digitalWrite(RELAY_PIN, HIGH);
-	}
-	
-	delay(1000);
-}
-	\end{lstlisting}
-	\noindent \textit{\textbf{Bebedero}}: \textit{sketch\_waterPumpRelay.ino}\\
-	
-	\begin{lstlisting}[language=C]
-#include <LowPower.h>
-#include "LowPower.h"
-
-
-#define SLEEP_CYCLES 4      // tiempo = 4S * SLEEP_CYCLES[0:5) = 16 seg
-
-//defines for bebedero
-
-#define RELAY_PIN 7
-#define REFILL_TIME 5000    // 5000 ms == 5s para rellenar bebedero (default)
-
-void rellenarBebedero() {
-	
-	Serial.println("Rellenando bebedero...");
-	
-	digitalWrite(RELAY_PIN, HIGH);
-	delay(REFILL_TIME);
-	digitalWrite(RELAY_PIN, LOW);
-	
-	delay(500);
-	
-	Serial.println("Bebedero lleno");
-}
-
-void setup() {
-	
-	Serial.begin(115200);
-	
-	delay(1000);
-	
-	// setup bebedero
-	pinMode(RELAY_PIN, OUTPUT);
-	
-	
-	Serial.println("Ready...");
-	delay(1000);
-}
-
-void loop() {
-	
-	// tengo q decirle aqui que lo haga solo cuando el arduino este despierto, y se supone q esta despierto el tiempo justo
-	// para q se cojan datos de sensores y q se envie por lora
-	Serial.println("Go to sleep...");
-	delay(200);
-	
-	for (int i = 0;  i < SLEEP_CYCLES; i++) {
-		LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);   //se puede subir a SLEEP_8S
-	}
-	Serial.println("Awaken");
-	
-	rellenarBebedero();
-	
-	
-	delay(500);
-	
-}
-	\end{lstlisting}
-
-	\noindent \textit{\textbf{Servomotor}}: \textit{sketch\_servoTest.ino}\\
-	
-	\begin{lstlisting}[language=C]
-#include <Servo.h>
-#include "LowPower.h"
-
-Servo servo1;
-
-#define PIN_SERVO 9         //conectado a D9 del arduino nano, que es pin digital y PWM
-#define NUM_CICLO 4
-#define SPEED_SERVO 1500    //default: 1500. Lower value, it goes faster
-
-#define SLEEP_CYCLES 4      // tiempo = 4S * SLEEP_CYCLES[0:5) = 16 seg
-
-void rellenarComedero(){
-	Serial.println("Rellenando comedero...");
-	for(int i=0; i<=NUM_CICLO; i++){
-		//Serial.println(i);
-		servo1.write(0);
-		delay(SPEED_SERVO);
-		servo1.write(105);
-		delay(SPEED_SERVO);
-	}
-	
-	// Posicion estatica
-	servo1.write(90);
-	delay(SPEED_SERVO);
-	Serial.println("OK");
-}
-
-void setup() {
-	
-	Serial.begin(9600);
-	servo1.attach(PIN_SERVO);
-	
-	delay(1000);
-	//rellenarComedero();
-	
-	Serial.println("Ready...");
-	delay(1000);
-}
-
-void loop() {
-	
-	// tengo q decirle aqui que lo haga solo cuando el arduino este despierto, y se supone q esta despierto el tiempo justo
-	// para q se cojan datos de sensores y q se envie por lora, formacion de paquetes
-	Serial.println("Go to sleep...");
-	delay(200);
-	
-	for (int i = 0;  i < SLEEP_CYCLES; i++){
-		LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);   //se puede subir a SLEEP_8S
-	}
-	Serial.println("Awaken");
-	
-	rellenarComedero();
-	
-	
-	delay(500);
-	
-}
-	\end{lstlisting}
-	
-	\noindent \textit{\textbf{OLED}}: \textit{OLED\_display.ino}\\
-	
-	\begin{lstlisting}[language=C]
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 32 // OLED display height, in pixels
-
-// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-// The pins for I2C are defined by the Wire-library. 
-// On an arduino UNO:       A4(SDA), A5(SCL)
-#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3C for 128x32
-
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-
-void setup() {
-	Serial.begin(115200);
-	
-	// SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-	if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-		Serial.println(F("SSD1306 allocation failed"));
-		for(;;); // Don't proceed, loop forever
-	}
-	
-	// Show initial display buffer contents on the screen --
-	// the library initializes this with an Adafruit splash screen.
-	display.display();
-	delay(2000); // Pause for 2 seconds
-	
-	// Clear the buffer
-	display.clearDisplay();
-	
-	// Example
-	display.setTextSize(1);
-	display.setTextColor(WHITE);
-	display.setCursor(0, 0);
-	
-	display.println("Hola mundo! :D");
-	display.println("msg recibido");
-	display.println("3");
-	display.println("4");
-	display.display();
-	delay(100);
-	
-	// Scrolling mode
-	//display.startscrollright(0x00, 0x0F);
-	//delay(2000);
-	//display.stopscroll();
-	//delay(1000);
-	//display.startscrollleft(0x00, 0x0F);
-	//delay(2000);
-	//display.stopscroll();
-	//delay(1000);  
-}
-
-void loop() {
-	// put your main code here, to run repeatedly:
-	
-}
-	\end{lstlisting}
-
-	\noindent \textit{\textbf{Comunicación LoRa}}: nodo de control, \textit{SendEBYTE.ino}\\
-	
-	\begin{lstlisting}[language=C]
-#include <SoftwareSerial.h>
-#include "EBYTE.h"
-//#include <avr/io.h>
-
-#define PIN_RX 2
-#define PIN_TX 3
-#define PIN_M0 4
-#define PIN_M1 5
-#define PIN_AX 6
-
-// replace with your own
-struct DATA {
-	unsigned long Count;
-	int Bits;
-	float Volts;
-	//float Amps;
-};
-
-int Chan;
-DATA MyData;
-
-// you will need to define the pins to create the serial port
-SoftwareSerial ESerial(PIN_RX, PIN_TX);
-
-
-// create the transceiver object, passing in the serial and pins
-EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
-
-void setup() {
-	
-	Serial.begin(115200);
-	
-	// start the transceiver serial port--data sheet says to keep on 9600
-	ESerial.begin(9600);
-	
-	Serial.println("Starting Sender");
-	
-	// this init will set the pinModes for you
-	Transceiver.init();
-	
-	// all these calls are optional but shown to give examples of what you can do
-	
-	//Serial.println(Transceiver.GetAirDataRate());
-	//Serial.println(Transceiver.GetChannel());
-	
-	Transceiver.SetMode(MODE_NORMAL);
-	//Transceiver.SetMode(MODE_WAKEUP);
-	
-	//Transceiver.SetUARTBaudRate(UDR_9600);
-	//Transceiver.SetAirDataRate(ADR_2400);
-	//Transceiver.SetAddressH(2);
-	//Transceiver.SetAddressL(0);
-	//Chan = 5;
-	//Transceiver.SetChannel(Chan);
-	//Transceiver.SetTransmitPower(OPT_TP21);
-	//Transceiver.SetPullupMode(0);
-	//Transceiver.SetFECMode(1);
-	
-	// save the parameters to the unit,
-	//Transceiver.SaveParameters(PERMANENT);
-	Transceiver.SaveParameters(TEMPORARY);
-	
-	// you can print all parameters and is good for debugging
-	// if your units will not communicate, print the parameters
-	// for both sender and receiver and make sure air rates, channel
-	// and address is the same
-	Transceiver.PrintParameters();
-	
-	MyData.Count = 0;
-}
-
-void loop() {
-	
-	// measure some data and save to the structure
-	MyData.Count++;
-	//MyData.Count = 10;
-	MyData.Bits = analogRead(A0);
-	MyData.Volts = MyData.Bits * ( 5.0 / 1024.0 );
-	//MyData.Volts = 2000.0;
-	
-	// i highly suggest you send data using structures and not
-	// a parsed data--i've always had a hard time getting reliable data using
-	// a parsing method
-	Transceiver.SendStruct(&MyData, sizeof(MyData));
-	//Transceiver.SendByte(8);
-	
-	// let the use know something was sent
-	Serial.println("Sending: Count: " + (String) MyData.Count + " Volts: " + MyData.Volts + " Bits: " + MyData.Bits );
-	delay(4000);
-	
-	
-}		
-	\end{lstlisting}
-
-	\noindent \textit{\textbf{Comunicación LoRa}}: nodo sensorización, \textit{ReceiveEBYTE\_OLED.ino}\\
-	
-	\begin{lstlisting}[language=C]
-// LoRa E32 
-#include <SoftwareSerial.h>
-#include "EBYTE.h"
-#include <avr/io.h>
-
-// OLED Display
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-
-// LoRa E32
-#define PIN_RX 2
-#define PIN_TX 3
-#define PIN_M0 4
-#define PIN_M1 5
-#define PIN_AX 6
-
-// OLED Display
-// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-// The pins for I2C are defined by the Wire-library. 
-// On an arduino UNO:       A4(SDA), A5(SCL)
-#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3C for 128x32
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 32 // OLED display height, in pixels
-
-
-struct DATA {
-	unsigned long Count;
-	int Bits;
-	float Volts;
-};
-
-// replace with your own
-int Chan;
-DATA MyData;
-unsigned long Last;
-
-// connect to any digital pin to connect to the serial port
-// don't use pin 01 and 1 as they are reserved for USB communications
-SoftwareSerial ESerial(PIN_RX, PIN_TX);
-
-// create the transceiver object, passing in the serial and pins
-EBYTE Transceiver(&ESerial, PIN_M0, PIN_M1, PIN_AX);
-
-uint8_t read;
-
-// OLED Display
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-
-void setup() {
-	Serial.begin(115200);
-	
-	delay(500);
-	
-	// OLED Display
-	// SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-	if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-		Serial.println(F("SSD1306 allocation failed"));
-		for(;;); // Don't proceed, loop forever
-	}
-	
-	Serial.println("OLED Ready");
-	
-	// Show initial display buffer contents on the screen --
-	// the library initializes this with an Adafruit splash screen.
-	display.display();
-	delay(200); // Pause for 2 mseconds
-	
-	// Clear the buffer
-	display.clearDisplay();
-	
-	// LoRa Init
-	ESerial.begin(9600);
-	Serial.println("Starting Reader");
-	
-	// this init will set the pinModes for you
-	Transceiver.init();
-	
-	// all these calls are optional but shown to give examples of what you can do
-	
-	// Serial.println(Transceiver.GetAirDataRate());
-	// Serial.println(Transceiver.GetChannel());
-	Transceiver.SetUARTBaudRate(UDR_9600);
-	Transceiver.SetMode(MODE_NORMAL);
-	Transceiver.SetAirDataRate(ADR_2400);
-	Transceiver.SetAddressH(1);
-	Transceiver.SetAddressL(0);
-	Chan = 5;
-	Transceiver.SetChannel(Chan);
-	Transceiver.SetTransmitPower(OPT_TP21);
-	Transceiver.SetPullupMode(0);
-	Transceiver.SetFECMode(1);
-	
-	// save the parameters to the unit,
-	Transceiver.SaveParameters(TEMPORARY);
-	
-	// you can print all parameters and is good for debugging
-	// if your units will not communicate, print the parameters
-	// for both sender and receiver and make sure air rates, channel
-	// and address is the same
-	Transceiver.PrintParameters();
-	
-	// OLED Searching... text
-	display.setTextSize(1);
-	display.setTextColor(WHITE);
-	display.setCursor(0, 0);
-	
-	display.println("Searching...");
-	display.display();
-	delay(200);
-}
-
-void loop() {
-	
-	// if the transceiver serial is available, proces incoming data
-	// you can also use Transceiver.available()
-	
-	
-	if (ESerial.available()) {
-		
-		// i highly suggest you send data using structures and not
-		// a parsed data--i've always had a hard time getting reliable data using
-		// a parsing method
-		
-		Transceiver.GetStruct(&MyData, sizeof(MyData));
-		//read = Transceiver.GetByte();
-		
-		//Serial.println(read);
-		
-		// Update OLED Info
-		updateDisplay(&MyData);
-		
-		// dump out what was just received
-		Serial.print("Count: "); Serial.println(MyData.Count);
-		Serial.print("Bits: "); Serial.println(MyData.Bits);
-		Serial.print("Volts: "); Serial.println(MyData.Volts);
-		Serial.println("***");
-		// if you got data, update the checker
-		Last = millis();
-		
-	}
-	else {
-		// if the time checker is over some prescribed amount
-		// let the user know there is no incoming data
-		if ((millis() - Last) > 1000) {
-			Serial.println("Searching: ");
-			Last = millis();
-		}
-		
-	}
-}
-
-void updateDisplay(struct DATA *msg){
-	// Clear the buffer
-	display.clearDisplay();
-	
-	display.setTextSize(1);
-	display.setTextColor(WHITE);
-	display.setCursor(0, 0);
-	
-	display.println("Searching...");
-	// Updating new values
-	display.println("Count: " + (String) msg->Count);
-	display.println("Bits: " + (String) msg->Bits);
-	display.println("Volts: " + (String) msg->Volts);
-	display.display();
-	delay(200);
-}		
-	\end{lstlisting}
+	\noindent \small \url{https://github.com/ChiaFranfer/open-pet-feeder/tree/master/software/pruebas}\\
 
 	\noindent \textbf{Código Arduino usado para prototipo definitivo} \\
 	
@@ -4611,12 +4178,11 @@ if __name__ == '__main__':
 		
 	\pagebreak
 	
-	\subsection*{Anexo III}
-	\label{anexo III: presupuesto}
-	\addcontentsline{toc}{subsection}{Anexo III}
+	\subsection*{Anexo II}
+	\label{anexo II: presupuesto}
+	\addcontentsline{toc}{subsection}{Anexo II}
 	
-	\noindent [Insertar tabla excel del presupuesto]. \\
-	\noindent [Insertar tabla con Planificación inicial] \\
+	\noindent Se adjuntan PDF de Planificación inicial y Presupuesto total en las siguiente páginas.
 	
 	\pagebreak
 	
