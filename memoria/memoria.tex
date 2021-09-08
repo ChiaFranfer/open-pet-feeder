@@ -264,8 +264,7 @@ permitan resolver cada bloque y la interconexión entre ellos. \\
 		\item \textbf{Alimentación autónoma:} posible uso de baterías recargables.
 	\end{itemize}
 	
-	\noindent Todo esto puede variar ligeramente respecto a lo inicialmente aquí expuesto, según se
-profundice en cada bloque y se adquieran mayores conocimientos.
+	%\noindent Todo esto puede variar ligeramente respecto a lo inicialmente aquí expuesto, según se profundice en cada bloque y se adquieran mayores conocimientos.
 	
 	\subsection[Planificación del trabajo]{Planificación del trabajo}
 	
@@ -305,11 +304,7 @@ la descripción de resultados o productos obtenidos.\\
 proyecto. También, se presentan ejemplos Open Source dentro de este ámbito.
 \\
 	
-	\noindent \textbf{Capítulo 3:} se trata del capítulo principal del proyecto, donde se expone todo el
-proceso de diseño del sistema. Se parte de la determinación de las funcionalidades que hay que cubrir, para determinar posibles necesidad y así iniciar una búsqueda de soluciones. Es aquí donde se exponen tanto las tecnologías que se
-emplean en el diseño de la solución (Arduino y LoRa), como distintos componentes hardware necesarios para cada funcionalidad. Finalmente, se expone la elección de soluciones hardware, y se define un primer prototipo provisional. Se proponen los
-dispositivos que se emplean y las pruebas necesarias para verificar su funcionamiento,
-tanto en monitorización como en comunicaciones. \\
+	\noindent \textbf{Capítulo 3:} se trata del capítulo principal del proyecto, donde se expone todo el proceso de diseño del sistema. Se parte de la determinación de las funcionalidades que hay que cubrir, para determinar posibles necesidades y así iniciar una búsqueda de soluciones. Es aquí donde se exponen tanto las tecnologías que se emplean en el diseño de la solución (Arduino y LoRa), como distintos componentes hardware necesarios para cada funcionalidad. Finalmente, se expone la elección de soluciones hardware, y se define un primer prototipo provisional. Se proponen los dispositivos que se emplean y las pruebas necesarias para verificar su funcionamiento, tanto en monitorización como en comunicaciones. \\
 	
 	\noindent \textbf{Capítulo 4: }se trata el proceso de construcción del prototipo definitivo, sus evoluciones desde el prototipo provisional y las
 pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real (entorno definitivo).
@@ -328,9 +323,9 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 		
 	\noindent Existen muchos proyectos Open Source relacionados con la alimentación automática o semiautomática de animales domésticos, principalmente gatos y perros. Sin embargo, no existen (o al menos, no se han encontrado) proyectos que usen LoRa como tecnología radio, sino que emplean la red local WiFi del hogar donde se sitúe el dispositivo de alimentación; es decir, se trata de entornos con electricidad e internet, y no del entorno en el que trabajará nuestro proyecto. \\
 	
-	\noindent A pesar de ello, se ha visualizado este tipo de proyectos y tenido en cuenta para el desarrollo del prototipo en tanto a apariencia externa, facilidad de uso, eficiencia de los componentes, o, incluso, opciones para mover el pienso desde la reserva hasta el comedero del animal, o el agua desde la reserva hasta el bebedero. No se realizará comparativa con dispositivos autónomos de alimentación para animales comerciales, ya que se pretende elaborar un proyecto Open Source, que nada tiene que ver con soluciones comerciales propietarias; además, los objetivos de este proyecto (principalmente establecer unas bases para investigar sobre este tipo de dispositivos que ayudan a animales y voluntarios), requerimientos y tecnologías empleadas son totalmente diferentes. \\
+	\noindent A pesar de ello, se ha visualizado este tipo de proyectos y tenido en cuenta para el desarrollo del prototipo en tanto a apariencia externa, facilidad de uso, eficiencia de los componentes, o, incluso, opciones para mover el pienso desde la reserva hasta el comedero del animal, o el agua desde la reserva hasta el bebedero. No se realizará comparativa con dispositivos autónomos comerciales de alimentación para animales, ya que se pretende elaborar un proyecto Open Source, que nada tiene que ver con soluciones comerciales propietarias; además, los objetivos de este proyecto (principalmente establecer unas bases para investigar sobre este tipo de dispositivos que ayudan a animales y voluntarios), requerimientos y tecnologías empleadas son totalmente diferentes. \\
 	
-	\noindent Aunque se hablará con más detalle en la sección \ref{Sección 3: Diseño del sistema}, en el momento de elaborar la planificación para este proyecto, se tuvo que preconcebir una serie de pasos a seguir. Es en el momento de la concepción del proyecto, mientras se realiza la planificación, cuando se realizó una primera búsqueda de proyectos Open Source, tanto relacionados con alimentación autónoma de animales, como monitorización por LoRa de proyectos y alimentación autónoma de los mismos. No se centró la búsqueda en el primer tópico exclusivamente, ya que, como hemos comentado, no se han encontrado proyectos que engloben alimentación autónoma para animales, monitorización por LoRa y alimentación autónoma del dispositivo.\\
+	\noindent Aunque se hablará con más detalle en la sección \ref{Sección 3: Diseño del sistema}, en el momento de elaborar la planificación para este proyecto, se tuvo que preconcebir una serie de pasos a seguir. Es en el momento de la concepción del proyecto, mientras se realiza la planificación, cuando se realizó una primera búsqueda de proyectos Open Source, tanto relacionados con alimentación autónoma de animales, como monitorización por LoRa de proyectos y alimentación autónoma de los mismos. No se centró la búsqueda en el primer tema exclusivamente, ya que, como hemos comentado, no se han encontrado proyectos que engloben alimentación autónoma para animales, monitorización por LoRa y alimentación autónoma del dispositivo.\\
 	
 	\subsubsection{Ejemplos de proyectos Open Source}
 	
@@ -424,7 +419,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
  		\item El \textit{\textbf{MPV (voltaje de punto medio)}} es el voltaje nominal de la celda y es el voltaje que se mide cuando la batería se ha descargado el 50\% de su energía total. \\
  		\noindent La oscilación de voltaje máxima y mínima del valor nominal es una consideración de diseño importante: una curva de descarga ``más plana" significa menos variación de voltaje que el diseño debe tolerar.
  		\item El \textit{\textbf{voltaje de celda medido al final de su vida útil}} se llama \textit{\textbf{EODV}}, que significa \textit{Fin de voltaje de descarga} (algunos fabricantes se refieren a esto como \textit{EOL} o \textit{voltaje de fin de vida útil}). \\
- 		\noindent Cuando se carga al máximo, el voltaje real de la celda será más alto que el MPV. Al acercarse al punto EODV (final del voltaje de descarga), el voltaje de la celda será menor que el MPV. 
+ 		\noindent Cuando se carga al máximo, el voltaje real de la celda será más alto que el MPV. Al acercarse al punto EODV (final del voltaje de descarga), el voltaje de la celda será menor que el MPV (ver Figura \ref{fig: curva carga descarga bateria}). 
  		\item La \textit{\textbf{densidad de energía gravimétrica}} de una batería es una medida de cuánta energía contiene una batería en comparación con su peso. Normalmente viene expresada en Watt-horas/kilogramo (Wh/kg).
  		\item La \textit{\textbf{densidad de energía volumétrica}} de una batería es una medida de cuánta energía contiene una batería en comparación con su volumen. Normalmente se expresa en Watt-horas/litro (Wh/l)
  		\item Un \textit{\textbf{cargador de voltaje constante}} es un circuito que recarga una batería obteniendo solo la corriente suficiente para forzar el voltaje de la batería a un valor fijo.
@@ -437,6 +432,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 		\begin{center}
 			\includegraphics[width=0.5\textwidth]{img/chargeDischargeCurve_TxInst.png}
 			\caption{Curva de la carga/descarga de una batería [\ref{bib: TI rechargeable batteries}].}
+			\label{fig: curva carga descarga bateria}
 		\end{center}
 	\end{figure}
 
@@ -505,7 +501,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 
 	\noindent Cada célula fotovoltaica tiene una capa negativa y una capa positiva. Para que un panel solar genere electricidad solo necesitamos algo de energía para hacer que esos electrones fluyan de la capa negativa a la capa positiva. \\
 	
-	\noindent Así pues, en resumen, la energía de los fotones del sol hace que los electrones en el lado negativo de la celda fotovoltaica se muevan (existe electricidad). Esto se llama \textit{efecto fotovoltaico}(ver Figura \ref{fig: efecto fotovoltaico}).\\
+	\noindent Así pues, en resumen, la energía de los fotones del sol hace que los electrones en el lado negativo de la celda fotovoltaica se muevan (existe electricidad). Esto se llama \textit{efecto fotovoltaico} (ver Figura \ref{fig: efecto fotovoltaico}).\\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -525,7 +521,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent \textit{Parámetros}\\
 	
-	\noindent Los principales paramétros[\ref{bib: TU delft OCW solar cell param}] que se usan para caracterizar el rendimiento de las células solares son la potencia máxima $P_{max}$ (\textit{peak power}), la densidad de corriente en cortocircuito $J_{sc}$, la tensión en circuito abierto $V_{oc}$, y el factor de forma \textit{FF}. Estos parámetros se determinan a partir de la curva J-V característica cuando la célula está iluminada, tal como se muestra en la Figura \ref{fig: curva J-V célula solar}. La eficiencia de conversión $\eta$ se puede determinar a partir de estos parámetros. \\
+	\noindent Los principales paramétros [\ref{bib: TU delft OCW solar cell param}] que se usan para caracterizar el rendimiento de las células solares son la potencia máxima $P_{max}$ (\textit{peak power}), la densidad de corriente en cortocircuito $J_{sc}$, la tensión en circuito abierto $V_{oc}$, y el factor de forma \textit{FF}. Estos parámetros se determinan a partir de la curva J-V característica cuando la célula está iluminada, tal como se muestra en la Figura \ref{fig: curva J-V célula solar} (existe también la curva I-V, como la de la Figura \ref{bib: research gate pv cell param}). La eficiencia de conversión $\eta$ se puede determinar a partir de estos parámetros. \\
 	
 	\noindent Nótese que se menciona específicamente \textit{parámetros de una célula solar}; un panel solar, como se ha mencionado anteriormente, consta de varias células fotovoltaicas, por lo que los parámetros especificados, en términos globales y tal como se construyen los paneles solares, influyen en las especificaciones finales del panel según el número de células del que conste (ver Figura \ref{fig: solar panel of identical solar cells}). \\
 		\begin{figure}[h]
@@ -588,7 +584,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 
 	\noindent \textit{\textbf{Eficiencia de conversión}} \\
 	
-	\noindent La eficiencia de conversión se calcula como la relación entre la potencia potencia generada y la potencia incidente.  Como vemos en la ecuación (\ref{eq: eficiencia de conversion}), y tal como establece su propia definición, depende de todos los parámetros anteriormente descritos: \\
+	\noindent La eficiencia de conversión se calcula como la relación entre la potencia generada y la potencia incidente.  Como vemos en la ecuación (\ref{eq: eficiencia de conversion}), y tal como establece su propia definición, depende de todos los parámetros anteriormente descritos: \\
 	
 	\begin{equation}
 		 \eta = \frac{P_{max}}{I_{in}} = \frac{J_{mpp} V_{mpp}}{I_{in}} = \frac{J_{sc} V_{oc} FF}{I_{in}} 
@@ -902,7 +898,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 
 	\noindent \textbf{Cómo funciona un servomotor}\\
 	
-	\noindent Para posicionar un servomotor tenemos que aplicarle un pulso eléctrico (una señal PWM). Los pulsos siempre tendrán el mismo periodo, pero variará la duración del valor en alto del pulso, y será esa duración la que determine la posición del servo (ver Figura \ref{posicion servo}); por ejemplo, si el periodo de la señal es de 2ms, podríamos hacer que, para pulsos de duración en alta de 1ms, el eje del motor esté en la posición más a la izquierda, para pulsos de duración 1.5ms esté en la posición intermedia, y para 2ms, esté en la posición final del servomotor (estos son rangos muy comunes). Si mantuviera el pulso más tiempo de 2ms el motor no giraría más, ya que el potenciómetro del eje detectaría que está en la posición final, y normalmente sonaría un zumbido para indicarnos que está al final del recorrido. \\
+	\noindent Para posicionar un servomotor tenemos que aplicarle un pulso eléctrico (una señal PWM). Los pulsos siempre tendrán el mismo periodo, pero variará la duración del valor de tensión en alto del pulso, y será esa duración la que determine la posición del servo (ver Figura \ref{posicion servo}); por ejemplo, si el periodo de la señal es de 2ms, podríamos hacer que, para pulsos de duración en alta de 1ms, el eje del motor esté en la posición más a la izquierda, para pulsos de duración 1.5ms esté en la posición intermedia, y para 2ms, esté en la posición final del servomotor (estos son rangos muy comunes). Si mantuviera el pulso más tiempo de 2ms el motor no giraría más, ya que el potenciómetro del eje detectaría que está en la posición final, y normalmente sonaría un zumbido para indicarnos que está al final del recorrido. \\
 	
 	%posicion_servomotor.png
 	
@@ -1504,7 +1500,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent El término LoRa proviene de la unión de las palabras \textit{Long} y \textit{Range}[\ref{lora alliance what is lorawan}], es decir, largo alcance, evidenciando, así, a través de su nombre una de sus principales características. Se trata de la capa física del protocolo \textit{LoRaWAN}; es a través de esta capa que se permite el establecimiento del enlace de comunicación de largo alcance, mientras que LoRaWAN define el protocolo de comunicación y la arquitectura del sistema para la red. \\
 	
-	\noindent También se trata de una tecnología inalámbrica propiamente dicha que ofrece una transmisión de largo alcance, bajo consumo y segura para aplicaciones IoT y M2M. Se basa en la modulación de espectro ensanchado, la cual presenta características de bajo consumo como la modulación FSK pero puede ser usada para comunicaciones de largo alcance. Puede ser usada para conectar sensores, gateways, máquinas, dispositivos, animales, personas, etc. de manera inalámbrica a la nube.\\
+	\noindent También se trata de una tecnología inalámbrica propiamente dicha que ofrece una transmisión de largo alcance, bajo consumo y segura para aplicaciones IoT y M2M. Se basa en la modulación de espectro ensanchado; para conseguir un bajo consumo, emplea la modulación FSK para transmitir los símbolos, y es precisamente ese bajo consumo el que permite que pueda ser usada para comunicaciones de largo alcance. Puede ser usada para conectar sensores, gateways, máquinas, dispositivos, animales, personas, etc. de manera inalámbrica a la nube.\\
 	
 	\noindent \textbf{Planes de frecuencia} \\
 	
@@ -2301,7 +2297,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	\subsubsection{Protocolo}
 	\label{protocolo explicacion}
 	
-	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \texttt{\textit{refugio\_protocolo.ino}}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3; este sketch es el \texttt{\textit{gw\_protocolo.ino}}, el cual explicaremos más adelante (al igual que \texttt{\textit{refugio\_protocolo}}).  En el \hyperref[anexo II: codigo]{Anexo II}  se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
+	\noindent Tan importante es simplificar el sistema en un único bloque hardware, como lo es unificarlo en software. Es por ello que se creó un sketch de Arduino llamado \texttt{\textit{refugio\_protocolo.ino}}, donde incorporamos la traducción de mensajes recibidos para el microcontrolador del refugio, de manera que éste sepa cómo actuar en consecuencia. También creamos un sketch para el microcontrolador del extremo al que llamamos gateway, el cual conecta con nuestro servidor, alojado en una Raspberry Pi 3; este sketch es el \texttt{\textit{gw\_protocolo.ino}}, el cual explicaremos más adelante (al igual que \texttt{\textit{refugio\_protocolo}}).  En el \hyperref[anexo I: codigo]{Anexo I}  se adjunta el código Arduino creado para tal fin, de manera detallada; a continuación, se describirá a grandes rasgos en qué consiste el protocolo.\\
 	
 	\noindent Antes de explicar el código creado, cabe decir que no habría sido posible el desarrollo de este protocolo sin el sustento proporcionado por la librería \href{https://github.com/KrisKasprzak/EBYTE}{EBYTE} [\ref{bib: github libreria EBYTE}], creada por el usuario KrisKasprzak, a través de la cual:
 	
@@ -2670,7 +2666,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	%\pagebreak
 	
-	\noindent En tanto a resultados, la señal llegó en todo momento. Se perdió en torno a un 15\% de los mensajes en zonas donde la vegetación es más densa y, sobretodo, a partir del kilómetro 2.5, si nos situábamos detrás de domicilios, cortando la línea de visión directa (bajo esta situación, no llegaba ningún mensaje, pero reestablecíamos la conexión al desbloquear la línea de visión). Si que es cierto que quizá a esa distancia y estando a poco más de un metro y medio sobre el suelo no se pueda hablar de \textit{línea de visión directa}, pero mirando la Figura \ref{prueba 1 captura alcance}, donde se muestra que el recorrido fue, en esencia, una línea recta, he decidido denominarlo así.\\
+	\noindent En tanto a resultados, la señal llegó en todo momento. Se perdió en torno a un 15\% de los mensajes en zonas donde la vegetación es más densa y, sobre todo, a partir del kilómetro 2.5, si nos situábamos detrás de domicilios, cortando la línea de visión directa (bajo esta situación, no llegaba ningún mensaje, pero reestablecíamos la conexión al desbloquear la línea de visión). Si que es cierto que quizá a esa distancia y estando a poco más de un metro y medio sobre el suelo no se pueda hablar de \textit{línea de visión directa}, pero mirando la Figura \ref{prueba 1 captura alcance}, donde se muestra que el recorrido fue, en esencia, una línea recta, he decidido denominarlo así.\\
 	
 	%\pagebreak 
 	
@@ -3564,7 +3560,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	\section*{Anexos}
 	\addcontentsline{toc}{section}{Anexos}
 	
-	\noindent Se presentan dos anexos. El \hyperref[anexo I: codigo]{Anexo I}, el código de programación creado para este proyecto. Por último, en el \hyperref[anexo II: presupuesto]{Anexo II} se mostrará el presupuesto detallado del mismo. \\
+	\noindent Se presentan dos anexos. El \hyperref[anexo I: codigo]{Anexo I}, el código de programación creado para este proyecto. Por último, en el \hyperref[anexo II: presupuesto]{Anexo II} se mostrará el presupuesto detallado del mismo, y la planificación inicial realizada. \\
 	
 	\pagebreak
 	
