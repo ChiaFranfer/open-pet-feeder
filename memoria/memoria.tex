@@ -231,7 +231,7 @@
 	
 	\subsection[Objetivos del trabajo]{Objetivos del trabajo}
 	\label{subsection: objetivos del trabajo}
-	El objetivo fundamental del presente trabajo es el diseño de un sistema de alimentación para animales que permita la monitorización de los niveles de agua y pienso que se encuentran en depósitos de reserva, los cuales rellenan un bebedero y un comedero, respectivamente.  Con ello, se pretende automatizar el proceso de alimentación de animales, además del uso de la tecnología LoRa para tener acceso al estado del sistema de forma remota. Así pues, los objetivos concretos son:
+	El objetivo principal del presente proyecto es el diseño de un sistema de alimentación para animales que permita la monitorización de los niveles de agua y pienso que se encuentran en reservas, las cuales rellenan un bebedero y un comedero, respectivamente.  Con ello, se pretende automatizar el proceso de alimentación de animales, además del uso de la tecnología LoRa para tener acceso al estado del sistema de forma remota. Así pues, se pretende:
 	
 	\begin{itemize}
 		\item Realizar una aproximación a la tecnología LoRa.
@@ -243,24 +243,17 @@
 	
 	\subsection[Enfoque y método seguido]{Enfoque y método seguido}
 	
-	\noindent En primer lugar, es necesario aclarar que se trata de un trabajo académico, de modo
-que el proyecto buscará en todo momento el aprendizaje y la aplicación de lo aprendido.
- Es decir, partiendo de que los objetivos del proyecto están definidos, se requiere una investigación continua y su aplicación al diseño del sistema de todas las
-partes que conformarán el todo (tanto para la consecución de dichos objetivos como para establecer unas bases para futuros proyectos). Así, conocer el entorno Arduino y la tecnología LoRa
-son los pilares de este proyecto, suponiendo la mayor carga de trabajo de estudio y
-aplicación. \\
+	\noindent En primer instancia, como aclaración, decir que se trata de un trabajo académico, por lo que se prioriza el aprendizaje y la aplicación de lo aprendido. Es decir, partiendo de que los objetivos del proyecto están definidos, se requiere una investigación continuada y su aplicación al diseño del sistema de todas las partes que conformarán el proyecto en su totalidad (tanto para la consecución de dichos objetivos como para establecer unas bases para futuros proyectos). Así, conocer el entorno Arduino y la tecnología LoRa es fundamental, y por ello, será lo que mayor tiempo requiera en términos de estudio y aplicación. \\
 	
-	\noindent En tanto al método seguido, decir que se ha separado en bloques temáticos; se investiga cada bloque por separado (búsqueda y recopilación de información), y se prueba (diseño y simulaciones, en software y hardware). Posteriormente, siguiendo una metodología en cascada, una vez resueltos los bloques individuales, se unen los bloques formando un prototipo y se prueba en conjunto. En resumen, a lo largo del trabajo se profundiza en cada uno de los bloques mediante el
-estudio de las tecnologías, el análisis de requisitos y la búsqueda de soluciones que
-permitan resolver cada bloque y la interconexión entre ellos. \\
+	\noindent En tanto al método seguido, decir que se ha separado en bloques temáticos; se investiga cada bloque por separado (búsqueda y recopilación de información), y se prueba (diseño y simulaciones, en software y hardware). Posteriormente, siguiendo una metodología en cascada, una vez resueltos los bloques individuales, se unen los bloques formando un prototipo y se prueba en conjunto. En resumen, a lo largo del trabajo se profundizará en cada uno de los bloques tal que se estudiarán las tecnologías, se analizarán los requisitos y se procederá a la búsqueda de soluciones que permitan resolver cada bloque de manera individual, y por consiguiente, la interconexión entre ellos. \\
 	
-	\noindent Finalmente, para mayor claridad se describe cada bloque:
+	\noindent Finalmente, enunciamos cada bloque y lo describiremos brevemente para mayor claridad:
 	
 	\begin{itemize}
-		\item \textbf{Monitorización:} sensores que se emplearán en el sistema.
-		\item \textbf{Control: }microcontrolador para procesado.
+		\item \textbf{Monitorización:} se emplearán sensores en las reservas del sistema de alimentación.
+		\item \textbf{Control: }microcontrolador que implementa la lógica del sistema.
 		\item \textbf{Comunicaciones: }módulo LoRa.
-		\item \textbf{Actuación: } actuación sobre bombas de agua y reserva de comida.
+		\item \textbf{Actuación: } control sobre posible bomba de agua y reserva de comida.
 		\item \textbf{Alimentación autónoma:} posible uso de baterías recargables.
 	\end{itemize}
 	
@@ -272,52 +265,41 @@ permitan resolver cada bloque y la interconexión entre ellos. \\
 	
 	\subsection[Breve sumario de productos obtenidos]{Breve sumario de productos obtenidos}
 	
-	\noindent Dado que el objetivo fundamental de este proyecto es el diseño del sistema y la
-construcción y pruebas de un prototipo para verificar su funcionalidad, se trata pues
-de obtener los siguientes productos:
+	\noindent Siendo el objetivo fundamental de este proyecto el diseño del sistema de alimentación, su construcción y la realización de las pruebas necesarias del prototipo construido, mostramos un desglose de los productos resultantes que se espera obtener:
 	
 	\begin{itemize}
-		\item \textbf{Prototipo hardware} del sistema perfectamente operativo.
-		\item \textbf{Software} que implemente las funciones elementales que demuestren el
-correcto funcionamiento del sistema.
-		\item \textbf{Memoria} del proyecto, donde se expone detalladamente todo el proceso de
-diseño y su argumentación.
-		\item \textbf{Video demostración de las pruebas realizadas}, para mostrar el
-contexto de aplicación de la solución diseñada mediante el prototipo
-construido.
-		\item \textbf{Presentación} del proyecto en Power Point o similar, para exponer las ideas y
-recursos esenciales incluidos en el diseño.
+		\item \textbf{Prototipo hardware} específico para el sistema de alimentación, perfectamente operativo.
+		\item \textbf{Software} apto para el control y monitorización del sistema creado.
+		\item \textbf{Memoria} del proyecto, donde se justifica toda la elaboración del mismo. 
+		\item \textbf{Video demostración de las pruebas realizadas}, tomado en un entorno real donde se pueda observar que la comunicación LoRa se establece sin problema.
+		\item \textbf{Presentación} del proyecto para exposición de las ideas fundamentales y los resultados obtenidos de este proyecto.
 	\end{itemize}
 	
 	\noindent Además, se ampliará el alcance del proyecto creando un repositorio en \textit{GitHub }(\url{https://github.com/}), donde se incluirá todo el desarrollo de este proyecto (\url{https://github.com/ChiaFranfer/open-pet-feeder}), permitiendo así que otras personas puedan usarlo o mejorarlo.
 	
+	\pagebreak
+	
 	\subsection[Breve descripción de los capítulos restantes de la memoria]{Breve descripción de los capítulos restantes de la memoria}
 	
-	\noindent Esta memoria se divide en 5 capítulos:
+	\noindent Este documento está compuesto por 5 capítulos:
 \\
 	
-	\noindent \textbf{Capítulo 1: }se contextualiza el problema y se propone la solución, se detalla todo el
-proceso de planificación, finalizando con
-la descripción de resultados o productos obtenidos.\\
+	\noindent \textbf{Capítulo 1: }contextualización del problema y aproximación a una solución. Se muestra, además, la planificación seguida para el proyecto, finalizando con la descripción de resultados o productos obtenidos.\\
 	
-	\noindent \textbf{Capítulo 2: }se realiza una aproximación al estado actual del ámbito del tema del
-proyecto. También, se presentan ejemplos Open Source dentro de este ámbito.
-\\
+	\noindent \textbf{Capítulo 2: }estudio del estado actual del ámbito del tema del proyecto. También, se presentan ejemplos Open Source dentro de este ámbito.\\
 	
-	\noindent \textbf{Capítulo 3:} se trata del capítulo principal del proyecto, donde se expone todo el proceso de diseño del sistema. Se parte de la determinación de las funcionalidades que hay que cubrir, para determinar posibles necesidades y así iniciar una búsqueda de soluciones. Es aquí donde se exponen tanto las tecnologías que se emplean en el diseño de la solución (Arduino y LoRa), como distintos componentes hardware necesarios para cada funcionalidad. Finalmente, se expone la elección de soluciones hardware, y se define un primer prototipo provisional. Se proponen los dispositivos que se emplean y las pruebas necesarias para verificar su funcionamiento, tanto en monitorización como en comunicaciones. \\
+	\noindent \textbf{Capítulo 3:} este es el capítulo principal del proyecto, donde se explicará todo el proceso de diseño del sistema. Se parte de la determinación de las funcionalidades que hay que cubrir, para determinar posibles necesidades y así iniciar una búsqueda de soluciones. Es aquí donde se exponen tanto las tecnologías empleadas en el diseño de la solución (Arduino y LoRa), como distintos componentes hardware necesarios para cada funcionalidad. Finalmente, se expone la elección de soluciones hardware, y se define un primer prototipo provisional. Se plantea un primer prototipo y las pruebas necesarias para verificar su correcto funcionamiento, tanto en monitorización como en comunicaciones. \\
 	
-	\noindent \textbf{Capítulo 4: }se trata el proceso de construcción del prototipo definitivo, sus evoluciones desde el prototipo provisional y las
-pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real (entorno definitivo).
-\\
+	\noindent \textbf{Capítulo 4: }se trata el proceso de construcción del prototipo definitivo, sus evoluciones desde el prototipo provisional y las pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real (entorno definitivo).\\
 	
-	\noindent \textbf{Capítulo 5:} se proponen los resultados y las conclusiones obtenidas a la finalización del proyecto, así como las opciones futuras con las que se puede mejorar el diseño.\\
+	\noindent \textbf{Capítulo 5:} se muestran los resultados y las conclusiones obtenidas, tanto en el proceso de diseño como a la finalización del proyecto. También se proponen posibles líneas de investigación futuras con las que se puede mejorar el diseño.\\
 
 	\pagebreak
 	
 
 	\section[Estado del arte]{Estado del arte}  
 	
-	\noindent En el capítulo anterior ya se planteó la motivación y una aproximación a lo que se pretende realizar en este proyecto, pero en este punto se expone con más detalle la situación actual en el ámbito del control y automatización de sistemas de alimentación para animales (dentro del marco Open Source), así como proyectos relacionados con este ámbito y otros ejemplos que emplean Arduino y/o LoRa.
+	\noindent En este capítulo expondremos la situación actual en el ámbito del control y automatización de sistemas de alimentación para animales (dentro del marco Open Source). Además, se comentarán otros proyectos relacionados con este ámbito y ejemplos que emplean las tecnologías Arduino y/o LoRa.
 	
 	\subsection[Contexto actual]{Contexto actual}
 		
@@ -330,6 +312,8 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	\subsubsection{Ejemplos de proyectos Open Source}
 	
 	\noindent A continuación, se comentarán brevemente algunos ejemplos de proyectos Open Source, relacionados con los tópicos que se han enumerado anteriormente y que, en opinión propia, merecen reconocimiento por la gran labor de investigación y divulgación que han realizado con dichos proyectos. 
+	
+	\pagebreak
 	
 	\subsubsubsection{Relacionados con alimentación autónoma de animales}
 	
@@ -563,6 +547,8 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent Las células solares de laboratorio hechas de silicio cristalino dan valores de $V_{oc}$ de hasta 720 mV bajo condiciones AM1.5 estándar, mientras que las células solares comerciales normalmente dan valores de $V_{oc}$ por encima de los 600 mV. \\
 	
+	\pagebreak
+	
 	\noindent \textit{\textbf{Factor de forma}} \\
 	
 	\noindent El factor de forma es la relación entre la potencia máxima ($P_{max} = J_{mpp} V_{mpp}$) generada por una célula solar y el producto de $V_{oc}$ con $J_{sc}$. \\
@@ -709,7 +695,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent \textit{Opciones: tipos de paneles solares}\\
 	
-	\noindent Existen diferentes tipos de células fotovoltaicas disponibles en el mercado, aunque en su mayoría están fabricadas de silicio (Si), el cual por sí mismo no es muy puro y debe ser refinado para que pueda usarse como material semiconductor en muchos tipos distintos de células fotovoltaicas, transistores o circuitos integrados digitales. El uso de silicio en la fabricación de células fotovoltaicas produce la típica célula fotovoltaica de color azul uniforme. \\
+	\noindent Existen diferentes tipos de células fotovoltaicas disponibles en el mercado, aunque en su mayoría están fabricadas de silicio (Si), el cual por sí mismo no es muy puro y debe ser refinado para que pueda usarse como material semiconductor en muchos tipos distintos de células fotovoltaicas, transistores o circuitos integrados digitales. \\
 	\noindent Los dos tipos principales de materiales usados para células fotovoltaicas son el silicio cristalino y los depósitos de película fina, los cuales varían entre unos y otros en términos de eficiencia en absorción de luz, eficiencia en la conversión de energía, tecnología de fabricación y coste de producción. Las células fotovoltaicas (a partir de ahora, células PV, \textit{PhotoVoltaic}) hechas de silicio cristalino son el tipo más común de células PV que se utilizan en la actualidad y también son uno de los primeros dispositivos PV que tuvieron éxito.\\
 	
 	\noindent Los tres tipos generales [\ref{bib: alternative energy photovoltaic types}][\ref{bib: renewable energy hub main types photo cells}] de células PV hechas de silicio son:
@@ -739,18 +725,18 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent En tanto a microcontroladores, la opción \textit{Open Source} más conocida seguramente sea Arduino. Sin embargo, no significa que no existan más opciones en tanto a microcontroladores. Es importante recordar que ni Arduino ni las alternativas que se van a presentar son ordenadores, son microcontroladores, esto es, circuitos integrados diseñados para llevar a cabo una tarea única de manera cíclica (una vez que programado para una tarea, ejecutará esa tarea y sólo esa tarea una y otra vez, dependiendo de cómo haya sido programado).\\
 	
-	\noindent A continuación, se va a presentar una lista con algunas opciones de microcontroladores [\ref{bib: arduino alternatives}][\ref{bib: microcontrollers alternative to arduino}][\ref{bib: alternative to arduino}]. Vale la pena señalar que la mayoría de estas placas tienen variaciones que también vale la pena revisar; la elección de un microcontrolador u otro dependerá de lo que necesite nuestro proyecto (si necesita muchas entradas porque tendremos muchos periféricos, si necesitamos ahorro de energía al máximo, o una buena potencia de procesamiento, etc). \\
+	\noindent A continuación, se va a presentar una lista con algunas opciones de microcontroladores [\ref{bib: arduino alternatives}][\ref{bib: microcontrollers alternative to arduino}][\ref{bib: alternative to arduino}]. Vale la pena señalar que la mayoría de estas placas tienen una serie de características que también vale la pena revisar; la elección de un microcontrolador u otro dependerá de lo que necesite nuestro proyecto (si necesita muchas entradas porque tendremos muchos periféricos, si necesitamos ahorro de energía al máximo, o una buena potencia de procesamiento, etc). 
 	
 	\begin{itemize}
 		\item \textbf{Arduino}. Se trata de una plataforma de desarrollo Open Source hardware y software, característica por su facilidad de uso e integración entre la solución hardware (placas Arduino) y la solución software (Arduino IDE). Existe una gama variada de placas Arduino, entre las que podemos destacar la Nano o la Uno. A modo de ejemplo, se mostrará la información de la Uno, placa recomendada por la propia organización Arduino para principiantes.\\
 		
-		\textit{Especificaciones:} ATMega328P a 16 MHz, 32 kB de memoria flash, 2kB de SRAM y 1kB de EEPROM.\\
+		\textit{Especificaciones:} ATMega328P a 16 MHz, 32kB de memoria flash, 2kB de SRAM y 1kB de EEPROM.\\
 		
 		\textit{Características:} 14 pines I/O digitales, 6 entradas analógicas, conexión USB, conector de alimentación jack. \\
 		
 		\textit{Precio:} 20 \euro \enspace en Arduino.\\
 		
-		\item \textbf{NodeMCU}. NodeMCU (\textit{Node MicroController Unit}) es un entorno de desarrollo de software y hardware de código abierto que se basa en un sistema en chip (SoC) muy económico llamado ESP8266. El ESP8266, diseñado y fabricado por Espressif Systems, contiene todos los elementos cruciales de un ordenador: CPU, RAM, redes (wifi) e incluso un sistema operativo y SDK modernos. Cuando se compra por separado, el chip ESP8266 cuesta solo 2\$ por unidad. Esto lo convierte en una buena opción para proyectos de IoT de todo tipo. \\
+		\item \textbf{NodeMCU}. NodeMCU (\textit{Node MicroController Unit}) es una solución integrada de software y hardware de código abierto que se basa en un \textit{System On Chip} (SoC)  llamado ESP8266. El ESP8266 está diseñado y fabricado por Espressif Systems; contiene todos los elementos básicos de un ordenador: CPU, RAM, redes (WiFi) e incluso un sistema operativo y SDK modernos. Esto lo convierte en una buena opción para proyectos de IoT de todo tipo. \\
 		
 		\textit{Especificaciones:} SoC basado en ESP8266 a 80 MHz, 64 kB de SRAM, 4 MB de memoria flash.\\ 
 		
@@ -758,9 +744,9 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 		
 		\textit{Precio:} aprox. 8 \euro \enspace en Amazon.\\
 	
-		\item \textbf{STM32}. La familia STM32 de microcontroladores de 32 bits basada en el procesador ARM Cortex-M ofrece productos que combinan un rendimiento muy alto, capacidades en tiempo real, procesamiento de señales digitales, operación de bajo consumo / bajo voltaje y conectividad, mientras se mantiene una integración completa y facilidad de desarrollo.
+		\item \textbf{STM32}. Se trata de una familia de microcontroladores con arquitectura de 32 bits, basada en procesadores ARM Cortex-M; estos últimos ofrecen productos que combinan un rendimiento muy alto, capacidades en tiempo real, procesamiento de señales digitales, operación de bajo consumo y conectividad, mientras se mantiene una integración completa y facilidad de desarrollo.
 		
-		La gama de microcontroladores STM32, basada en un núcleo estándar de la industria, viene con una amplia variedad de herramientas y software para respaldar el desarrollo de proyectos, lo que hace que esta familia de productos sea ideal tanto para proyectos pequeños como para plataformas de extremo a extremo. \\
+		Estas placas vienen acompañadas de una amplia variedad de herramientas para respaldar el desarrollo de proyectos, lo que hace que esta familia de productos sea ideal tanto para proyectos pequeños como para plataformas de extremo a extremo. \\
 		
 		\textit{Especificaciones:} depende del microcontrolador. Ejemplo de STM32F103C876, 72MHz Cortex-M3, SRAM de 20kB, 64/128 kB de memoria flash. \\
 		
@@ -768,31 +754,29 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 		
 		\textit{Precio:} depende del microcontrolador. En este ejemplo, aprox. 10\$ en eBay. \\
 		
-		\item \textbf{Teensy 3.6. o Teensy 2.0}. La familia de placas Teensy fue desarrollada por PJRC durante los últimos años. Inicialmente, Teensy se creó prometiendo un poco más de factor de forma más pequeño. Uno de los Teensy más apreciados es el 3.6.; tiene un procesador ARM de 32 bits, 52 entradas/salidas en total, ADC, lector de tarjetas SD y muchas más funciones. Además, PJRC proporciona un complemento software \textit{Teensyduino} para una compatibilidad casi completa con los programas Arduino. \\ 
+		\item \textbf{Teensy 3.6. o Teensy 2.0}. Desarrolladas por PJR, las placas Teensy se crearon prometiendo un factor de forma más pequeño sin sacrificar rendimiento. Uno de los Teensy más populares es el 3.6.; este dispone de un procesador ARM de 32 bits, 52 entradas/salidas en total, ADC, lector de tarjetas SD, etc. Además, PJRC proporciona una herramienta, \textit{Teensyduino}, para una compatibilidad casi completa con los programas Arduino. \\ 
 		
-		\textit{Especificaciones}: 180-MHz Cortex M4F, 256 kB RAM, almacenamiento flash 1MB, 4K EEPROM. \\
+		\textit{Especificaciones}: 180-MHz Cortex M4F, 256kB RAM, almacenamiento flash 1MB, 4K EEPROM. \\
 		
-		\textit{Características}: Teensyduino para Arduino IDE, lector SD. \\
+		\textit{Características}: herramienta \textit{Teensyduino} para Arduino IDE, lector SD, factor de forma. \\
 		
 		\textit{Precio}: aprox. 30 \$ en PJRC. \\
 		
-		\item \textbf{SparkFun Thing Plus}. SparkFun tomó el ESP32 e hizo esta placa. El ESP32 es sin duda una gran opción para una placa IoT. Viene con Wi-Fi, Bluetooth y Bluetooth Low Energy integrados. Incluso agregaron una conexión Li-Po para complementar aún más su naturaleza inalámbrica.
+		\item \textbf{SparkFun Thing Plus}. Esta placa se basa en el ESP32. Es, sin duda, una gran opción para una placa IoT. Viene con Wi-Fi, Bluetooth y Bluetooth Low Energy integrados. También permiten conexión con baterías tipo Li-Po de una celda con el objetivo de mantener una naturaleza inalámbrica. Es compatible con Arduino IDE. \\
 		
-		Thing Plus también muestra algunas especificaciones impresionantes y un buen conjunto de sensores. Además, es compatible con Arduino IDE. \\
-		
-		\textit{Especificaciones}: 240 MHz, 520 kB SRAM, 16MB de almacenamiento flash. \\
+		\textit{Especificaciones}: 240MHz, 520kB SRAM, 16MB de almacenamiento flash. \\
 		
 		\textit{Características}: Wi-Fi, Bluetooth, BLE, cargador de batería Li-Po, sensor de efecto Hall, sensor táctil capacitivo, sensor de temperatura. \\
 		
 		\textit{Precio}: aprox. 21\$ en SparkFun.\\
 		
-		\item \textbf{Adafruit Feather Huzzah}. El Huzzah proviene de la línea Feather de Adafruit. Está destinado a ser una placa pequeña. Tiene Wi-Fi incorporado, un cargador Li-Po y compatibilidad con Arduino. Además, como ESP8266, se puede utilizar con NodeMCU Lua.
+		\item \textbf{Adafruit Feather Huzzah}. El Huzzah proviene de la línea Feather de Adafruit. Está destinado a ser una placa pequeña. Incluye Wi-Fi, un cargador Li-Po y compatibilidad con Arduino. 
 		
-		Puede parecer que esta placa parece una versión inferior de Thing Plus, ya que el ESP32 es esencialmente el sucesor del ESP8266. Esta placa, sin embargo, ha existido lo suficiente como para que haya ganado una gran comunidad de usuarios. Esto hace que esta placa sea accesible para los aficionados que deseen la experiencia colectiva de dicha comunidad. \\
+		Puede parecer que esta placa se trata de una versión inferior de Thing Plus, ya que el ESP32 es esencialmente el sucesor del ESP8266. Sin embargo, esta placa se ha ganado una gran comunidad de usuarios por la alta disponibilidad de tutoriales en internet. \\
 		
-		\textit{Especificaciones}: 80 MHz, 50 kB RAM, 4MB de almacenamiento flash. \\
+		\textit{Especificaciones}: 80MHz, 50kB RAM, 4MB de almacenamiento flash. \\
 		
-		\textit{Características}: Wi-Fi, cargador Li-Po, compatible con Arduino, NodeMCU Lua, 9 GPIO.\\
+		\textit{Características}: Wi-Fi, cargador Li-Po 1S, compatible con Arduino, 9 GPIO.\\
 		
 		\textit{Precio}: aprox. 17\$ en Adafruit.\\
 		
@@ -854,26 +838,26 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent \textit{Servomotor} \\
 	
-	\noindent Un servomotor es un motor eléctrico al que se le puede configurar tanto la velocidad, como la posición del eje que gira (también llamada \textit{dirección del eje o giro del rotor}). Gracias a esto, con los servomotores podemos crear toda clase movimientos de una forma controlada, por ejemplo en robótica para el control del movimiento del brazo de un robot o en los sistemas de radio control [\ref{areatecnologia: servomotores}]. \\
+	\noindent Un servomotor es un tipo de motor eléctrico al que se le puede configurar tanto la velocidad  como la posición [\ref{areatecnologia: servomotores}]. \\
 	
-	\noindent Las características principales de un servomotor son el par y la velocidad:
+	\noindent Las características principales que definen a un servomotor son:
 	
 	\begin{itemize}
-		\item \textbf{El par}: fuerza que es capaz de hacer en su eje. El par también se puede llamar torque. Se suele expresar en Kg/cm, por ejemplo 3Kg/cm. A mayor par, mayor corriente de consumo del servo, pero no suelen consumir mucho, dependiendo del tipo de servomotor.
+		\item \textbf{El par o torque}: fuerza que es capaz de hacer en su eje. Se suele expresar en Kg/cm. A mayor par, mayor corriente de consumo del servo.
 		\item \textbf{Velocidad}: velocidad angular o de rotación.
 	\end{itemize}
 
-	\noindent Cabe anotar que, normalmente, la tensión de alimentación de los servos en c.c. está entre 4 y 8V.\\ 
+	\noindent Cabe anotar que, normalmente, la tensión de alimentación de los servomotores tipo DC está entre 4 y 8V (son los servomotores más empleados).\\ 
 	
 	\noindent \textit{\textbf{Partes de un Servomotor}}\\
 	
-	\noindent Un servomotor es un sistema compuesto por (ver Figura \ref{servo parts}): 
+	\noindent Un servomotor se compone de (ver Figura \ref{servo parts}): 
 	
 	\begin{itemize}
-		\item \textbf{Un motor eléctrico}: es el encargado de generar el movimiento, a través de su eje.
-		\item \textbf{Un sistema de regulación}: formado por engranajes, que actúan sobre el motor para regular su velocidad y el par. Mediante estos engranajes, normalmente ruedas dentadas, podemos aumentar la velocidad y el par o disminuirlas.
-		\item \textbf{Un sistema de control o sensor}: circuito electrónico que controla el movimiento del motor mediante el envío de pulsos eléctricos. Propio del servomotor e interno.
-		\item \textbf{Un potenciómetro}: conectado al eje central del motor que nos permite saber en todo momento el ángulo en el que se encuentra el eje del motor. %Recuerda que un potenciómetro es una resistencia eléctrica variable.
+		\item \textbf{Motor eléctrico}: genera el movimiento a través del eje.
+		\item \textbf{Sistema de regulación}: posee unos engranajes, los cuales actúan sobre el motor regulando su velocidad y el par (aumentando la velocidad y el par o disminuyéndola).
+		\item \textbf{Sistema de control o sensor}: encargado de gestionar el movimiento del motor, mediante el envío de pulsos eléctricos. Propio del servomotor e interno.
+		\item \textbf{Potenciómetro}: conectado al eje central del motor. Nos permite saber el ángulo en el que se encuentra el eje del motor. %Recuerda que un potenciómetro es una resistencia eléctrica variable.
 	\end{itemize}
 	
 	\begin{figure}[h]
@@ -884,9 +868,9 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 		\end{center}
 	\end{figure}
 
-	\pagebreak
+	%\pagebreak
 
-	\noindent Puede venir todo en una caja formando el servo (ver Figura \ref{parallex labels parts}), pero normalmente el servo no trae incluido el sistema de control. Si pone \textit{encoder} incluido, quiere decir que viene el sistema de control incluido en el servo. \\
+	\noindent Suelen presentarse todas sus partes dentro de una caja, constituyendo globalmente el servo, como se muestra en la Figura \ref{parallex labels parts}. \\
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -898,7 +882,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 
 	\noindent \textbf{Cómo funciona un servomotor}\\
 	
-	\noindent Para posicionar un servomotor tenemos que aplicarle un pulso eléctrico (una señal PWM). Los pulsos siempre tendrán el mismo periodo, pero variará la duración del valor de tensión en alto del pulso, y será esa duración la que determine la posición del servo (ver Figura \ref{posicion servo}); por ejemplo, si el periodo de la señal es de 2ms, podríamos hacer que, para pulsos de duración en alta de 1ms, el eje del motor esté en la posición más a la izquierda, para pulsos de duración 1.5ms esté en la posición intermedia, y para 2ms, esté en la posición final del servomotor (estos son rangos muy comunes). Si mantuviera el pulso más tiempo de 2ms el motor no giraría más, ya que el potenciómetro del eje detectaría que está en la posición final, y normalmente sonaría un zumbido para indicarnos que está al final del recorrido. \\
+	\noindent Para controlar la posición de un servomotor tenemos que aplicarle un pulso eléctrico (una señal PWM). Los pulsos siempre tendrán el mismo periodo, pero variará la duración del valor de tensión en alto del pulso, y será esa duración la que determine la posición del servo (ver Figura \ref{posicion servo}); por ejemplo, si el periodo de la señal es de 2ms, podríamos hacer que, para pulsos de duración en alta de 1ms, el eje del motor esté en la posición más a la izquierda, para pulsos de duración 1.5ms esté en la posición intermedia, y para 2ms, esté en la posición final del servomotor (estos son rangos muy comunes). Si se mantiene el pulso más de 2ms el motor no giraría más, ya que el potenciómetro del eje detectaría que está en la posición final, y sonaría un zumbido para indicarnos que está al final del recorrido. \\
 	
 	%posicion_servomotor.png
 	
@@ -914,12 +898,12 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent \textbf{Conexión de un Servomotor} \\
 	
-	\noindent Un servomotor tiene 3 cables: 
+	\noindent Un servomotor tiene tres cables, fácilmente diferenciables por el color: 
 	
 	\begin{itemize}
-		\item Un cable rojo para alimentación (el positivo). La tensión de alimentación depende del servo.
-		\item Un cable negro para conexión a tierra (el negativo o GND).
-		\item Un cable blanco que es la línea de control por la que se le envía la señal para comunicar el ángulo en el que se debe posicionar según el pulso. Este cable irá al microcontrolador.
+		\item Un cable rojo para la alimentación.
+		\item Un cable negro para conexión a tierra (GND).
+		\item Un cable blanco para el bus de control por la que se le envía la señal para comunicar el ángulo en el que se debe posicionar (según el pulso que se envíe). Este cable irá al microcontrolador.
 	\end{itemize}
 
 	\noindent No todos los servomotores tienen esos mismos colores de cables (dependerá del fabricante), por lo que se debe ser precavido y buscar en la hoja de especificaciones del fabricante antes de realizar ninguna conexión. Algunas variaciones comunes en los colores de los cables de un servomotor se muestran en la Figura \ref{servo wire color code}. \\
@@ -931,19 +915,6 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 			\label{servo wire color code}
 		\end{center}
 	\end{figure}
-	
-	\pagebreak
-	
-	\noindent \textbf{Tipos de Servomotores}\\
-	
-	\noindent Hay 4 tipos fundamentales de servomotores:
-	
-	\begin{itemize}
-		\item \textbf{Servomotores de corriente continua (cc)}: los más habituales. Funcionan con un pequeño motor de corriente continua. El servomotor se controla por PWM (modulación por ancho de pulso), como ya explicamos.
-		\item \textbf{Servomotores de corriente alterna (ac)}: pueden utilizar corrientes más potentes y por lo tanto se usan para mover fuerzas mucho mayores.
-		\item \textbf{Servomotores de imanes permanentes o \textit{Brushless}}: se llama \textit{brushless} ya que es un motor de corriente alterna sin escobillas (como las que llevan los de cc). Se utilizan para grandes torques o fuerzas y para altas velocidades. Son los más usados en la industria. Están basados en los motores síncronos.
-		\item \textbf{Motor Paso a Paso}: es un motor eléctrico, pero que no gira, sino que avanza un "paso". No giran de manera continua sino por pasos, es decir, giran un número determinado de grados. La característica principal de estos motores es el hecho de poder moverlos un paso a la vez por cada pulso que se le aplique. Su control se basa en polarizar las bobinas que llevan incluidas de manera adecuada para que giren correctamente. Son ideales para la construcción de mecanismos en donde se requieren movimientos muy precisos.
-	\end{itemize}
 	
 	\noindent \textbf{Precauciones a tener en cuenta} \\
 	
@@ -987,7 +958,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent \textit{Sensor ultrasónico}\\
 	
-	\noindent Existen varios modelos de sensor ultrasónico compatibles con arduino, pero el que vamos a destacar se caracteriza por ser muy fácil de usar y tener un bajo costo. Se trata del HC-SR04, sensor de distancia de baja precisión basado en ultrasonidos. El aspecto del HC-SR04 es muy característico y se reconoce con facilidad (mirar Figura \ref{captura hc-sr04}). Además, es un elemento bastante popular en los kits de iniciación para Arduino y necesario para multitud de proyectos. Se identifica fácilmente porque tiene dos «ojos» que realmente son los dispositivos de ultrasonidos que integra este módulo. Uno de ellos es un emisor de ultrasonidos y el otro un receptor. Trabaja a una frecuencia de 40 kHz, por tanto es inaudible para los seres humanos. \\
+	\noindent Existen varios modelos de sensor ultrasónico compatibles con arduino, pero el que vamos a destacar se caracteriza por ser muy fácil de usar y tener un bajo costo. Se trata del HC-SR04, sensor de distancia de baja precisión basado en ultrasonidos. Se reconoce con facilidad ya que tiene un aspecto muy característico (mirar Figura \ref{captura hc-sr04}); se identifica fácilmente porque tiene dos ``ojos'' que realmente son los dispositivos de ultrasonidos que integra este módulo. Uno de estos ``ojos'' es el emisor de ultrasonidos y el otro un receptor. Está diseñado para trabajar a una frecuencia de 40kHz, frecuencia inaudible para los seres humanos. \\
 
 	% \ref{hwlibre hc-sr04}	
 	% hc-sr04.png
@@ -1002,14 +973,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\pagebreak
 	
-	\noindent Su funcionamiento se basa en el envío de un pulso de alta frecuencia. Este pulso rebota en los objetos cercanos y es reflejado hacia el sensor, que dispone de un receptor adecuado para esa frecuencia. El sonido se propaga a una velocidad constante en el aire, con lo cual si calculamos el tiempo que demora en emitirse el pulso y la recepción del mismo, causada por el rebote sobre un objeto, podremos calcular la distancia. Dado que la velocidad del sonido es 343 m/s en condiciones de temperatura 20 ºC, 50\% de humedad y presión atmosférica medida a nivel del mar, se tiene que:
-	
-	\begin{equation} \label{Cálculo multiplicador HC-SR04}
-		343 \frac{m}{s} \cdot 100 \frac{cm}{m} \cdot \frac{1}{1000000} \cdot \frac{s}{\mu s} = \frac{1}{29.2} \frac{cm}{\mu s}
-	\end{equation}
-	
-	\noindent Por tanto, se puede conocer la distancia a un objeto simplemente teniendo en cuenta el valor mostrado en la ecuación \ref{Cálculo multiplicador HC-SR04}, de forma que la distancia viene dada por la mitad del tiempo que ha tardado la señal en regresar al sensor. Es decir, si se ha medido 292 microsegundos, entonces la distancia es 5 cm. Para mejor comprensión se muestra esquema en la Figura \ref{esquema funcionamiento hc-sr04}. Si las condiciones de presión temperatura y humedad ambiental son diferentes las medidas no son tan exactas, aunque el error puede despreciarse. \\
-	
+	\noindent Su funcionamiento se basa en el envío de un pulso, el cual rebota en los objetos cercanos y es reflejado hacia el sensor, que dispone de un receptor adecuado para esa frecuencia. El sonido se propaga a una velocidad constante en el aire, con lo cual si calculamos el tiempo que demora en emitirse el pulso y la recepción del mismo, causada por el rebote sobre un objeto, podremos calcular la distancia (ver Figura \ref{esquema funcionamiento hc-sr04}). 
 	%esquema_funcionamiento_hcsr04.png
 	%\ref{TFM LoRa}
 	
@@ -1021,17 +985,19 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 		\end{center}
 	\end{figure}
 
-	\noindent Por último, señalar que este es un sensor activo, ya que debemos alimentarlo para usarlo y también incluye varios circuitos integrados que son los encargados de generar el pulso de sonido y luego recibirlo. Estos circuitos nos facilitan la programación; es por ello que veremos que solo incluye cuatro pines, VCC, Trigger, Echo y GND (mirar Figura \ref{captura hc-sr04}):
+	\noindent Por último, señalar que este es un sensor activo, ya que debemos alimentarlo para usarlo. También incluye varios circuitos integrados, encargados de generar el pulso de sonido y luego recibirlo. Dichos elementos nos facilitan la programación; es por ello que veremos que solo incluye cuatro pines, VCC, \textit{Trigger}, \textit{Echo} y GND (mirar Figura \ref{captura hc-sr04}):
 	
 	\begin{itemize}
 		\item VCC y GND será la alimentación que obtendremos directamente del arduino. 
-		\item Trigger será el pin al cual le enviaremos una señal para que dispare el pulso ultrasónico. 
-		\item Por el pin Echo obtendremos otro pulso indicando que la señal ha sido recibida.
+		\item \textit{Trigger} será el pin al cual le enviaremos una señal para que dispare el pulso ultrasónico. 
+		\item Por el pin \textit{Echo} obtendremos otro pulso indicando que la señal ha sido recibida.
 	\end{itemize}
 	
 	\noindent \textit{Bomba de agua} \\
 	
 	\noindent Se trata de un motor a efectos prácticos, que funciona con corriente continua. Como será un elemento que, con total seguridad, será elegido para estar en el prototipo final, aparecerá en el apartado \ref{subsubsection: automatizacion y monitorizacion} con mayor detalle. \\
+	
+	\pagebreak
 	
 	\noindent \textit{Sensores de nivel de agua} \\
 	
@@ -1049,19 +1015,21 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent Su funcionamiento es sencillo: si el nivel del agua queda por encima del sensor, el valor lógico asociado que enviará al microcontrolador será de 1. Si por el contrario queda por debajo, mandará un 0. Un sensor de flotación tiene dos cables de alimentación, simétricos, uno para VCC y otro para GND; entre dichos terminales y el microcontrolador se requiere de resistencias de 10k en configuración \textit{pull-down} (mirar Figura \ref{Esquema resistencia pull-down}), ya que al tratarse de switches, al conmutar si no existe esa resistencia da un valor lógico o desconocido o falso 1, consecuencia del ruido del pin que se introduce al estar flotante. El valor de la resistencia \textit{pull-down} dependerá de la situación (leer \hyperref[glosario]{Glosario} para más información).\\
 	
-	\pagebreak
+	%\pagebreak
 	
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=0.2\textwidth]{img/pull-down-resistor.png}
+			\includegraphics[width=0.15\textwidth]{img/pull-down-resistor.png}
 			\caption{Esquema de un switch conectado a un microcontrolador con una resistencia \textit{pull-down} [\ref{bib: eepower pull up pull down resistors}].}
 			\label{Esquema resistencia pull-down}
 		\end{center}
 	\end{figure}
 
+	\pagebreak
+	
 	\noindent \textit{Relé} \\
 	
-	\noindent Un relé es un interruptor electromecánico que se conmuta (cambia de estado) mediante una señal eléctrica, y es digital, ya que sólo puede tomar el valor abierto y el cerrado (1 o 0, True o False). Sería algo parecido a un pulsador, pero sustituyendo el gesto mecánico de un dedo pulsando por una señal eléctrica. De esta forma, mediante una señal eléctrica de poca intensidad podemos controlar un circuito de mucha mayor potencia, aislando la parte de control. 
+	\noindent Un relé es un dispositivo electrónico que se comporta como un interruptor electromecánico; este se conmuta mediante una señal eléctrica, y al ser digital, sólo puede tomar el valor abierto y el cerrado (1 o 0, True o False). Sería algo parecido a un pulsador, pero sustituyendo el gesto mecánico de un dedo pulsando por una señal eléctrica. De esta forma, mediante una señal eléctrica de poca intensidad podemos controlar un circuito de mucha mayor potencia, aislando la parte de control. 
 	
 	%\pagebreak
 	
@@ -1076,26 +1044,26 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 		\end{center}
 	\end{figure}
 	
+	%\pagebreak
+	
+	\noindent El circuito de la Figura \ref{Rele: teoria}(a) muestra la base de un relé; consiste en un núcleo de hierro (ferromagnético) y un cable conductor eléctrico alrededor del núcleo, conectado a una batería. Cerrando el interruptor, se induce en el hierro un campo magnético sostenido, siguiendo las reglas de las leyes de Maxwell (convirtiéndose en un electroimán). Si el núcleo de hierro no está sujeto a las espiras devanadas, se desplazará lateralmente; si el núcleo está sujeto, el conjunto se comporta como un imán que podemos ``encender y apagar''.
+	
+	\noindent Fijándonos en la Figura \ref{Rele: teoria}(b), podemos observar que, cuando aplicamos tensión a la bobina, el electroimán atrae la armadura haciéndola bascular alrededor del pívot, desplazando el contacto móvil hacia arriba y conectando el pin \textit{normalmente abierto} con el \textit{común}, cerrando el circuito. A este contacto se le llama normalmente abierto (NA), porque el circuito entre el común y el pin NA está normalmente abierto (o sin conexión) hasta que el relé conmuta. Por el mismo motivo, hablamos del normalmente cerrado (NC), ya que el contacto está cerrado cuando el relé no está excitado. Cuando no suministramos alimentación a la bobina, el efecto imán desaparece y un resorte devuelve la armadura a la posición de reposo. A este tipo de relé, se le llama de armadura.
+	
 	\pagebreak
+	%\noindent Se podría llegar a pensar que los relés deberían tener 4 contactos, dos para la alimentación y dos para cerrar el circuito. Aunque existen, esto tendría el problema de que habría que fabricar un modelo NC y otro NA lo que supone un coste de fabricación mayor. Por eso, la mayor parte de los relés son de 5 pines, 2 se usan para conmutar el relé y los otros tres son el común y los pines NA y NC (al final un relé es un mecanismo, en el que una parte móvil metálica, cierra un contacto o lo abre). \\
 	
-	\noindent El circuito de la Figura \ref{Rele: teoria}(a) muestra la base de un relé; consiste sencillamente en un núcleo de hierro (ferromagnético) y un cable conductor eléctrico, arrollado alrededor del núcleo, que se conecta a una batería de corriente continua. Si cerramos el interruptor, en el hierro se induce un campo  magnético sostenido, siguiendo las reglas de las leyes de Maxwell (es decir, se convierte en un electroimán). Si el núcleo no está sujeto a las espiras devanadas, se desplazará lateralmente, y si está sujeto el conjunto se comporta como un imán que podemos encender y apagar, lo que aprovechamos, para construir los relés.
-	
-	\noindent Fijándonos en la Figura \ref{Rele: teoria}(b), podemos observar que, cuando damos tensión a la bobina, el electroimán atrae la armadura haciéndola bascular alrededor del pívot, lo que desplaza el contacto móvil hacia arriba conectando el pin \textit{normalmente abierto} con el \textit{común} cerrando el circuito. A este contacto se le llama normalmente abierto (NA), porque el circuito entre el común y el pin NA, esta normalmente abierto (o sin conexión) hasta que se activa el relé. Por el mismo motivo hablamos del normalmente cerrado (NC), ya que el contacto está cerrado cuando el relé no está excitado. Cuando la bobina pierde la alimentación, el efecto imán desaparece y un resorte devuelve la armadura a la posición de reposo. A este tipo de relé, se le llama de armadura.
-	
-	\noindent Se podría llegar a pensar que los relés deberían tener 4 contactos, dos para la alimentación y dos para cerrar el circuito. Aunque existen, esto tendría el problema de que habría que fabricar un modelo NC y otro NA lo que supone un coste de fabricación mayor. Por eso, la mayor parte de los relés son de 5 pines, 2 se usan para conmutar el relé y los otros tres son el común y los pines NA y NC (al final un relé es un mecanismo, en el que una parte móvil metálica, cierra un contacto o lo abre). \\
-	
-	\noindent Seguramente la funcionalidad de un relé recuerde un poco a los transistores, pero tienen finalidades diferentes[\ref{bib: prometec relés}][\ref{bib: prometec relés y arduino}]:
+	\noindent Seguramente la funcionalidad de un relé recuerde un poco a los transistores, sin embargo, estos tienen finalidades diferentes[\ref{bib: prometec relés}][\ref{bib: prometec relés y arduino}]:
 	
 	\begin{itemize}
-		\item Hay límites en la corriente que puede aceptar un transistor, sin embargo se pueden diseñar relés para aguantar cualquier carga.
-		\item El relé aísla completamente el circuito de control del de potencia, algo muy importante para tensiones altas. Utilizaremos relés cuando tengamos cargas de mucha potencia.
-		\item Un transistor conmuta (pasa de corte a saturación o viceversa) millones de veces más rápido que un relé.  Utilizaremos un transistor para cargas pequeñas y cuando la velocidad de conmutación sea importante.
+		\item Los relés soportan más corriente que los transistores, y además, están aislados de la carga (importante si tenemos cargas de mucha potencia).
+		\item Un transistor conmuta mucho más rápido que un relé.  Utilizaremos un transistor para cargas pequeñas y cuando la velocidad de conmutación sea importante.
 		\item Sin embargo, hay que tener en cuenta que el relé cuenta con mayor desgaste, ya que cada vez que conmuta implica el movimiento de partes móviles mecánicas.
 	\end{itemize}
 	
-	\noindent Tanto los transistores como los relés tiene la ventaja de disponer de un circuito de baja (control), y otra circuito de alta (carga), por lo que se aísla eficazmente el circuito de control, normalmente de baja tensión, como nuestro Arduino, del circuito de carga elevada que puede ser un motor de una cierta potencia, y por consecuente, capaz de inhabilitar nuestros circuitos de control. Por eso, cuando se manejan media y alta tensión en la industria, se suelen usar relés para conseguir aislamiento galvánico, por razones de seguridad, y se exige aislar la tierra del circuito de potencia y el negativo o GND del circuito de control, garantizando así el aislamiento galvánico de los dos circuitos. En el mundo Arduino se suelen usar relés de baja potencia, como mucho tensiones alternas alternas de 220V y máximo 5A para pequeños motores.
+%	\noindent Tanto los transistores como los relés tiene la ventaja de disponer de un circuito de baja (control), y otra circuito de alta (carga), por lo que se aísla eficazmente el circuito de control, normalmente de baja tensión, como nuestro Arduino, del circuito de carga elevada que puede ser un motor de una cierta potencia, y por consecuente, capaz de inhabilitar nuestros circuitos de control. Por eso, cuando se manejan media y alta tensión en la industria, se suelen usar relés para conseguir aislamiento galvánico, por razones de seguridad, y se exige aislar la tierra del circuito de potencia y el negativo o GND del circuito de control, garantizando así el aislamiento galvánico de los dos circuitos. En el mundo Arduino se suelen usar relés de baja potencia, como mucho tensiones alternas alternas de 220V y máximo 5A para pequeños motores.
 	
-	\noindent Aunque hay muchos tipos de relés, por regla general nuestro Arduino no suministra la suficiente corriente para activar un relé. Utilizaremos un transistor para amplificar la señal de la base y así poder conmutar el relé. El ejemplo que veremos a continuación incluye un circuito de transistor/relé completo que nos podrá valer para  cualquier proyecto que lo requiera.
+	\noindent Aunque hay muchos tipos de relés, por regla general nuestro Arduino no suministra la suficiente corriente para activar un relé. Es por esta razón por la que utilizaremos un transistor para amplificar la señal de la base y así poder conmutar el relé. El ejemplo que veremos a continuación incluye un circuito de transistor/relé completo que nos podrá valer para cualquier proyecto que lo requiera.
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -1110,9 +1078,11 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 		
 		\item Si hay un valor LOW en el pin de control el transistor entra en corte e impide el flujo de corriente por lo que la bobina cae y el contacto de salida vuelve a su posición de reposo.
 		
-		\item La salida del relé consta de 3 pines y no de dos como se podría esperar.  El motivo es que la conexión entre los pines de salida 2 y 3 es de tipo normalmente abierto (circuito abierto sin excitar) y entre los pines 2 y 4 es normalmente cerrado (circuito cerrado sin excitar la bobina).
+		%\item La salida del relé consta de 3 pines y no de dos como se podría esperar.  El motivo es que la conexión entre los pines de salida 2 y 3 es de tipo normalmente abierto (circuito abierto sin excitar) y entre los pines 2 y 4 es normalmente cerrado (circuito cerrado sin excitar la bobina).
 
 	\end{itemize}
+	
+	\pagebreak
 	
 	\noindent \textit{Resumen de las opciones para bebedero}
 	 \\
@@ -1349,7 +1319,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	% Intro: qué es Arduino
 
-	\noindent Arduino es una plataforma de electrónica \textit{open-source} basada en hardware y software fáciles de usar. Nació en el \textit{Ivrea Interaction Design Institute} (Italia) como una herramienta fácil para la creación rápida de prototipos, dirigida a estudiantes sin experiencia en electrónica y programación. Tan pronto como llegó a una comunidad más amplia, la placa Arduino comenzó a cambiar para adaptarse a las nuevas necesidades y desafíos, tanto de usuarios principiantes como expertos. \\
+	\noindent Arduino es una plataforma de electrónica \textit{open-source} basada en hardware y software fáciles de usar. Nació en el \textit{Ivrea Interaction Design Institute} (Italia) como una herramienta fácil para la creación rápida de prototipos, dirigida a estudiantes sin experiencia en electrónica y programación. \\
 	
 	\noindent Las placas Arduino son capaces, por una parte, de ejecutar una serie de instrucciones (determinadas por el usuario) a través de su microcontrolador, de manera que a partir de la lectura de sus entradas analógicas/digitales se puedan generar salidas (analógicas/digitales); por otra parte, son programables a través del software Arduino, lo que se conoce como Arduino IDE. \\
 	
@@ -1357,11 +1327,11 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent La principal característica de Arduino es la simplicidad para trabajar con microcontroladores [\ref{arduino intro}]. A raíz de esto, ofrece una serie de ventajas para sus usuarios, como son:
 	\begin{itemize}
-		\item \textbf{Es de bajo coste}. Las placas de Arduino son relativamente de bajo coste comparadas con las plataformas de otros microcontroladores. La versión más económica de un módulo Arduino puede ser ensamblada a mano, e incluso los módulos Arduino pre-ensamblados cuestan menos de 50 \$.
+		\item \textbf{Es de bajo coste}. Las placas de Arduino son relativamente de bajo coste comparadas con las plataformas de otros microcontroladores. La versión más económica de un módulo Arduino puede ser ensamblada a mano, e incluso los módulos Arduino pre-ensamblados cuestan menos de 50\$.
 		\item \textbf{Multiplataforma}. El software de Arduino, Arduino IDE, es capaz de ejecutarse en Macintosh OSX, Windows y Linux. La mayoría de sistemas de microcontroladores están limitados a Windows.
 		\item  	\textbf{Entorno de programación simple y claro}. El software de Arduino (IDE) es fácil de usar para principiantes, sin dejar de ser lo suficientemente flexible para usuarios más avanzados.
-		\item \textbf{Software Open Source y extensible}. El software Arduino está publicado como un conjunto de herramientas open source, disponible para ser ampliada por otros programadores a través de librerías basadas en el lenguaje C++; las personas que quieran comprender los detalles técnicos pueden dar el salto de Arduino al lenguaje de programación AVR-C en el que se basa. Del mismo modo, se puede agregar código AVR-C directamente en los  programas Arduino si así se desea.
-		\item \textbf{Hardware Open Source y extensible}. Los planos de las placas Arduino están publicados bajo licencia \textit{Creative Commons}, así pues, diseñadores de circuitos experimentados pueden hacer su propia versión del módulo, extendiéndola y mejorándola. Incluso usuarios sin experiencia pueden crear una versión en protoboard del módulo para entender cómo funciona y ahorrar dinero.
+		\item \textbf{Software Open Source y extensible}. El software Arduino está publicado como un conjunto de herramientas open source, disponible para ser ampliada por otros programadores a través de librerías basadas en el lenguaje C++.
+		\item \textbf{Hardware Open Source y extensible}. Los planos de las placas Arduino están publicados bajo licencia \textit{Creative Commons}, así pues, diseñadores de circuitos experimentados pueden hacer su propia versión del módulo, extendiéndola y mejorándola.
 	
 	\end{itemize}
 
@@ -1536,9 +1506,9 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\noindent  \textbf{Regulación LoRa en Europa} \\
 	
-	\noindent LoRaWAN es la capa de aplicación y protocolo que corre sobre la modulación de radio LoRa. LoRa en España opera en banda no licenciada del radioespectro, esto implica que se puede transmitir en esa frecuencia sin necesidad de pagar por su uso (de la misma manera que se hace con el WiFi). La modulación LoRa, como todas las demás emisiones de radiofrecuencia, está sujeta a una regulación que le marca sus límites de uso. \\
+	\noindent LoRa en España opera en banda no licenciada del radioespectro. La modulación LoRa, como todas las demás emisiones de radiofrecuencia, está sujeta a una regulación que le marca sus límites de uso. \\
 	
-	\noindent Como cualquier radiofrecuencia utilizada para la transmisión de datos, el estándar normativo genérico a nivel europeo está definido por el European Telecommunications Standards Institut (ETSI). Actualmente, la regulación actual viene marcada por la \href{https://www.etsi.org/deliver/etsi_en/300200_300299/30022001/03.01.01_60/en_30022001v030101p.pdf}{ETSI EN 300 220-1}[\ref{etsi}]. Ahora bien, la ETSI EN 300 220-1 marca cómo se deben usar las ondas de radio de un rango de 25 MHz hasta 1000 MHz, es decir, gran parte de este estándar no aplica a LoRa, ya que su uso mayoritario en el ámbito europeo está acotado a la banda libre de 868 MHz. Es por ello que la LoRa Alliance ha desarrollado un documento llamado \href{https://lora-alliance.org/resource_hub/rp2-1-0-3-lorawan-regional-parameters/}{LoRaWAN Regional Parameters}[\ref{lora regional parameters}] donde se explica la normativa específica para LoRa y LoRaWAN. En este documento se diferencia cual es la regulación concreta que aplica a la modulación LoRa y cúal a LoRaWAN (conjunto modulación y capa de aplicación).\\
+	\noindent Como cualquier radiofrecuencia utilizada para la transmisión de datos, el estándar normativo genérico a nivel europeo está definido por el European Telecommunications Standards Institut (ETSI). Actualmente, la regulación actual viene marcada por la \href{https://www.etsi.org/deliver/etsi_en/300200_300299/30022001/03.01.01_60/en_30022001v030101p.pdf}{ETSI EN 300 220-1}[\ref{etsi}]. Ahora bien, la ETSI EN 300 220-1 marca cómo se deben usar las ondas de radio de un rango de 25 MHz hasta 1000 MHz, es decir, gran parte de este estándar no aplica a LoRa, ya que su uso mayoritario en el ámbito europeo está acotado a la banda libre de 868 MHz. Es por ello que LoRa Alliance ha desarrollado un documento llamado \href{https://lora-alliance.org/resource_hub/rp2-1-0-3-lorawan-regional-parameters/}{LoRaWAN Regional Parameters}[\ref{lora regional parameters}] donde se explica la normativa específica para LoRa y LoRaWAN. En este documento se diferencia cuál es la regulación concreta que aplica a la modulación LoRa y cúal a LoRaWAN (conjunto modulación y capa de aplicación).\\
 	
 	\noindent Lora Alliance resumió toda la normativa a nivel mundial, por lo que para conocer lo que afecta a nivel español, tendremos que seguir la regulación europea y, por tanto, fijarnos en aquellos puntos titulados EU863-870MHz. Si bien es cierto que los fabricantes de dispositivos tienen que estar muy atentos a esta regulación, a nivel de usuario de una red LoRaWAN propia, lo que tenemos que ser conscientes son las siguientes limitaciones:
 	
@@ -2572,7 +2542,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	\noindent Para crear la página web, se han empleado Python como lenguaje de programación, y los lenguajes de \textit{maquetado} (lenguajes de \textit{marcado}) HTML + CSS + JavaScript. Se ha hecho uso, además de dos frameworks, uno para la parte front-end de la aplicación web, y otro para la parte back-end:
 	
 	\begin{itemize}
-		\item \textbf{Back-end}. Está programado con el lenguaje de programación Python, haciendo uso del framework web conocido como \href{https://flask.palletsprojects.com/en/2.0.x/}{\textit{Flask}}[\ref{flask web}], el cual permite un importante grado de personalización, idóneo para emprender proyectos web sencillos (aunque el framework ofrece la posibilidad de que escale al gusto de cada uno)[\ref{bib: flask doc}]. A través de una librería especial de Flask, ofrecida por el usuario \href{https://github.com/RedFalsh}{RedFalsh}[\ref{red falsh}], con el nombre \href{https://github.com/RedFalsh/flask-serial/blob/master/README.md}{\textit{flask-serial}}[\ref{bib: flask serial}], establecemos y simplificamos la comunicación serial entre la página web y el Arduino Nano del GW, para poder enviar órdenes desde la página web y que el Arduino Nano los reciba y pueda transmitir vía LoRa hacia la estación del refugio. 
+		\item \textbf{Back-end}. Está programado con el lenguaje de programación Python, haciendo uso del framework web conocido como \href{https://flask.palletsprojects.com/en/2.0.x/}{\textit{Flask}}[\ref{bib: flask doc}], el cual permite un importante grado de personalización, idóneo para emprender proyectos web sencillos (aunque el framework ofrece la posibilidad de que escale al gusto de cada uno). A través de una librería especial de Flask, ofrecida por el usuario \href{https://github.com/RedFalsh}{RedFalsh}[\ref{red falsh}], con el nombre \href{https://github.com/RedFalsh/flask-serial/blob/master/README.md}{\textit{flask-serial}}[\ref{bib: flask serial}], establecemos y simplificamos la comunicación serial entre la página web y el Arduino Nano del GW, para poder enviar órdenes desde la página web y que el Arduino Nano los reciba y pueda transmitir vía LoRa hacia la estación del refugio. 
 		\item \textbf{Front-end}. Haciendo uso de los lenguajes de marcado mencionados, se define el estilo de la web (su apariencia) y se emplea el framework \textit{Bootstrap}; se trata de un framework que combina CSS y JavaScript  para estilizar los elementos  de una página HTML, proporcionando interactividad  y dinamismo en la página web, donde se mostrarán los elementos de la misma sin necesidad de volver a cargar la página para ver cómo varían en apariencia o valor. Su característica más significativa es que permite la construcción de páginas web \textit{responsive}, es decir, páginas web cuya presentación se adaptará al dispositivo donde se visualicen [\ref{bib: bootstrap doc}][\ref{bib: bootstrap info}].
 	\end{itemize} 
 	
@@ -2861,7 +2831,7 @@ pruebas realizadas para verificar su funcionamiento, incluyendo el contexto real
 	
 	\subsection[Resumen del capítulo]{Resumen del capítulo}
 	
-	\noindent En este capítulo, partiendo de la especificación de la ubicación donde se realizan las pruebas, se ha mostrado el prototipo del sistema diseñado junto con las pruebas realizadas y algunos comentarios sobre los resultados obtenidos. Por un lado, se ha construido un primer prototipo que emplea 868MHz en el enlace LoRa punto a punto y se ha comprobado mediante pruebas que cumple con lo esperado. Por otro lado, se ha realizado una pequeña descripción del prototipo definitivo que se ha construido, de forma que tanto el sistema de bebedero como el de comedero funcionen, así como nuestro gateway personalizado, manteniendo funcional el enlace punto a punto. Pese a los condicionantes, se ha podido comprobar que el sistema funciona y el prototipo construido, aunque es mejorable, logra los objetivos planteados inicialmente. \\
+	\noindent En este capítulo, comenzamos presentando la ubicación real donde se plantea situar el sistema de alimentación creado y donde, por tanto, se van a realizar las pruebas. Una vez realizadas las pruebas y obtenidos los resultados, se realizan una serie de comentarios sobre dichos resultados. 	Resumiendo, una vez terminado este capítulo, concluimos que se ha obtenido un primer prototipo capaz de establecer un enlace LoRa punto a punto satisfactorio, probado en el entorno real, y funcional, ya que tanto el sistema de bebedero como el de comedero funcionan, así como nuestro gateway personalizado. Pese a los problemas que han surgido, se ha podido comprobar que el sistema funciona y el prototipo construido, aunque es mejorable, logra los objetivos planteados inicialmente. \\
 	
 	\pagebreak
 	
