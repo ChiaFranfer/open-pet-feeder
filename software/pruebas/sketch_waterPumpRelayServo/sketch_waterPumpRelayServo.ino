@@ -15,7 +15,7 @@ Servo servo1;
 //defines for bebedero
 
 #define RELAY_PIN 7
-#define REFILL_TIME 5000    // 5000 ms == 5s para rellenar bebedero (default)
+#define REFILL_TIME 3000    // 5000 ms == 5s para rellenar bebedero (default)
 
 //void comprobarBebedero(){
 
