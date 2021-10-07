@@ -3,7 +3,7 @@
 
 Trabajo final de estudios para finalizar mi titulación 'Ingeniería en Sistemas de Telecomunicación', en la Universidad Politécnica de Cartagena. 
 * Nombre del trabajo: `Diseño y automatización de un sistema de alimentación OpenSource para animales a través de la tecnología LoRa`
-* Promoción: `2021-2022`
+* Promoción: `2020-2021`
 
 
 ## Objetivos
